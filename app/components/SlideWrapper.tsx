@@ -18,20 +18,20 @@ interface SlideWrapperProps {
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.04 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.02 },
   },
 };
 
 export const itemVariants = {
-  hidden:   { opacity: 0, y: 24 },
-  visible:  { opacity: 1, y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as const } },
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const } },
 };
 
 export default function SlideWrapper({
   children, id, className = "", stagger = true, bgImage, overlay,
 }: SlideWrapperProps) {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.08, triggerOnce: true });
 
   return (
     <motion.section
@@ -43,7 +43,7 @@ export default function SlideWrapper({
       animate={inView ? "visible" : "hidden"}
       aria-label={id}
     >
-      {/* CSS background-image — reliable for print/PDF */}
+      {/* CSS background-image — survives print/PDF */}
       {bgImage && (
         <div
           className="slide-bg"
@@ -56,7 +56,15 @@ export default function SlideWrapper({
         <div className="slide-overlay" style={{ background: overlay }} />
       )}
 
-      {children}
+      {/*
+        .slide-content:
+        - Sets z-index:2 above bg/overlay
+        - Constrains content to max-width (--slide-max) + max-height guard
+        - All slide components render their content directly inside this
+      */}
+      <div className="slide-content">
+        {children}
+      </div>
     </motion.section>
   );
 }

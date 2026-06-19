@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -18,20 +17,20 @@ const inter = Inter({
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+  variable: "--font-jetbrains",
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Origin One — Investment Deck",
+  title: "Origin One — Software Development House",
   description:
-    "Origin One: Building the infrastructure of tomorrow. One source. Infinite potential.",
-  keywords: ["Origin One", "investment", "pitch deck", "venture capital"],
+    "Origin One builds elite mobile apps, AI systems, Web3 platforms, and enterprise software. Production-grade engineering, end-to-end.",
+  keywords: ["Origin One", "software development", "mobile apps", "AI", "Web3", "enterprise software"],
   openGraph: {
-    title: "Origin One — Investment Deck",
-    description: "One Source. Infinite Potential.",
+    title: "Origin One — Software Development House",
+    description: "We Build Software That Ships.",
     type: "website",
   },
 };
@@ -44,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>{children}</body>
     </html>

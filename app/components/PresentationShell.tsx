@@ -14,18 +14,21 @@ import {
    Slide manifest — single source of truth
 ───────────────────────────────────────── */
 export const SLIDES = [
-  { id: "slide-hero",       label: "Intro" },
-  { id: "slide-about",      label: "About Us" },
-  { id: "slide-why",        label: "Why Choose Us" },
-  { id: "slide-tech",       label: "Technology" },
-  { id: "slide-solutions",  label: "Solutions" },
-  { id: "slide-p1a",        label: "Project 01 — Overview" },
-  { id: "slide-p1b",        label: "Project 01 — Features" },
-  { id: "slide-p2a",        label: "Project 02 — Overview" },
-  { id: "slide-p2b",        label: "Project 02 — Features" },
-  { id: "slide-p3a",        label: "Project 03 — Overview" },
-  { id: "slide-p3b",        label: "Project 03 — Features" },
-  { id: "slide-connect",    label: "Let's Connect" },
+  { id: "slide-hero",        label: "Intro" },
+  { id: "slide-about",       label: "About Origin One" },
+  { id: "slide-solutions",   label: "What We Build" },
+  { id: "slide-tech",        label: "Tech Stack" },
+  { id: "slide-portfolio",   label: "Portfolio Overview" },
+  { id: "slide-p1a",         label: "Project 01 — Overview" },
+  { id: "slide-p1b",         label: "Project 01 — Features" },
+  { id: "slide-p2a",         label: "Project 02 — Overview" },
+  { id: "slide-p2b",         label: "Project 02 — Features" },
+  { id: "slide-p3a",         label: "Project 03 — Overview" },
+  { id: "slide-p3b",         label: "Project 03 — Features" },
+  { id: "slide-p4a",         label: "Project 04 — Overview" },
+  { id: "slide-p4b",         label: "Project 04 — Features" },
+  { id: "slide-why",         label: "Why Origin One" },
+  { id: "slide-connect",     label: "Start a Project" },
 ];
 
 /* ─────────────────────────────────────────
@@ -153,7 +156,11 @@ export default function PresentationShell({ children }: { children: ReactNode })
       const dy = startY - e.changedTouches[0].clientY;
       const dx = startX - e.changedTouches[0].clientX;
       if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 40) {
-        dy > 0 ? goNext() : goPrev();
+        if (dy > 0) {
+          goNext();
+        } else {
+          goPrev();
+        }
       }
     };
 
