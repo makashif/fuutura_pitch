@@ -80,7 +80,12 @@ export default function TechSlide() {
           <div className="stack" style={{ gap: "1px", background: "var(--border)" }}>
             {capabilities.map((cap, i) => (
               <motion.div key={i} variants={itemVariants} className="card stack stack-xs"
-                whileHover={{ backgroundColor: "var(--surface-2)" }}>
+                whileHover={{ 
+                  backgroundColor: "var(--surface-2)",
+                  borderColor: "var(--border-strong)",
+                  y: -2,
+                }}
+                style={{ transition: "border-color 0.2s ease" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
                   <span className="t-mono" style={{ color: "var(--accent)", opacity: 0.55 }}>
                     {String(i + 1).padStart(2, "0")}
@@ -101,7 +106,12 @@ export default function TechSlide() {
             <motion.div variants={itemVariants}
               style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
               {techStack.map((tech, i) => (
-                <div key={i}
+                <motion.div key={i}
+                  whileHover={{ 
+                    scale: 1.03,
+                    backgroundColor: "var(--surface-2)",
+                    borderColor: "var(--border-strong)",
+                  }}
                   style={{
                     display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.6rem",
                     padding: "0.55rem 0.75rem",
@@ -109,6 +119,7 @@ export default function TechSlide() {
                     border: "1px solid var(--border)",
                     width: "calc(33.333% - 0.25rem)", // Ensure 3 columns fit
                     minWidth: "100px",
+                    transition: "border-color 0.2s ease",
                   }}>
                   {tech.icon && <tech.icon size={18} strokeWidth={1.5} style={{ color: "var(--tx-2)" }} />}
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.1rem" }}>
@@ -122,7 +133,7 @@ export default function TechSlide() {
                       {tech.category}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>

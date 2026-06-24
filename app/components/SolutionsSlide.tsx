@@ -93,8 +93,15 @@ export default function SolutionsSlide() {
       <div className="grid-4" style={{ gap: "clamp(0.5rem, 1vw, 1rem)" }}>
         {services.map((service, i) => (
           <motion.div key={i} variants={itemVariants} className="card stack stack-xs"
-            whileHover={{ backgroundColor: "var(--surface-2)" }}
-            style={{ padding: "clamp(0.8rem, 1.5vh, 1.2rem)" }}>
+            whileHover={{ 
+              backgroundColor: "var(--surface-2)",
+              borderColor: "var(--border-strong)",
+              y: -2,
+            }}
+            style={{ 
+              padding: "clamp(0.8rem, 1.5vh, 1.2rem)",
+              transition: "border-color 0.2s ease",
+            }}>
 
             {/* Icon + number */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.2rem" }}>
