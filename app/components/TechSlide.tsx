@@ -2,26 +2,41 @@
 
 import { motion } from "framer-motion";
 import SlideWrapper, { itemVariants } from "./SlideWrapper";
+import {
+  Smartphone,
+  Globe,
+  Server,
+  Terminal,
+  Blocks,
+  Brain,
+  Link,
+  Database,
+  Flame,
+  Cloud,
+  Box,
+  Network,
+  Code2
+} from "lucide-react";
 
 const techStack = [
-  { name: "React Native", category: "Mobile" },
-  { name: "Flutter",      category: "Mobile" },
-  { name: "Swift",        category: "iOS" },
-  { name: "Kotlin",       category: "Android" },
-  { name: "Next.js",      category: "Web" },
-  { name: "Node.js",      category: "Backend" },
-  { name: "Python",       category: "AI / Backend" },
-  { name: "Solidity",     category: "Web3" },
-  { name: "OpenAI API",   category: "AI" },
-  { name: "LangChain",    category: "AI" },
-  { name: "PostgreSQL",   category: "Database" },
-  { name: "Firebase",     category: "Platform" },
-  { name: "AWS",          category: "Cloud" },
-  { name: "GCP",          category: "Cloud" },
-  { name: "Docker",       category: "DevOps" },
-  { name: "Supabase",     category: "Database" },
-  { name: "Ethereum",     category: "Web3" },
-  { name: "GraphQL",      category: "API" },
+  { name: "React Native", category: "Mobile", icon: Smartphone },
+  { name: "Flutter", category: "Mobile", icon: Smartphone },
+  { name: "Swift", category: "iOS", icon: Smartphone },
+  { name: "Kotlin", category: "Android", icon: Smartphone },
+  { name: "Next.js", category: "Web", icon: Globe },
+  { name: "Node.js", category: "Backend", icon: Server },
+  { name: "Python", category: "AI / Backend", icon: Terminal },
+  { name: "Solidity", category: "Web3", icon: Code2 },
+  { name: "OpenAI API", category: "AI", icon: Brain },
+  { name: "LangChain", category: "AI", icon: Link },
+  { name: "PostgreSQL", category: "Database", icon: Database },
+  { name: "Firebase", category: "Platform", icon: Flame },
+  { name: "AWS", category: "Cloud", icon: Cloud },
+  { name: "GCP", category: "Cloud", icon: Cloud },
+  { name: "Docker", category: "DevOps", icon: Box },
+  { name: "Supabase", category: "Database", icon: Database },
+  { name: "Ethereum", category: "Web3", icon: Blocks },
+  { name: "GraphQL", category: "API", icon: Network },
 ];
 
 const capabilities = [
@@ -45,7 +60,7 @@ const capabilities = [
 
 export default function TechSlide() {
   return (
-    <SlideWrapper id="slide-tech">
+    <SlideWrapper id="slide-tech" bgImage="/tech_bg.png" overlay="rgba(7,7,7,0.8)">
       <div className="stack stack-md">
 
         {/* Header */}
@@ -79,7 +94,7 @@ export default function TechSlide() {
           </div>
 
           {/* Right: Tech stack grid */}
-          <div className="stack stack-sm">
+          <div className="stack stack-sm" style={{ justifyContent: "flex-end" }}>
             <motion.p className="t-label" variants={itemVariants} style={{ marginBottom: "0.4rem" }}>
               Tools & Technologies
             </motion.p>
@@ -88,21 +103,25 @@ export default function TechSlide() {
               {techStack.map((tech, i) => (
                 <div key={i}
                   style={{
-                    display: "inline-flex", flexDirection: "column",
-                    padding: "0.45rem 0.8rem",
+                    display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.6rem",
+                    padding: "0.55rem 0.75rem",
                     background: "var(--surface)",
                     border: "1px solid var(--border)",
-                    gap: "0.12rem",
+                    width: "calc(33.333% - 0.25rem)", // Ensure 3 columns fit
+                    minWidth: "100px",
                   }}>
-                  <span style={{
-                    fontFamily: "var(--f-body)", fontSize: "0.7rem",
-                    fontWeight: 500, color: "var(--tx-1)",
-                  }}>
-                    {tech.name}
-                  </span>
-                  <span className="t-mono" style={{ color: "var(--tx-4)", fontSize: "0.48rem" }}>
-                    {tech.category}
-                  </span>
+                  {tech.icon && <tech.icon size={18} strokeWidth={1.5} style={{ color: "var(--tx-2)" }} />}
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.1rem" }}>
+                    <span style={{
+                      fontFamily: "var(--f-body)", fontSize: "0.7rem",
+                      fontWeight: 500, color: "var(--tx-1)",
+                    }}>
+                      {tech.name}
+                    </span>
+                    <span className="t-mono" style={{ color: "var(--tx-4)", fontSize: "0.45rem" }}>
+                      {tech.category}
+                    </span>
+                  </div>
                 </div>
               ))}
             </motion.div>

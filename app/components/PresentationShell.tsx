@@ -175,6 +175,9 @@ export default function PresentationShell({ children }: { children: ReactNode })
 
   return (
     <DeckContext.Provider value={{ current, total: SLIDES.length, goTo, goNext, goPrev }}>
+      {/* Global Animated Grid Background */}
+      <div className="app-grid-bg" />
+
       {/* Scroll container */}
       <div
         ref={containerRef}

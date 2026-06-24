@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -19,23 +18,12 @@ export default function HeroSlide() {
       {/* Background */}
       <div
         className="slide-bg"
-        style={{ backgroundImage: "url('/Epic_shot_of_Earth_at_202606181549.jpeg')", backgroundPosition: "center 30%" }}
+        style={{ backgroundImage: "url('/hero_corporate_bg.png')", backgroundPosition: "center 30%" }}
       />
       <div
         className="slide-overlay"
         style={{ background: "linear-gradient(180deg, rgba(7,7,7,0.25) 0%, rgba(7,7,7,0.6) 42%, rgba(7,7,7,0.97) 100%)" }}
       />
-
-      {/* Subtle grid overlay for tech feel */}
-      <div aria-hidden="true" style={{
-        position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
-        `,
-        backgroundSize: "80px 80px",
-        maskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
-      }} />
 
       {/* ── Content ── */}
       <div className="slide-content" style={{
@@ -44,15 +32,6 @@ export default function HeroSlide() {
         maxWidth: "900px", margin: "0 auto", padding: "0 1rem",
       }}>
 
-        {/* Logo mark */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.65 }} animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] as const }}
-        >
-          <Image src="/Origin Mark (dark mode).png" alt="Origin One" width={52} height={52} priority
-            style={{ objectFit: "contain", opacity: 0.9 }} />
-        </motion.div>
-
         {/* Eyebrow */}
         <motion.p
           className="t-label"
@@ -60,7 +39,7 @@ export default function HeroSlide() {
           initial={{ opacity: 0, y: 8 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.18 }}
         >
-          Origin One · Software Development House
+          Origin One Labs · AI-Native Technology & Engineering Partner
         </motion.p>
 
         {/* Headline */}
@@ -70,20 +49,23 @@ export default function HeroSlide() {
           initial={{ opacity: 0, y: 36 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.95, delay: 0.32, ease }}
         >
-          We Build Software<br />
-          <span style={{ color: "rgba(242,242,242,0.35)" }}>That Ships.</span>
+          Build What<br />
+          <span style={{ color: "rgba(242,242,242,0.35)" }}>Matters.</span>
         </motion.h1>
 
         {/* Sub */}
-        <motion.p
-          className="t-body"
-          style={{ maxWidth: "520px", textAlign: "center" }}
+        <motion.div
+          style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center", maxWidth: "600px", textAlign: "center" }}
           initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.55 }}
         >
-          Mobile apps, AI systems, Web3 platforms, and enterprise infrastructure —
-          designed, engineered, and delivered to production.
-        </motion.p>
+          <p className="t-body" style={{ fontWeight: 500, color: "var(--tx-1)" }}>
+            Technology, AI, and Engineering Solutions Built for Real Business Growth.
+          </p>
+          <p className="t-body">
+            Origin One Labs is an AI-native technology and engineering partner that designs, builds, and scales intelligent digital systems for modern businesses.
+          </p>
+        </motion.div>
 
         {/* Rule */}
         <motion.span

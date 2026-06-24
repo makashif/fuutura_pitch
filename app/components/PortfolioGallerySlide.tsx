@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import SlideWrapper, { itemVariants } from "./SlideWrapper";
 
 interface Project {
@@ -9,113 +8,164 @@ interface Project {
   title: string;
   category: string;
   stack: string;
-  mockup: string;
+  tags: string[];
 }
 
 const projects: Project[] = [
   {
     number: "01",
-    title: "AI Operations App",
-    category: "AI Systems · Mobile",
-    stack: "React Native · Python · OpenAI",
-    mockup: "/mockup_01.png",
+    title: "Fuutura Web Wallet",
+    category: "Web3 · DeFi · Fintech",
+    stack: "React.js · Ethers.js · Viem · Node.js · AWS",
+    tags: ["Non-Custodial", "Multi-Chain", "Cross-Chain Swaps"],
   },
   {
     number: "02",
-    title: "FinPay Banking App",
-    category: "Fintech · Mobile Banking",
-    stack: "React Native · Node.js · Stripe",
-    mockup: "/mockup_02.png",
+    title: "Fuutura Exchange",
+    category: "Trading · Web3 · Fintech",
+    stack: "React.js · TypeScript · Zustand · WebSocket · AWS",
+    tags: ["Hybrid Web2/Web3", "Real-Time Orders", "MetaMask"],
   },
   {
     number: "03",
-    title: "AI Chat Platform",
-    category: "AI Products · Mobile",
-    stack: "Flutter · RAG · Multi-LLM",
-    mockup: "/mockup_03.png",
+    title: "Fuutura Extension",
+    category: "Browser Extension · Web3",
+    stack: "Next.js · Wagmi · Viem · MongoDB · AWS",
+    tags: ["Non-Custodial", "Browser-Native", "Multi-Chain"],
   },
   {
     number: "04",
-    title: "Field Ops Manager",
-    category: "Enterprise · Mobile",
-    stack: "React Native · Firebase · Maps",
-    mockup: "/mockup_04.png",
+    title: "Fuutura KYC",
+    category: "AI · Blockchain · Identity",
+    stack: "iOS · Python · LLaMA · React.js · Polygon · AWS",
+    tags: ["AI Verification", "On-Chain Identity", "B2B SDK"],
+  },
+  {
+    number: "05",
+    title: "Digital24",
+    category: "SaaS · PR Distribution",
+    stack: "Next.js · PostgreSQL · Stripe · Sanity · AWS",
+    tags: ["PR Campaigns", "Multi-Channel", "CMS-Powered"],
+  },
+  {
+    number: "06",
+    title: "Intelizzz",
+    category: "IoT · Enterprise · Mobile",
+    stack: "React Native · Node.js · Kafka · MongoDB · Kubernetes",
+    tags: ["6 Modules", "12 Microservices", "Real-Time Tracking"],
+  },
+  {
+    number: "07",
+    title: "Toybox",
+    category: "Luxury Automotive · iOS · Web",
+    stack: "Swift (iOS) · Next.js · Node.js · AWS",
+    tags: ["AI Concierge", "4 Surfaces", "Native iOS"],
   },
 ];
 
 export default function PortfolioGallerySlide() {
   return (
-    <SlideWrapper id="slide-portfolio" overlay="rgba(7,7,7,0.97)">
+    <SlideWrapper id="slide-portfolio" bgImage="/sleek_dark_bg.png" overlay="rgba(7,7,7,0.82)">
       {/* Header */}
-      <div className="stack stack-xs" style={{ marginBottom: "clamp(0.8rem, 2vh, 1.6rem)" }}>
+      <div style={{ marginBottom: "clamp(0.8rem, 1.8vh, 1.4rem)" }}>
         <motion.p className="t-label" variants={itemVariants}>
-          05 / Portfolio Overview
+          05 / Portfolio — Delivered Projects
         </motion.p>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem", marginTop: "0.35rem" }}>
           <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "520px" }}>
-            Delivered Projects
+            7 Production<br />
+            <span style={{ color: "rgba(242,242,242,0.28)" }}>Systems Delivered.</span>
           </motion.h2>
           <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "400px", paddingBottom: "0.2rem" }}>
-            End-to-end mobile applications — architecture to production.
+            style={{ maxWidth: "380px", paddingBottom: "0.2rem" }}>
+            End-to-end engineering across Web3, AI, IoT, fintech, and enterprise platforms — all delivered to production.
           </motion.p>
         </div>
       </div>
 
-      {/* Project grid */}
-      <div className="portfolio-grid">
+      {/* Project grid — 4 cols × 2 rows, last row has 3 cards */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: "clamp(0.4rem, 0.8vw, 0.75rem)",
+      }}>
         {projects.map((project, i) => (
           <motion.div
             key={i}
             variants={itemVariants}
-            className="portfolio-card"
+            style={{
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              borderRadius: "2px",
+              padding: "clamp(0.6rem, 1.2vh, 1rem)",
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+              // Make the 7th card span wider to balance the last row
+              ...(i === 6 ? { gridColumn: "span 1" } : {}),
+            }}
           >
-            {/* Mini device thumbnail */}
-            <div className="portfolio-mini-device">
-              <Image src={project.mockup} alt={project.title} fill unoptimized />
-              {/* Gradient at bottom */}
-              <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0,
-                height: "45%",
-                background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)",
-              }} />
-              {/* Number badge */}
-              <div style={{
-                position: "absolute", top: "0.6rem", left: "0.6rem",
-                background: "rgba(0,0,0,0.65)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: "3px",
-                padding: "0.18rem 0.45rem",
-                fontFamily: "var(--f-mono)",
-                fontSize: "0.48rem",
-                letterSpacing: "0.12em",
-                color: "rgba(255,255,255,0.5)",
+            {/* Number + category */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <span style={{
+                fontFamily: "var(--f-mono)", fontSize: "0.5rem",
+                letterSpacing: "0.12em", color: "var(--accent)", opacity: 0.45,
               }}>
                 {project.number}
-              </div>
+              </span>
+              <span style={{
+                fontFamily: "var(--f-mono)", fontSize: "0.48rem",
+                letterSpacing: "0.1em", color: "var(--tx-4)",
+                textTransform: "uppercase",
+              }}>
+                {project.category.split(" · ")[0]}
+              </span>
             </div>
 
-            {/* Project info */}
-            <div className="stack stack-xs">
-              <h3 className="t-h4">{project.title}</h3>
-              <p className="t-label" style={{ color: "var(--accent)", opacity: 0.65, letterSpacing: "0.14em" }}>
-                {project.category}
-              </p>
-              <p className="t-mono" style={{ marginTop: "0.15rem" }}>
-                {project.stack}
-              </p>
+            {/* Title */}
+            <h3 style={{
+              fontFamily: "var(--f-display)", fontWeight: 600,
+              fontSize: "clamp(0.72rem, 1vw, 0.88rem)",
+              color: "var(--tx-1)", letterSpacing: "-0.01em", lineHeight: 1.25,
+            }}>
+              {project.title}
+            </h3>
+
+            {/* Tags */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.3rem" }}>
+              {project.tags.map((tag, j) => (
+                <span key={j} style={{
+                  fontFamily: "var(--f-mono)", fontSize: "0.46rem",
+                  letterSpacing: "0.06em", color: "var(--tx-3)",
+                  background: "var(--surface-2)",
+                  border: "1px solid var(--border)",
+                  padding: "0.12rem 0.4rem", borderRadius: "2px",
+                }}>
+                  {tag}
+                </span>
+              ))}
             </div>
+
+            {/* Stack */}
+            <p style={{
+              fontFamily: "var(--f-mono)", fontSize: "0.45rem",
+              color: "var(--tx-4)", letterSpacing: "0.05em",
+              lineHeight: 1.5, marginTop: "auto",
+              borderTop: "1px solid var(--border)", paddingTop: "0.4rem",
+            }}>
+              {project.stack}
+            </p>
           </motion.div>
         ))}
       </div>
 
-      {/* Footer note */}
+      {/* Footer */}
       <motion.p
         className="t-mono"
         variants={itemVariants}
-        style={{ marginTop: "clamp(0.6rem, 1.2vh, 1rem)", opacity: 0.28 }}
+        style={{ marginTop: "clamp(0.5rem, 1vh, 0.9rem)", opacity: 0.25 }}
       >
-        All projects delivered to production · Real screens shared on request
+        All projects delivered to production · Real screens and references available on request
       </motion.p>
     </SlideWrapper>
   );

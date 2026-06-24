@@ -16,7 +16,7 @@ export default function ProjectFeaturesSlide({
   id, slideNumber, projectNumber, projectTitle, domain, background, features, outcome, mockupSrc,
 }: Props) {
   return (
-    <SlideWrapper id={id} bgImage={background} overlay="rgba(7,7,7,0.95)">
+    <SlideWrapper id={id} bgImage={background} overlay="rgba(7,7,7,0.8)">
       <div style={{ display: "flex", gap: "clamp(2rem, 5vw, 6rem)", alignItems: "center", width: "100%" }}>
         {/* ── Left: iPhone Mockup ── */}
         <motion.div

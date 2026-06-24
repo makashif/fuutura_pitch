@@ -1,21 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import SlideWrapper, { itemVariants } from "./SlideWrapper";
 
-const stats = [
-  { value: "4+",   label: "Projects Delivered" },
-  { value: "4",    label: "Engineering Domains" },
-  { value: "100%", label: "Production Rate" },
-];
-
-const principles = [
-  "Architecture before execution",
-  "Systems over features",
-  "Scale by design, not by accident",
-  "Senior engineers on every project",
-  "End-to-end ownership, always",
+const coreValues = [
+  { title: "Excellence", desc: "We pursue the highest standards in everything we build." },
+  { title: "Innovation", desc: "We embrace emerging technologies and modern approaches." },
+  { title: "Accountability", desc: "We take ownership of outcomes, not just deliverables." },
+  { title: "Collaboration", desc: "We work as an extension of our clients' teams." },
+  { title: "Long-Term Thinking", desc: "We build systems designed to create lasting value." },
 ];
 
 export default function AboutSlide() {
@@ -30,47 +23,35 @@ export default function AboutSlide() {
         {/* ── Left ── */}
         <div className="stack stack-sm">
           <motion.p className="t-label" variants={itemVariants}>
-            01 / About Origin One
+            01 / About Origin One Labs
           </motion.p>
 
           <motion.h2 className="t-h2" variants={itemVariants}>
-            We Build Software<br />
-            <span style={{ color: "rgba(242,242,242,0.28)" }}>That Actually Ships.</span>
+            Engineering the Future<br />
+            <span style={{ color: "rgba(242,242,242,0.28)" }}>of Business.</span>
           </motion.h2>
 
           <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "420px", paddingTop: "var(--sp-xs)" }}>
-            Origin One is a software development house for businesses that need real
-            engineering — not templates and shortcuts. We design, build, and deploy
-            complete digital systems across AI, mobile, Web3, and enterprise infrastructure.
+            style={{ maxWidth: "460px", paddingTop: "var(--sp-xs)" }}>
+            Origin One Labs was founded to help organizations navigate increasingly complex technology challenges. We believe great technology is built through a combination of strategic thinking, strong architecture, engineering excellence, and relentless execution.
+          </motion.p>
+          <motion.p className="t-body" variants={itemVariants}
+            style={{ maxWidth: "460px" }}>
+            Our goal is simple: Help businesses build technology that delivers measurable value and supports long-term growth. We don&apos;t outsource outcomes. We take ownership from concept to production.
           </motion.p>
 
-          {/* Stats row */}
           <motion.div variants={itemVariants}
             style={{
-              display: "flex", gap: "2rem",
               paddingTop: "var(--sp-sm)", borderTop: "1px solid var(--border)",
               marginTop: "var(--sp-xs)",
             }}>
-            {stats.map((s) => (
-              <div key={s.label} className="stack stack-xs">
-                <span style={{
-                  fontFamily: "var(--f-display)",
-                  fontSize: "clamp(1.3rem, 2.2vw, 2rem)",
-                  fontWeight: 700, letterSpacing: "-0.03em", color: "var(--tx-1)",
-                }}>
-                  {s.value}
-                </span>
-                <span className="t-label" style={{ color: "var(--tx-3)" }}>{s.label}</span>
-              </div>
-            ))}
           </motion.div>
 
           {/* Mission / Vision */}
-          <div className="stack" style={{ gap: "1px", paddingTop: "var(--sp-xs)" }}>
+          <div className="stack" style={{ gap: "1px" }}>
             {[
-              { tag: "Mission", text: "Build production-grade software systems that power modern businesses." },
-              { tag: "Vision",  text: "Become the go-to engineering partner for AI, Web3, and mobile." },
+              { tag: "Mission", text: "To design and deliver intelligent technology solutions that help businesses innovate, scale, and compete in a digital-first world." },
+              { tag: "Vision",  text: "To become a globally trusted technology and engineering partner known for building innovative, scalable, and impactful digital systems." },
             ].map(item => (
               <motion.div key={item.tag} variants={itemVariants}
                 style={{ borderLeft: "1px solid var(--border-strong)",
@@ -78,42 +59,47 @@ export default function AboutSlide() {
                 <p className="t-mono" style={{ color: "var(--tx-3)", marginBottom: "0.25rem" }}>
                   {item.tag}
                 </p>
-                <p className="t-sm">{item.text}</p>
+                <p className="t-sm" style={{ maxWidth: "420px" }}>{item.text}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* ── Right: Engineering Standards ── */}
-        <div className="stack stack-xs">
+        {/* ── Right: Core Values ── */}
+        <div className="stack stack-xs" style={{ justifyContent: "flex-end" }}>
           <motion.p className="t-label" variants={itemVariants}
             style={{ marginBottom: "var(--sp-xs)" }}>
-            Engineering Standards
+            Core Values
           </motion.p>
 
-          {principles.map((p, i) => (
+          {coreValues.map((v, i) => (
             <motion.div key={i} variants={itemVariants}
               style={{
-                display: "flex", alignItems: "center", gap: "1.25rem",
+                display: "flex", alignItems: "flex-start", gap: "1.25rem",
                 padding: "clamp(0.55rem, 1.1vh, 0.95rem) 0",
                 borderBottom: "1px solid var(--border)",
               }}>
-              <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0 }}>
+              <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0, marginTop: "0.2rem" }}>
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="t-h4" style={{ fontWeight: 500 }}>{p}</span>
+              <div className="stack" style={{ gap: "0.25rem" }}>
+                <span className="t-h4" style={{ fontWeight: 500 }}>{v.title}</span>
+                <span className="t-sm" style={{ color: "var(--tx-3)" }}>{v.desc}</span>
+              </div>
             </motion.div>
           ))}
           <div style={{ borderBottom: "1px solid var(--border)" }} />
 
           <motion.div variants={itemVariants}
-            style={{ paddingTop: "var(--sp-sm)", display: "flex", alignItems: "center",
-              gap: "0.9rem", opacity: 0.18 }}>
-            <Image src="/Origin Mark (dark mode).png" alt="Origin One" width={20} height={20}
-              style={{ objectFit: "contain" }} />
-            <span className="t-label" style={{ letterSpacing: "0.28em", color: "#f2f2f2" }}>
-              Origin One
-            </span>
+            style={{ paddingTop: "var(--sp-sm)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+              <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.25em", color: "#FFF" }}>
+                ORIGIN ONE
+              </span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.1em", color: "var(--tx-2)" }}>
+                {"// LABS"}
+              </span>
+            </div>
           </motion.div>
         </div>
 

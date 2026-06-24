@@ -6,33 +6,33 @@ import SlideWrapper, { itemVariants } from "./SlideWrapper";
 const reasons = [
   {
     n: "01",
-    title: "Full-Stack Ownership",
-    body: "We own every layer — design, mobile, backend, AI, and cloud. One team. One accountability. No gaps.",
+    title: "End-to-End Ownership",
+    body: "From planning to deployment and beyond, we manage the complete lifecycle.",
   },
   {
     n: "02",
-    title: "AI-Native from Day One",
-    body: "Artificial intelligence is embedded at the architecture level — not bolted on after launch.",
+    title: "AI-First Thinking",
+    body: "We identify opportunities where AI can improve efficiency, automation, and customer experience.",
   },
   {
     n: "03",
-    title: "Mobile-First Precision",
-    body: "Every app ships to App Store and Play Store standards. Pixel-perfect, performant, production-hardened.",
+    title: "Senior Talent",
+    body: "Projects are delivered by experienced engineers, architects, designers, and product specialists.",
   },
   {
     n: "04",
-    title: "Web3-Ready Architecture",
-    body: "Blockchain-compatible infrastructure built in — extend any system with on-chain capability without rewrites.",
+    title: "Business-Focused Approach",
+    body: "Technology decisions are aligned with business objectives and measurable outcomes.",
   },
   {
     n: "05",
-    title: "Senior Engineers Only",
-    body: "No junior outsourcing layers. Every project is handled by experienced engineers and architects end-to-end.",
+    title: "Built for Scale",
+    body: "Every solution is designed to support future growth and expansion.",
   },
   {
     n: "06",
-    title: "Built to Scale",
-    body: "Production-grade systems designed for real load from day one — not MVPs that collapse at 10× users.",
+    title: "Long-Term Partnership",
+    body: "We continue supporting, improving, and evolving systems after launch.",
   },
 ];
 
@@ -41,22 +41,22 @@ export default function WhyChooseSlide() {
     <SlideWrapper
       id="slide-why"
       bgImage="/A_sleek,_dark_background_featuring_202606181541.jpeg"
-      overlay="rgba(7,7,7,0.94)"
+      overlay="rgba(7,7,7,0.84)"
     >
       <div className="stack stack-md">
 
         <div className="stack stack-xs">
           <motion.p className="t-label" variants={itemVariants}>
-            14 / Why Origin One
+            14 / Why Origin One Labs
           </motion.p>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
-            <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "520px" }}>
-              Why Engineering<br />
-              <span style={{ color: "rgba(242,242,242,0.28)" }}>Teams Choose Us.</span>
+            <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3.2rem)" }}>
+              A Technology Partner,<br />
+              <span style={{ color: "rgba(242,242,242,0.28)" }}>Not Just Another Dev Company.</span>
             </motion.h2>
             <motion.p className="t-body" variants={itemVariants}
-              style={{ maxWidth: "360px", paddingBottom: "0.4rem" }}>
-              Most software fails not because of bad ideas — but because execution is fragmented. We are a single, unified engineering system.
+              style={{ maxWidth: "400px", paddingBottom: "0.4rem" }}>
+              Many businesses struggle because technology projects are spread across multiple vendors. We provide a single accountable team. We don&apos;t simply build software. We help businesses build technology that lasts.
             </motion.p>
           </div>
         </div>

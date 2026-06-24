@@ -3,37 +3,45 @@
    Pure monochromatic. Geometric. Engineering-grade precision.
    ============================================================ */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
   /* ─── Palette — Pure Monochromatic B&W ─── */
-  --bg:              #070707;
-  --surface:         #111111;
-  --surface-2:       #1c1c1c;
-  --surface-3:       #282828;
-  --border:          rgba(255,255,255,0.07);
-  --border-strong:   rgba(255,255,255,0.16);
-  --border-bright:   rgba(255,255,255,0.28);
+  --bg: #070707;
+  --surface: #111111;
+  --surface-2: #1c1c1c;
+  --surface-3: #282828;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-bright: rgba(255, 255, 255, 0.28);
 
   /* ─── Text ─── */
-  --tx-1:  #f2f2f2;
-  --tx-2:  #888888;
-  --tx-3:  rgba(255,255,255,0.30);
-  --tx-4:  rgba(255,255,255,0.12);
+  --tx-1: #f2f2f2;
+  --tx-2: #888888;
+  --tx-3: rgba(255, 255, 255, 0.30);
+  --tx-4: rgba(255, 255, 255, 0.12);
 
   /* ─── Accent — Cold Slate White ─── */
-  --accent:       #e4e4e7;
-  --accent-dim:   rgba(228,228,231,0.10);
-  --accent-line:  rgba(228,228,231,0.30);
+  --accent: #e4e4e7;
+  --accent-dim: rgba(228, 228, 231, 0.10);
+  --accent-line: rgba(228, 228, 231, 0.30);
 
   /* ─── Fonts ─── */
-  --f-display: var(--font-space-grotesk), system-ui, sans-serif;
-  --f-body:    var(--font-inter), system-ui, sans-serif;
-  --f-mono:    var(--font-jetbrains), ui-monospace, "JetBrains Mono", monospace;
+  --f-display: var(--font-inter), system-ui, sans-serif;
+  --f-body: var(--font-inter), system-ui, sans-serif;
+  --f-mono: var(--font-jetbrains), ui-monospace, "JetBrains Mono", monospace;
 
   /* ─── Slide margins — calibrated for presentation feel ─── */
-  --px: clamp(2rem, 6.5vw, 7rem);     /* horizontal padding  */
-  --py: clamp(2rem, 4.5vh, 4rem);     /* vertical padding    */
+  --px: clamp(2rem, 6.5vw, 7rem);
+  /* horizontal padding  */
+  --py: clamp(2rem, 4.5vh, 4rem);
+  /* vertical padding    */
 
   /* ─── Content max-width — fits elegantly at all presentation sizes ─── */
   --slide-max: 1380px;
@@ -52,7 +60,8 @@
 }
 
 /* ─── Base ─── */
-html, body {
+html,
+body {
   height: 100svh;
   overflow: hidden;
   background: var(--bg);
@@ -62,9 +71,18 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 99px; }
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+}
 
 /* ═══════════════════════════════════════════════════════
    SLIDE STRUCTURE
@@ -79,8 +97,10 @@ html, body {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* center slide-content horizontally */
-  justify-content: center;  /* center slide-content vertically   */
+  align-items: center;
+  /* center slide-content horizontally */
+  justify-content: center;
+  /* center slide-content vertically   */
   overflow: hidden;
   padding: var(--py) var(--px);
   scroll-snap-align: start;
@@ -137,7 +157,7 @@ html, body {
   font-size: clamp(2.6rem, 6vw, 7.5rem);
   font-weight: 700;
   line-height: 0.94;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   color: var(--tx-1);
 }
 
@@ -147,7 +167,7 @@ html, body {
   font-size: clamp(1.8rem, 4vw, 5rem);
   font-weight: 600;
   line-height: 1.02;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
   color: var(--tx-1);
 }
 
@@ -157,7 +177,7 @@ html, body {
   font-size: clamp(1.4rem, 2.6vw, 2.8rem);
   font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--tx-1);
 }
 
@@ -208,7 +228,9 @@ html, body {
 }
 
 /* Accent text */
-.t-accent { color: var(--accent); }
+.t-accent {
+  color: var(--accent);
+}
 
 /* ═══════════════════════════════════════════════════════
    LAYOUT UTILITIES
@@ -247,10 +269,22 @@ html, body {
 }
 
 /* Stack — vertical flex */
-.stack { display: flex; flex-direction: column; }
-.stack-xs { gap: var(--sp-xs); }
-.stack-sm { gap: var(--sp-sm); }
-.stack-md { gap: var(--sp-md); }
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-xs {
+  gap: var(--sp-xs);
+}
+
+.stack-sm {
+  gap: var(--sp-sm);
+}
+
+.stack-md {
+  gap: var(--sp-md);
+}
 
 /* Thin rule */
 .rule {
@@ -260,7 +294,11 @@ html, body {
   background: var(--border-strong);
   flex-shrink: 0;
 }
-.rule-full { width: 100%; background: var(--border); }
+
+.rule-full {
+  width: 100%;
+  background: var(--border);
+}
 
 /* Card tile */
 .card {
@@ -270,7 +308,11 @@ html, body {
   print-color-adjust: exact;
   color-adjust: exact;
 }
-.card:hover { background: var(--surface-2); transition: background 0.15s ease; }
+
+.card:hover {
+  background: var(--surface-2);
+  transition: background 0.15s ease;
+}
 
 /* Number badge */
 .badge-num {
@@ -323,13 +365,13 @@ html, body {
   background: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 60%, #222 100%);
   /* Border radius: ~20% of device width */
   border-radius: calc(var(--device-w) * 0.20);
-  border: 1.5px solid rgba(255,255,255,0.11);
+  border: 1.5px solid rgba(255, 255, 255, 0.11);
   box-shadow:
-    0 0 0 1px rgba(0,0,0,0.9),
-    inset 0 1px 0 rgba(255,255,255,0.07),
-    inset 0 -1px 0 rgba(0,0,0,0.6),
-    0 clamp(16px,3vh,40px) clamp(32px,6vh,80px) rgba(0,0,0,0.75),
-    0 clamp(4px,0.8vh,8px) clamp(12px,2.5vh,32px) rgba(0,0,0,0.5);
+    0 0 0 1px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
+    0 clamp(16px, 3vh, 40px) clamp(32px, 6vh, 80px) rgba(0, 0, 0, 0.75),
+    0 clamp(4px, 0.8vh, 8px) clamp(12px, 2.5vh, 32px) rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: relative;
 }
@@ -377,17 +419,19 @@ html, body {
 
 .device-vol-up {
   left: -3px;
-  top:    calc(var(--device-h) * 0.194);
+  top: calc(var(--device-h) * 0.194);
   height: calc(var(--device-h) * 0.064);
 }
+
 .device-vol-down {
   left: -3px;
-  top:    calc(var(--device-h) * 0.283);
+  top: calc(var(--device-h) * 0.283);
   height: calc(var(--device-h) * 0.064);
 }
+
 .device-power {
   right: -3px;
-  top:    calc(var(--device-h) * 0.226);
+  top: calc(var(--device-h) * 0.226);
   height: calc(var(--device-h) * 0.117);
 }
 
@@ -400,7 +444,7 @@ html, body {
   transform: translateX(-50%);
   width: calc(var(--device-w) * 0.67);
   height: calc(var(--device-h) * 0.08);
-  background: rgba(228,228,231,0.06);
+  background: rgba(228, 228, 231, 0.06);
   border-radius: 50%;
   filter: blur(clamp(8px, 1.5vh, 16px));
   pointer-events: none;
@@ -412,7 +456,7 @@ html, body {
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1px;
   background: var(--border);
 }
@@ -429,7 +473,9 @@ html, body {
   print-color-adjust: exact;
 }
 
-.portfolio-card:hover { background: var(--surface-2); }
+.portfolio-card:hover {
+  background: var(--surface-2);
+}
 
 /* Mini device thumbnail — constrained height so it fits the card grid */
 .portfolio-mini-device {
@@ -438,7 +484,7 @@ html, body {
   background: #1a1a1a;
   border-radius: clamp(8px, 1.4vw, 14px);
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
@@ -461,6 +507,7 @@ html, body {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -473,7 +520,11 @@ html, body {
     --px: clamp(1.5rem, 5vw, 3.5rem);
     --py: clamp(1.75rem, 4vh, 3rem);
   }
-  .grid-2 { grid-template-columns: 1fr; gap: var(--sp-md); }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: var(--sp-md);
+  }
 }
 
 /* 640px — mobile fallback (not primary use case for presentations) */
@@ -483,24 +534,101 @@ html, body {
     --px: 1.25rem;
     --py: 1.5rem;
   }
-  .grid-4 { grid-template-columns: 1fr 1fr; }
-  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
    KEYFRAMES
 ═══════════════════════════════════════════════════════ */
 
-@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeUp  { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-@keyframes bounce  { 0%,100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(5px); opacity: .8; } }
-@keyframes scanLine {
-  0%   { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: .35;
+  }
+
+  50% {
+    transform: translateY(5px);
+    opacity: .8;
+  }
+}
+
+@keyframes scanLine {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
 @keyframes gridPulse {
-  0%, 100% { opacity: 0.03; }
-  50% { opacity: 0.06; }
+
+  0%,
+  100% {
+    opacity: 0.03;
+  }
+
+  50% {
+    opacity: 0.06;
+  }
+}
+
+@keyframes gridDrift {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 0px 60px;
+  }
+}
+
+.app-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  /* Render above the slide backgrounds, but under the slide-content */
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 15%, transparent 100%);
+  animation: gridDrift 40s linear infinite;
+  mix-blend-mode: overlay;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -508,7 +636,10 @@ html, body {
 ═══════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -525,26 +656,32 @@ html, body {
 
 @media print {
   :root {
-    --px: 5rem !important;
-    --py: 4rem !important;
-    --device-h: 420px !important;
-    --device-w: calc(420px * 0.487) !important;
+    --px: 4rem !important;
+    --py: 3rem !important;
+    --device-h: 380px !important;
+    --device-w: calc(380px * 0.487) !important;
   }
 
   /* ── Page: A4 landscape, zero margins ── */
   @page {
-    size: 297mm 210mm;  /* Native A4 landscape */
-    margin: 0mm;
+    size: A4 landscape;
+    margin: 0;
   }
 
   /* ── Hide interactive chrome ── */
   .no-print,
   nav[aria-label="Slide navigation"],
-  button { display: none !important; }
+  button {
+    display: none !important;
+  }
 
   /* ── Document flow ── */
-  html, body {
-    height: auto !important;
+  html,
+  body {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow: visible !important;
     background: #070707 !important;
     -webkit-print-color-adjust: exact !important;
@@ -554,14 +691,43 @@ html, body {
 
   #deck-container {
     height: auto !important;
+    width: 100% !important;
     overflow: visible !important;
     scroll-snap-type: none !important;
   }
 
-  /* ── Each slide = one printed page ── */
+  /* Fix lag/bugs from the animated grid in print */
+  .app-grid-bg {
+    animation: none !important;
+    mix-blend-mode: normal !important;
+    mask-image: none !important;
+    opacity: 0.08 !important;
+  }
+
+  /* ── Defeat Responsive Breakpoints in Print ── */
+  /* Ensures 16:9 desktop layout holds perfectly, regardless of paper width */
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .dual-layout {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* ── Each slide = one printed A4 landscape page ── */
+  /* Physical mm dimensions prevent the 100vh collapse bug */
   .slide {
     width: 297mm !important;
     height: 210mm !important;
+    box-sizing: border-box !important;
     min-height: unset !important;
     max-height: unset !important;
     break-after: page !important;
@@ -570,11 +736,11 @@ html, body {
     page-break-inside: avoid !important;
     scroll-snap-align: none !important;
     overflow: hidden !important;
+    position: relative !important;
     display: flex !important;
-    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: var(--py) var(--px) !important;
+    padding: 0 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
@@ -585,17 +751,65 @@ html, body {
     page-break-after: avoid !important;
   }
 
-  /* ── Slide content zone — uncapped in print ── */
+  /* ── Slide Backgrounds — fill the physical A4 page ── */
+  .slide-bg,
+  .slide-overlay,
+  .app-grid-bg {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* ════════════════════════════════════════════
+     DEFINITIVE ZOOM-BASED SCALING
+     ════════════════════════════════════════════
+     A4 Landscape physical: 297mm × 210mm
+     At macOS 96dpi equivalent: ~1122px × 794px
+
+     The slide-content is designed at 1380px wide.
+     zoom: 0.80 scales it to 1104px — fits inside 1122px with 18px margin each side.
+
+     CRITICAL: height must be the UN-ZOOMED equivalent of 210mm.
+     210mm at 96dpi = 793.7px. At zoom 0.80 the browser sees 793.7 / 0.80 = 992px.
+     So we set height: 992px — after zoom:0.80 it renders as exactly 793.7px = 210mm.
+     This eliminates all vertical alignment gaps.
+  ════════════════════════════════════════════ */
   .slide-content {
-    max-height: none !important;
-    overflow: visible !important;
+    position: relative !important;
+    top: unset !important;
+    left: unset !important;
+    margin-top: unset !important;
+    margin-left: unset !important;
+    transform: none !important;
+    /* Width: 1380px × zoom(0.80) = 1104px rendered — fits A4 landscape */
+    width: 1380px !important;
+    /* Height: 992px × zoom(0.80) = 793.6px rendered = exactly 210mm */
+    height: 992px !important;
+    max-width: 1380px !important;
+    max-height: 992px !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    zoom: 0.80 !important;
+    /* Internal layout: flex column fills the height */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
 
   /* ── Force all backgrounds and colors to print ── */
-  .slide, .slide-bg, .slide-overlay,
-  .card, .portfolio-card, .portfolio-mini-device,
-  .device-body, .device-screen, .device-island, .device-btn,
-  .tech-badge, .badge-num {
+  .slide,
+  .slide-bg,
+  .slide-overlay,
+  .card,
+  .portfolio-card,
+  .portfolio-mini-device,
+  .device-body,
+  .device-screen,
+  .device-island,
+  .device-btn,
+  .tech-badge,
+  .badge-num {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
@@ -620,32 +834,64 @@ html, body {
   */
 
   /* ── Typography — ensure colors print ── */
-  .slide h1, .slide h2, .slide h3 {
+  .slide h1,
+  .slide h2,
+  .slide h3 {
     -webkit-text-fill-color: #f2f2f2 !important;
     color: #f2f2f2 !important;
   }
 
-  .t-body, .t-sm { color: #888888 !important; }
-  .t-label       { color: rgba(255,255,255,0.45) !important; }
-  .t-mono        { color: rgba(255,255,255,0.25) !important; }
-  .t-accent      { color: #e4e4e7 !important; }
+  .t-body,
+  .t-sm {
+    color: #888888 !important;
+  }
+
+  .t-label {
+    color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  .t-mono {
+    color: rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .t-accent {
+    color: #e4e4e7 !important;
+  }
 
   /* ── Device mockup — visible in print, auto-scales via CSS vars ── */
   .device-outer {
     display: flex !important;
     visibility: visible !important;
   }
+
   .portfolio-mini-device {
     height: 180px !important;
   }
 
   /* ── Misc ── */
-  img { max-width: 100% !important; max-height: 100% !important; }
-  ::-webkit-scrollbar { display: none !important; }
-  a { text-decoration: none !important; }
-  .slide-overlay { background-color: rgba(7,7,7,0.85) !important; }
-  
+  img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  .slide-overlay {
+    background-color: rgba(7, 7, 7, 0.85) !important;
+  }
+
   /* Disable heavy shadows and blurs to prevent Chrome print black box bugs */
-  .device-body { box-shadow: 0 0 0 1px rgba(0,0,0,0.9) !important; }
-  .device-outer::after { display: none !important; }
+  .device-body {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9) !important;
+  }
+
+  .device-outer::after {
+    display: none !important;
+  }
 }

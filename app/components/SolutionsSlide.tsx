@@ -2,125 +2,112 @@
 
 import { motion } from "framer-motion";
 import SlideWrapper, { itemVariants } from "./SlideWrapper";
+import { Bot, AppWindow, Building2, CreditCard, Cloud, Database, ShieldCheck, Compass } from "lucide-react";
 
-const pillars = [
+const services = [
   {
     label: "01",
-    title: "AI & Machine Learning",
-    desc: "AI-native apps, intelligent agents, RAG architectures, LLM orchestration, and automation pipelines built for production.",
-    tags: ["AI Agents", "RAG", "LLM Platforms", "Automation"],
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="1.2"/>
-        <circle cx="12" cy="12" r="3" fill="var(--accent-dim)" stroke="var(--accent)" strokeWidth="1.2" strokeOpacity="0.7"/>
-        <line x1="12" y1="3" x2="12" y2="9" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="1.2"/>
-        <line x1="12" y1="15" x2="12" y2="21" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="1.2"/>
-        <line x1="3" y1="12" x2="9" y2="12" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="1.2"/>
-        <line x1="15" y1="12" x2="21" y2="12" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="1.2"/>
-      </svg>
-    ),
+    title: "AI Systems & Automation",
+    desc: "Intelligent systems, AI agents, enterprise AI assistants, and machine learning solutions.",
+    icon: <Bot size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
   },
   {
     label: "02",
-    title: "Web2 Products",
-    desc: "Full-stack mobile apps, web platforms, SaaS products, and cross-platform systems — engineered for speed and scale.",
-    tags: ["Mobile Apps", "SaaS", "Web Platforms", "APIs"],
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="1" y="4" width="15" height="10" rx="2" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="1.2"/>
-        <rect x="12" y="9" width="11" height="13" rx="2" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.2"/>
-        <circle cx="17.5" cy="20" r="0.8" fill="var(--accent)" opacity="0.5"/>
-      </svg>
-    ),
+    title: "Custom Software",
+    desc: "Web platforms, mobile applications, SaaS products, and customer-facing applications.",
+    icon: <AppWindow size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
   },
   {
     label: "03",
-    title: "Web3 & Blockchain",
-    desc: "Smart contracts, DeFi protocols, NFT platforms, DAO tooling, and blockchain infrastructure engineered to spec.",
-    tags: ["Smart Contracts", "DeFi", "NFT Platforms", "DAO"],
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <polygon points="12,2 20,7 20,17 12,22 4,17 4,7" stroke="var(--accent)" strokeOpacity="0.4" strokeWidth="1.2"/>
-        <line x1="12" y1="2" x2="12" y2="22" stroke="var(--accent)" strokeOpacity="0.2" strokeWidth="1"/>
-        <line x1="4" y1="7" x2="20" y2="17" stroke="var(--accent)" strokeOpacity="0.2" strokeWidth="1"/>
-        <line x1="4" y1="17" x2="20" y2="7" stroke="var(--accent)" strokeOpacity="0.2" strokeWidth="1"/>
-        <circle cx="12" cy="12" r="2" fill="var(--accent-dim)" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1"/>
-      </svg>
-    ),
+    title: "Enterprise Systems",
+    desc: "ERP platforms, workflow automation, operational dashboards, and internal tools.",
+    icon: <Building2 size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
   },
   {
     label: "04",
-    title: "Enterprise Infrastructure",
-    desc: "Scalable backends, ERP systems, cloud architecture, DevOps pipelines, and mission-critical internal platforms.",
-    tags: ["Cloud Systems", "ERP", "DevOps", "APIs"],
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="2" y="2" width="9" height="9" rx="1.5" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.2"/>
-        <rect x="13" y="2" width="9" height="9" rx="1.5" stroke="var(--accent)" strokeOpacity="0.25" strokeWidth="1.2"/>
-        <rect x="2" y="13" width="9" height="9" rx="1.5" stroke="var(--accent)" strokeOpacity="0.25" strokeWidth="1.2"/>
-        <rect x="13" y="13" width="9" height="9" rx="1.5" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.2"/>
-      </svg>
-    ),
+    title: "Fintech Solutions",
+    desc: "Payment systems, financial APIs, transaction platforms, and secure financial products.",
+    icon: <CreditCard size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
+  },
+  {
+    label: "05",
+    title: "Cloud & Infrastructure",
+    desc: "AWS, Azure, GCP, DevOps, Kubernetes, infrastructure automation, and cloud optimization.",
+    icon: <Cloud size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
+  },
+  {
+    label: "06",
+    title: "Data & Intelligence",
+    desc: "Analytics platforms, reporting systems, business intelligence, and data pipelines.",
+    icon: <Database size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
+  },
+  {
+    label: "07",
+    title: "Security & Compliance",
+    desc: "Application security, access management, compliance readiness, and security reviews.",
+    icon: <ShieldCheck size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
+  },
+  {
+    label: "08",
+    title: "Technology Consulting",
+    desc: "Architecture planning, technical strategy, digital transformation, and CTO advisory.",
+    icon: <Compass size={24} strokeWidth={1.2} style={{ color: "var(--accent)" }} />,
   },
 ];
 
 const process = [
-  "Discovery & System Architecture",
-  "Engineering & Development",
-  "Testing, Validation & Hardening",
-  "Deployment & Production Launch",
+  "Discovery & Strategy",
+  "Architecture & Planning",
+  "Design & Development",
+  "Testing & Validation",
+  "Deployment & Launch",
+  "Support & Growth",
 ];
 
 export default function SolutionsSlide() {
   return (
     <SlideWrapper
       id="slide-solutions"
-      bgImage="/A_minimalist,_high-end_gallery_space_202606181548.jpeg"
-      overlay="rgba(7,7,7,0.94)"
+      bgImage="/solutions_bg.png"
+      overlay="rgba(7,7,7,0.8)"
     >
       {/* Header */}
-      <div className="stack stack-xs" style={{ marginBottom: "clamp(1rem, 2.5vh, 2rem)" }}>
+      <div className="stack stack-xs" style={{ marginBottom: "clamp(1rem, 2vh, 1.5rem)" }}>
         <motion.p className="t-label" variants={itemVariants}>
-          03 / What We Build
+          03 / What We Do
         </motion.p>
         <div style={{
           display: "flex", alignItems: "flex-end",
           justifyContent: "space-between", flexWrap: "wrap", gap: "1rem",
         }}>
-          <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "520px" }}>
-            Four Engineering<br />
-            <span style={{ color: "rgba(242,242,242,0.28)" }}>Domains.</span>
+          <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
+            Everything You Need<br />
+            <span style={{ color: "rgba(242,242,242,0.28)" }}>to Build and Scale.</span>
           </motion.h2>
           <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "340px", paddingBottom: "0.4rem" }}>
-            Every domain handled by senior specialists — from concept to production.
+            style={{ maxWidth: "360px", paddingBottom: "0.4rem" }}>
+            From concept to production. We design, develop, and scale digital solutions that solve real business challenges.
           </motion.p>
         </div>
       </div>
 
-      {/* 4 Pillar cards */}
-      <div className="grid-4">
-        {pillars.map((pillar, i) => (
-          <motion.div key={i} variants={itemVariants} className="card stack stack-sm"
-            whileHover={{ backgroundColor: "var(--surface-2)" }}>
+      {/* 8 Pillar cards */}
+      <div className="grid-4" style={{ gap: "clamp(0.5rem, 1vw, 1rem)" }}>
+        {services.map((service, i) => (
+          <motion.div key={i} variants={itemVariants} className="card stack stack-xs"
+            whileHover={{ backgroundColor: "var(--surface-2)" }}
+            style={{ padding: "clamp(0.8rem, 1.5vh, 1.2rem)" }}>
 
             {/* Icon + number */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              {pillar.icon}
-              <span className="t-mono" style={{ color: "var(--tx-4)" }}>{pillar.label}</span>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.2rem" }}>
+              {service.icon}
+              <span className="t-mono" style={{ color: "var(--tx-4)" }}>{service.label}</span>
             </div>
 
             {/* Title + desc */}
-            <div className="stack stack-xs">
-              <h3 className="t-h4">{pillar.title}</h3>
-              <p className="t-sm" style={{ lineHeight: 1.6 }}>{pillar.desc}</p>
-            </div>
-
-            {/* Tags */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", marginTop: "auto", paddingTop: "0.35rem" }}>
-              {pillar.tags.map((tag) => (
-                <span key={tag} className="tech-badge" style={{ fontSize: "0.48rem" }}>{tag}</span>
-              ))}
+            <div className="stack" style={{ gap: "0.25rem" }}>
+              <h3 className="t-h4" style={{ fontSize: "0.85rem" }}>{service.title}</h3>
+              <p className="t-sm" style={{ lineHeight: 1.5, fontSize: "0.68rem" }}>{service.desc}</p>
             </div>
           </motion.div>
         ))}
@@ -128,19 +115,21 @@ export default function SolutionsSlide() {
 
       {/* Process strip */}
       <motion.div variants={itemVariants}
-        style={{ display: "flex", alignItems: "center", marginTop: "1px",
-          background: "var(--border)", overflow: "hidden" }}>
+        style={{
+          display: "flex", alignItems: "center", marginTop: "1rem",
+          background: "var(--border)", overflow: "hidden", borderRadius: "4px"
+        }}>
         {process.map((step, i) => (
           <div key={i} style={{
             flex: 1, background: "var(--surface)",
-            padding: "clamp(0.5rem, 1.1vh, 0.75rem) 1rem",
-            display: "flex", alignItems: "center", gap: "0.75rem",
+            padding: "0.5rem 0.6rem",
+            display: "flex", alignItems: "center", gap: "0.4rem",
             borderRight: i < process.length - 1 ? "1px solid var(--border)" : "none",
           }}>
-            <span className="t-mono" style={{ color: "var(--accent)", opacity: 0.45, flexShrink: 0 }}>
+            <span className="t-mono" style={{ color: "var(--accent)", opacity: 0.45, flexShrink: 0, fontSize: "0.55rem" }}>
               {String(i + 1).padStart(2, "0")}
             </span>
-            <span className="t-sm" style={{ color: "var(--tx-2)", fontSize: "0.68rem" }}>{step}</span>
+            <span className="t-sm" style={{ color: "var(--tx-2)", fontSize: "0.55rem", lineHeight: 1.2 }}>{step}</span>
           </div>
         ))}
       </motion.div>
