@@ -170,6 +170,7 @@ export default function Home() {
         status="Delivered"
         features={p5Features}
         mockupSrc="/D24.png"
+        mockupType="laptop"
       />
 
       {/* ── Project 06 — Intelizzz ── */}

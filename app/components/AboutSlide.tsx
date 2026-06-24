@@ -48,14 +48,16 @@ export default function AboutSlide() {
           </motion.div>
 
           {/* Mission / Vision */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.15fr", gap: "2rem", alignItems: "start" }}>
             {[
               { tag: "Mission", text: "To design and deliver intelligent technology solutions that help businesses innovate, scale, and compete in a digital-first world." },
-              { tag: "Vision",  text: "To become a globally trusted technology and engineering partner known for building innovative, scalable, and impactful digital systems." },
+              { tag: "Vision", text: "To become a globally trusted technology and engineering partner known for building innovative, scalable, and impactful digital systems." },
             ].map(item => (
               <motion.div key={item.tag} variants={itemVariants}
-                style={{ borderLeft: "1px solid var(--border-strong)",
-                  paddingLeft: "1.25rem", paddingTop: "0.65rem", paddingBottom: "0.65rem" }}>
+                style={{
+                  borderLeft: "1px solid var(--border-strong)",
+                  paddingLeft: "1.25rem", paddingTop: "0.65rem", paddingBottom: "0.65rem"
+                }}>
                 <p className="t-mono" style={{ color: "var(--tx-3)", marginBottom: "0.25rem" }}>
                   {item.tag}
                 </p>
@@ -94,10 +96,7 @@ export default function AboutSlide() {
             style={{ paddingTop: "var(--sp-sm)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
               <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.25em", color: "#FFF" }}>
-                ORIGIN ONE
-              </span>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.1em", color: "var(--tx-2)" }}>
-                {"// LABS"}
+                ORIGIN ONE LABS
               </span>
             </div>
           </motion.div>

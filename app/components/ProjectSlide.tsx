@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import SlideWrapper, { itemVariants } from "./SlideWrapper";
 import DeviceMockup from "./DeviceMockup";
 
+import LaptopMockup from "./LaptopMockup";
+
 interface Feature {
   title: string;
   desc: string;
@@ -20,10 +22,11 @@ interface ProjectSlideProps {
   status: string;
   features: Feature[];
   mockupSrc?: string;
+  mockupType?: "mobile" | "laptop";
 }
 
 export default function ProjectSlide({
-  id, slideNumber, projectNumber, title, description, domain, background, status, features, mockupSrc,
+  id, slideNumber, projectNumber, title, description, domain, background, status, features, mockupSrc, mockupType = "mobile",
 }: ProjectSlideProps) {
   return (
     <SlideWrapper id={id} bgImage={background} overlay="rgba(7,7,7,0.85)">
@@ -88,7 +91,11 @@ export default function ProjectSlide({
           variants={itemVariants}
           style={{ flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
         >
-          <DeviceMockup src={mockupSrc} alt={`${title} app screenshot`} />
+          {mockupType === "laptop" ? (
+            <LaptopMockup src={mockupSrc} alt={`${title} app screenshot`} />
+          ) : (
+            <DeviceMockup src={mockupSrc} alt={`${title} app screenshot`} />
+          )}
         </motion.div>
 
       </div>
