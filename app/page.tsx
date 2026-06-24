@@ -13,15 +13,15 @@ import ConnectSlide from "./components/ConnectSlide";
    PROJECT DATA — All 7 Real Delivered Projects
 ───────────────────────────────────────────────────────────── */
 
-// ── Project 01 — Fuutura Web Wallet ──
+// ── Project 01 — Fuutura Wallet ──
 const p1Features = [
   { title: "Multi-Chain Asset Management", desc: "Full EVM, Bitcoin, Solana & Tron support — manage assets across all major blockchain ecosystems from a single unified interface." },
-  { title: "Cross-Chain Token Swaps", desc: "Native cross-chain swap functionality with deep integration into the Fuutura Exchange for a seamless trading experience." },
+  { title: "Cross-Chain Token Swaps", desc: "Native cross-chain swap functionality with deep integration into the Fuutura Trade for a seamless trading experience." },
   { title: "Non-Custodial Security Architecture", desc: "Enterprise-grade, fully non-custodial design. Users retain complete, sovereign ownership of keys and assets at all times." },
   { title: "Real-Time Portfolio Visibility", desc: "Live portfolio tracking with high-performance transaction monitoring, wallet management, and full transaction history." },
 ];
 
-// ── Project 02 — Fuutura Exchange ──
+// ── Project 02 — Fuutura Trade ──
 const p2Features = [
   { title: "Hybrid Authentication System", desc: "Dual login supporting email/password (Web2) and wallet-based login (Web3) via MetaMask & WalletConnect — one unified platform." },
   { title: "Real-Time Order Management", desc: "WebSocket-powered market data feeds with market, limit, stop-loss, and take-profit order types executed in real time." },
@@ -33,7 +33,7 @@ const p2Features = [
 const p3Features = [
   { title: "Non-Custodial Key Management", desc: "Institutional-grade private key management — users retain complete ownership, with secure transaction signing and approval flows." },
   { title: "Browser-Native Wallet Experience", desc: "Smooth, intuitive UX modeled on industry-leading wallet standards. Feels native to the browser, not bolted-on." },
-  { title: "Full Fuutura Ecosystem Integration", desc: "Seamless connectivity with Fuutura Exchange and Web Wallet — full feature parity across the entire Fuutura product suite." },
+  { title: "Full Fuutura Ecosystem Integration", desc: "Seamless connectivity with Fuutura Trade and Wallet — full feature parity across the entire Fuutura product suite." },
   { title: "Multi-Chain EVM Support", desc: "Complete multi-chain support across EVM networks with cross-platform compatibility and performance optimisation." },
 ];
 
@@ -72,8 +72,8 @@ const p7Features = [
 /* ─────────────────────────────────────────────────────────────
    PAGE COMPOSITION — 14 Slides
    01 Hero → 02 About → 03 Solutions → 04 Tech → 05 Portfolio Overview →
-   06 P1 (Fuutura Web Wallet) →
-   07 P2 (Fuutura Exchange) →
+   06 P1 (Fuutura Wallet) →
+   07 P2 (Fuutura Trade) →
    08 P3 (Fuutura Extension) →
    09 P4 (Fuutura KYC) →
    10 P5 (Digital24) →
@@ -102,32 +102,32 @@ export default function Home() {
       {/* ── 05 Portfolio Overview ── */}
       <PortfolioGallerySlide />
 
-      {/* ── Project 01 — Fuutura Web Wallet ── */}
+      {/* ── Project 01 — Fuutura Wallet ── */}
       <ProjectSlide
         id="slide-p1"
         slideNumber="06"
         projectNumber="01"
-        title="Fuutura Web Wallet"
+        title="Fuutura Wallet"
         description="A secure, enterprise-grade non-custodial Web3 wallet bridging digital asset management and trading — enabling users to store, manage, transfer, and swap cryptocurrencies across multiple blockchain ecosystems while maintaining complete asset ownership."
         domain="Web3 · DeFi · React.js · Node.js"
-        background="/fuutura.jpeg"
+        background="/fwallet_premium_bg.png"
         status="Delivered"
         features={p1Features}
-        mockupSrc="/mockup_01.png"
+        mockupSrc="/Fwallet.png"
       />
 
-      {/* ── Project 02 — Fuutura Exchange ── */}
+      {/* ── Project 02 — Fuutura Trade ── */}
       <ProjectSlide
         id="slide-p2"
         slideNumber="07"
         projectNumber="02"
-        title="Fuutura Exchange"
+        title="Fuutura Trade"
         description="A sophisticated full-stack hybrid trading platform bridging traditional finance and decentralized ecosystems. Built for both Web2 and Web3 users in a single unified experience, delivering institutional-grade trading with real-time performance."
         domain="Trading · React.js · Zustand · WebSocket"
-        background="/fuutura.jpeg"
+        background="/ftrade_premium_bg.png"
         status="Delivered"
         features={p2Features}
-        mockupSrc="/mockup_02.png"
+        mockupSrc="/Ftrade.png"
       />
 
       {/* ── Project 03 — Fuutura Extension ── */}
@@ -138,10 +138,10 @@ export default function Home() {
         title="Fuutura Extension"
         description="A production-grade, non-custodial browser extension wallet engineered to deliver the fluency and familiarity of leading wallet extensions — while maintaining the full security architecture of the Fuutura ecosystem."
         domain="Browser Extension · Next.js · Viem · AWS"
-        background="/fuutura.jpeg"
+        background="/fextension_premium_bg.png"
         status="Delivered"
         features={p3Features}
-        mockupSrc="/mockup_03.png"
+        mockupSrc="/Fwallet.png"
       />
 
       {/* ── Project 04 — Fuutura KYC ── */}
@@ -152,10 +152,10 @@ export default function Home() {
         title="Fuutura KYC"
         description="A multi-surface, AI-powered KYC ecosystem making identity verification fast, intelligent, and blockchain-backed. Serves individual users and enterprise clients via a consumer mobile app, embeddable SDK, and B2B web dashboard."
         domain="AI · Identity · Python · LLaMA · Polygon"
-        background="/fuutura.jpeg"
+        background="/fkyc_premium_bg.png"
         status="Delivered"
         features={p4Features}
-        mockupSrc="/mockup_04.png"
+        mockupSrc="/Fkyc.png"
       />
 
       {/* ── Project 05 — Digital24 ── */}
@@ -166,10 +166,10 @@ export default function Home() {
         title="Digital24"
         description="A full-featured PR distribution platform streamlining how businesses create, manage, and fulfil media campaigns at scale — from guaranteed placements and newswire to SEO guest posting, journalist outreach, payments, and internal fulfilment."
         domain="SaaS · Next.js · PostgreSQL · Stripe"
-        background="/digital24_brand_bg.png"
+        background="/digital24_premium_bg.png"
         status="Delivered"
         features={p5Features}
-        mockupSrc="/mockup_01.png"
+        mockupSrc="/D24.png"
       />
 
       {/* ── Project 06 — Intelizzz ── */}
@@ -180,10 +180,10 @@ export default function Home() {
         title="Intelizzz — Vehicle Intelligence"
         description="A comprehensive enterprise-grade vehicle intelligence and tracking platform serving installers, operations teams, recovery agents, and consumers — built across 6 integrated modules on a resilient event-driven microservices backend."
         domain="IoT · React Native · Kafka · Kubernetes"
-        background="/intelizzz_brand_bg.png"
+        background="/intelizzz_premium_bg.png"
         status="Delivered"
         features={p6Features}
-        mockupSrc="/mockup_02.png"
+        mockupSrc="/Intelizzz.jpg"
       />
 
       {/* ── Project 07 — Toybox ── */}
@@ -194,10 +194,10 @@ export default function Home() {
         title="Toybox — Automotive Concierge"
         description="A premium automotive concierge ecosystem purpose-built for luxury vehicle owners — delivered across four integrated surfaces covering the full member, staff, and operational experience with native iOS and web applications."
         domain="Luxury Auto · iOS Swift · Next.js"
-        background="/toybox_bg.png"
+        background="/toybox_premium_bg.png"
         status="Delivered"
         features={p7Features}
-        mockupSrc="/mockup_03.png"
+        mockupSrc="/Toybox.jpg"
       />
 
       {/* ── 13 Why Origin One ── */}

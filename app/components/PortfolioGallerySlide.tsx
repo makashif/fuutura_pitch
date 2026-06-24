@@ -14,14 +14,14 @@ interface Project {
 const projects: Project[] = [
   {
     number: "01",
-    title: "Fuutura Web Wallet",
+    title: "Fuutura Wallet",
     category: "Web3 · DeFi · Fintech",
     stack: "React.js · Ethers.js · Viem · Node.js · AWS",
     tags: ["Non-Custodial", "Multi-Chain", "Cross-Chain Swaps"],
   },
   {
     number: "02",
-    title: "Fuutura Exchange",
+    title: "Fuutura Trade",
     category: "Trading · Web3 · Fintech",
     stack: "React.js · TypeScript · Zustand · WebSocket · AWS",
     tags: ["Hybrid Web2/Web3", "Real-Time Orders", "MetaMask"],
