@@ -184,7 +184,7 @@ export default function Home() {
         background="/intelizzz_premium_bg.png"
         status="Delivered"
         features={p6Features}
-        mockupSrc="/Intelizzz.jpg"
+        mockupSrc="/intelizzz.jpg"
       />
 
       {/* ── Project 07 — Toybox ── */}
@@ -198,7 +198,7 @@ export default function Home() {
         background="/toybox_premium_bg.png"
         status="Delivered"
         features={p7Features}
-        mockupSrc="/Toybox.jpg"
+        mockupSrc="/toybox.jpg"
       />
 
       {/* ── 13 Why Origin One ── */}
