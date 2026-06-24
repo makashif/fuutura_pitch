@@ -22,7 +22,7 @@ export default function ConnectSlide() {
         <motion.p className="t-label" style={{ letterSpacing: "0.26em" }}
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7 }}>
-          15 / Start a Project
+          14 / Start a Project
         </motion.p>
 
         <motion.div initial={{ opacity: 0, scale: 0.7 }} animate={inView ? { opacity: 1, scale: 1 } : {}}

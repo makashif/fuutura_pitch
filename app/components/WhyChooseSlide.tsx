@@ -47,7 +47,7 @@ export default function WhyChooseSlide() {
 
         <div className="stack stack-xs">
           <motion.p className="t-label" variants={itemVariants}>
-            14 / Why Origin One Labs
+            13 / Why Origin One Labs
           </motion.p>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
             <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3.2rem)" }}>

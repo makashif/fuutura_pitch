@@ -646,36 +646,63 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   PRINT / PDF — Perfect 16:9 Widescreen Slides
+/* ═══════════════════════════════════════════════════════
+   PDF EXPORT — Exact A4 Dimensions
    ─────────────────────────────────────────────────────────────────
-   Instructions for generating PDF:
-     Chrome → File → Print
-     Layout: Landscape · Margins: None · ✅ Background graphics
-   ═══════════════════════════════════════════════════════════════════ */
+   Forces the exact 1.414 aspect ratio during the html2canvas
+   capture to completely prevent cropping or white spaces.
+═══════════════════════════════════════════════════════ */
+body.pdf-export-active {
+  overflow: hidden !important;
+}
+
+body.pdf-export-active .slide {
+  width: 1380px !important;
+  height: 976px !important; /* Exactly 1380 / (297/210) */
+  max-width: 1380px !important;
+  max-height: 976px !important;
+  margin: 0 auto !important;
+  flex: none !important;
+}
+
+/* Hide heavy shadows and blurs during PDF export to prevent html2canvas artifacts */
+body.pdf-export-active .device-outer::after {
+  display: none !important;
+}
+
+body.pdf-export-active .device-body {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9) !important;
+}
 
 @media print {
-  :root {
-    --px: 4rem !important;
-    --py: 3rem !important;
-    --device-h: 380px !important;
-    --device-w: calc(380px * 0.487) !important;
-  }
-
-  /* ── Page: A4 landscape, zero margins ── */
+  /* ════════════════════════════════════════════════════════════════
+     @page  — A4 landscape with deterministic 12.7mm margins (0.5in)
+     Locking margins here makes the zoom math always correct.
+     Usable printable area: (297 - 25.4)mm × (210 - 25.4)mm
+                          = 271.6mm × 184.6mm
+     At 96dpi CSS pixels:   1026px   ×  698px
+  ════════════════════════════════════════════════════════════════ */
   @page {
     size: A4 landscape;
-    margin: 0;
+    margin: 12.7mm;
   }
 
-  /* ── Hide interactive chrome ── */
+  /* ── CSS variable overrides for compact print layout ── */
+  :root {
+    --px: 3.5rem !important;
+    --py: 2.5rem !important;
+    --device-h: 340px !important;
+    --device-w: calc(340px * 0.487) !important;
+  }
+
+  /* ── Hide all interactive chrome ── */
   .no-print,
   nav[aria-label="Slide navigation"],
   button {
     display: none !important;
   }
 
-  /* ── Document flow ── */
+  /* ── Document flow reset ── */
   html,
   body {
     width: 100% !important;
@@ -686,64 +713,62 @@ body {
     background: #070707 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    color-adjust: exact !important;
   }
 
+  /* ── Scroll container: release from viewport ── */
   #deck-container {
     height: auto !important;
     width: 100% !important;
     overflow: visible !important;
     scroll-snap-type: none !important;
+    display: block !important;
   }
 
-  /* Fix lag/bugs from the animated grid in print */
+  /* ── Subtle grid bg: disable animation, keep texture ── */
   .app-grid-bg {
     animation: none !important;
     mix-blend-mode: normal !important;
     mask-image: none !important;
-    opacity: 0.08 !important;
+    opacity: 0.06 !important;
   }
 
-  /* ── Defeat Responsive Breakpoints in Print ── */
-  /* Ensures 16:9 desktop layout holds perfectly, regardless of paper width */
-  .grid-4 {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
+  /* ── Defeat responsive grid breakpoints in print ── */
+  .grid-4  { grid-template-columns: repeat(4, 1fr) !important; }
+  .grid-3  { grid-template-columns: repeat(3, 1fr) !important; }
+  .grid-2  { grid-template-columns: repeat(2, 1fr) !important; }
+  .dual-layout { grid-template-columns: 1fr 1fr !important; }
 
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-
-  .grid-2 {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  .dual-layout {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* ── Each slide = one printed A4 landscape page ── */
-  /* Physical mm dimensions prevent the 100vh collapse bug */
+  /* ════════════════════════════════════════════════════════════════
+     .slide — ONE PRINTED PAGE PER SLIDE
+     ────────────────────────────────────────────────────────────────
+     Physical dimensions = usable print area after 12.7mm margins.
+     The slide itself has NO padding — padding lives inside
+     .slide-content (via --px / --py CSS vars).
+  ════════════════════════════════════════════════════════════════ */
   .slide {
-    width: 297mm !important;
-    height: 210mm !important;
-    box-sizing: border-box !important;
+    /* Exact usable A4 landscape area after 12.7mm margins */
+    width: 271.6mm !important;
+    height: 184.6mm !important;
     min-height: unset !important;
     max-height: unset !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    /* Page breaks */
     break-after: page !important;
     page-break-after: always !important;
     break-inside: avoid !important;
     page-break-inside: avoid !important;
-    scroll-snap-align: none !important;
-    overflow: hidden !important;
+    /* Layout */
     position: relative !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 0 !important;
+    overflow: hidden !important;
+    scroll-snap-align: none !important;
+    /* Color */
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    color-adjust: exact !important;
   }
 
   .slide:last-of-type {
@@ -751,94 +776,107 @@ body {
     page-break-after: avoid !important;
   }
 
-  /* ── Slide Backgrounds — fill the physical A4 page ── */
+  /* ════════════════════════════════════════════════════════════════
+     .slide-content — ZOOM-COMPENSATED INNER CONTAINER
+     ────────────────────────────────────────────────────────────────
+     Design canvas: 1380px wide (screen design width)
+     Print target:  1026px (271.6mm at 96dpi)
+
+     zoom = 1026 / 1380 = 0.7435 → use 0.743
+
+     Height (zoom-compensated):
+       Target height = 698px (184.6mm at 96dpi)
+       Unzoomed height = 698 / 0.743 = 939px
+
+     After zoom applied:
+       1380px × 0.743 = 1025.3px ≈ 1026px = 271.6mm ✓
+        939px × 0.743 =  697.6px ≈  698px = 184.6mm ✓
+  ════════════════════════════════════════════════════════════════ */
+  .slide-content {
+    /* Un-zoomed design dimensions */
+    width: 1380px !important;
+    height: 939px !important;
+    max-width: 1380px !important;
+    max-height: 939px !important;
+    min-height: unset !important;
+    /* The critical zoom — scales everything proportionally */
+    zoom: 0.743 !important;
+    /* Reset any screen-mode positioning */
+    position: relative !important;
+    top: unset !important;
+    left: unset !important;
+    margin: 0 !important;
+    transform: none !important;
+    /* Internal layout */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     SLIDE BACKGROUNDS — fill usable area edge-to-edge
+  ════════════════════════════════════════════════════════════════ */
   .slide-bg,
-  .slide-overlay,
-  .app-grid-bg {
+  .slide-overlay {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* ════════════════════════════════════════════
-     DEFINITIVE ZOOM-BASED SCALING
-     ════════════════════════════════════════════
-     A4 Landscape physical: 297mm × 210mm
-     At macOS 96dpi equivalent: ~1122px × 794px
-
-     The slide-content is designed at 1380px wide.
-     zoom: 0.80 scales it to 1104px — fits inside 1122px with 18px margin each side.
-
-     CRITICAL: height must be the UN-ZOOMED equivalent of 210mm.
-     210mm at 96dpi = 793.7px. At zoom 0.80 the browser sees 793.7 / 0.80 = 992px.
-     So we set height: 992px — after zoom:0.80 it renders as exactly 793.7px = 210mm.
-     This eliminates all vertical alignment gaps.
-  ════════════════════════════════════════════ */
-  .slide-content {
-    position: relative !important;
-    top: unset !important;
-    left: unset !important;
-    margin-top: unset !important;
-    margin-left: unset !important;
+  /* ════════════════════════════════════════════════════════════════
+     FRAMER MOTION — force all animated elements to final state
+     Framer Motion sets opacity:0 / transform:translateY(24px) as
+     initial state. Print captures the DOM before animation runs.
+     We force every element inside slides to its visible final state.
+  ════════════════════════════════════════════════════════════════ */
+  .slide *,
+  .slide-content * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transition: none !important;
     transform: none !important;
-    /* Width: 1380px × zoom(0.80) = 1104px rendered — fits A4 landscape */
-    width: 1380px !important;
-    /* Height: 992px × zoom(0.80) = 793.6px rendered = exactly 210mm */
-    height: 992px !important;
-    max-width: 1380px !important;
-    max-height: 992px !important;
-    flex-shrink: 0 !important;
-    overflow: hidden !important;
-    zoom: 0.80 !important;
-    /* Internal layout: flex column fills the height */
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* ── Force all backgrounds and colors to print ── */
+  /* ── Force backgrounds and colors to print on all UI elements ── */
   .slide,
   .slide-bg,
   .slide-overlay,
   .card,
   .portfolio-card,
-  .portfolio-mini-device,
   .device-body,
   .device-screen,
   .device-island,
   .device-btn,
   .tech-badge,
-  .badge-num {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
-
-  /* 
-    ── Force Framer Motion animated elements to visible state ──
-    Framer Motion freezes initial state (opacity:0, translateY:24px)
-    in print. Force everything to final visible state.
-  */
-  .slide * {
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation: none !important;
-    transition: none !important;
+  .badge-num,
+  [style*="background"],
+  [style*="background-color"],
+  [style*="background-image"] {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* 
-    Removed Surgical transform reset as it breaks layout.
-  */
-
-  /* ── Typography — ensure colors print ── */
+  /* ════════════════════════════════════════════════════════════════
+     TYPOGRAPHY — enforce crisp colours in print
+  ════════════════════════════════════════════════════════════════ */
   .slide h1,
   .slide h2,
-  .slide h3 {
-    -webkit-text-fill-color: #f2f2f2 !important;
+  .slide h3,
+  .slide h4 {
     color: #f2f2f2 !important;
+    -webkit-text-fill-color: #f2f2f2 !important;
   }
 
   .t-body,
@@ -851,47 +889,50 @@ body {
   }
 
   .t-mono {
-    color: rgba(255, 255, 255, 0.25) !important;
+    color: rgba(255, 255, 255, 0.28) !important;
   }
 
-  .t-accent {
+  .t-accent,
+  .t-h4 {
     color: #e4e4e7 !important;
   }
 
-  /* ── Device mockup — visible in print, auto-scales via CSS vars ── */
+  /* ════════════════════════════════════════════════════════════════
+     DEVICE MOCKUP — visible, correct dimensions
+  ════════════════════════════════════════════════════════════════ */
   .device-outer {
     display: flex !important;
     visibility: visible !important;
   }
 
-  .portfolio-mini-device {
-    height: 180px !important;
+  /* Suppress heavy box-shadow that prints as black blobs */
+  .device-body {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
   }
 
-  /* ── Misc ── */
+  .device-outer::after {
+    display: none !important;
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     MISC
+  ════════════════════════════════════════════════════════════════ */
   img {
     max-width: 100% !important;
     max-height: 100% !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
   }
 
   ::-webkit-scrollbar {
     display: none !important;
   }
 
-  a {
-    text-decoration: none !important;
-  }
-
+  /* Ensure inline style overrides for slide overlays don't over-darken */
   .slide-overlay {
-    background-color: rgba(7, 7, 7, 0.85) !important;
-  }
-
-  /* Disable heavy shadows and blurs to prevent Chrome print black box bugs */
-  .device-body {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9) !important;
-  }
-
-  .device-outer::after {
-    display: none !important;
+    opacity: 0.88 !important;
   }
 }

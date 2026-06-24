@@ -48,7 +48,7 @@ export default function AboutSlide() {
           </motion.div>
 
           {/* Mission / Vision */}
-          <div className="stack" style={{ gap: "1px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", alignItems: "start" }}>
             {[
               { tag: "Mission", text: "To design and deliver intelligent technology solutions that help businesses innovate, scale, and compete in a digital-first world." },
               { tag: "Vision",  text: "To become a globally trusted technology and engineering partner known for building innovative, scalable, and impactful digital systems." },
@@ -59,7 +59,7 @@ export default function AboutSlide() {
                 <p className="t-mono" style={{ color: "var(--tx-3)", marginBottom: "0.25rem" }}>
                   {item.tag}
                 </p>
-                <p className="t-sm" style={{ maxWidth: "420px" }}>{item.text}</p>
+                <p className="t-sm">{item.text}</p>
               </motion.div>
             ))}
           </div>
@@ -76,7 +76,7 @@ export default function AboutSlide() {
             <motion.div key={i} variants={itemVariants}
               style={{
                 display: "flex", alignItems: "flex-start", gap: "1.25rem",
-                padding: "clamp(0.55rem, 1.1vh, 0.95rem) 0",
+                padding: "clamp(0.85rem, 1.8vh, 1.4rem) 0",
                 borderBottom: "1px solid var(--border)",
               }}>
               <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0, marginTop: "0.2rem" }}>

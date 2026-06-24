@@ -9,6 +9,8 @@ import {
   useContext,
   ReactNode,
 } from "react";
+import { usePdfExport } from "../lib/usePdfExport";
+import PdfExportOverlay from "./PdfExportOverlay";
 
 /* ─────────────────────────────────────────
    Slide manifest — single source of truth
@@ -27,6 +29,12 @@ export const SLIDES = [
   { id: "slide-p3b",         label: "Project 03 — Features" },
   { id: "slide-p4a",         label: "Project 04 — Overview" },
   { id: "slide-p4b",         label: "Project 04 — Features" },
+  { id: "slide-p5a",         label: "Project 05 — Overview" },
+  { id: "slide-p5b",         label: "Project 05 — Features" },
+  { id: "slide-p6a",         label: "Project 06 — Overview" },
+  { id: "slide-p6b",         label: "Project 06 — Features" },
+  { id: "slide-p7a",         label: "Project 07 — Overview" },
+  { id: "slide-p7b",         label: "Project 07 — Features" },
   { id: "slide-why",         label: "Why Origin One" },
   { id: "slide-connect",     label: "Start a Project" },
 ];
@@ -59,6 +67,8 @@ export default function PresentationShell({ children }: { children: ReactNode })
   const [current, setCurrent] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isScrollingRef = useRef(false);
+
+  const { exportPdf, isExporting, exportProgress, totalSlides } = usePdfExport();
 
   /* ── Scroll to a slide by index ── */
   const goTo = useCallback((index: number) => {
@@ -111,6 +121,13 @@ export default function PresentationShell({ children }: { children: ReactNode })
           (e.target as HTMLElement)?.tagName === "TEXTAREA") return;
 
       switch (e.key) {
+        case "e":
+        case "E":
+          if (e.metaKey && e.shiftKey) {
+            e.preventDefault();
+            exportPdf();
+          }
+          break;
         case "ArrowDown":
         case "ArrowRight":
         case "PageDown":
@@ -138,9 +155,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [goNext, goPrev, goTo]);
-
-
+  }, [goNext, goPrev, goTo, exportPdf]);
 
   /* ── Touch swipe support ── */
   useEffect(() => {
@@ -175,6 +190,8 @@ export default function PresentationShell({ children }: { children: ReactNode })
 
   return (
     <DeckContext.Provider value={{ current, total: SLIDES.length, goTo, goNext, goPrev }}>
+      <PdfExportOverlay isExporting={isExporting} progress={exportProgress} total={totalSlides} />
+
       {/* Global Animated Grid Background */}
       <div className="app-grid-bg" />
 
@@ -314,7 +331,33 @@ function KeyHint() {
           color: "rgba(255,255,255,0.22)",
         }}
       >
-        Navigate Slides
+        Navigate
+      </span>
+      <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.1)", margin: "0 4px" }} />
+      <kbd
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.75rem",
+          color: "rgba(255,255,255,0.5)",
+          background: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: "3px",
+          padding: "0.15rem 0.4rem",
+          lineHeight: 1,
+        }}
+      >
+        ⌘⇧E
+      </kbd>
+      <span
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.6rem",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.22)",
+        }}
+      >
+        PDF
       </span>
     </div>
   );
