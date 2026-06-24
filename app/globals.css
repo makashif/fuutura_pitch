@@ -454,7 +454,7 @@ body {
    LAPTOP MOCKUP — CSS ONLY
    ─────────────────────────────────────────────────────────────────── */
 :root {
-  --laptop-w: clamp(380px, 50vw, 750px);
+  --laptop-w: clamp(300px, 38vw, 550px);
   --laptop-h: calc(var(--laptop-w) * 0.64);
 }
 

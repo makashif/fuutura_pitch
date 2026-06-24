@@ -67,20 +67,21 @@ export default function PortfolioGallerySlide() {
   return (
     <SlideWrapper id="slide-portfolio" bgImage="/sleek_dark_bg.png" overlay="rgba(7,7,7,0.82)">
       {/* Header */}
-      <div style={{ marginBottom: "clamp(0.8rem, 1.8vh, 1.4rem)" }}>
+      <div className="stack stack-xs" style={{ marginBottom: "clamp(0.5rem, 1vh, 1rem)" }}>
         <motion.p className="t-label" variants={itemVariants}>
           05 / Portfolio — Delivered Projects
         </motion.p>
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem", marginTop: "0.35rem" }}>
-          <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "520px" }}>
-            7 Production<br />
-            <span style={{ color: "rgba(242,242,242,0.28)" }}>Systems Delivered.</span>
-          </motion.h2>
-          <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "380px", paddingBottom: "0.2rem" }}>
-            End-to-end engineering across Web3, AI, IoT, fintech, and enterprise platforms — all delivered to production.
-          </motion.p>
-        </div>
+        <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "520px" }}>
+          7 Production<br />
+          <span style={{ color: "rgba(242,242,242,0.28)" }}>Systems Delivered.</span>
+        </motion.h2>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "clamp(0.8rem, 1.8vh, 1.4rem)" }}>
+        <motion.p className="t-body" variants={itemVariants}
+          style={{ maxWidth: "380px" }}>
+          End-to-end engineering across Web3, AI, IoT, fintech, and enterprise platforms — all delivered to production.
+        </motion.p>
       </div>
 
       {/* Project grid — 4 cols × 2 rows, last row has 3 cards */}

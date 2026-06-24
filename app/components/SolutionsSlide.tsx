@@ -72,23 +72,21 @@ export default function SolutionsSlide() {
       overlay="rgba(7,7,7,0.8)"
     >
       {/* Header */}
-      <div className="stack stack-xs" style={{ marginBottom: "clamp(1rem, 2vh, 1.5rem)" }}>
+      <div className="stack stack-xs" style={{ marginBottom: "clamp(0.5rem, 1vh, 1rem)" }}>
         <motion.p className="t-label" variants={itemVariants}>
           03 / What We Do
         </motion.p>
-        <div style={{
-          display: "flex", alignItems: "flex-end",
-          justifyContent: "space-between", flexWrap: "wrap", gap: "1rem",
-        }}>
-          <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
-            Everything You Need<br />
-            <span style={{ color: "rgba(242,242,242,0.28)" }}>to Build and Scale.</span>
-          </motion.h2>
-          <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "360px", paddingBottom: "0.4rem" }}>
-            From concept to production. We design, develop, and scale digital solutions that solve real business challenges.
-          </motion.p>
-        </div>
+        <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3rem)" }}>
+          Everything You Need<br />
+          <span style={{ color: "rgba(242,242,242,0.28)" }}>to Build and Scale.</span>
+        </motion.h2>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "clamp(1rem, 2vh, 1.5rem)" }}>
+        <motion.p className="t-body" variants={itemVariants}
+          style={{ maxWidth: "360px" }}>
+          From concept to production. We design, develop, and scale digital solutions that solve real business challenges.
+        </motion.p>
       </div>
 
       {/* 8 Pillar cards */}

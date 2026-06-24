@@ -18,18 +18,21 @@ export default function AboutSlide() {
       bgImage="/Extremely_professional_corporate_background_for_202606181541.jpeg"
       overlay="rgba(7,7,7,0.93)"
     >
-      <div className="grid-2">
-
-        {/* ── Left ── */}
-        <div className="stack stack-sm">
+      <div className="stack stack-md">
+        {/* Header */}
+        <div className="stack stack-xs">
           <motion.p className="t-label" variants={itemVariants}>
-            01 / About Origin One Labs
+            02 / About Origin One Labs
           </motion.p>
-
           <motion.h2 className="t-h2" variants={itemVariants}>
             Engineering the Future<br />
             <span style={{ color: "rgba(242,242,242,0.28)" }}>of Business.</span>
           </motion.h2>
+        </div>
+
+        <div className="grid-2">
+          {/* ── Left ── */}
+          <div className="stack stack-sm">
 
           <motion.p className="t-body" variants={itemVariants}
             style={{ maxWidth: "460px", paddingTop: "var(--sp-xs)" }}>
@@ -102,6 +105,7 @@ export default function AboutSlide() {
           </motion.div>
         </div>
 
+      </div>
       </div>
     </SlideWrapper>
   );
