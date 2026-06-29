@@ -15,6 +15,10 @@ export function usePdfExport() {
     try {
       document.body.classList.add("pdf-export-active");
 
+      // Give Framer Motion time to fully animate out of any active hover states
+      // because pdf-export-active instantly disables pointer events globally.
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       // Create A4 landscape PDF
       // A4 physical dimensions: 297mm x 210mm
       const pdf = new jsPDF({
@@ -45,6 +49,8 @@ export function usePdfExport() {
           allowTaint: false,
           backgroundColor: "#070707",
           logging: false,
+          windowWidth: 1380, // Force a fixed window width so html2canvas doesn't crop at the user's viewport edge
+          windowHeight: 976,
           // Ignore the UI chrome during export
           ignoreElements: (el) => el.classList.contains("no-print"),
           onclone: (clonedDoc) => {

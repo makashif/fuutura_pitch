@@ -71,41 +71,41 @@ export default function AboutSlide() {
         </div>
 
         {/* ── Right: Core Values ── */}
-        <div className="stack stack-xs" style={{ justifyContent: "flex-end" }}>
+        <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <motion.p className="t-label" variants={itemVariants}
-            style={{ marginBottom: "var(--sp-xs)" }}>
+            style={{ marginBottom: "var(--sp-xs)", paddingTop: "var(--sp-xs)" }}>
             Core Values
           </motion.p>
 
-          {coreValues.map((v, i) => (
-            <motion.div key={i} variants={itemVariants}
-              style={{
-                display: "flex", alignItems: "flex-start", gap: "1.25rem",
-                padding: "clamp(0.85rem, 1.8vh, 1.4rem) 0",
-                borderBottom: "1px solid var(--border)",
-              }}>
-              <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0, marginTop: "0.2rem" }}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="stack" style={{ gap: "0.25rem" }}>
-                <span className="t-h4" style={{ fontWeight: 500 }}>{v.title}</span>
-                <span className="t-sm" style={{ color: "var(--tx-3)" }}>{v.desc}</span>
-              </div>
-            </motion.div>
-          ))}
-          <div style={{ borderBottom: "1px solid var(--border)" }} />
-
-          <motion.div variants={itemVariants}
-            style={{ paddingTop: "var(--sp-sm)" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-              <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.25em", color: "#FFF" }}>
-                ORIGIN ONE LABS
-              </span>
-            </div>
-          </motion.div>
+          <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "space-between" }}>
+            {coreValues.map((v, i) => (
+              <motion.div key={i} variants={itemVariants}
+                style={{
+                  display: "flex", alignItems: "flex-start", gap: "1.25rem",
+                  paddingBottom: "clamp(0.75rem, 1.5vh, 1.2rem)",
+                  borderBottom: "1px solid var(--border)",
+                }}>
+                <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0, marginTop: "0.2rem" }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="stack" style={{ gap: "0.25rem" }}>
+                  <span className="t-h4" style={{ fontWeight: 500 }}>{v.title}</span>
+                  <span className="t-sm" style={{ color: "var(--tx-3)" }}>{v.desc}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>
+
+        <motion.div variants={itemVariants}
+          style={{ display: "flex", justifyContent: "center", paddingTop: "3rem", width: "100%" }}>
+          <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.75rem", letterSpacing: "0.25em", color: "#FFF" }}>
+            ORIGIN ONE LABS
+          </span>
+        </motion.div>
+
       </div>
     </SlideWrapper>
   );

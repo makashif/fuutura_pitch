@@ -142,7 +142,23 @@ export default function PresentationShell({ children }: { children: ReactNode })
         case "End":
           e.preventDefault();
           goTo(SLIDES.length - 1);
-          break;
+      }
+      
+      // Handle number keys (1-9, 0 for 10)
+      if (e.key >= "1" && e.key <= "9") {
+        e.preventDefault();
+        const slideIndex = parseInt(e.key, 10) - 1;
+        if (slideIndex < SLIDES.length) {
+          goTo(slideIndex);
+        }
+        return;
+      }
+      if (e.key === "0") {
+        e.preventDefault();
+        if (9 < SLIDES.length) {
+          goTo(9); // Slide 10
+        }
+        return;
       }
     };
 

@@ -300,18 +300,30 @@ body {
   background: var(--border);
 }
 
-/* Card tile */
 .card {
   background: var(--surface);
+  border: 1px solid transparent;
   padding: clamp(0.9rem, 1.8vh, 1.5rem) clamp(0.9rem, 1.6vw, 1.4rem);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   color-adjust: exact;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
   background: var(--surface-2);
-  transition: background 0.15s ease;
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.tech-pill {
+  transition: all 0.2s ease;
+}
+
+.tech-pill:hover {
+  background: var(--surface-2) !important;
+  border-color: var(--border-strong) !important;
+  transform: scale(1.03);
 }
 
 /* Number badge */
@@ -475,9 +487,9 @@ body {
   border-radius: calc(var(--laptop-w) * 0.02) calc(var(--laptop-w) * 0.02) 0 0;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: none;
-  box-shadow: 
-    0 -1px 2px rgba(255,255,255,0.05),
-    0 0 0 1px rgba(0,0,0,0.8);
+  box-shadow:
+    0 -1px 2px rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.8);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -521,8 +533,8 @@ body {
   height: calc(var(--laptop-w) * 0.025);
   background: linear-gradient(to bottom, #555, #222);
   border-radius: 0 0 calc(var(--laptop-w) * 0.03) calc(var(--laptop-w) * 0.03);
-  box-shadow: 
-    inset 0 1px 1px rgba(255,255,255,0.3),
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
     0 clamp(8px, 2vh, 20px) clamp(16px, 4vh, 40px) rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
@@ -747,11 +759,18 @@ body.pdf-export-active .laptop-base {
 ═══════════════════════════════════════════════════════ */
 body.pdf-export-active {
   overflow: hidden !important;
+  pointer-events: none !important;
+  /* Lock viewport-based variables to the exact 1380x976 PDF resolution */
+  --device-h: calc(976px * 0.45) !important;
+  --device-w: calc(var(--device-h) * 0.487) !important;
+  --laptop-w: calc(1380px * 0.38) !important;
+  --laptop-h: calc(var(--laptop-w) * 0.64) !important;
 }
 
 body.pdf-export-active .slide {
   width: 1380px !important;
-  height: 976px !important; /* Exactly 1380 / (297/210) */
+  height: 976px !important;
+  /* Exactly 1380 / (297/210) */
   max-width: 1380px !important;
   max-height: 976px !important;
   margin: 0 auto !important;
@@ -768,6 +787,7 @@ body.pdf-export-active .device-body {
 }
 
 @media print {
+
   /* ════════════════════════════════════════════════════════════════
      @page  — A4 landscape with deterministic 12.7mm margins (0.5in)
      Locking margins here makes the zoom math always correct.
@@ -826,10 +846,21 @@ body.pdf-export-active .device-body {
   }
 
   /* ── Defeat responsive grid breakpoints in print ── */
-  .grid-4  { grid-template-columns: repeat(4, 1fr) !important; }
-  .grid-3  { grid-template-columns: repeat(3, 1fr) !important; }
-  .grid-2  { grid-template-columns: repeat(2, 1fr) !important; }
-  .dual-layout { grid-template-columns: 1fr 1fr !important; }
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .dual-layout {
+    grid-template-columns: 1fr 1fr !important;
+  }
 
   /* ════════════════════════════════════════════════════════════════
      .slide — ONE PRINTED PAGE PER SLIDE

@@ -49,23 +49,20 @@ export default function WhyChooseSlide() {
           <motion.p className="t-label" variants={itemVariants}>
             13 / Why Origin One Labs
           </motion.p>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>
-            <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3.2rem)" }}>
-              A Technology Partner,<br />
-              <span style={{ color: "rgba(242,242,242,0.28)" }}>Not Just Another Dev Company.</span>
-            </motion.h2>
-            <motion.p className="t-body" variants={itemVariants}
-              style={{ maxWidth: "400px", paddingBottom: "0.4rem" }}>
-              Many businesses struggle because technology projects are spread across multiple vendors. We provide a single accountable team. We don&apos;t simply build software. We help businesses build technology that lasts.
-            </motion.p>
-          </div>
+          <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "620px", fontSize: "clamp(2rem, 3.5vw, 3.2rem)" }}>
+            A Technology Partner,<br />
+            <span style={{ color: "rgba(242,242,242,0.28)" }}>Not Just Another Dev Company.</span>
+          </motion.h2>
+          <motion.p className="t-body" variants={itemVariants}
+            style={{ maxWidth: "400px", margin: "1.5rem 0" }}>
+            Many businesses struggle because technology projects are spread across multiple vendors. We provide a single accountable team. We don&apos;t simply build software. We help businesses build technology that lasts.
+          </motion.p>
         </div>
 
         {/* 6-card auto-fit grid */}
         <div className="grid-auto">
           {reasons.map((r) => (
-            <motion.div key={r.n} variants={itemVariants} className="card stack stack-sm"
-              whileHover={{ backgroundColor: "var(--surface-2)" }}>
+            <motion.div key={r.n} variants={itemVariants} className="card stack stack-sm">
               <div style={{
                 width: "22px", height: "22px", borderRadius: "50%",
                 border: "1px solid var(--border-strong)",

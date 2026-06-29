@@ -72,18 +72,18 @@ export default function PortfolioGallerySlide() {
       {/* Header */}
       <div className="stack stack-xs" style={{ marginBottom: "clamp(0.5rem, 1vh, 1rem)" }}>
         <motion.p className="t-label" variants={itemVariants}>
-          05 / Portfolio — Delivered Projects
+          05 / Our Track Record
         </motion.p>
-        <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "520px" }}>
-          7 Production<br />
-          <span style={{ color: "rgba(242,242,242,0.28)" }}>Systems Delivered.</span>
+        <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "700px" }}>
+          Multiple systems delivered.<br />
+          <span style={{ color: "rgba(242,242,242,0.28)" }}>Engineered for scale.</span>
         </motion.h2>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "clamp(0.8rem, 1.8vh, 1.4rem)" }}>
+      <div style={{ display: "flex", justifyContent: "flex-start", margin: "1.5rem 0" }}>
         <motion.p className="t-body" variants={itemVariants}
-          style={{ maxWidth: "380px" }}>
-          End-to-end engineering across Web3, AI, IoT, fintech, and enterprise platforms — all delivered to production.
+          style={{ maxWidth: "440px" }}>
+          These aren&apos;t design concepts. From Web3 infrastructure to AI ecosystems, we architect and deploy battle-tested technology that powers global businesses.
         </motion.p>
       </div>
 
@@ -177,7 +177,7 @@ export default function PortfolioGallerySlide() {
         variants={itemVariants}
         style={{ marginTop: "clamp(0.5rem, 1vh, 0.9rem)", opacity: 0.25 }}
       >
-        All projects delivered to production · Real screens and references available on request
+        Every system displayed is live in production · Deep-dive architectural case studies available upon request
       </motion.p>
     </SlideWrapper>
   );

@@ -113,6 +113,7 @@ export default function Home() {
         background="/fwallet_premium_bg.png"
         status="Delivered"
         features={p1Features}
+        mockupSrcSplash="/FwalletS.png"
         mockupSrc="/Fwallet.png"
       />
 
@@ -127,6 +128,7 @@ export default function Home() {
         background="/ftrade_premium_bg.png"
         status="Delivered"
         features={p2Features}
+        mockupSrcSplash="/FtradeS.png"
         mockupSrc="/Ftrade.png"
       />
 
@@ -141,6 +143,7 @@ export default function Home() {
         background="/fextension_premium_bg.png"
         status="Delivered"
         features={p3Features}
+        mockupSrcSplash="/FextS.png"
         mockupSrc="/Fwallet.png"
       />
 
@@ -155,6 +158,7 @@ export default function Home() {
         background="/fkyc_premium_bg.png"
         status="Delivered"
         features={p4Features}
+        mockupSrcSplash="/FkycS.png"
         mockupSrc="/Fkyc.png"
       />
 
@@ -184,6 +188,7 @@ export default function Home() {
         background="/intelizzz_premium_bg.png"
         status="Delivered"
         features={p6Features}
+        mockupSrcSplash="/IntelizzzS.png"
         mockupSrc="/intelizzz.jpg"
       />
 
@@ -198,6 +203,7 @@ export default function Home() {
         background="/toybox_premium_bg.png"
         status="Delivered"
         features={p7Features}
+        mockupSrcSplash="/ToyBoxS.png"
         mockupSrc="/toybox.jpg"
       />
 

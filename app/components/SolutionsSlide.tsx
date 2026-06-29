@@ -82,7 +82,7 @@ export default function SolutionsSlide() {
         </motion.h2>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "clamp(1rem, 2vh, 1.5rem)" }}>
+      <div style={{ display: "flex", justifyContent: "flex-start", margin: "1.5rem 0" }}>
         <motion.p className="t-body" variants={itemVariants}
           style={{ maxWidth: "360px" }}>
           From concept to production. We design, develop, and scale digital solutions that solve real business challenges.
@@ -92,16 +92,7 @@ export default function SolutionsSlide() {
       {/* 8 Pillar cards */}
       <div className="grid-4" style={{ gap: "clamp(0.5rem, 1vw, 1rem)" }}>
         {services.map((service, i) => (
-          <motion.div key={i} variants={itemVariants} className="card stack stack-xs"
-            whileHover={{ 
-              backgroundColor: "var(--surface-2)",
-              borderColor: "var(--border-strong)",
-              y: -2,
-            }}
-            style={{ 
-              padding: "clamp(0.8rem, 1.5vh, 1.2rem)",
-              transition: "border-color 0.2s ease",
-            }}>
+          <motion.div key={i} variants={itemVariants} className="card stack stack-xs">
 
             {/* Icon + number */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.2rem" }}>
