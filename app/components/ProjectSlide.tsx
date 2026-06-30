@@ -176,10 +176,6 @@ export default function ProjectSlide({
               transition={{ 
                 y: { repeat: Infinity, duration: 6, ease: "easeInOut" }
               }}
-              whileHover={{ 
-                scale: 1.03, 
-                transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
-              }}
               style={{
                 flexShrink: 0,
                 display: "flex",
@@ -189,16 +185,30 @@ export default function ProjectSlide({
               }}
             >
               {mockupType === "laptop" ? (
-                <LaptopMockup src={mockupSrc} alt={`${title} app screenshot`} />
+                <motion.div whileHover={{ scale: 1.03, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}>
+                  <LaptopMockup src={mockupSrc} alt={`${title} app screenshot`} />
+                </motion.div>
               ) : mockupType === "extension" ? (
                 <>
-                  {mockupSrcSplash && <ExtensionMockup src={mockupSrcSplash} alt={`${title} splash screen`} />}
-                  {mockupSrc && <ExtensionMockup src={mockupSrc} alt={`${title} app screenshot`} />}
+                  {mockupSrcSplash && (
+                    <motion.div whileHover={{ scale: 1.03, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}>
+                      <ExtensionMockup src={mockupSrcSplash} alt={`${title} splash screen`} />
+                    </motion.div>
+                  )}
+                  {mockupSrc && (
+                    <motion.div whileHover={{ scale: 1.03, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}>
+                      <ExtensionMockup src={mockupSrc} alt={`${title} app screenshot`} />
+                    </motion.div>
+                  )}
                 </>
               ) : (
                 <>
-                  <DeviceMockup src={mockupSrcSplash} alt={`${title} splash screen`} />
-                  <DeviceMockup src={mockupSrc} alt={`${title} app screenshot`} />
+                  <motion.div whileHover={{ scale: 1.03, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}>
+                    <DeviceMockup src={mockupSrcSplash} alt={`${title} splash screen`} />
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.03, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}>
+                    <DeviceMockup src={mockupSrc} alt={`${title} app screenshot`} />
+                  </motion.div>
                 </>
               )}
             </motion.div>
