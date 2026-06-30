@@ -81,11 +81,14 @@ a:active {
 }
 
 /* ─── Base ─── */
-html,
+html {
+  background: var(--bg);
+}
+
 body {
   height: 100svh;
   overflow: hidden;
-  background: var(--bg);
+  background: transparent;
   color: var(--tx-1);
   font-family: var(--f-body);
   -webkit-font-smoothing: antialiased;
@@ -746,7 +749,7 @@ body.pdf-export-active .laptop-base {
 ═══════════════════════════════════════════════════════ */
 
 /* 1100px — tighten to 2-column pillar grids */
-@media (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -757,33 +760,50 @@ body.pdf-export-active .laptop-base {
 }
 
 /* 960px — reduce device size slightly, collapse 2-col grids */
-@media (max-width: 960px) {
+@media screen and (max-width: 960px) {
   :root {
-    --device-h: clamp(200px, 40svh, 350px);
+    --device-h: clamp(200px, 35svh, 300px);
+    --ext-h: clamp(180px, 32svh, 280px);
+    --laptop-w: clamp(260px, 70vw, 400px);
     --px: clamp(1.5rem, 5vw, 3.5rem);
-    --py: clamp(1.75rem, 4vh, 3rem);
+    --py: clamp(2.5rem, 6vh, 4rem);
   }
 
   .grid-2 {
     grid-template-columns: 1fr;
     gap: var(--sp-md);
   }
+
+  /* SCROLLABLE READING MODE ON MOBILE */
+  .slide {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+    justify-content: flex-start;
+  }
+  
+  .slide-content {
+    max-height: none;
+    overflow: visible;
+  }
 }
 
-/* 640px — mobile fallback (not primary use case for presentations) */
-@media (max-width: 640px) {
+/* 640px — mobile fallback */
+@media screen and (max-width: 640px) {
   :root {
-    --device-h: clamp(180px, 38svh, 280px);
+    --device-h: clamp(180px, 30svh, 250px);
+    --ext-h: clamp(160px, 28svh, 230px);
+    --laptop-w: clamp(220px, 85vw, 300px);
     --px: 1.25rem;
-    --py: 1.5rem;
+    --py: 2.5rem;
   }
 
   .grid-4 {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .portfolio-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -913,8 +933,15 @@ body.pdf-export-active .slide {
   /* Exactly 1380 / (297/210) */
   max-width: 1380px !important;
   max-height: 976px !important;
+  min-height: 976px !important;
   margin: 0 auto !important;
   flex: none !important;
+  justify-content: center !important;
+}
+
+body.pdf-export-active .slide-content {
+  max-height: calc(976px - 2 * var(--py)) !important;
+  overflow: hidden !important;
 }
 
 /* Hide heavy shadows and blurs during PDF export to prevent html2canvas artifacts */
