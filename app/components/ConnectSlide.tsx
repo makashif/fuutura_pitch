@@ -21,11 +21,11 @@ export default function ConnectSlide() {
         gap: "clamp(0.9rem, 1.8vh, 1.6rem)", maxWidth: "700px", margin: "0 auto", padding: "0 1rem"
       }}>
 
-        <motion.p className="t-label" style={{ letterSpacing: "0.26em" }}
+        {/* <motion.p className="t-label" style={{ letterSpacing: "0.26em" }}
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7 }}>
           14 / Start a Project
-        </motion.p>
+        </motion.p> */}
 
         <motion.div initial={{ opacity: 0, scale: 0.7 }} animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1.0, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const }}>
