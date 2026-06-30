@@ -161,6 +161,7 @@ body {
 .slide-bg {
   position: absolute;
   inset: 0;
+  z-index: -1;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -175,6 +176,7 @@ body {
 .slide-overlay {
   position: absolute;
   inset: 0;
+  z-index: 0;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   color-adjust: exact;

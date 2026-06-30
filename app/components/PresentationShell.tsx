@@ -11,6 +11,7 @@ import {
 } from "react";
 import { usePdfExport } from "../lib/usePdfExport";
 import PdfExportOverlay from "./PdfExportOverlay";
+import FluidBackground from "./FluidBackground";
 
 /* ─────────────────────────────────────────
    Slide manifest — single source of truth
@@ -225,6 +226,9 @@ export default function PresentationShell({ children }: { children: ReactNode })
   return (
     <DeckContext.Provider value={{ current, total: SLIDES.length, goTo, goNext, goPrev }}>
       <PdfExportOverlay isExporting={isExporting} progress={exportProgress} total={totalSlides} />
+
+      {/* Global Fluid Background */}
+      <FluidBackground />
 
       {/* Global Animated Grid Background */}
       <div className="app-grid-bg" />
