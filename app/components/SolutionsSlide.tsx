@@ -90,7 +90,7 @@ export default function SolutionsSlide() {
       </div>
 
       {/* 8 Pillar cards */}
-      <div className="grid-4" style={{ gap: "clamp(0.5rem, 1vw, 1rem)" }}>
+      <div className="grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "var(--border)", border: "1px solid var(--border)", borderRadius: "4px", overflow: "hidden" }}>
         {services.map((service, i) => (
           <motion.div key={i} variants={itemVariants} className="card stack stack-xs">
 

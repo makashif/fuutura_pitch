@@ -39,7 +39,19 @@ export default function ProjectSlide({
 
           {/* Top row */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: "0.2rem" }}>
-            <motion.p className="t-label" variants={itemVariants}>
+            <motion.p className="t-label" variants={itemVariants} style={{ position: "relative", overflow: "hidden" }}>
+              <motion.span 
+                initial={{ left: "-100%" }}
+                animate={{ left: "200%" }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut", repeatDelay: 4 }}
+                style={{
+                  position: "absolute",
+                  top: 0, left: 0, width: "40%", height: "100%",
+                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent)",
+                  transform: "skewX(-25deg)",
+                  pointerEvents: "none"
+                }}
+              />
               {slideNumber} / Project Overview
             </motion.p>
             <motion.span variants={itemVariants}
@@ -50,10 +62,15 @@ export default function ProjectSlide({
                 fontFamily: "var(--f-body)", fontSize: "0.58rem",
                 letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--tx-3)"
               }}>
-              <span style={{
-                width: "5px", height: "5px", borderRadius: "50%",
-                background: status === "Delivered" ? "var(--accent)" : "rgba(255,255,255,0.2)"
-              }} />
+              <motion.span 
+                animate={{ opacity: [0.3, 1, 0.3] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                style={{
+                  width: "6px", height: "6px", borderRadius: "50%",
+                  background: status === "Delivered" ? "var(--accent)" : "rgba(255,255,255,0.2)",
+                  boxShadow: status === "Delivered" ? "0 0 8px 1px rgba(228, 228, 231, 0.4)" : "none"
+                }} 
+              />
               {status}
             </motion.span>
           </div>
@@ -84,17 +101,61 @@ export default function ProjectSlide({
             <motion.div variants={itemVariants} style={{ borderBottom: "1px solid var(--border)", margin: "0.25rem 0", maxWidth: "520px" }} />
 
             {/* Key Features (2x2 Grid) */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", maxWidth: "600px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.25rem", maxWidth: "600px", marginTop: "1rem" }}>
               {features.map((f, i) => (
-                <motion.div key={i} variants={itemVariants} className="stack stack-xs">
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <motion.div 
+                  key={i} 
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.03, 
+                    y: -5,
+                    backgroundColor: "rgba(255,255,255,0.03)", 
+                    borderColor: "rgba(255,255,255,0.12)",
+                    boxShadow: "0 15px 35px -10px rgba(0,0,0,0.6)"
+                  }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="stack stack-xs"
+                  style={{
+                    padding: "1.25rem",
+                    borderRadius: "12px",
+                    border: "1px solid rgba(255,255,255,0.02)",
+                    background: "rgba(255,255,255,0.01)",
+                    cursor: "default",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}
+                >
+                  {/* Subtle shimmer gradient on hover */}
+                  <motion.div 
+                    initial={{ opacity: 0 }} 
+                    whileHover={{ opacity: 1 }} 
+                    transition={{ duration: 0.5 }}
+                    style={{
+                      position: "absolute", inset: 0, 
+                      background: "radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 70%)",
+                      pointerEvents: "none"
+                    }} 
+                  />
+                  
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", position: "relative", zIndex: 1 }}>
                     <span className="t-mono" style={{ color: "var(--accent)", opacity: 0.5, fontSize: "0.7rem" }}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="rule" style={{ flex: 1, width: "auto" }} />
+                    <motion.span 
+                      className="rule" 
+                      style={{ flex: 1, width: "auto", transformOrigin: "left" }} 
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      whileInView={{ scaleX: 1, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 0.3 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
+                      viewport={{ once: true }}
+                    />
                   </div>
-                  <h3 className="t-h5" style={{ fontSize: "clamp(0.7rem, 0.9vw, 0.85rem)" }}>{f.title}</h3>
-                  <p className="t-sm" style={{ fontSize: "clamp(0.6rem, 0.8vw, 0.75rem)", color: "var(--tx-2)" }}>{f.desc}</p>
+                  <h3 className="t-h5" style={{ fontSize: "clamp(0.75rem, 0.95vw, 0.9rem)", marginTop: "0.5rem", position: "relative", zIndex: 1 }}>
+                    {f.title}
+                  </h3>
+                  <p className="t-sm" style={{ fontSize: "clamp(0.65rem, 0.85vw, 0.8rem)", color: "var(--tx-2)", position: "relative", zIndex: 1 }}>
+                    {f.desc}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -109,12 +170,24 @@ export default function ProjectSlide({
             paddingLeft: "clamp(1rem, 2vw, 3rem)" /* Safe gap from the left column */
           }}>
             {/* Device Mockup */}
-            <motion.div variants={itemVariants} style={{
-              flexShrink: 0,
-              display: "flex",
-              gap: mockupType === "extension" ? "clamp(0.8rem, 1.5vw, 2rem)" : "clamp(3.5rem, 6.5vw, 7.5rem)",
-              marginRight: mockupType === "laptop" ? "calc(var(--laptop-w) * 0.08)" : 0
-            }}>
+            <motion.div 
+              variants={itemVariants}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ 
+                y: { repeat: Infinity, duration: 6, ease: "easeInOut" }
+              }}
+              whileHover={{ 
+                scale: 1.03, 
+                transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+              }}
+              style={{
+                flexShrink: 0,
+                display: "flex",
+                gap: mockupType === "extension" ? "clamp(0.8rem, 1.5vw, 2rem)" : "clamp(3.5rem, 6.5vw, 7.5rem)",
+                marginRight: mockupType === "laptop" ? "calc(var(--laptop-w) * 0.08)" : 0,
+                willChange: "transform"
+              }}
+            >
               {mockupType === "laptop" ? (
                 <LaptopMockup src={mockupSrc} alt={`${title} app screenshot`} />
               ) : mockupType === "extension" ? (

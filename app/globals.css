@@ -283,7 +283,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 22vw, 300px), 1fr));
   gap: 1px;
-  background: var(--border);
 }
 
 /* Auto-fit large card grid (2–3 col) */
@@ -297,7 +296,7 @@ body {
 /* 4-column pillar grid */
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--border);
 }
@@ -335,7 +334,6 @@ body {
 }
 
 .card {
-  background: var(--surface);
   border: 1px solid transparent;
   padding: clamp(0.9rem, 1.8vh, 1.5rem) clamp(0.9rem, 1.6vw, 1.4rem);
   -webkit-print-color-adjust: exact;
@@ -346,7 +344,7 @@ body {
 }
 
 .card:hover {
-  background: var(--surface-2);
+  background: var(--border);
   border-color: var(--border-strong);
   transform: translateY(-4px) scale(1.01);
   box-shadow:
