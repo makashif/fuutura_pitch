@@ -40,7 +40,7 @@
   --f-mono: var(--font-jetbrains), ui-monospace, "JetBrains Mono", monospace;
 
   /* ─── Slide margins — calibrated for presentation feel ─── */
-  --px: clamp(2rem, 6.5vw, 7rem);
+  --px: clamp(2rem, min(6.5vw, 11.5vh), 7rem);
   /* horizontal padding  */
   --py: clamp(2rem, 4.5vh, 4rem);
   /* vertical padding    */
@@ -146,7 +146,7 @@ body {
   max-width: var(--slide-max);
   /* Overflow guard: content cannot exceed the padded area height */
   max-height: calc(100svh - 2 * var(--py));
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to prevent shadow cropping */
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -193,7 +193,7 @@ body {
 /* Display — hero / closing */
 .t-hero {
   font-family: var(--f-display);
-  font-size: clamp(2.6rem, 6vw, 7.5rem);
+  font-size: clamp(2.6rem, min(6vw, 11vh), 7.5rem);
   font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.02em;
@@ -203,7 +203,7 @@ body {
 /* Primary section headline */
 .t-h2 {
   font-family: var(--f-display);
-  font-size: clamp(1.8rem, 4vw, 5rem);
+  font-size: clamp(1.8rem, min(4vw, 7.5vh), 5rem);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.015em;
@@ -213,7 +213,7 @@ body {
 /* Sub-headline */
 .t-h3 {
   font-family: var(--f-display);
-  font-size: clamp(1.4rem, 2.6vw, 2.8rem);
+  font-size: clamp(1.4rem, min(2.6vw, 4.8vh), 2.8rem);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.01em;
@@ -223,7 +223,7 @@ body {
 /* Card / item title */
 .t-h4 {
   font-family: var(--f-display);
-  font-size: clamp(0.85rem, 1.25vw, 1.1rem);
+  font-size: clamp(0.85rem, min(1.25vw, 2.4vh), 1.1rem);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -233,7 +233,7 @@ body {
 /* Eyebrow label */
 .t-label {
   font-family: var(--f-body);
-  font-size: clamp(0.52rem, 0.76vw, 0.62rem);
+  font-size: clamp(0.52rem, min(0.76vw, 1.5vh), 0.62rem);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -243,7 +243,7 @@ body {
 /* Body copy */
 .t-body {
   font-family: var(--f-body);
-  font-size: clamp(0.82rem, 1.1vw, 0.96rem);
+  font-size: clamp(0.82rem, min(1.1vw, 2.1vh), 0.96rem);
   font-weight: 400;
   line-height: 1.75;
   color: var(--tx-2);
@@ -252,7 +252,7 @@ body {
 /* Small body */
 .t-sm {
   font-family: var(--f-body);
-  font-size: clamp(0.72rem, 0.98vw, 0.82rem);
+  font-size: clamp(0.72rem, min(0.98vw, 1.9vh), 0.82rem);
   font-weight: 400;
   line-height: 1.68;
   color: var(--tx-2);
@@ -261,7 +261,7 @@ body {
 /* Monospace label */
 .t-mono {
   font-family: var(--f-mono);
-  font-size: clamp(0.5rem, 0.72vw, 0.6rem);
+  font-size: clamp(0.5rem, min(0.72vw, 1.4vh), 0.6rem);
   letter-spacing: 0.1em;
   color: var(--tx-4);
 }
@@ -279,7 +279,7 @@ body {
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-  gap: clamp(2rem, 4.5vw, 5.5rem);
+  gap: clamp(2rem, min(4.5vw, 8vh), 5.5rem);
   align-items: start;
 }
 
@@ -607,7 +607,7 @@ body {
    LAPTOP MOCKUP — CSS ONLY
    ─────────────────────────────────────────────────────────────────── */
 :root {
-  --laptop-w: clamp(300px, 38vw, 550px);
+  --laptop-w: clamp(300px, min(38vw, 68vh), 550px);
   --laptop-h: calc(var(--laptop-w) * 0.64);
 }
 
@@ -764,8 +764,8 @@ body.pdf-export-active .laptop-base {
   :root {
     --device-h: clamp(200px, 35svh, 300px);
     --ext-h: clamp(180px, 32svh, 280px);
-    --laptop-w: clamp(260px, 70vw, 400px);
-    --px: clamp(1.5rem, 5vw, 3.5rem);
+    --laptop-w: clamp(260px, min(70vw, 80vh), 400px);
+    --px: clamp(1.5rem, min(5vw, 9vh), 3.5rem);
     --py: clamp(2.5rem, 6vh, 4rem);
   }
 

@@ -50,7 +50,7 @@ export default function HeroSlide() {
           transition={{ duration: 0.95, delay: 0.32, ease }}
         >
           Build What<br />
-          <span style={{ color: "rgba(242,242,242,0.35)" }}>Matters.</span>
+          <span style={{ color: "rgba(242,242,242,0.35)" }}>Matters</span>
         </motion.h1>
 
         {/* Sub */}
