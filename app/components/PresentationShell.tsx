@@ -62,10 +62,10 @@ export default function PresentationShell({ children }: { children: ReactNode })
   const containerRef = useRef<HTMLDivElement>(null);
   const isScrollingRef = useRef(false);
 
-  const { 
-    exportPdf, 
-    isExporting, 
-    exportProgress, 
+  const {
+    exportPdf,
+    isExporting,
+    exportProgress,
     totalSlides,
     previewImage,
     isPreviewing,
@@ -268,7 +268,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
       />
 
       {/* Slide counter */}
-      <div
+      {/* <div
         aria-live="polite"
         className="no-print"
         aria-label={`Slide ${current + 1} of ${SLIDES.length}: ${SLIDES[current].label}`}
@@ -299,7 +299,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
         }}>
           {SLIDES[current].label}
         </span>
-      </div>
+      </div> */}
 
       {/* Keyboard hint */}
       <KeyHint />

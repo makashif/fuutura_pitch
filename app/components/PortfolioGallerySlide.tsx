@@ -83,7 +83,7 @@ export default function PortfolioGallerySlide() {
       <div style={{ display: "flex", justifyContent: "flex-start", margin: "1.5rem 0" }}>
         <motion.p className="t-body" variants={itemVariants}
           style={{ maxWidth: "440px" }}>
-          These are just a few examples from hundreds of successful projects. From Web3 infrastructure to AI ecosystems, we architect and deploy battle-tested technology that powers global businesses.
+          Below are some of our featured work from multiple successfully delivered projects. From Web3 infrastructure to AI ecosystems, we architect and deploy battle-tested technology that powers global businesses.
         </motion.p>
       </div>
 

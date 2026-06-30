@@ -146,7 +146,8 @@ body {
   max-width: var(--slide-max);
   /* Overflow guard: content cannot exceed the padded area height */
   max-height: calc(100svh - 2 * var(--py));
-  overflow: visible; /* Changed from hidden to prevent shadow cropping */
+  overflow: visible;
+  /* Changed from hidden to prevent shadow cropping */
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -697,10 +698,12 @@ body.pdf-export-active .laptop-base {
 }
 
 .mockup-positioning {
-  margin-top: -4vh;
+  position: relative;
+  top: -6vh;
 }
+
 body.pdf-export-active .mockup-positioning {
-  margin-top: 0 !important;
+  top: 0 !important;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -788,7 +791,7 @@ body.pdf-export-active .mockup-positioning {
     overflow: visible;
     justify-content: flex-start;
   }
-  
+
   .slide-content {
     max-height: none;
     overflow: visible;

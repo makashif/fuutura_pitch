@@ -30,7 +30,7 @@ export default function ConnectSlide() {
         <motion.div initial={{ opacity: 0, scale: 0.7 }} animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1.0, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const }}>
           <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "1.2rem", letterSpacing: "0.3em", color: "#FFF" }}>
-            ORIGIN ONE
+            ORIGIN ONE LABS
           </span>
         </motion.div>
 
