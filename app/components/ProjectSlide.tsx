@@ -14,7 +14,6 @@ interface Feature {
 interface ProjectSlideProps {
   id: string;
   slideNumber: string;
-  projectNumber: string;
   title: string;
   description: string;
   domain: string;
@@ -27,7 +26,7 @@ interface ProjectSlideProps {
 }
 
 export default function ProjectSlide({
-  id, slideNumber, projectNumber, title, description, domain, background, status, features, mockupSrc, mockupSrcSplash, mockupType = "mobile",
+  id, slideNumber, title, description, domain, background, status, features, mockupSrc, mockupSrcSplash, mockupType = "mobile",
 }: ProjectSlideProps) {
   return (
     <SlideWrapper id={id} bgImage={background} overlay="rgba(7,7,7,0.85)">
@@ -60,9 +59,9 @@ export default function ProjectSlide({
 
           {/* Domain + title */}
           <div className="stack" style={{ gap: "0.1rem" }}>
-            <motion.p className="t-mono" variants={itemVariants} style={{ color: "var(--accent)", opacity: 0.6 }}>
-              Project {projectNumber} · {domain}
-            </motion.p>
+            {/* <motion.p className="t-mono" variants={itemVariants} style={{ color: "var(--accent)", opacity: 0.6 }}>
+              {domain}
+            </motion.p> */}
             <motion.h2 className="t-h3" variants={itemVariants} style={{ maxWidth: "540px" }}>
               {title}
             </motion.h2>
@@ -71,10 +70,10 @@ export default function ProjectSlide({
         </div>
 
         {/* ── Bottom row: features grid + mockup, both bottom-aligned ── */}
-        <div style={{ display: "flex", alignItems: "flex-end", width: "100%" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", width: "100%", rowGap: "3rem" }}>
 
           {/* Left: description + divider + features grid */}
-          <div className="stack stack-sm" style={{ flexShrink: 0, width: "100%", maxWidth: "600px" }}>
+          <div className="stack stack-sm" style={{ flexShrink: 0, width: "100%", flex: "1 1 500px", maxWidth: "600px" }}>
 
             {/* Overview Description */}
             <motion.p className="t-body" variants={itemVariants} style={{ maxWidth: "520px" }}>
@@ -84,7 +83,7 @@ export default function ProjectSlide({
             <motion.div variants={itemVariants} style={{ borderBottom: "1px solid var(--border)", margin: "0.25rem 0", maxWidth: "520px" }} />
 
             {/* Key Features (2x2 Grid) */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", maxWidth: "600px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", maxWidth: "600px" }}>
               {features.map((f, i) => (
                 <motion.div key={i} variants={itemVariants} className="stack stack-xs">
                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -102,14 +101,11 @@ export default function ProjectSlide({
 
           {/* Right Area Wrapper — takes the remaining space on the right */}
           <div style={{
-            flex: 1,
+            flex: "1 1 400px",
             display: "flex",
-            /* TO CHANGE ALIGNMENT:
-               Use "center" to center the mockups in the right-hand space.
-               Use "flex-start" to left-align them closer to the text.
-               Use "flex-end" to push them all the way to the right edge. */
-            justifyContent: "flex-start",
-            paddingLeft: "clamp(2rem, 4vw, 5rem)" /* Safe gap from the left column */
+            /* Centering the mockups perfectly balances the whitespace on ultra-wide screens! */
+            justifyContent: "center",
+            paddingLeft: "clamp(1rem, 2vw, 3rem)" /* Safe gap from the left column */
           }}>
             {/* Device Mockup */}
             <motion.div variants={itemVariants} style={{

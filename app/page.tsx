@@ -106,7 +106,7 @@ export default function Home() {
       <ProjectSlide
         id="slide-p1"
         slideNumber="06"
-        projectNumber="01"
+
         title="Fuutura Wallet"
         description="A secure, enterprise-grade non-custodial Web3 wallet bridging digital asset management and trading — enabling users to store, manage, transfer, and swap cryptocurrencies across multiple blockchain ecosystems while maintaining complete asset ownership."
         domain="Web3 · DeFi · React.js · Node.js"
@@ -121,8 +121,7 @@ export default function Home() {
       <ProjectSlide
         id="slide-p2"
         slideNumber="07"
-        projectNumber="02"
-        title="Fuutura Trade"
+        title="NEXA Exchange"
         description="A sophisticated full-stack hybrid trading platform bridging traditional finance and decentralized ecosystems. Built for both Web2 and Web3 users in a single unified experience, delivering institutional-grade trading with real-time performance."
         domain="Trading · React.js · Zustand · WebSocket"
         background="/ftrade_premium_bg.png"
@@ -136,8 +135,7 @@ export default function Home() {
       <ProjectSlide
         id="slide-p3"
         slideNumber="08"
-        projectNumber="03"
-        title="Fuutura Extension"
+        title="Algos Dashboard"
         description="A production-grade, non-custodial browser extension wallet engineered to deliver the fluency and familiarity of leading wallet extensions — while maintaining the full security architecture of the Fuutura ecosystem."
         domain="Browser Extension · Next.js · Viem · AWS"
         background="/fextension_premium_bg.png"
@@ -152,8 +150,7 @@ export default function Home() {
       <ProjectSlide
         id="slide-p4"
         slideNumber="09"
-        projectNumber="04"
-        title="Fuutura KYC"
+        title="DeFi Yield Protocol"
         description="A multi-surface, AI-powered KYC ecosystem making identity verification fast, intelligent, and blockchain-backed. Serves individual users and enterprise clients via a consumer mobile app, embeddable SDK, and B2B web dashboard."
         domain="AI · Identity · Python · LLaMA · Polygon"
         background="/fkyc_premium_bg.png"
@@ -167,8 +164,7 @@ export default function Home() {
       <ProjectSlide
         id="slide-p5"
         slideNumber="10"
-        projectNumber="05"
-        title="Digital24"
+        title="AI Marketing Suite"
         description="A full-featured PR distribution platform streamlining how businesses create, manage, and fulfil media campaigns at scale — from guaranteed placements and newswire to SEO guest posting, journalist outreach, payments, and internal fulfilment."
         domain="SaaS · Next.js · PostgreSQL · Stripe"
         background="/digital24_premium_bg.png"
@@ -182,7 +178,6 @@ export default function Home() {
       <ProjectSlide
         id="slide-p6"
         slideNumber="11"
-        projectNumber="06"
         title="Intelizzz — Vehicle Intelligence"
         description="A comprehensive enterprise-grade vehicle intelligence and tracking platform serving installers, operations teams, recovery agents, and consumers — built across 6 integrated modules on a resilient event-driven microservices backend."
         domain="IoT · React Native · Kafka · Kubernetes"
@@ -197,8 +192,7 @@ export default function Home() {
       <ProjectSlide
         id="slide-p7"
         slideNumber="12"
-        projectNumber="07"
-        title="Toybox — Automotive Concierge"
+        title="Verita Health App"
         description="A premium automotive concierge ecosystem purpose-built for luxury vehicle owners — delivered across four integrated surfaces covering the full member, staff, and operational experience with native iOS and web applications."
         domain="Luxury Auto · iOS Swift · Next.js"
         background="/toybox_premium_bg.png"

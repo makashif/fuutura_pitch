@@ -29,17 +29,15 @@ export default function NavDots() {
           onClick={() => goTo(i)}
           title={slide.label}
           style={{
-            width: current === i ? "18px" : "4px",
-            height: "4px",
+            width: current === i ? "28px" : "8px",
+            height: "8px",
             borderRadius: "99px",
-            background:
-              current === i ? "#ffffff" : "rgba(255,255,255,0.18)",
+            background: current === i ? "#ffffff" : "rgba(255,255,255,0.25)",
             border: "none",
             cursor: "pointer",
             padding: 0,
-            transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-            boxShadow:
-              current === i ? "0 0 8px rgba(255,255,255,0.4)" : "none",
+            transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            boxShadow: current === i ? "0 0 10px rgba(255,255,255,0.5)" : "none",
           }}
         />
       ))}
