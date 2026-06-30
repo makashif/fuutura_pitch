@@ -254,11 +254,12 @@ export default function PresentationShell({ children }: { children: ReactNode })
           position: "fixed",
           top: 0,
           left: 0,
-          height: "1px",
+          height: "2px",
           width: `${((current + 1) / SLIDES.length) * 100}%`,
-          background: "linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.25))",
+          background: "linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.8))",
+          boxShadow: "0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.2)",
           zIndex: 1000,
-          transition: "width 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "width 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       />
 

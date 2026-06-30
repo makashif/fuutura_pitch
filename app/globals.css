@@ -127,6 +127,11 @@ body {
   print-color-adjust: exact;
 }
 
+@keyframes cinematicBreath {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.05); }
+}
+
 .slide-bg {
   position: absolute;
   inset: 0;
@@ -136,6 +141,9 @@ body {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   color-adjust: exact;
+  animation: cinematicBreath 30s alternate infinite ease-in-out;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .slide-overlay {
@@ -307,23 +315,53 @@ body {
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   color-adjust: exact;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, background-color, border-color;
 }
 
 .card:hover {
   background: var(--surface-2);
   border-color: var(--border-strong);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-card {
+  cursor: pointer;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: clamp(0.6rem, 1.2vh, 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, background-color, border-color;
+}
+
+.portfolio-card:hover {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 
 .tech-pill {
-  transition: all 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, background-color, border-color;
 }
 
 .tech-pill:hover {
   background: var(--surface-2) !important;
   border-color: var(--border-strong) !important;
-  transform: scale(1.03);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 
 /* Number badge */

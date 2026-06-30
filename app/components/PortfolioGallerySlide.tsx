@@ -98,23 +98,10 @@ export default function PortfolioGallerySlide() {
             key={i}
             variants={itemVariants}
             onClick={() => goTo(5 + i)}
-            whileHover={{
-              backgroundColor: "var(--surface-2)",
-              borderColor: "var(--border-strong)",
-              y: -2,
-            }}
+            className="portfolio-card"
             style={{
-              cursor: "pointer",
-              background: "var(--surface)",
-              border: "1px solid var(--border)",
-              borderRadius: "2px",
-              padding: "clamp(0.6rem, 1.2vh, 1rem)",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.5rem",
               // Make the 7th card span wider to balance the last row
               ...(i === 6 ? { gridColumn: "span 1" } : {}),
-              transition: "border-color 0.2s ease",
             }}
           >
             {/* Number + category */}
