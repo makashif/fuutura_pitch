@@ -16,7 +16,7 @@ interface ProjectSlideProps {
   slideNumber: string;
   title: string;
   description: string;
-  domain: string;
+  domain?: string;
   background: string;
   status: string;
   features: Feature[];
@@ -26,6 +26,7 @@ interface ProjectSlideProps {
 }
 
 export default function ProjectSlide({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   id, slideNumber, title, description, domain, background, status, features, mockupSrc, mockupSrcSplash, mockupType = "mobile",
 }: ProjectSlideProps) {
   return (

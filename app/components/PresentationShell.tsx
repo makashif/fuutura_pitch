@@ -330,6 +330,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
             </div>
           ) : previewImage ? (
             <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={previewImage}
                 alt="Exact Frame Preview"
@@ -342,7 +343,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
                 }}
               />
               <p style={{ color: "rgba(255,255,255,0.5)", marginTop: "1.5rem", fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.1em" }}>
-                PRESS 'M', 'ESC', OR CLICK ANYWHERE TO CLOSE
+                PRESS &apos;M&apos;, &apos;ESC&apos;, OR CLICK ANYWHERE TO CLOSE
               </p>
             </>
           ) : null}
