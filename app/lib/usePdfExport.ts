@@ -7,6 +7,69 @@ export function usePdfExport() {
   const [isExporting, setIsExporting] = useState(false);
   const [exportProgress, setExportProgress] = useState(0);
 
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [isPreviewing, setIsPreviewing] = useState(false);
+
+  const generatePreview = useCallback(async (slideId: string) => {
+    if (isPreviewing || isExporting) return;
+    setIsPreviewing(true);
+
+    try {
+      document.body.classList.add("pdf-export-active");
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const element = document.getElementById(slideId);
+      if (!element) return;
+
+      element.scrollIntoView({ behavior: "instant", block: "start" });
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#070707",
+        logging: false,
+        windowWidth: 1380,
+        windowHeight: 976,
+        ignoreElements: (el) => el.classList.contains("no-print"),
+        onclone: (clonedDoc) => {
+          const style = clonedDoc.createElement("style");
+          style.innerHTML = `
+            * {
+              animation: none !important;
+              transition: none !important;
+            }
+            [style*="opacity: 0"],
+            [style*="opacity:0"] {
+              opacity: 1 !important;
+              visibility: visible !important;
+            }
+            [style*="translateY"],
+            [style*="translateX"],
+            [style*="scale"] {
+              transform: none !important;
+            }
+          `;
+          clonedDoc.head.appendChild(style);
+        },
+      });
+
+      const imgData = canvas.toDataURL("image/jpeg", 0.95);
+      setPreviewImage(imgData);
+    } catch (error) {
+      console.error("Preview generation failed:", error);
+      alert("Failed to generate preview.");
+    } finally {
+      document.body.classList.remove("pdf-export-active");
+      setIsPreviewing(false);
+    }
+  }, [isPreviewing, isExporting]);
+
+  const closePreview = useCallback(() => {
+    setPreviewImage(null);
+  }, []);
+
   const exportPdf = useCallback(async () => {
     if (isExporting) return;
     setIsExporting(true);
@@ -99,5 +162,14 @@ export function usePdfExport() {
     }
   }, [isExporting]);
 
-  return { exportPdf, isExporting, exportProgress, totalSlides: SLIDES.length };
+  return { 
+    exportPdf, 
+    isExporting, 
+    exportProgress, 
+    totalSlides: SLIDES.length,
+    previewImage,
+    isPreviewing,
+    generatePreview,
+    closePreview
+  };
 }

@@ -16,20 +16,20 @@ import PdfExportOverlay from "./PdfExportOverlay";
    Slide manifest — single source of truth
 ───────────────────────────────────────── */
 export const SLIDES = [
-  { id: "slide-hero",        label: "Intro" },
-  { id: "slide-about",       label: "About Origin One" },
-  { id: "slide-solutions",   label: "What We Build" },
-  { id: "slide-tech",        label: "Tech Stack" },
-  { id: "slide-portfolio",   label: "Portfolio Overview" },
-  { id: "slide-p1",          label: "Project 01" },
-  { id: "slide-p2",          label: "Project 02" },
-  { id: "slide-p3",          label: "Project 03" },
-  { id: "slide-p4",          label: "Project 04" },
-  { id: "slide-p5",          label: "Project 05" },
-  { id: "slide-p6",          label: "Project 06" },
-  { id: "slide-p7",          label: "Project 07" },
-  { id: "slide-why",         label: "Why Origin One" },
-  { id: "slide-connect",     label: "Start a Project" },
+  { id: "slide-hero", label: "Intro" },
+  { id: "slide-about", label: "About Origin One" },
+  { id: "slide-solutions", label: "What We Build" },
+  { id: "slide-tech", label: "Tech Stack" },
+  { id: "slide-portfolio", label: "Portfolio Overview" },
+  { id: "slide-p1", label: "Project 01" },
+  { id: "slide-p2", label: "Project 02" },
+  { id: "slide-p3", label: "Project 03" },
+  { id: "slide-p4", label: "Project 04" },
+  { id: "slide-p5", label: "Project 05" },
+  { id: "slide-p6", label: "Project 06" },
+  { id: "slide-p7", label: "Project 07" },
+  { id: "slide-why", label: "Why Origin One" },
+  { id: "slide-connect", label: "Start a Project" },
 ];
 
 /* ─────────────────────────────────────────
@@ -46,9 +46,9 @@ interface DeckCtx {
 export const DeckContext = createContext<DeckCtx>({
   current: 0,
   total: SLIDES.length,
-  goTo: () => {},
-  goNext: () => {},
-  goPrev: () => {},
+  goTo: () => { },
+  goNext: () => { },
+  goPrev: () => { },
 });
 
 export const useDeck = () => useContext(DeckContext);
@@ -61,7 +61,16 @@ export default function PresentationShell({ children }: { children: ReactNode })
   const containerRef = useRef<HTMLDivElement>(null);
   const isScrollingRef = useRef(false);
 
-  const { exportPdf, isExporting, exportProgress, totalSlides } = usePdfExport();
+  const { 
+    exportPdf, 
+    isExporting, 
+    exportProgress, 
+    totalSlides,
+    previewImage,
+    isPreviewing,
+    generatePreview,
+    closePreview
+  } = usePdfExport();
 
   /* ── Scroll to a slide by index ── */
   const goTo = useCallback((index: number) => {
@@ -111,7 +120,13 @@ export default function PresentationShell({ children }: { children: ReactNode })
     const handleKey = (e: KeyboardEvent) => {
       // Don't hijack typing in inputs
       if ((e.target as HTMLElement)?.tagName === "INPUT" ||
-          (e.target as HTMLElement)?.tagName === "TEXTAREA") return;
+        (e.target as HTMLElement)?.tagName === "TEXTAREA") return;
+
+      if (e.key === "Escape" && (previewImage || isPreviewing)) {
+        e.preventDefault();
+        closePreview();
+        return;
+      }
 
       switch (e.key) {
         case "e":
@@ -142,8 +157,18 @@ export default function PresentationShell({ children }: { children: ReactNode })
         case "End":
           e.preventDefault();
           goTo(SLIDES.length - 1);
+          break;
+        case "m":
+        case "M":
+          e.preventDefault();
+          if (previewImage || isPreviewing) {
+            closePreview();
+          } else {
+            generatePreview(SLIDES[current].id);
+          }
+          break;
       }
-      
+
       // Handle number keys (1-9, 0 for 10)
       if (e.key >= "1" && e.key <= "9") {
         e.preventDefault();
@@ -164,7 +189,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [goNext, goPrev, goTo, exportPdf]);
+  }, [goNext, goPrev, goTo, exportPdf, current, previewImage, isPreviewing, generatePreview, closePreview]);
 
   /* ── Touch swipe support ── */
   useEffect(() => {
@@ -252,23 +277,76 @@ export default function PresentationShell({ children }: { children: ReactNode })
           gap: "0.75rem",
         }}
       >
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem",
-          letterSpacing: "0.15em", color: "rgba(255,255,255,0.22)" }}>
+        <span style={{
+          fontFamily: "var(--font-mono)", fontSize: "0.58rem",
+          letterSpacing: "0.15em", color: "rgba(255,255,255,0.22)"
+        }}>
           {String(current + 1).padStart(2, "0")}{" "}
           <span style={{ opacity: 0.4 }}>/</span>{" "}
           {String(SLIDES.length).padStart(2, "0")}
         </span>
         <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.1)" }} />
-        <span style={{ fontFamily: "var(--font-body)", fontSize: "0.58rem",
+        <span style={{
+          fontFamily: "var(--font-body)", fontSize: "0.58rem",
           letterSpacing: "0.14em", textTransform: "uppercase",
           color: "rgba(255,255,255,0.18)", maxWidth: "160px",
-          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"
+        }}>
           {SLIDES[current].label}
         </span>
       </div>
 
       {/* Keyboard hint */}
       <KeyHint />
+
+      {/* Mockup Overlay */}
+      {(isPreviewing || previewImage) && (
+        <div
+          className="no-print"
+          onClick={closePreview}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 9999,
+            backgroundColor: "rgba(0,0,0,0.85)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            cursor: "pointer",
+          }}
+        >
+          {isPreviewing ? (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+              <div className="spinner" style={{ width: "24px", height: "24px", border: "2px solid rgba(255,255,255,0.2)", borderTopColor: "white", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
+              <p style={{ color: "white", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.15em" }}>
+                GENERATING EXACT FRAME...
+              </p>
+              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          ) : previewImage ? (
+            <>
+              <img
+                src={previewImage}
+                alt="Exact Frame Preview"
+                style={{
+                  maxWidth: "90%",
+                  maxHeight: "90%",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "#070707" // match pdf background
+                }}
+              />
+              <p style={{ color: "rgba(255,255,255,0.5)", marginTop: "1.5rem", fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.1em" }}>
+                PRESS 'M', 'ESC', OR CLICK ANYWHERE TO CLOSE
+              </p>
+            </>
+          ) : null}
+        </div>
+      )}
     </DeckContext.Provider>
   );
 }

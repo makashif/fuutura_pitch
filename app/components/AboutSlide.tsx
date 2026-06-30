@@ -30,74 +30,86 @@ export default function AboutSlide() {
           </motion.h2>
         </div>
 
+        {/* Core Values Label (outside of grid-2, aligned with the right column) */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", width: "100%" }}>
+          <div></div>
+          <div>
+            <motion.p className="t-label" variants={itemVariants}
+              style={{ marginBottom: "var(--sp-xs)" }}>
+              Core Values
+            </motion.p>
+          </div>
+        </div>
+
         <div className="grid-2">
-          {/* ── Left ── */}
+          
+          {/* ── Left Column ── */}
           <div className="stack stack-sm">
+            <motion.p className="t-body" variants={itemVariants}
+              style={{ maxWidth: "460px", paddingTop: "var(--sp-xs)" }}>
+              Origin One Labs was founded to help organizations navigate increasingly complex technology challenges. We believe great technology is built through a combination of strategic thinking, strong architecture, engineering excellence, and relentless execution.
+            </motion.p>
+            <motion.p className="t-body" variants={itemVariants}
+              style={{ maxWidth: "460px" }}>
+              Our goal is simple: Help businesses build technology that delivers measurable value and supports long-term growth. We don&apos;t outsource outcomes. We take ownership from concept to production.
+            </motion.p>
 
-          <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "460px", paddingTop: "var(--sp-xs)" }}>
-            Origin One Labs was founded to help organizations navigate increasingly complex technology challenges. We believe great technology is built through a combination of strategic thinking, strong architecture, engineering excellence, and relentless execution.
-          </motion.p>
-          <motion.p className="t-body" variants={itemVariants}
-            style={{ maxWidth: "460px" }}>
-            Our goal is simple: Help businesses build technology that delivers measurable value and supports long-term growth. We don&apos;t outsource outcomes. We take ownership from concept to production.
-          </motion.p>
+            <motion.div variants={itemVariants}
+              style={{
+                paddingTop: "var(--sp-sm)", borderTop: "1px solid var(--border)",
+                marginTop: "var(--sp-xs)",
+              }}>
+            </motion.div>
 
-          <motion.div variants={itemVariants}
-            style={{
-              paddingTop: "var(--sp-sm)", borderTop: "1px solid var(--border)",
-              marginTop: "var(--sp-xs)",
+            {/* Mission / Vision */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1.15fr", gap: "2rem", alignItems: "start" }}>
+              {[
+                { tag: "Mission", text: "To design and deliver intelligent technology solutions that help businesses innovate, scale, and compete in a digital-first world." },
+                { tag: "Vision", text: "To become a globally trusted technology and engineering partner known for building innovative, scalable, and impactful digital systems." },
+              ].map(item => (
+                <motion.div key={item.tag} variants={itemVariants}
+                  style={{
+                    borderLeft: "1px solid var(--border-strong)",
+                    paddingLeft: "1.25rem", paddingTop: "0.65rem", paddingBottom: "0.65rem"
+                  }}>
+                  <p className="t-mono" style={{ color: "var(--tx-3)", marginBottom: "0.25rem" }}>
+                    {item.tag}
+                  </p>
+                  <p className="t-sm">{item.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Right Column ── */}
+          <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+
+            <div style={{ 
+              display: "flex", 
+              flexDirection: "column", 
+              gap: "1.25rem", 
+              marginTop: "auto", /* Align bottom with Mission/Vision */
             }}>
-          </motion.div>
-
-          {/* Mission / Vision */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.15fr", gap: "2rem", alignItems: "start" }}>
-            {[
-              { tag: "Mission", text: "To design and deliver intelligent technology solutions that help businesses innovate, scale, and compete in a digital-first world." },
-              { tag: "Vision", text: "To become a globally trusted technology and engineering partner known for building innovative, scalable, and impactful digital systems." },
-            ].map(item => (
-              <motion.div key={item.tag} variants={itemVariants}
-                style={{
-                  borderLeft: "1px solid var(--border-strong)",
-                  paddingLeft: "1.25rem", paddingTop: "0.65rem", paddingBottom: "0.65rem"
-                }}>
-                <p className="t-mono" style={{ color: "var(--tx-3)", marginBottom: "0.25rem" }}>
-                  {item.tag}
-                </p>
-                <p className="t-sm">{item.text}</p>
-              </motion.div>
-            ))}
+              {coreValues.map((v, i) => (
+                <motion.div key={i} variants={itemVariants}
+                  style={{
+                    display: "flex", alignItems: "flex-start", gap: "1.25rem",
+                    paddingBottom: "1.15rem",
+                    borderBottom: "1px solid var(--border)",
+                  }}>
+                  <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0, marginTop: "0.2rem" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="stack" style={{ gap: "0.25rem" }}>
+                    <span className="t-h4" style={{ fontWeight: 500 }}>{v.title}</span>
+                    <span className="t-sm" style={{ color: "var(--tx-3)" }}>{v.desc}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
+
         </div>
-
-        {/* ── Right: Core Values ── */}
-        <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-          <motion.p className="t-label" variants={itemVariants}
-            style={{ marginBottom: "var(--sp-xs)", paddingTop: "var(--sp-xs)" }}>
-            Core Values
-          </motion.p>
-
-          <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "space-between" }}>
-            {coreValues.map((v, i) => (
-              <motion.div key={i} variants={itemVariants}
-                style={{
-                  display: "flex", alignItems: "flex-start", gap: "1.25rem",
-                  paddingBottom: "clamp(0.75rem, 1.5vh, 1.2rem)",
-                  borderBottom: "1px solid var(--border)",
-                }}>
-                <span className="t-mono t-accent" style={{ width: "2rem", flexShrink: 0, marginTop: "0.2rem" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="stack" style={{ gap: "0.25rem" }}>
-                  <span className="t-h4" style={{ fontWeight: 500 }}>{v.title}</span>
-                  <span className="t-sm" style={{ color: "var(--tx-3)" }}>{v.desc}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-      </div>
 
         <motion.div variants={itemVariants}
           style={{ display: "flex", justifyContent: "center", paddingTop: "3rem", width: "100%" }}>

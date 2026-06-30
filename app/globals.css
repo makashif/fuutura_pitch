@@ -463,6 +463,80 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   EXTENSION MOCKUP — CSS ONLY
+   ─────────────────────────────────────────────────────────────────── */
+:root {
+  --ext-h: clamp(225px, 40svh, 415px);
+  --ext-w: calc(var(--ext-h) * 0.65);
+  /* typical extension width */
+}
+
+.ext-outer {
+  position: relative;
+  width: var(--ext-w);
+  height: var(--ext-h);
+  flex-shrink: 0;
+  border-radius: calc(var(--ext-w) * 0.04);
+  background: #111;
+  border: 1.5px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.9),
+    0 clamp(16px, 3vh, 40px) clamp(32px, 6vh, 80px) rgba(0, 0, 0, 0.75),
+    0 clamp(4px, 0.8vh, 8px) clamp(12px, 2.5vh, 32px) rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ext-header {
+  height: 24px;
+  background: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 60%, #222 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 6px;
+}
+
+.ext-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ext-body {
+  flex: 1;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+.ext-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Subtle glow reflection below device */
+.ext-outer::after {
+  content: '';
+  position: absolute;
+  bottom: calc(var(--ext-h) * -0.06);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--ext-w) * 0.8);
+  height: calc(var(--ext-h) * 0.08);
+  background: rgba(228, 228, 231, 0.04);
+  border-radius: 50%;
+  filter: blur(clamp(8px, 1.5vh, 16px));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    LAPTOP MOCKUP — CSS ONLY
    ─────────────────────────────────────────────────────────────────── */
 :root {
@@ -765,6 +839,8 @@ body.pdf-export-active {
   --device-w: calc(var(--device-h) * 0.487) !important;
   --laptop-w: calc(1380px * 0.38) !important;
   --laptop-h: calc(var(--laptop-w) * 0.64) !important;
+  --ext-h: calc(976px * 0.40) !important;
+  --ext-w: calc(var(--ext-h) * 0.65) !important;
 }
 
 body.pdf-export-active .slide {

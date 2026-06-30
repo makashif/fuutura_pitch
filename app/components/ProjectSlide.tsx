@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import SlideWrapper, { itemVariants } from "./SlideWrapper";
 import DeviceMockup from "./DeviceMockup";
-
 import LaptopMockup from "./LaptopMockup";
+import ExtensionMockup from "./ExtensionMockup";
 
 interface Feature {
   title: string;
@@ -23,7 +23,7 @@ interface ProjectSlideProps {
   features: Feature[];
   mockupSrc?: string;
   mockupSrcSplash?: string;
-  mockupType?: "mobile" | "laptop";
+  mockupType?: "mobile" | "laptop" | "extension";
 }
 
 export default function ProjectSlide({
@@ -115,11 +115,16 @@ export default function ProjectSlide({
             <motion.div variants={itemVariants} style={{
               flexShrink: 0,
               display: "flex",
-              gap: "clamp(1rem, 2vw, 2rem)",
+              gap: mockupType === "extension" ? "clamp(0.8rem, 1.5vw, 2rem)" : "clamp(3.5rem, 6.5vw, 7.5rem)",
               marginRight: mockupType === "laptop" ? "calc(var(--laptop-w) * 0.08)" : 0
             }}>
               {mockupType === "laptop" ? (
                 <LaptopMockup src={mockupSrc} alt={`${title} app screenshot`} />
+              ) : mockupType === "extension" ? (
+                <>
+                  {mockupSrcSplash && <ExtensionMockup src={mockupSrcSplash} alt={`${title} splash screen`} />}
+                  {mockupSrc && <ExtensionMockup src={mockupSrc} alt={`${title} app screenshot`} />}
+                </>
               ) : (
                 <>
                   <DeviceMockup src={mockupSrcSplash} alt={`${title} splash screen`} />

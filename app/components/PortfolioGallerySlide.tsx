@@ -75,7 +75,7 @@ export default function PortfolioGallerySlide() {
           05 / Our Track Record
         </motion.p>
         <motion.h2 className="t-h2" variants={itemVariants} style={{ maxWidth: "700px" }}>
-          Multiple systems delivered.<br />
+          Multiple projects delivered.<br />
           <span style={{ color: "rgba(242,242,242,0.28)" }}>Engineered for scale.</span>
         </motion.h2>
       </div>
@@ -83,7 +83,7 @@ export default function PortfolioGallerySlide() {
       <div style={{ display: "flex", justifyContent: "flex-start", margin: "1.5rem 0" }}>
         <motion.p className="t-body" variants={itemVariants}
           style={{ maxWidth: "440px" }}>
-          These aren&apos;t design concepts. From Web3 infrastructure to AI ecosystems, we architect and deploy battle-tested technology that powers global businesses.
+          These are just a few examples from hundreds of successful projects. From Web3 infrastructure to AI ecosystems, we architect and deploy battle-tested technology that powers global businesses.
         </motion.p>
       </div>
 
@@ -98,7 +98,7 @@ export default function PortfolioGallerySlide() {
             key={i}
             variants={itemVariants}
             onClick={() => goTo(5 + i)}
-            whileHover={{ 
+            whileHover={{
               backgroundColor: "var(--surface-2)",
               borderColor: "var(--border-strong)",
               y: -2,

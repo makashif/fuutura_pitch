@@ -144,7 +144,8 @@ export default function Home() {
         status="Delivered"
         features={p3Features}
         mockupSrcSplash="/FextS.png"
-        mockupSrc="/Fwallet.png"
+        mockupSrc="/Fext.png"
+        mockupType="extension"
       />
 
       {/* ── Project 04 — Fuutura KYC ── */}
