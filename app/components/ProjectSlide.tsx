@@ -88,7 +88,7 @@ export default function ProjectSlide({
         </div>
 
         {/* ── Bottom row: features grid + mockup, both bottom-aligned ── */}
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", width: "100%", rowGap: "3rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", width: "100%", rowGap: "clamp(1rem, 6vh, 3rem)" }}>
 
           {/* Left: description + divider + features grid */}
           <div className="stack stack-sm" style={{ flexShrink: 0, width: "100%", flex: "1 1 500px", maxWidth: "600px" }}>
@@ -101,7 +101,7 @@ export default function ProjectSlide({
             <motion.div variants={itemVariants} style={{ borderBottom: "1px solid var(--border)", margin: "0.25rem 0", maxWidth: "520px" }} />
 
             {/* Key Features (2x2 Grid) */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1.25rem", maxWidth: "600px", marginTop: "1rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "clamp(0.5rem, 3vh, 1.25rem)", maxWidth: "600px", marginTop: "clamp(0.5rem, 3vh, 1rem)" }}>
               {features.map((f, i) => (
                 <motion.div 
                   key={i} 
@@ -162,7 +162,7 @@ export default function ProjectSlide({
           </div>
 
           {/* Right Area Wrapper — takes the remaining space on the right */}
-          <div style={{
+          <div className="mockup-positioning" style={{
             flex: "1 1 400px",
             display: "flex",
             /* Centering the mockups perfectly balances the whitespace on ultra-wide screens! */
@@ -179,7 +179,7 @@ export default function ProjectSlide({
               style={{
                 flexShrink: 0,
                 display: "flex",
-                gap: mockupType === "extension" ? "clamp(0.8rem, 1.5vw, 2rem)" : "clamp(3.5rem, 6.5vw, 7.5rem)",
+                gap: mockupType === "extension" ? "clamp(0.8rem, min(1.5vw, 2.6vh), 2rem)" : "clamp(3.5rem, min(6.5vw, 11.5vh), 7.5rem)",
                 marginRight: mockupType === "laptop" ? "calc(var(--laptop-w) * 0.08)" : 0,
                 willChange: "transform"
               }}

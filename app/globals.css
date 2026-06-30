@@ -42,7 +42,7 @@
   /* ─── Slide margins — calibrated for presentation feel ─── */
   --px: clamp(2rem, min(6.5vw, 11.5vh), 7rem);
   /* horizontal padding  */
-  --py: clamp(2rem, 4.5vh, 4rem);
+  --py: clamp(0.5rem, 4.5vh, 4rem);
   /* vertical padding    */
 
   /* ─── Content max-width — fits elegantly at all presentation sizes ─── */
@@ -54,11 +54,11 @@
   --device-w: calc(var(--device-h) * 0.487);
 
   /* ─── Spacing scale ─── */
-  --sp-xs: 0.4rem;
-  --sp-sm: 0.8rem;
-  --sp-md: 1.5rem;
-  --sp-lg: 2.5rem;
-  --sp-xl: 4rem;
+  --sp-xs: clamp(0.2rem, 1vh, 0.4rem);
+  --sp-sm: clamp(0.4rem, 2vh, 0.8rem);
+  --sp-md: clamp(0.8rem, 4vh, 1.5rem);
+  --sp-lg: clamp(1.2rem, 6vh, 2.5rem);
+  --sp-xl: clamp(1.5rem, 10vh, 4rem);
 }
 
 button:not(.disabled),
@@ -696,6 +696,13 @@ body.pdf-export-active .laptop-base {
   box-shadow: none !important;
 }
 
+.mockup-positioning {
+  margin-top: -4vh;
+}
+body.pdf-export-active .mockup-positioning {
+  margin-top: 0 !important;
+}
+
 /* ═══════════════════════════════════════════════════════
    PORTFOLIO GALLERY
 ═══════════════════════════════════════════════════════ */
@@ -766,7 +773,7 @@ body.pdf-export-active .laptop-base {
     --ext-h: clamp(180px, 32svh, 280px);
     --laptop-w: clamp(260px, min(70vw, 80vh), 400px);
     --px: clamp(1.5rem, min(5vw, 9vh), 3.5rem);
-    --py: clamp(2.5rem, 6vh, 4rem);
+    --py: clamp(0.5rem, 6vh, 4rem);
   }
 
   .grid-2 {
@@ -793,9 +800,9 @@ body.pdf-export-active .laptop-base {
   :root {
     --device-h: clamp(180px, 30svh, 250px);
     --ext-h: clamp(160px, 28svh, 230px);
-    --laptop-w: clamp(220px, 85vw, 300px);
+    --laptop-w: clamp(220px, min(85vw, 95vh), 300px);
     --px: 1.25rem;
-    --py: 2.5rem;
+    --py: clamp(0.5rem, 5vh, 2.5rem);
   }
 
   .grid-4 {
@@ -940,8 +947,12 @@ body.pdf-export-active .slide {
 }
 
 body.pdf-export-active .slide-content {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  height: 100% !important;
   max-height: calc(976px - 2 * var(--py)) !important;
-  overflow: hidden !important;
+  overflow: visible !important;
 }
 
 /* Hide heavy shadows and blurs during PDF export to prevent html2canvas artifacts */
