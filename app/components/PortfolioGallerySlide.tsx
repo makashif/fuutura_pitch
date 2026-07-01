@@ -155,6 +155,39 @@ export default function PortfolioGallerySlide() {
             </p>
           </motion.div>
         ))}
+
+        {/* Disclaimer Card (Fills the 8th slot in the grid) */}
+        <motion.div
+          variants={itemVariants}
+          className="portfolio-card"
+          style={{
+            background: "transparent",
+            border: "1px dashed rgba(255,255,255,0.1)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-start",
+            padding: "clamp(0.8rem, 1.2vw, 1.25rem)",
+            opacity: 0.8
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", marginBottom: "0.6rem" }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--tx-4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "0.35rem" }}>
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span style={{ fontFamily: "var(--f-mono)", fontSize: "0.45rem", letterSpacing: "0.12em", color: "var(--tx-4)", textTransform: "uppercase" }}>
+              Disclaimer
+            </span>
+          </div>
+          
+          <p style={{
+            fontFamily: "var(--f-body)", fontSize: "clamp(0.48rem, 0.65vw, 0.58rem)",
+            color: "var(--tx-4)", lineHeight: 1.55
+          }}>
+            The projects and case studies featured on this website represent a selected portfolio of Origin One Labs&apos; work. We have successfully delivered 100+ projects across diverse industries; however, many engagements are protected by confidentiality agreements and cannot be publicly disclosed.
+          </p>
+        </motion.div>
       </div>
 
       {/* Footer */}

@@ -259,8 +259,8 @@ export default function ConnectSlide() {
                       <div className="stack" style={{ gap: "0.4rem" }}>
                         <label style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.15em", color: "rgba(255, 255, 255, 0.7)" }}>PROJECT TYPE</label>
                         <div style={{ position: "relative" }}>
-                          <select name="project_type" className="form-input" style={{ appearance: "none", cursor: "pointer", width: "100%", color: "#fff" }}>
-                            <option value="" disabled selected hidden>Select an option</option>
+                          <select name="project_type" defaultValue="" className="form-input" style={{ appearance: "none", cursor: "pointer", width: "100%", color: "#fff" }}>
+                            <option value="" disabled hidden>Select an option</option>
                             <option value="AI / ML" style={{ background: "#111", color: "#fff" }}>AI / ML</option>
                             <option value="Web & Mobile" style={{ background: "#111", color: "#fff" }}>Web & Mobile</option>
                             <option value="Fintech / Enterprise" style={{ background: "#111", color: "#fff" }}>Fintech / Enterprise</option>
