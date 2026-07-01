@@ -1,10 +1,69 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { PopupModal } from "react-calendly";
 
 export default function ConnectSlide() {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true });
+  const [showForm, setShowForm] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // Required for Calendly to attach securely to the DOM on the client side
+    setRootElement(document.body);
+
+    // Guard: Automatically close form and Calendly when PDF export or Print starts
+    const observer = new MutationObserver(() => {
+      if (document.body.classList.contains("pdf-export-active")) {
+        setShowForm(false);
+        setIsCalendlyOpen(false);
+      }
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+    const handlePrint = () => {
+      setShowForm(false);
+      setIsCalendlyOpen(false);
+    };
+    window.addEventListener("beforeprint", handlePrint);
+    
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("beforeprint", handlePrint);
+    };
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // Add hidden honeypot and disable captcha for seamless UX
+    formData.append("_captcha", "false");
+    formData.append("_template", "box");
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/makashifkpsph@gmail.com", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
+  };
 
   return (
     <section ref={ref} id="slide-connect" className="slide"
@@ -46,65 +105,180 @@ export default function ConnectSlide() {
           transition={{ duration: 0.6, delay: 0.56 }}
           style={{ transformOrigin: "center", width: "48px" }} />
 
-        <motion.p className="t-body" style={{ maxWidth: "480px" }}
-          initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.68 }}>
-          Whether you&apos;re launching a new product, modernizing existing systems, or exploring AI opportunities, Origin One Labs is ready to help.
-        </motion.p>
+        <div style={{ position: "relative", width: "100%", display: "flex", justifyContent: "center", minHeight: "clamp(150px, 35vh, 300px)" }}>
+          
+          {/* FALLBACK FOR PDF: Instantly replaces the animated view during export to bypass exit animation delays */}
+          <div className="pdf-only-cta stack" style={{ display: "none", alignItems: "center", width: "100%", textAlign: "center" }}>
+            <p className="t-body" style={{ maxWidth: "480px" }}>
+              Whether you&apos;re launching a new product, modernizing existing systems, or exploring AI opportunities, Origin One Labs is ready to help.
+            </p>
+            <div className="stack stack-xs" style={{ alignItems: "center", marginTop: "0.4rem" }}>
+              <span className="t-body" style={{ color: "var(--tx-1)", borderBottom: "1px solid var(--border-bright)", paddingBottom: "2px" }}>
+                hello@originonelabs.com
+              </span>
+              <span className="t-mono" style={{ marginTop: "0.15rem" }}>www.originonelabs.com</span>
+            </div>
+            <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.8rem" }}>
+              <div style={{ display: "inline-flex", alignItems: "center", padding: "clamp(0.75rem, 1.4vh, 0.95rem) clamp(1.4rem, 2.8vw, 2.2rem)", background: "var(--tx-1)", color: "#070707", fontFamily: "var(--f-body)", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                Start a Project
+              </div>
+              <div style={{ display: "inline-flex", alignItems: "center", padding: "clamp(0.75rem, 1.4vh, 0.95rem) clamp(1.4rem, 2.8vw, 2.2rem)", background: "transparent", color: "var(--tx-1)", border: "1px solid var(--border-strong)", fontFamily: "var(--f-body)", fontSize: "0.72rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                Schedule a Consultation
+              </div>
+            </div>
+          </div>
 
-        {/* Contact links */}
-        <motion.div className="stack stack-xs" style={{ alignItems: "center", marginTop: "0.4rem" }}
-          initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.82 }}>
-          <a href="mailto:hello@originonelabs.com" className="t-body"
-            style={{
-              color: "var(--tx-1)", textDecoration: "none",
-              borderBottom: "1px solid var(--border-bright)", paddingBottom: "2px",
-              transition: "color 0.2s, border-color 0.2s"
-            }}
-            onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
-            onMouseLeave={e => { e.currentTarget.style.color = "var(--tx-1)"; e.currentTarget.style.borderColor = "var(--border-bright)"; }}>
-            hello@originonelabs.com
-          </a>
-          <span className="t-mono" style={{ marginTop: "0.15rem" }}>www.originonelabs.com</span>
-        </motion.div>
+          <div className="web-only-interactive" style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+            <AnimatePresence mode="wait">
+            {!showForm ? (
+              <motion.div
+                key="default-view"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                transition={{ duration: 0.4 }}
+                className="stack"
+                style={{ alignItems: "center", width: "100%" }}
+              >
+                <motion.p className="t-body" style={{ maxWidth: "480px" }}
+                  initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.68 }}>
+                  Whether you&apos;re launching a new product, modernizing existing systems, or exploring AI opportunities, Origin One Labs is ready to help.
+                </motion.p>
 
-        {/* CTA buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.96 }}
-          style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.8rem" }}>
+                {/* Contact links */}
+                <motion.div className="stack stack-xs" style={{ alignItems: "center", marginTop: "0.4rem" }}
+                  initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.82 }}>
+                  <a href="mailto:hello@originonelabs.com" className="t-body"
+                    style={{
+                      color: "var(--tx-1)", textDecoration: "none",
+                      borderBottom: "1px solid var(--border-bright)", paddingBottom: "2px",
+                      transition: "color 0.2s, border-color 0.2s"
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.borderColor = "var(--accent)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = "var(--tx-1)"; e.currentTarget.style.borderColor = "var(--border-bright)"; }}>
+                    hello@originonelabs.com
+                  </a>
+                  <span className="t-mono" style={{ marginTop: "0.15rem" }}>www.originonelabs.com</span>
+                </motion.div>
 
-          <a href="mailto:hello@originonelabs.com?subject=Start a Project" id="cta-start"
-            style={{
-              display: "inline-flex", alignItems: "center",
-              padding: "clamp(0.75rem, 1.4vh, 0.95rem) clamp(1.4rem, 2.8vw, 2.2rem)",
-              background: "var(--tx-1)", color: "#070707",
-              fontFamily: "var(--f-body)", fontSize: "0.72rem", fontWeight: 600,
-              letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none",
-              transition: "all 0.2s ease"
-            }}
-            onMouseEnter={e => e.currentTarget.style.background = "#fff"}
-            onMouseLeave={e => e.currentTarget.style.background = "var(--tx-1)"}>
-            Start a Project
-          </a>
+                {/* CTA buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.96 }}
+                  style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.8rem" }}>
 
-          <a href="mailto:hello@originonelabs.com?subject=Schedule a Consultation" id="cta-consult"
-            style={{
-              display: "inline-flex", alignItems: "center",
-              padding: "clamp(0.75rem, 1.4vh, 0.95rem) clamp(1.4rem, 2.8vw, 2.2rem)",
-              background: "transparent", color: "var(--tx-1)",
-              border: "1px solid var(--border-strong)",
-              fontFamily: "var(--f-body)", fontSize: "0.72rem", fontWeight: 500,
-              letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none",
-              transition: "all 0.2s ease"
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--border-bright)"; e.currentTarget.style.background = "var(--surface)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border-strong)"; e.currentTarget.style.background = "transparent"; }}>
-            Schedule a Consultation
-          </a>
+                  <button id="cta-start" onClick={() => { /* setShowForm(true) */ }}
+                    style={{
+                      display: "inline-flex", alignItems: "center",
+                      padding: "clamp(0.75rem, 1.4vh, 0.95rem) clamp(1.4rem, 2.8vw, 2.2rem)",
+                      background: "var(--tx-1)", color: "#070707", border: "none",
+                      fontFamily: "var(--f-body)", fontSize: "0.72rem", fontWeight: 600,
+                      letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer",
+                      transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = "#fff"}
+                    onMouseLeave={e => e.currentTarget.style.background = "var(--tx-1)"}>
+                    Start a Project
+                  </button>
 
-        </motion.div>
+                  <button id="cta-consult" onClick={() => { /* setIsCalendlyOpen(true) */ }}
+                    style={{
+                      display: "inline-flex", alignItems: "center",
+                      padding: "clamp(0.75rem, 1.4vh, 0.95rem) clamp(1.4rem, 2.8vw, 2.2rem)",
+                      background: "transparent", color: "var(--tx-1)",
+                      border: "1px solid var(--border-strong)",
+                      fontFamily: "var(--f-body)", fontSize: "0.72rem", fontWeight: 500,
+                      letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer",
+                      transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--border-bright)"; e.currentTarget.style.background = "var(--surface)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border-strong)"; e.currentTarget.style.background = "transparent"; }}>
+                    Schedule a Consultation
+                  </button>
+                </motion.div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="form-view"
+                initial={{ opacity: 0, y: 15, filter: "blur(10px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -15, filter: "blur(10px)" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{ 
+                  width: "100%", 
+                  maxWidth: "580px", 
+                  background: "rgba(10, 10, 12, 0.6)", 
+                  border: "1px solid rgba(255, 255, 255, 0.08)", 
+                  borderRadius: "12px", 
+                  padding: "clamp(1.5rem, 4vh, 2.5rem) clamp(1.5rem, 3vw, 2.5rem)", 
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
+                  zIndex: 10 
+                }}
+              >
+                {status === "success" ? (
+                  <div className="stack" style={{ alignItems: "center", textAlign: "center", padding: "2rem 0" }}>
+                    <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.2rem" }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <h3 className="t-h3" style={{ marginBottom: "0.5rem", color: "#fff" }}>Request Received</h3>
+                    <p className="t-body" style={{ color: "rgba(255,255,255,0.6)" }}>We&apos;ll be in touch shortly to discuss your project.</p>
+                    <button onClick={() => { setShowForm(false); setStatus("idle"); }} style={{ marginTop: "2rem", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", padding: "0.6rem 2rem", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", cursor: "pointer", transition: "all 0.3s ease", borderRadius: "4px" }} onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.1)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }} onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; }}>CLOSE</button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="stack" style={{ textAlign: "left", gap: "clamp(1rem, 2vh, 1.5rem)" }}>
+                    <input type="hidden" name="_subject" value="New Project Inquiry" />
+                    
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "clamp(1rem, 2vh, 1.5rem)" }}>
+                      <div className="stack" style={{ gap: "0.4rem" }}>
+                        <label style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.15em", color: "rgba(255, 255, 255, 0.7)" }}>NAME</label>
+                        <input type="text" name="name" required className="form-input" placeholder="Enter your name" />
+                      </div>
+                      <div className="stack" style={{ gap: "0.4rem" }}>
+                        <label style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.15em", color: "rgba(255, 255, 255, 0.7)" }}>EMAIL</label>
+                        <input type="email" name="email" required className="form-input" placeholder="you@company.com" />
+                      </div>
+                    </div>
+                    
+                    <div className="stack" style={{ gap: "0.4rem" }}>
+                      <label style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.15em", color: "rgba(255, 255, 255, 0.7)" }}>PROJECT DETAILS</label>
+                      <textarea name="message" required className="form-textarea" placeholder="Tell us about what you want to build..."></textarea>
+                    </div>
+
+                    {status === "error" && (
+                      <p className="t-sm" style={{ color: "#ef4444", marginTop: "0.5rem" }}>Something went wrong. Please try again or email us directly.</p>
+                    )}
+
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "clamp(1rem, 3vh, 2rem)" }}>
+                      <button type="button" onClick={() => setShowForm(false)} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.4)", cursor: "pointer", padding: "0.5rem", transition: "color 0.2s ease", fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.1em" }} onMouseEnter={e => e.currentTarget.style.color="#fff"} onMouseLeave={e => e.currentTarget.style.color="rgba(255,255,255,0.4)"}>
+                        ← CANCEL
+                      </button>
+                      
+                      <button type="submit" disabled={status === "submitting"} style={{
+                        display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "0.6rem",
+                        padding: "clamp(0.7rem, 1.4vh, 0.9rem) clamp(1.5rem, 3vw, 2.2rem)", 
+                        background: "#fff", color: "#000", border: "none", borderRadius: "4px",
+                        fontFamily: "var(--font-inter)", fontSize: "0.75rem", fontWeight: 600,
+                        letterSpacing: "0.1em", textTransform: "uppercase", cursor: status === "submitting" ? "wait" : "pointer",
+                        opacity: status === "submitting" ? 0.7 : 1, transition: "all 0.3s ease",
+                        boxShadow: "0 4px 14px rgba(255,255,255,0.15)"
+                      }} onMouseEnter={e => { if (status !== "submitting") { e.currentTarget.style.background = "#e5e5e5"; e.currentTarget.style.boxShadow = "0 6px 20px rgba(255,255,255,0.25)"; } }} onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.boxShadow = "0 4px 14px rgba(255,255,255,0.15)"; }}>
+                        {status === "submitting" ? "SENDING..." : "SEND INQUIRY"}
+                        {status !== "submitting" && (
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </motion.div>
+            )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
 
       {/* Footer */}
@@ -114,6 +288,16 @@ export default function ConnectSlide() {
         style={{ position: "absolute", bottom: "clamp(1.4rem, 2.8vh, 2.2rem)", zIndex: 2, opacity: 0.28 }}>
         Origin One | AI-Native System Engineering Studio | Build what matters
       </motion.p>
+
+      {/* Calendly Popup Modal */}
+      {rootElement && (
+        <PopupModal
+          url="https://calendly.com/your-username-here" /* REPLACE THIS WITH YOUR CALENDLY URL */
+          onModalClose={() => setIsCalendlyOpen(false)}
+          open={isCalendlyOpen}
+          rootElement={rootElement}
+        />
+      )}
     </section>
   );
 }
