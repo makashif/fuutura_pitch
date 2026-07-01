@@ -88,10 +88,10 @@ export default function ProjectSlide({
         </div>
 
         {/* ── Bottom row: features grid + mockup, both bottom-aligned ── */}
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", width: "100%", rowGap: "clamp(1rem, 6vh, 3rem)" }}>
+        <div className="project-slide-row">
 
           {/* Left: description + divider + features grid */}
-          <div className="stack stack-sm" style={{ flexShrink: 0, width: "100%", flex: "1 1 500px", maxWidth: "600px" }}>
+          <div className="stack stack-sm project-slide-left">
 
             {/* Overview Description */}
             <motion.p className="t-body" variants={itemVariants} style={{ maxWidth: "520px" }}>
@@ -162,13 +162,7 @@ export default function ProjectSlide({
           </div>
 
           {/* Right Area Wrapper — takes the remaining space on the right */}
-          <div className="mockup-positioning" style={{
-            flex: "1 1 400px",
-            display: "flex",
-            /* Centering the mockups perfectly balances the whitespace on ultra-wide screens! */
-            justifyContent: "center",
-            paddingLeft: "clamp(1rem, 2vw, 3rem)" /* Safe gap from the left column */
-          }}>
+          <div className="mockup-positioning project-slide-right">
             {/* Device Mockup */}
             <motion.div 
               variants={itemVariants}

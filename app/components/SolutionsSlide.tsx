@@ -90,7 +90,7 @@ export default function SolutionsSlide() {
       </div>
 
       {/* 8 Pillar cards */}
-      <div className="grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "var(--border)", border: "1px solid var(--border)", borderRadius: "4px", overflow: "hidden" }}>
+      <div className="grid-4" style={{ border: "1px solid var(--border)", borderRadius: "4px", overflow: "hidden" }}>
         {services.map((service, i) => (
           <motion.div key={i} variants={itemVariants} className="card stack stack-xs">
 
@@ -110,17 +110,16 @@ export default function SolutionsSlide() {
       </div>
 
       {/* Process strip */}
-      <motion.div variants={itemVariants}
+      <motion.div variants={itemVariants} className="process-strip"
         style={{
-          display: "flex", alignItems: "center", marginTop: "1rem",
-          background: "var(--border)", overflow: "hidden", borderRadius: "4px"
+          display: "grid", marginTop: "1rem",
+          background: "var(--border)", gap: "1px", overflow: "hidden", borderRadius: "4px"
         }}>
         {process.map((step, i) => (
           <div key={i} style={{
-            flex: 1, background: "var(--surface)",
+            background: "var(--surface)",
             padding: "0.5rem 0.6rem",
             display: "flex", alignItems: "center", gap: "0.4rem",
-            borderRight: i < process.length - 1 ? "1px solid var(--border)" : "none",
           }}>
             <span className="t-mono" style={{ color: "var(--accent)", opacity: 0.45, flexShrink: 0, fontSize: "0.55rem" }}>
               {String(i + 1).padStart(2, "0")}

@@ -88,9 +88,8 @@ export default function PortfolioGallerySlide() {
       </div>
 
       {/* Project grid — 4 cols × 2 rows, last row has 3 cards */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
+      <div className="grid-4" style={{
+        background: "transparent",
         gap: "clamp(0.4rem, 0.8vw, 0.75rem)",
       }}>
         {projects.map((project, i) => (

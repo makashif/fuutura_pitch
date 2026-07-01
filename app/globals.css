@@ -109,10 +109,14 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════
-   SLIDE STRUCTURE
+   DECK CONTAINER & SLIDE STRUCTURE
    Every slide is exactly one viewport height.
    Content is centered via .slide-content child.
 ═══════════════════════════════════════════════════════ */
+
+#deck-container {
+  scroll-snap-type: y mandatory;
+}
 
 .slide {
   position: relative;
@@ -307,6 +311,10 @@ body {
   background: var(--border);
 }
 
+.process-strip {
+  grid-template-columns: repeat(6, 1fr);
+}
+
 /* Stack — vertical flex */
 .stack {
   display: flex;
@@ -323,6 +331,29 @@ body {
 
 .stack-md {
   gap: var(--sp-md);
+}
+
+/* Project Slide Layout */
+.project-slide-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  width: 100%;
+  row-gap: clamp(1rem, 6vh, 3rem);
+}
+
+.project-slide-left {
+  flex-shrink: 0;
+  width: 100%;
+  flex: 1 1 500px;
+  max-width: 600px;
+}
+
+.project-slide-right {
+  flex: 1 1 400px;
+  display: flex;
+  justify-content: center;
+  padding-left: clamp(1rem, 2vw, 3rem);
 }
 
 /* Thin rule */
@@ -767,6 +798,10 @@ body.pdf-export-active .mockup-positioning {
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .process-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* 960px — reduce device size slightly, collapse 2-col grids */
@@ -785,16 +820,34 @@ body.pdf-export-active .mockup-positioning {
   }
 
   /* SCROLLABLE READING MODE ON MOBILE */
+  #deck-container {
+    scroll-snap-type: none !important;
+  }
+
   .slide {
     height: auto;
     min-height: 100svh;
     overflow: visible;
     justify-content: flex-start;
+    scroll-snap-align: none !important;
   }
 
   .slide-content {
-    max-height: none;
-    overflow: visible;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .project-slide-right {
+    padding-left: 0 !important;
+    padding-top: 3rem !important;
+  }
+
+  .about-values-empty {
+    display: none !important;
+  }
+  
+  .about-values-header {
+    gap: 0 !important;
   }
 }
 
@@ -814,6 +867,10 @@ body.pdf-export-active .mockup-positioning {
 
   .portfolio-grid {
     grid-template-columns: 1fr;
+  }
+
+  .process-strip {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

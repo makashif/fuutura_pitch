@@ -241,7 +241,6 @@ export default function PresentationShell({ children }: { children: ReactNode })
           height: "100svh",
           overflowY: "scroll",
           overflowX: "hidden",
-          scrollSnapType: "y mandatory",
           scrollBehavior: "smooth",
         }}
       >

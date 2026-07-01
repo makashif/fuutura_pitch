@@ -31,8 +31,8 @@ export default function AboutSlide() {
         </div>
 
         {/* Core Values Label (outside of grid-2, aligned with the right column) */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", width: "100%" }}>
-          <div></div>
+        <div className="grid-2 about-values-header">
+          <div className="about-values-empty"></div>
           <div>
             <motion.p className="t-label" variants={itemVariants}
               style={{ marginBottom: "var(--sp-xs)" }}>
