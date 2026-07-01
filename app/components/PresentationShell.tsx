@@ -203,6 +203,8 @@ export default function PresentationShell({ children }: { children: ReactNode })
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
+      if (window.innerWidth <= 960) return; // Disable custom swipe navigation on screens that use continuous scroll
+      
       const dy = startY - e.changedTouches[0].clientY;
       const dx = startX - e.changedTouches[0].clientX;
       if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 40) {
