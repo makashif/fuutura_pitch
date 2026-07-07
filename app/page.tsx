@@ -53,7 +53,7 @@ const p5Features = [
   { title: "CMS-Driven Public Platform", desc: "Sanity-powered public site with pricing, bundles, case studies, and help centre — built for discovery and conversion." },
 ];
 
-// ── Project 06 — Intelizzz ──
+// ── Project 06 — Intelizzz | U-Haul ──
 const p6Features = [
   { title: "Real-Time Vehicle Tracking", desc: "Live SSE data streams powering real-time GPS tracking with geofence engine supporting circle, polygon, and rectangle zones." },
   { title: "Event-Driven Microservices", desc: "12 dedicated Node.js/Koa services on a Kafka pipeline handling device events, wake history, and tracking data at scale." },
@@ -77,7 +77,7 @@ const p7Features = [
    08 P3 (Fuutura Extension) →
    09 P4 (Fuutura KYC) →
    10 P5 (Digital24) →
-   11 P6 (Intelizzz) →
+   11 P6 (Intelizzz | U-Haul) →
    12 P7 (Toybox) →
    13 Why Us → 14 Connect
 ───────────────────────────────────────────────────────────── */
@@ -173,13 +173,12 @@ export default function Home() {
         mockupType="laptop"
       />
 
-      {/* ── Project 06 — Intelizzz ── */}
+      {/* ── Project 06 — Intelizzz | U-Haul ── */}
       <ProjectSlide
         id="slide-p6"
         slideNumber="11"
-        title="Intelizzz — Vehicle Intelligence"
-        description="A comprehensive enterprise-grade vehicle intelligence and tracking platform serving installers, operations teams, recovery agents, and consumers — built across 6 integrated modules on a resilient event-driven microservices backend."
-        domain="IoT · React Native · Kafka · Kubernetes"
+        title="Intelizzz | U-Haul — Vehicle Intelligence"
+        description="Delivered an enterprise-grade vehicle intelligence and fleet management platform for Intelizzz, powering connected vehicle operations and tracking for enterprise fleet customers including U-Haul."
         background="/intelizzz_premium_bg.png"
         status="Delivered"
         features={p6Features}

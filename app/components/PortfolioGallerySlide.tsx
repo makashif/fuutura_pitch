@@ -50,7 +50,7 @@ const projects: Project[] = [
   },
   {
     number: "06",
-    title: "Intelizzz",
+    title: "Intelizzz | U-Haul",
     category: "IoT · Enterprise · Mobile",
     stack: "React Native · Node.js · Kafka · MongoDB · Kubernetes",
     tags: ["6 Modules", "12 Microservices", "Real-Time Tracking"],
@@ -180,12 +180,12 @@ export default function PortfolioGallerySlide() {
               Disclaimer
             </span>
           </div>
-          
+
           <p style={{
             fontFamily: "var(--f-body)", fontSize: "clamp(0.52rem, 0.7vw, 0.65rem)",
             color: "var(--tx-2)", lineHeight: 1.6
           }}>
-            The projects and case studies featured on this website represent a selected portfolio of Origin One Labs&apos; work. We have successfully delivered 100+ projects across diverse industries; however, many engagements are protected by confidentiality agreements and cannot be publicly disclosed.
+            The projects and case studies featured on this website represent a selected portfolio of Origin One Labs&apos; work. We have successfully delivered 50+ projects across diverse industries; however, many engagements are protected by confidentiality agreements and cannot be publicly disclosed.
           </p>
         </motion.div>
       </div>
