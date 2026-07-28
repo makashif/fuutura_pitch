@@ -192,6 +192,19 @@ a {
   color: var(--rev-2);
 }
 
+/* Baseline slot — document meta and legal notes, pinned to the foot of the
+   slide. Deliberately a sibling of .slide-content rather than a child: that
+   element is position: relative and only as tall as the content it centres,
+   so an absolute child of it resolves `bottom` against a short box and lands
+   mid-field, overlapping the copy. */
+.slide-baseline {
+  position: absolute;
+  left: calc(var(--px) + var(--spine));
+  right: calc(var(--px) + 2.5rem);
+  bottom: var(--py);
+  z-index: 4;
+}
+
 /* Content safe zone */
 .slide-content {
   position: relative;
@@ -1509,6 +1522,14 @@ body.pdf-export-active .reveal {
 
   .slide-content {
     max-height: none;
+  }
+
+  /* Slides scroll on mobile, so the baseline rejoins the normal flow */
+  .slide-baseline {
+    position: static;
+    inset: auto;
+    width: 100%;
+    margin-top: 2.25rem;
   }
 
   .fill-slide {

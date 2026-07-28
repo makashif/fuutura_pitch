@@ -21,6 +21,14 @@ export default function CoverSlide() {
       field="ivory"
       spine="Fuutura | Product Deck"
       decoration={<HexLattice variant="corner" opacity={0.075} />}
+      baseline={
+        <Reveal>
+          <div className="row jc-b ai-e" style={{ gap: "1rem" }}>
+            <span className="t-mono">Product Deck · Confidential</span>
+            <span className="t-mono">www.fuutura.com</span>
+          </div>
+        </Reveal>
+      }
     >
       <div
         className="stack ai-c jc-c g-5"
@@ -59,23 +67,6 @@ export default function CoverSlide() {
           </div>
         </Reveal>
       </div>
-
-      {/* Document meta — sits on the base rule of the frame */}
-      <Reveal>
-        <div
-          className="row jc-b ai-e"
-          style={{
-            position: "absolute",
-            left: "calc(var(--px) + var(--spine))",
-            right: "calc(var(--px) + 2.5rem)",
-            bottom: "var(--py)",
-            gap: "1rem",
-          }}
-        >
-          <span className="t-mono">Product Deck · Confidential</span>
-          <span className="t-mono">www.fuutura.com</span>
-        </div>
-      </Reveal>
     </SlideWrapper>
   );
 }

@@ -18,6 +18,17 @@ export default function CloseSlide() {
       field="ivory"
       folio="30"
       decoration={<HexLattice variant="corner" opacity={0.075} />}
+      baseline={
+        <Reveal>
+          <p className="t-xs" style={{ color: "var(--ink-4)", maxWidth: "88ch" }}>
+            Confidential. Issued for information purposes only and intended
+            solely for the named recipient. This document does not constitute an
+            offer, invitation or solicitation to buy or subscribe for any
+            security, token or other instrument in any jurisdiction, and is not
+            for distribution to U.S. Persons.
+          </p>
+        </Reveal>
+      }
     >
       <div
         className="stack ai-c jc-c g-5"
@@ -76,26 +87,6 @@ export default function CloseSlide() {
           </div>
         </Reveal>
       </div>
-
-      {/* Confidentiality note on the base rule */}
-      <Reveal>
-        <div
-          style={{
-            position: "absolute",
-            left: "calc(var(--px) + var(--spine))",
-            right: "calc(var(--px) + 2.5rem)",
-            bottom: "var(--py)",
-          }}
-        >
-          <p className="t-xs" style={{ color: "var(--ink-4)", maxWidth: "88ch" }}>
-            Confidential. Issued for information purposes only and intended
-            solely for the named recipient. This document does not constitute an
-            offer, invitation or solicitation to buy or subscribe for any
-            security, token or other instrument in any jurisdiction, and is not
-            for distribution to U.S. Persons.
-          </p>
-        </div>
-      </Reveal>
     </SlideWrapper>
   );
 }

@@ -45,6 +45,17 @@ interface SlideWrapperProps {
   className?: string;
   /** Absolutely-positioned decoration rendered behind content. */
   decoration?: ReactNode;
+  /**
+   * Content pinned to the foot of the slide — document meta, legal notes.
+   *
+   * This is a slot rather than something a slide positions itself, because
+   * `.slide-content` is `position: relative` and only as tall as the content
+   * it centres. An absolutely-positioned child of it resolves `bottom`
+   * against that short box and lands mid-field, on top of the copy. The
+   * slot renders as a direct child of the slide instead, so it pins to the
+   * full slide box.
+   */
+  baseline?: ReactNode;
 }
 
 const containerVariants = {
@@ -76,6 +87,7 @@ export default function SlideWrapper({
   stagger = true,
   className = "",
   decoration,
+  baseline,
 }: SlideWrapperProps) {
   const { ref, inView } = useInView({ threshold: 0.08, triggerOnce: true });
   const { current } = useDeck();
@@ -112,6 +124,9 @@ export default function SlideWrapper({
       </div>
 
       <div className="slide-content">{children}</div>
+
+      {/* Pinned to the slide box, not to .slide-content */}
+      {baseline && <div className="slide-baseline">{baseline}</div>}
     </motion.section>
   );
 }
