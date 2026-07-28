@@ -1,98 +1,73 @@
 "use client";
 
-import SlideWrapper from "../SlideWrapper";
-import { Reveal, Eyebrow } from "../Primitives";
-import HexLattice from "../HexLattice";
+import Sheet from "../Sheet";
+import { Reveal, FeatureCard, SubLabel, Badge } from "../Primitives";
 
-/* ─────────────────────────────────────────────────────────────
-   29 — $FTRA
-
-   Deliberately restrained. The important point on this page is
-   the separation of concerns: USDT settles value, $FTRA aligns
-   participation. Conflating the two is what has sunk comparable
-   projects.
+/* ── 29 — $FTRA ────────────────────────────────────────────────
+   Deliberately restrained. The important point is the separation
+   of concerns: USDT settles value, $FTRA aligns participation.
+   Conflating the two is what has sunk comparable projects.
 ───────────────────────────────────────────────────────────── */
 
 const UTILITY = [
   {
+    icon: "spark" as const,
     title: "Earned on activity",
     body: "Accrues to clients for real usage — transacting, holding and referring — rather than for speculation.",
+    tint: "sand" as const,
   },
   {
+    icon: "coins" as const,
     title: "Programme currency",
     body: "The unit enterprises configure their own rewards and loyalty programmes in, settling natively on-chain.",
+    tint: "sage" as const,
   },
   {
+    icon: "users" as const,
     title: "Ecosystem alignment",
     body: "Aligns the interests of clients, partners and channels as the network grows past any single product.",
+    tint: "peri" as const,
   },
 ];
 
 export default function FtraSlide() {
   return (
-    <SlideWrapper
+    <Sheet
       id="slide-ftra"
-      field="blue"
-      folio="29"
-      decoration={
-        <HexLattice variant="single" color="#FFFFFF" opacity={0.12} />
-      }
+      folio="23"
+      eyebrow="$FTRA · The Ecosystem Token"
+      title="$FTRA"
+      lead="Powering the Fuutura ecosystem — aligning the interests of clients, partners and channels as the network grows past any single product."
+      rule
     >
-      <div className="stack g-5" style={{ width: "100%" }}>
-        <div className="split split--even" style={{ alignItems: "end" }}>
-          <div className="stack g-3">
-            <Reveal>
-              <Eyebrow>The Ecosystem Token</Eyebrow>
-            </Reveal>
-            <Reveal>
-              <h2 className="t-display" style={{ letterSpacing: "-0.045em" }}>
-                $FTRA
-              </h2>
-            </Reveal>
-            <Reveal>
-              <span className="t-h3" style={{ fontWeight: 400 }}>
-                Powering the Fuutura ecosystem
-              </span>
-            </Reveal>
+      <Reveal>
+        <div className="card card--dark row ai-c g-3 wrap">
+          <Badge icon="scales" tone="dark" size="lg" />
+          <div className="stack g-1 flex-1" style={{ minWidth: "18rem" }}>
+            <SubLabel>An important separation</SubLabel>
+            <p className="t-body">
+              Settlement across the platform is in USDT. No operator-issued token
+              stands in for value anywhere in the stack — $FTRA aligns
+              participation, it does not underwrite the balance sheet.
+            </p>
           </div>
+          <span className="pill pill--dark">USDT settles value</span>
+        </div>
+      </Reveal>
 
-          <Reveal>
-            <div className="card card--outline stack g-2" style={{ borderColor: "var(--rule-rev)" }}>
-              <span className="t-label" style={{ color: "#fff" }}>
-                An important separation
-              </span>
-              <p className="t-sm" style={{ color: "var(--rev-2)" }}>
-                Settlement across the platform is in USDT. No operator-issued
-                token stands in for value anywhere in the stack — $FTRA aligns
-                participation, it does not underwrite the balance sheet.
-              </p>
-            </div>
+      <div className="grid-3 grid-fill" style={{ width: "100%" }}>
+        {UTILITY.map((u) => (
+          <Reveal key={u.title}>
+            <FeatureCard
+              icon={u.icon}
+              title={u.title}
+              body={u.body}
+              tint={u.tint}
+              split
+            />
           </Reveal>
-        </div>
-
-        <Reveal>
-          <span className="rule-h rule-h--ink" />
-        </Reveal>
-
-        <div className="cols-3 ruled-cols" style={{ width: "100%" }}>
-          {UTILITY.map((u, i) => (
-            <Reveal key={u.title}>
-              <div className="stack g-2">
-                <span
-                  className="t-mono"
-                  style={{ color: "var(--rev-3)" }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h4 className="t-h4">{u.title}</h4>
-                <p className="t-sm" style={{ color: "var(--rev-2)" }}>
-                  {u.body}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        ))}
       </div>
-    </SlideWrapper>
+    </Sheet>
   );
 }

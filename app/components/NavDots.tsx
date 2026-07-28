@@ -5,9 +5,9 @@ import { SLIDES, useDeck } from "../lib/deck";
 
 /**
  * Right-edge navigation rail.
- * A tick per slide; the active tick extends and turns deep blue.
- * Section dividers carry a longer, heavier tick so the rail reads
- * as chapters rather than an undifferentiated run of dots.
+ * A tick per page; the active tick extends and turns rust. The seven
+ * product pages carry a longer, heavier tick so the rail reads as a
+ * product index rather than an undifferentiated run of dots.
  */
 export default function NavDots() {
   const { current, goTo } = useDeck();
@@ -32,7 +32,9 @@ export default function NavDots() {
       {SLIDES.map((slide, i) => {
         const isActive = i === current;
         const isHovered = i === hovered;
-        const isDivider = slide.id.startsWith("slide-div-");
+        /* Product pages get the heavier tick — the deck has no chapter
+           dividers, so this is what gives the rail its structure. */
+        const isProduct = Boolean(slide.product);
         /* Hover only — a persistent label on the active tick reached back
            over the slide's own content on card-heavy pages. The extended
            blue tick already marks position. */
@@ -67,7 +69,7 @@ export default function NavDots() {
                 letterSpacing: "0.11em",
                 textTransform: "uppercase",
                 whiteSpace: "nowrap",
-                color: isActive ? "var(--blue)" : "var(--ink-3)",
+                color: isActive ? "var(--rust)" : "var(--muted)",
                 opacity: show ? 1 : 0,
                 transform: show ? "translateX(0)" : "translateX(5px)",
                 transition: "opacity 0.28s ease, transform 0.28s ease",
@@ -81,13 +83,13 @@ export default function NavDots() {
             <span
               style={{
                 display: "block",
-                height: isDivider ? "2px" : "1px",
-                width: isActive ? "22px" : isDivider ? "13px" : "8px",
+                height: isProduct ? "2px" : "1px",
+                width: isActive ? "22px" : isProduct ? "14px" : "8px",
                 background: isActive
-                  ? "var(--blue)"
+                  ? "var(--rust)"
                   : isHovered
-                    ? "rgba(0,0,0,0.5)"
-                    : "rgba(0,0,0,0.22)",
+                    ? "var(--muted)"
+                    : "var(--hair)",
                 transition:
                   "width 0.32s cubic-bezier(0.16,1,0.3,1), background 0.24s ease",
               }}

@@ -1,6 +1,5 @@
 import PresentationShell from "./components/PresentationShell";
 import NavDots from "./components/NavDots";
-import SectionDivider from "./components/SectionDivider";
 
 import CoverSlide from "./components/CoverSlide";
 import MissionSlide from "./components/slides/MissionSlide";
@@ -33,17 +32,23 @@ import FtraSlide from "./components/slides/FtraSlide";
 import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
-   FUUTURA — PRODUCT DECK
-   30 pages, six chapters. All seven products carry a page of
-   their own, shown in the surface they actually ship on.
+   FUUTURA — PRODUCT OVERVIEW
+   24 pages, organised by product.
 
-   I    Thesis          02 – 05
-   II   Identity        06 – 11   · Fuutura ID
-   III  Money           12 – 17   · Wallet, Extension
-   IV   Markets         18 – 21   · Trade
-   V    Ecosystem       22 – 24   · VPN, Chat, PRO
-   VI   Infrastructure  25 – 29
-        Close           30
+   This is a client-facing product deck, so it runs as one
+   continuous document: no chapter dividers, no abstract sections.
+   Each product opens with its own page and is followed by the
+   pages that detail it, and every eyebrow names the product it
+   belongs to — which is what carries the structure.
+
+     01      Overview, mission, why Fuutura, the ecosystem
+     05–09   Fuutura ID
+     10–14   Fuutura Wallet, Extension, payments and the card
+     15–17   Fuutura Trade
+     18      Fuutura VPN & Chat
+     19      Fuutura PRO
+     20–23   Settlement, capability, tokenisation, $FTRA
+     24      Close
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -51,113 +56,42 @@ export default function Home() {
     <PresentationShell>
       <NavDots />
 
-      {/* ══ 01 ══ */}
+      {/* ── Opening ── */}
       <CoverSlide />
-
-      {/* ══ I · THESIS ══ */}
-      <SectionDivider
-        id="slide-div-thesis"
-        folio="02"
-        index="01"
-        numeral="I"
-        name="Thesis"
-        contents={["Brand Mission", "The Opportunity", "The Ecosystem"]}
-      />
       <MissionSlide />
       <OpportunitySlide />
       <EcosystemSlide />
 
-      {/* ══ II · IDENTITY ══ */}
-      <SectionDivider
-        id="slide-div-identity"
-        folio="06"
-        index="02"
-        numeral="II"
-        name="Identity"
-        contents={[
-          "Fuutura ID",
-          "The Access Standard",
-          "60-Second Verification",
-          "Global Coverage",
-          "Security & Compliance",
-        ]}
-      />
+      {/* ── Fuutura ID ── */}
       <IdShowcase />
       <IdentitySlide />
       <VerificationSlide />
       <CoverageSlide />
       <ComplianceSlide />
 
-      {/* ══ III · MONEY ══ */}
-      <SectionDivider
-        id="slide-div-money"
-        folio="12"
-        index="03"
-        numeral="III"
-        name="Money"
-        contents={[
-          "Fuutura Wallet",
-          "The Wallet Dilemma",
-          "Fuutura Extension",
-          "Cross-Border Remittance",
-          "Card & Rewards",
-        ]}
-      />
+      {/* ── Fuutura Wallet, Extension & payments ── */}
       <WalletShowcase />
       <WalletDilemmaSlide />
       <ExtensionShowcase />
       <RemittanceSlide />
       <CardRewardsSlide />
 
-      {/* ══ IV · MARKETS ══ */}
-      <SectionDivider
-        id="slide-div-markets"
-        folio="18"
-        index="04"
-        numeral="IV"
-        name="Markets"
-        contents={[
-          "Fuutura Trade",
-          "Risk Architecture",
-          "The Instrument Universe",
-        ]}
-      />
+      {/* ── Fuutura Trade ── */}
       <TradeShowcase />
       <RiskSlide />
       <InstrumentsSlide />
 
-      {/* ══ V · ECOSYSTEM ══ */}
-      <SectionDivider
-        id="slide-div-ecosystem"
-        folio="22"
-        index="05"
-        numeral="V"
-        name="Ecosystem"
-        contents={["Fuutura VPN", "Fuutura Chat", "Fuutura PRO"]}
-      />
+      {/* ── Fuutura VPN, Chat & PRO ── */}
       <VpnChatSlide />
       <ProSlide />
 
-      {/* ══ VI · INFRASTRUCTURE ══ */}
-      <SectionDivider
-        id="slide-div-infra"
-        folio="25"
-        index="06"
-        numeral="VI"
-        name="Infra"
-        contents={[
-          "Settlement & Chain",
-          "What It Unlocks",
-          "Tokenisation, Two Ways",
-          "$FTRA",
-        ]}
-      />
+      {/* ── Settlement & the token ── */}
       <ChainSlide />
       <ChainEnablesSlide />
       <TokenisationSlide />
       <FtraSlide />
 
-      {/* ══ 30 ══ */}
+      {/* ── Close ── */}
       <CloseSlide />
     </PresentationShell>
   );

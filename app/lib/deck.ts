@@ -5,47 +5,53 @@ import { createContext, useContext } from "react";
 /* ─────────────────────────────────────────────────────────────
    Deck manifest and navigation context.
 
-   Kept in its own module so PresentationShell, SlideWrapper,
-   NavDots and the PDF exporter can all read it without importing
-   one another — the manifest is shared data, not a component.
+   Kept in its own module so SlideWrapper, NavDots and the PDF
+   exporter can all read it without importing one another — the
+   manifest is shared data, not a component.
 
-   Order here drives navigation, the folio numbers and the PDF
-   export sequence. Folios are passed explicitly on each slide and
-   must match manifest position (index + 1).
+   The deck is organised by PRODUCT, not by argument. It is a
+   client-facing product overview, so there are no chapter
+   dividers and no abstract sections: each page names the product
+   it is about, and the sub-pages carry that product's name in
+   their eyebrow. The eyebrow is the navigation.
+
+   Order here drives navigation, folio numbers and the export
+   sequence. Folios are passed explicitly on each slide and must
+   match manifest position (index + 1).
 ───────────────────────────────────────────────────────────── */
 
-export const SLIDES = [
-  { id: "slide-cover", label: "Cover" },
+export interface SlideEntry {
+  id: string;
+  label: string;
+  /** True for the seven product pages — the rail marks these. */
+  product?: boolean;
+}
 
-  { id: "slide-div-thesis", label: "I — Thesis" },
-  { id: "slide-mission", label: "Mission" },
-  { id: "slide-opportunity", label: "The Opportunity" },
+export const SLIDES: SlideEntry[] = [
+  { id: "slide-cover", label: "Overview" },
+  { id: "slide-mission", label: "Our Mission" },
+  { id: "slide-opportunity", label: "Why Fuutura" },
   { id: "slide-ecosystem", label: "The Ecosystem" },
 
-  { id: "slide-div-identity", label: "II — Identity" },
-  { id: "slide-id", label: "Fuutura ID" },
-  { id: "slide-identity", label: "The Access Standard" },
+  { id: "slide-id", label: "Fuutura ID", product: true },
+  { id: "slide-identity", label: "Access Standard" },
   { id: "slide-verification", label: "60-Second Verification" },
   { id: "slide-coverage", label: "Global Coverage" },
   { id: "slide-compliance", label: "Security & Compliance" },
 
-  { id: "slide-div-money", label: "III — Money" },
-  { id: "slide-wallet", label: "Fuutura Wallet" },
+  { id: "slide-wallet", label: "Fuutura Wallet", product: true },
   { id: "slide-wallet-dilemma", label: "The Wallet Dilemma" },
-  { id: "slide-extension", label: "Fuutura Extension" },
+  { id: "slide-extension", label: "Fuutura Extension", product: true },
   { id: "slide-remittance", label: "Cross-Border Remittance" },
   { id: "slide-card", label: "Card & Rewards" },
 
-  { id: "slide-div-markets", label: "IV — Markets" },
-  { id: "slide-trade", label: "Fuutura Trade" },
+  { id: "slide-trade", label: "Fuutura Trade", product: true },
   { id: "slide-risk", label: "Risk Architecture" },
   { id: "slide-instruments", label: "Instrument Universe" },
 
-  { id: "slide-div-ecosystem", label: "V — Ecosystem" },
-  { id: "slide-vpn-chat", label: "VPN & Chat" },
-  { id: "slide-pro", label: "Fuutura PRO" },
+  { id: "slide-vpn-chat", label: "Fuutura VPN & Chat", product: true },
+  { id: "slide-pro", label: "Fuutura PRO", product: true },
 
-  { id: "slide-div-infra", label: "VI — Infrastructure" },
   { id: "slide-chain", label: "Settlement & Chain" },
   { id: "slide-chain-enables", label: "What It Unlocks" },
   { id: "slide-tokenisation", label: "Tokenisation" },

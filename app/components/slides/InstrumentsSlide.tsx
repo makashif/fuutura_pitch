@@ -1,19 +1,47 @@
 "use client";
 
-import SplitSlide from "../SplitSlide";
-import { Reveal, Stat } from "../Primitives";
+import Sheet from "../Sheet";
+import { Reveal, Stat, FeatureCard, ClosingLine } from "../Primitives";
 
-/* ─────────────────────────────────────────────────────────────
-   21 — The Instrument Universe
-───────────────────────────────────────────────────────────── */
+/* ── 21 — The Instrument Universe ─────────────────────────── */
 
 const CLASSES = [
-  { name: "Cryptocurrency", desc: "Majors and liquid alts, spot and leveraged." },
-  { name: "Global equities", desc: "Single names across developed and emerging listings." },
-  { name: "Indices", desc: "Broad-market exposure as a single position." },
-  { name: "Foreign exchange", desc: "Major and cross pairs, continuously priced." },
-  { name: "Commodities", desc: "Metals, energy and agricultural benchmarks." },
-  { name: "Tokenised real-world assets", desc: "Real estate and RWAs, fractionally held." },
+  {
+    icon: "coins" as const,
+    title: "Cryptocurrency",
+    body: "Majors and liquid alts, spot and leveraged.",
+    tint: "sage" as const,
+  },
+  {
+    icon: "chart" as const,
+    title: "Global equities",
+    body: "Single names across developed and emerging listings.",
+    tint: "peri" as const,
+  },
+  {
+    icon: "layers" as const,
+    title: "Indices",
+    body: "Broad-market exposure as a single position.",
+    tint: "sand" as const,
+  },
+  {
+    icon: "exchange" as const,
+    title: "Foreign exchange",
+    body: "Major and cross pairs, continuously priced.",
+    tint: "blush" as const,
+  },
+  {
+    icon: "cubes" as const,
+    title: "Commodities",
+    body: "Metals, energy and agricultural benchmarks.",
+    tint: "peri" as const,
+  },
+  {
+    icon: "globe" as const,
+    title: "Tokenised real-world assets",
+    body: "Real estate and RWAs, fractionally held.",
+    tint: "dark" as const,
+  },
 ];
 
 const CAPABILITIES = [
@@ -27,48 +55,49 @@ const CAPABILITIES = [
 
 export default function InstrumentsSlide() {
   return (
-    <SplitSlide
+    <Sheet
       id="slide-instruments"
-      folio="21"
-      field="ivory"
-      eyebrow="Instrument Universe"
-      title={"One account.\nThe world's\nasset classes."}
+      folio="17"
+      eyebrow="Fuutura Trade · Instrument Universe"
+      title="One account. The world's asset classes."
       lead="Access is the point. A client in an underserved market should be able to hold global exposure from the same account that holds their local balance."
-      footnote="Access with small amounts, priced off external references, with leverage earned tier by tier rather than granted at entry."
     >
       <Reveal>
-        <div className="cols-2 ruled-cols" style={{ width: "100%" }}>
-          <Stat value="40,000+" label="Tradable instruments" tone="blue" />
-          <Stat value="Fractional" label="Minimum position" note="Access without capital scale" small />
+        <div className="grid-3 ruled-cols" style={{ width: "100%", maxWidth: "56rem" }}>
+          <Stat value="40,000+" label="Tradable instruments" />
+          <Stat value="Fractional" label="Minimum position" small />
+          <Stat value="24 / 7" label="Tokenised market hours" small />
         </div>
       </Reveal>
 
-      <Reveal>
-        <span className="rule-h rule-h--mid" />
-      </Reveal>
-
-      {/* Asset classes */}
-      <div className="cols-3 g-2" style={{ width: "100%" }}>
+      <div className="grid-3 grid-fill" style={{ width: "100%" }}>
         {CLASSES.map((c) => (
-          <Reveal key={c.name}>
-            <div className="card card--white" style={{ height: "100%" }}>
-              <h4 className="t-h5">{c.name}</h4>
-              <p className="t-xs">{c.desc}</p>
-            </div>
+          <Reveal key={c.title}>
+            <FeatureCard
+              icon={c.icon}
+              title={c.title}
+              body={c.body}
+              tint={c.tint}
+              split
+            />
           </Reveal>
         ))}
       </div>
 
-      {/* Platform capabilities */}
       <Reveal>
         <div className="row g-2 wrap">
           {CAPABILITIES.map((c) => (
-            <span key={c} className="pill pill--outline">
+            <span key={c} className="pill">
               {c}
             </span>
           ))}
         </div>
       </Reveal>
-    </SplitSlide>
+
+      <ClosingLine>
+        Access with small amounts, priced off external references, with leverage
+        earned tier by tier rather than granted at entry.
+      </ClosingLine>
+    </Sheet>
   );
 }

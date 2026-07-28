@@ -2,11 +2,14 @@
 
 /* ============================================================
    FUUTURA — PRODUCT DECK DESIGN SYSTEM
-   Derived directly from "Fuutura – Brand Guidelines".
 
-   Ivory fields. Hairline rules. Inter, weight-driven hierarchy.
-   Deep blue anchors, sage green supports, sky blue accents.
-   Editorial, institutional, deliberate — a document, not a demo.
+   Modelled on "Fuutura_Product_Overview" — the document language
+   the deck is meant to speak. Every value below was sampled from
+   that PDF rather than approximated.
+
+   Warm cream field. Serif headlines, sans labels and data. Rust
+   and bronze accents. Corner brackets and a ruled footer instead
+   of heavy chrome. Tinted cards carry the structure.
    ============================================================ */
 
 *,
@@ -18,84 +21,70 @@
 }
 
 :root {
-  /* ─── Brand palette — exact values from the guidelines ─── */
-  --blue: #0072AA;
-  /* Primary   */
-  --sage: #9CAF88;
-  /* Primary   */
-  --sky: #78ADD2;
-  /* Secondary */
-  --white: #FFFFFF;
-  --black: #000000;
-  --ivory: #E8E8DC;
-  /* Off-White */
-  --warm: #FFF9F0;
-  /* Warm White */
-  --gray: #D7D7D7;
-  /* Light Gray */
+  /* ─── Field ─── */
+  --paper: #FAF7F0;
+  /* page ground        */
+  --paper-2: #FBFAF5;
+  /* card on paper      */
 
-  /* ─── Derived tones (shading only — never re-hued) ─── */
-  --blue-deep: #005C8A;
-  --blue-ink: #004266;
-  --blue-wash: rgba(0, 114, 170, 0.07);
-  --blue-line: rgba(0, 114, 170, 0.28);
-  --sage-wash: rgba(156, 175, 136, 0.16);
-  --sky-wash: rgba(120, 173, 210, 0.16);
+  /* ─── Ink ─── */
+  --ink: #243140;
+  /* headlines, glyphs  */
+  --ink-deep: #141922;
+  /* dark card ground   */
+  --muted: #6E7A85;
+  /* body, captions     */
+  --muted-2: #93A0AA;
+  /* tertiary           */
 
-  /* ─── Ink scale — black does the typography work ─── */
-  --ink-1: #111111;
-  /* headings          */
-  --ink-2: #33332F;
-  /* body              */
-  --ink-3: #6B6B63;
-  /* secondary / meta  */
-  --ink-4: #9A9A90;
-  /* tertiary / muted  */
+  /* ─── Accents ─── */
+  --rust: #9C4A26;
+  /* diamond, rules, arrows */
+  --bronze: #8A6D3F;
+  /* eyebrows, sub-labels   */
 
-  /* ─── Reversed ink, for blue / dark fields ─── */
-  --rev-1: #FFFFFF;
-  --rev-2: rgba(255, 255, 255, 0.82);
-  --rev-3: rgba(255, 255, 255, 0.58);
-  --rev-4: rgba(255, 255, 255, 0.34);
+  /* ─── Tints, with their borders ─── */
+  --t-sage: #EAEFE2;
+  --b-sage: #D8E1CA;
+  --t-peri: #E9EEF3;
+  --b-peri: #D4DDE8;
+  --t-sand: #F3EAD6;
+  --b-sand: #E5D7B7;
+  --t-blush: #EFE2D6;
+  --b-blush: #E2CCBB;
+  --hair: #E4DCCB;
+  --hair-soft: #EDE7DA;
 
-  /* ─── Hairlines — the brand's structural signature ─── */
-  --rule: rgba(0, 0, 0, 0.13);
-  --rule-mid: rgba(0, 0, 0, 0.26);
-  --rule-ink: rgba(0, 0, 0, 0.72);
-  --rule-rev: rgba(255, 255, 255, 0.34);
-  --rule-rev-soft: rgba(255, 255, 255, 0.18);
+  /* Reversed ink for the dark card */
+  --rev: #FFFFFF;
+  --rev-2: rgba(255, 255, 255, 0.80);
+  --rev-3: rgba(255, 255, 255, 0.55);
 
   /* ─── Type ─── */
+  --f-serif: var(--font-serif), "Source Serif 4", Cambria, Georgia, serif;
   --f-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
-  --f-mono: var(--font-jetbrains), ui-monospace, monospace;
 
-  /* ─── Slide geometry ─── */
-  --px: clamp(1.75rem, min(5.4vw, 9.5vh), 5.5rem);
-  --py: clamp(1.25rem, 4.4vh, 3.25rem);
-  --slide-max: 1420px;
+  /* ─── Page geometry ─── */
+  --px: clamp(1.5rem, 5.2vw, 4.6rem);
+  --py: clamp(1.1rem, 4vh, 2.6rem);
+  --slide-max: 1500px;
 
-  /* Spine (rotated edge label) reserve — keeps content clear of it */
-  --spine: clamp(1.6rem, 3.2vw, 2.9rem);
+  /* ─── Spacing ─── */
+  --sp-1: clamp(0.18rem, 0.8vh, 0.34rem);
+  --sp-2: clamp(0.34rem, 1.5vh, 0.62rem);
+  --sp-3: clamp(0.55rem, 2.4vh, 1rem);
+  --sp-4: clamp(0.85rem, 3.6vh, 1.55rem);
+  --sp-5: clamp(1.2rem, 5.4vh, 2.4rem);
+  --sp-6: clamp(1.7rem, 7.6vh, 3.3rem);
 
-  /* ─── Spacing scale ─── */
-  --sp-1: clamp(0.2rem, 0.9vh, 0.38rem);
-  --sp-2: clamp(0.38rem, 1.7vh, 0.7rem);
-  --sp-3: clamp(0.6rem, 2.7vh, 1.1rem);
-  --sp-4: clamp(0.9rem, 4vh, 1.7rem);
-  --sp-5: clamp(1.3rem, 6vh, 2.6rem);
-  --sp-6: clamp(1.8rem, 8.5vh, 3.6rem);
-
-  /* ─── Radius — guidelines use generous, soft corners on cards ─── */
+  /* ─── Radius — the reference uses a restrained 10px ─── */
   --r-sm: 6px;
-  --r-md: 12px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+  --r-md: 10px;
+  --r-lg: 14px;
 
-  /* ─── Device mockups — driven by each screenshot's own ratio ─── */
-  --device-h: clamp(230px, 45svh, 460px);
-  /* phone, 393 x 852 */
-  --ext-h: clamp(220px, 42svh, 430px);
-  /* extension popup, 600 x 852 */
+  /* ─── Device mockups ─── */
+  --device-h: clamp(220px, 42svh, 430px);
+  --ext-h: clamp(210px, 40svh, 410px);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -103,16 +92,15 @@
 ═══════════════════════════════════════════════════════ */
 
 html {
-  background: var(--ivory);
+  background: var(--paper);
 }
 
 body {
   height: 100svh;
   overflow: hidden;
-  background: var(--ivory);
-  color: var(--ink-2);
+  background: var(--paper);
+  color: var(--muted);
   font-family: var(--f-sans);
-  font-feature-settings: "cv05" 1, "ss01" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -126,12 +114,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.14);
+  background: var(--hair);
   border-radius: 99px;
 }
 
 ::selection {
-  background: var(--blue);
+  background: var(--rust);
   color: #fff;
 }
 
@@ -141,8 +129,9 @@ a {
 }
 
 /* ═══════════════════════════════════════════════════════
-   DECK CONTAINER & SLIDE STRUCTURE
-   Every slide is exactly one viewport. A4-landscape safe.
+   SLIDE STRUCTURE
+   Each slide is one viewport, framed by corner brackets and
+   closed by a ruled footer — the reference's page furniture.
 ═══════════════════════════════════════════════════════ */
 
 #deck-container {
@@ -157,423 +146,322 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
-  padding: var(--py) var(--px) var(--py) calc(var(--px) + var(--spine));
+  padding: var(--py) var(--px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  background: var(--ivory);
-  color: var(--ink-2);
+  background: var(--paper);
+  color: var(--muted);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   color-adjust: exact;
 }
 
-/* ─── Field variants ─── */
-.slide--ivory {
-  background: var(--ivory);
-}
-
-.slide--white {
-  background: var(--white);
-}
-
-.slide--warm {
-  background: var(--warm);
-}
-
-.slide--blue {
-  background: var(--blue);
+.slide--dark {
+  background: var(--ink-deep);
   color: var(--rev-2);
 }
 
-.slide--ink {
-  background: #0E0E0E;
-  color: var(--rev-2);
-}
-
-/* Baseline slot — document meta and legal notes, pinned to the foot of the
-   slide. Deliberately a sibling of .slide-content rather than a child: that
-   element is position: relative and only as tall as the content it centres,
-   so an absolute child of it resolves `bottom` against a short box and lands
-   mid-field, overlapping the copy. */
-.slide-baseline {
-  position: absolute;
-  left: calc(var(--px) + var(--spine));
-  right: calc(var(--px) + 2.5rem);
-  bottom: var(--py);
-  z-index: 4;
-}
-
-/* Content safe zone */
-.slide-content {
+/* The page: content column + footer, stacked */
+.sheet {
   position: relative;
   z-index: 3;
   width: 100%;
   max-width: var(--slide-max);
-  max-height: calc(100svh - 2 * var(--py));
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+  height: calc(100svh - 2 * var(--py));
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0.9rem, 3.2vh, 2rem) 0 0;
 }
 
-/* ═══════════════════════════════════════════════════════
-   THE FRAME — vertical hairlines + rotated spine label.
-   This is the single most recognisable device in the
-   Fuutura brand book. Every slide carries it.
-═══════════════════════════════════════════════════════ */
+/* Content region — grows, and never pushes the footer off the page */
+.sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
 
-.frame {
+/* Vertically centred variant, for cover and statement pages */
+.sheet-body--center {
+  justify-content: center;
+}
+
+/* ─── Corner brackets ─── */
+.bracket {
   position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.frame-rule {
-  position: absolute;
-  top: var(--py);
-  bottom: var(--py);
-  width: 1px;
-  background: var(--rule-ink);
-}
-
-.frame-rule--l {
-  left: calc(var(--px) * 0.42);
-}
-
-.frame-rule--r {
-  right: calc(var(--px) * 0.42);
-}
-
-.slide--blue .frame-rule,
-.slide--ink .frame-rule {
-  background: var(--rule-rev);
-}
-
-/* Rotated spine label, reading bottom-to-top at the left edge.
-   Uses transform: rotate() rather than writing-mode — html2canvas
-   does not implement writing-mode and collapses vertical text into
-   an overlapping pile, which broke the PDF export.
-
-   With transform-origin at the box's top-left, rotate(-90deg) makes
-   the rendered box extend RIGHT by one line-height and UP by the text
-   length, reading bottom-to-top. The rendered bottom lands one line
-   height below the box's own bottom, so `bottom` compensates by 1em
-   (line-height is 1, so 1em is exactly that offset). */
-.frame-spine {
-  position: absolute;
-  left: calc(var(--px) * 0.42 - 1.15em);
-  bottom: calc(var(--py) - 1em);
-  transform-origin: 0 0;
-  transform: rotate(-90deg);
-  white-space: nowrap;
-  line-height: 1;
-  font-family: var(--f-sans);
-  font-size: clamp(0.42rem, 0.62vw, 0.56rem);
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-1);
-}
-
-.slide--blue .frame-spine,
-.slide--ink .frame-spine {
-  color: var(--rev-1);
-}
-
-/* Page number, bottom-right */
-.frame-folio {
-  position: absolute;
-  right: calc(var(--px) * 0.42 + 0.75rem);
-  bottom: calc(var(--py) - 0.1rem);
-  font-family: var(--f-mono);
-  font-size: clamp(0.44rem, 0.64vw, 0.58rem);
-  letter-spacing: 0.14em;
-  color: var(--ink-4);
-}
-
-.slide--blue .frame-folio,
-.slide--ink .frame-folio {
-  color: var(--rev-4);
-}
-
-/* ═══════════════════════════════════════════════════════
-   SECTION DIVIDER — the brand book's chapter page.
-   Vertical section name at the left edge, closed by an
-   inner rule, with the numeral in the open field.
-═══════════════════════════════════════════════════════ */
-
-/* Same rotate() technique as .frame-spine — see the note there for
-   why writing-mode cannot be used. The column this occupies is
-   exactly 1em wide, which is what the inner rule is positioned
-   against below. */
-.divider-name {
-  position: absolute;
-  left: calc(var(--px) * 0.42 + 0.28em);
-  bottom: calc(var(--py) - 1em);
-  transform-origin: 0 0;
-  transform: rotate(-90deg);
-  white-space: nowrap;
-  z-index: 3;
-  pointer-events: none;
-  font-family: var(--f-sans);
-  font-size: clamp(2.1rem, min(5.4vw, 10vh), 5.4rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  line-height: 1;
-  color: var(--white);
-}
-
-/* Sits clear of the 1em-wide name column, in the name's own em units
-   so the two never collide as the type scales. */
-.divider-rule {
-  position: absolute;
-  left: calc(var(--px) * 0.42 + clamp(3.6rem, 8.4vw, 7.9rem));
-  top: var(--py);
-  bottom: var(--py);
-  width: 1px;
-  background: var(--rule-rev);
-  z-index: 3;
-}
-
-.divider-body {
+  width: clamp(16px, 1.9vw, 26px);
+  height: clamp(16px, 1.9vw, 26px);
+  border-color: var(--ink);
+  border-style: solid;
+  border-width: 0;
   z-index: 4;
-  padding-left: clamp(2.2rem, 6vw, 5.5rem);
+  pointer-events: none;
+}
+
+.bracket--tl {
+  top: var(--py);
+  left: var(--px);
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+}
+
+.bracket--br {
+  bottom: var(--py);
+  right: var(--px);
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+}
+
+.slide--dark .bracket {
+  border-color: var(--rev-3);
+}
+
+/* ─── Ruled footer ─── */
+.sheet-foot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: clamp(0.4rem, 1.4vh, 0.8rem);
+  border-top: 1px solid var(--hair);
+  margin-top: clamp(0.6rem, 2.2vh, 1.2rem);
+}
+
+.slide--dark .sheet-foot {
+  border-top-color: rgba(255, 255, 255, 0.18);
+}
+
+.foot-mark {
+  font-family: var(--f-sans);
+  font-size: clamp(0.5rem, 0.72vw, 0.63rem);
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.slide--dark .foot-mark {
+  color: var(--rev-3);
+}
+
+.foot-folio {
+  font-family: var(--f-sans);
+  font-size: clamp(0.5rem, 0.72vw, 0.63rem);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.slide--dark .foot-folio {
+  color: var(--rev-3);
+}
+
+/* The rust diamond that prefixes labels and the footer */
+.dia {
+  color: var(--rust);
+  font-size: 0.72em;
+  line-height: 1;
+  display: inline-block;
+  transform: translateY(-0.08em);
 }
 
 /* ═══════════════════════════════════════════════════════
-   TYPOGRAPHY — Inter. Hierarchy from weight and scale only.
+   TYPOGRAPHY
 ═══════════════════════════════════════════════════════ */
 
-/* Cover / closing display */
-.t-display {
-  font-family: var(--f-sans);
-  font-size: clamp(2.4rem, min(6.4vw, 12vh), 8rem);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-  color: var(--ink-1);
-}
-
-/* Section-divider numeral (roman) */
-.t-numeral {
-  font-family: var(--f-sans);
-  font-size: clamp(4rem, min(13vw, 26vh), 15rem);
-  font-weight: 700;
-  line-height: 0.8;
-  letter-spacing: -0.02em;
-  color: var(--rev-1);
-}
-
-/* Display type carries a break-word guard as a last resort. The grid's
-   min-content floor is what actually prevents headline overflow; this
-   ensures that even in a single-column collapse, or with a word longer
-   than the whole track, type wraps instead of painting over its
-   neighbour. */
-.t-display,
-.t-h1,
-.t-h2,
-.t-h3 {
+/* Guard: display type can never paint over a neighbouring column */
+.t-hero,
+.t-head,
+.t-sub,
+.t-serif {
   overflow-wrap: break-word;
 }
 
-/* Big slide title — the brand's stacked uppercase headline */
-.t-h1 {
-  font-family: var(--f-sans);
-  font-size: clamp(1.65rem, min(3.6vw, 6.9vh), 3.8rem);
-  font-weight: 700;
-  line-height: 0.96;
-  letter-spacing: -0.028em;
-  text-transform: uppercase;
-  color: var(--ink-1);
-}
-
-/* Slide title, sentence case */
-.t-h2 {
-  font-family: var(--f-sans);
-  font-size: clamp(1.3rem, min(2.9vw, 5.4vh), 2.9rem);
-  font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: -0.026em;
-  color: var(--ink-1);
-}
-
-/* Sub-headline */
-.t-h3 {
-  font-family: var(--f-sans);
-  font-size: clamp(1rem, min(1.85vw, 3.4vh), 1.6rem);
-  font-weight: 600;
-  line-height: 1.18;
-  letter-spacing: -0.018em;
-  color: var(--ink-1);
-}
-
-/* Card / item title */
-.t-h4 {
-  font-family: var(--f-sans);
-  font-size: clamp(0.76rem, min(1.06vw, 1.98vh), 1rem);
-  font-weight: 600;
-  line-height: 1.28;
+/* Cover headline */
+.t-hero {
+  font-family: var(--f-serif);
+  font-size: clamp(1.6rem, min(3.5vw, 6.4vh), 3.5rem);
+  font-weight: 400;
+  line-height: 1.16;
   letter-spacing: -0.012em;
-  color: var(--ink-1);
+  color: var(--ink);
 }
 
-/* Smallest titling step */
-.t-h5 {
+/* Page headline */
+.t-head {
+  font-family: var(--f-serif);
+  font-size: clamp(1.35rem, min(2.9vw, 5.3vh), 2.85rem);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.011em;
+  color: var(--ink);
+}
+
+/* Panel / product title */
+.t-sub {
+  font-family: var(--f-serif);
+  font-size: clamp(1rem, min(1.72vw, 3.1vh), 1.6rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+  color: var(--ink);
+}
+
+/* Card title, serif */
+.t-serif {
+  font-family: var(--f-serif);
+  font-size: clamp(0.82rem, min(1.16vw, 2.1vh), 1.14rem);
+  font-weight: 400;
+  line-height: 1.26;
+  color: var(--ink);
+}
+
+/* Card / list title, sans bold */
+.t-title {
   font-family: var(--f-sans);
-  font-size: clamp(0.66rem, min(0.9vw, 1.7vh), 0.83rem);
+  font-size: clamp(0.72rem, min(0.98vw, 1.78vh), 0.92rem);
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: -0.006em;
-  color: var(--ink-1);
+  letter-spacing: -0.008em;
+  color: var(--ink);
 }
 
-/* Lead paragraph — sits under a title */
+/* Italic lead under a headline */
 .t-lead {
   font-family: var(--f-sans);
-  font-size: clamp(0.82rem, min(1.24vw, 2.32vh), 1.14rem);
+  font-style: italic;
+  font-size: clamp(0.72rem, min(1.02vw, 1.86vh), 0.98rem);
   font-weight: 400;
   line-height: 1.5;
-  letter-spacing: -0.012em;
-  color: var(--ink-2);
+  color: var(--muted);
 }
 
-/* Body copy */
+/* Italic rust subtitle under a product name */
+.t-ital {
+  font-family: var(--f-sans);
+  font-style: italic;
+  font-size: clamp(0.64rem, min(0.86vw, 1.56vh), 0.8rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--rust);
+}
+
+/* Body */
 .t-body {
   font-family: var(--f-sans);
-  font-size: clamp(0.7rem, min(0.98vw, 1.84vh), 0.9rem);
+  font-size: clamp(0.66rem, min(0.9vw, 1.64vh), 0.83rem);
   font-weight: 400;
-  line-height: 1.62;
-  color: var(--ink-2);
+  line-height: 1.55;
+  color: var(--muted);
 }
 
-/* Small body — dense grids */
-.t-sm {
+/* Small body / caption */
+.t-cap {
   font-family: var(--f-sans);
-  font-size: clamp(0.62rem, min(0.85vw, 1.6vh), 0.79rem);
+  font-size: clamp(0.6rem, min(0.8vw, 1.46vh), 0.75rem);
   font-weight: 400;
-  line-height: 1.54;
-  color: var(--ink-3);
+  line-height: 1.5;
+  color: var(--muted);
 }
 
-/* Micro copy — footnotes, captions */
-.t-xs {
+/* Eyebrow — bronze, letterspaced, diamond-prefixed */
+.t-eyebrow {
   font-family: var(--f-sans);
-  font-size: clamp(0.55rem, min(0.74vw, 1.4vh), 0.68rem);
-  font-weight: 400;
-  line-height: 1.48;
-  color: var(--ink-3);
-}
-
-/* Eyebrow / kicker label */
-.t-label {
-  font-family: var(--f-sans);
-  font-size: clamp(0.5rem, min(0.7vw, 1.32vh), 0.62rem);
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-1);
-}
-
-.t-label--soft {
+  font-size: clamp(0.55rem, min(0.75vw, 1.36vh), 0.7rem);
   font-weight: 600;
-  color: var(--ink-4);
-  letter-spacing: 0.18em;
-}
-
-/* Mono meta — folio, codes, units */
-.t-mono {
-  font-family: var(--f-mono);
-  font-size: clamp(0.5rem, min(0.68vw, 1.28vh), 0.6rem);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: var(--ink-4);
+  color: var(--bronze);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
 }
 
-/* Statistic figure */
-.t-stat {
+/* Sub-label inside a page (TODAY, HOW A TRADE IS RISK-MANAGED) */
+.t-slabel {
   font-family: var(--f-sans);
-  font-size: clamp(1.5rem, min(3.2vw, 6vh), 3.2rem);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  font-size: clamp(0.52rem, min(0.7vw, 1.28vh), 0.66rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+/* Statistic */
+.t-stat {
+  font-family: var(--f-serif);
+  font-size: clamp(1.3rem, min(2.7vw, 4.9vh), 2.6rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.018em;
   font-variant-numeric: tabular-nums;
-  color: var(--ink-1);
+  color: var(--ink);
 }
 
 .t-stat--sm {
-  font-size: clamp(1.1rem, min(2.1vw, 3.9vh), 2rem);
+  font-size: clamp(1rem, min(1.9vw, 3.5vh), 1.8rem);
 }
 
-/* ─── Colour applications (per the Colour Usage page) ─── */
-.c-blue {
-  color: var(--blue);
+/* Mono-ish index numerals */
+.t-idx {
+  font-family: var(--f-sans);
+  font-size: clamp(0.52rem, min(0.7vw, 1.28vh), 0.65rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  color: var(--rust);
 }
 
-.c-sage {
-  color: #7C9169;
-}
-
-/* darkened sage — legible on light fields */
-.c-sky {
-  color: #4E86AE;
-}
-
-/* darkened sky — legible on light fields */
+/* Colour helpers */
 .c-ink {
-  color: var(--ink-1);
+  color: var(--ink);
 }
 
-.c-mute {
-  color: var(--ink-3);
+.c-rust {
+  color: var(--rust);
 }
 
-.c-rev {
-  color: var(--rev-1);
+.c-bronze {
+  color: var(--bronze);
 }
 
-.c-rev-2 {
+.c-muted {
+  color: var(--muted);
+}
+
+/* On the dark card / dark field, everything reverses */
+.card--dark .t-serif,
+.card--dark .t-title,
+.card--dark .t-sub,
+.card--dark .t-stat,
+.slide--dark .t-head,
+.slide--dark .t-hero,
+.slide--dark .t-sub,
+.slide--dark .t-serif,
+.slide--dark .t-title,
+.slide--dark .t-stat {
+  color: var(--rev);
+}
+
+.card--dark .t-body,
+.card--dark .t-cap,
+.slide--dark .t-body,
+.slide--dark .t-cap,
+.slide--dark .t-lead {
   color: var(--rev-2);
 }
 
-.c-rev-3 {
-  color: var(--rev-3);
+.card--dark .t-idx,
+.slide--dark .t-idx {
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* On blue / dark fields every text class reverses */
-.slide--blue .t-h1,
-.slide--blue .t-h2,
-.slide--blue .t-h3,
-.slide--blue .t-h4,
-.slide--blue .t-h5,
-.slide--blue .t-display,
-.slide--blue .t-stat,
-.slide--blue .t-label,
-.slide--ink .t-h1,
-.slide--ink .t-h2,
-.slide--ink .t-h3,
-.slide--ink .t-h4,
-.slide--ink .t-h5,
-.slide--ink .t-display,
-.slide--ink .t-stat,
-.slide--ink .t-label {
-  color: var(--rev-1);
-}
-
-.slide--blue .t-lead,
-.slide--blue .t-body,
-.slide--ink .t-lead,
-.slide--ink .t-body {
-  color: var(--rev-2);
-}
-
-.slide--blue .t-sm,
-.slide--blue .t-xs,
-.slide--blue .t-mono,
-.slide--ink .t-sm,
-.slide--ink .t-xs,
-.slide--ink .t-mono {
-  color: var(--rev-3);
+.card--dark .t-slabel,
+.slide--dark .t-slabel,
+.slide--dark .t-eyebrow {
+  color: #D9BE93;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -610,10 +498,6 @@ a {
   gap: var(--sp-5);
 }
 
-.g-6 {
-  gap: var(--sp-6);
-}
-
 .ai-c {
   align-items: center;
 }
@@ -634,10 +518,6 @@ a {
   justify-content: space-between;
 }
 
-.jc-e {
-  justify-content: flex-end;
-}
-
 .wrap {
   flex-wrap: wrap;
 }
@@ -647,294 +527,296 @@ a {
   min-width: 0;
 }
 
-/* ─── SPLIT: the brand book's signature two-zone layout.
-   Left = titling column, right = content field.            ─── */
-/* The titling column's floor is min-content, NOT zero.
-
-   With minmax(0, …) a fractional track is free to shrink below the width
-   of its longest word; the word then overflows the track and paints over
-   the content column — which is what pushed CONSTRUCTION and
-   INFRASTRUCTURE underneath the cards on their right. Flooring the track
-   at min-content means it can never be narrower than the longest word in
-   the headline, so overflow is structurally impossible at any title
-   length or viewport size. The content column absorbs the difference. */
-.split {
-  display: grid;
-  grid-template-columns: minmax(min-content, 0.86fr) minmax(0, 2fr);
-  gap: clamp(1.5rem, 4.4vw, 4.5rem);
-  align-items: start;
+.w-full {
   width: 100%;
 }
 
-.split--even {
-  grid-template-columns: minmax(min-content, 1fr) minmax(0, 1fr);
-}
-
-.split--wide {
-  grid-template-columns: minmax(min-content, 0.72fr) minmax(0, 2.5fr);
-}
-
-.split--tight {
-  gap: clamp(1.25rem, 3vw, 2.75rem);
-}
-
-/* Column grids */
-.cols-2 {
+/* Grids. The first track of a split is floored at min-content so a long
+   headline can never overflow into the column beside it. */
+.grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.3vw, 1.1rem);
 }
 
-.cols-3 {
+.grid-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.3vw, 1.1rem);
 }
 
-.cols-4 {
+.grid-4 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.45rem, 1.1vw, 0.95rem);
 }
 
-.cols-5 {
+.grid-5 {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.4rem, 1vw, 0.85rem);
 }
 
-.cols-6 {
+/* The page's main block absorbs the remaining height, so tinted cards
+   reach toward the footer as they do in the reference rather than
+   clustering at the top over a void. Pair with .card--split so the body
+   copy settles at each card's foot. */
+.grid-fill {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Cover / close pillars — held to a minimum so they carry presence
+   even though their captions are single lines. */
+.grid-pillars {
+  min-height: clamp(84px, 17vh, 158px);
+}
+
+.split {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: minmax(min-content, 0.95fr) minmax(0, 2fr);
+  gap: clamp(1.2rem, 3.6vw, 3.4rem);
+  align-items: start;
 }
 
-/* ─── Equal-height cards in every grid ───
-   Cards are wrapped in a Reveal (a motion.div), so the Reveal is the grid
-   item — it stretches, but the card inside it kept its natural height and
-   rows came out ragged. Making the wrapper a flex column and letting its
-   child grow means every card in a row shares that row's height. */
-.cols-2 > .reveal,
-.cols-3 > .reveal,
-.cols-4 > .reveal,
-.cols-5 > .reveal,
-.cols-6 > .reveal,
-.eco-grid > .reveal {
+.split--even {
+  display: grid;
+  grid-template-columns: minmax(min-content, 1fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3.6vw, 3.4rem);
+  align-items: start;
+}
+
+/* Equal-height cards: the Reveal wrapper is the grid item, so it becomes a
+   flex column and lets the card inside fill the row. */
+.grid-2 > .reveal,
+.grid-3 > .reveal,
+.grid-4 > .reveal,
+.grid-5 > .reveal {
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-.cols-2 > .reveal > *,
-.cols-3 > .reveal > *,
-.cols-4 > .reveal > *,
-.cols-5 > .reveal > *,
-.cols-6 > .reveal > *,
-.eco-grid > .reveal > * {
+.grid-2 > .reveal > *,
+.grid-3 > .reveal > *,
+.grid-4 > .reveal > *,
+.grid-5 > .reveal > * {
   flex: 1 1 auto;
   min-width: 0;
 }
 
-/* Fills the slide's usable height — used by pages that push a base
-   element (a label, a numeral) down to the foot of the field.
-   Collapses to natural height on mobile, where slides scroll. */
-.fill-slide {
-  position: relative;
-  width: 100%;
-  height: calc(100svh - 2 * var(--py));
-  display: flex;
-  flex-direction: column;
-}
-
-/* ─── Rules ─── */
-.rule-h {
+/* ─── Rules ───
+   display: block matters — these are <span>s, and outside a flex
+   container an inline element ignores width and height entirely. */
+.rule {
+  display: block;
   width: 100%;
   height: 1px;
-  background: var(--rule);
+  background: var(--hair);
   flex-shrink: 0;
 }
 
-.rule-h--ink {
-  background: var(--rule-ink);
+/* The short rust rule under a headline */
+.rule-rust {
+  display: block;
+  width: clamp(48px, 5vw, 74px);
   height: 2px;
-}
-
-.rule-h--mid {
-  background: var(--rule-mid);
+  background: var(--rust);
+  flex-shrink: 0;
 }
 
 .rule-v {
   width: 1px;
   align-self: stretch;
-  background: var(--rule);
+  background: var(--hair);
   flex-shrink: 0;
-}
-
-.rule-tick {
-  width: 30px;
-  height: 2px;
-  background: var(--blue);
-  flex-shrink: 0;
-}
-
-.slide--blue .rule-h,
-.slide--ink .rule-h {
-  background: var(--rule-rev-soft);
-}
-
-.slide--blue .rule-h--ink,
-.slide--ink .rule-h--ink {
-  background: var(--rule-rev);
-}
-
-.slide--blue .rule-v,
-.slide--ink .rule-v {
-  background: var(--rule-rev-soft);
-}
-
-.slide--blue .rule-tick,
-.slide--ink .rule-tick {
-  background: var(--white);
 }
 
 /* ═══════════════════════════════════════════════════════
-   CARDS & PANELS — rounded, quiet, tonal.
+   CARDS — the structural workhorse
 ═══════════════════════════════════════════════════════ */
 
 .card {
-  border-radius: var(--r-lg);
-  padding: clamp(0.7rem, 2.1vh, 1.35rem) clamp(0.75rem, 1.5vw, 1.4rem);
-  background: var(--white);
+  border-radius: var(--r-md);
+  padding: clamp(0.62rem, 1.9vh, 1.15rem) clamp(0.68rem, 1.3vw, 1.15rem);
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
   min-width: 0;
-}
-
-.card--ivory {
-  background: var(--ivory);
-}
-
-.card--warm {
-  background: var(--warm);
-}
-
-.card--gray {
-  background: #ECECEC;
-}
-
-.card--blue {
-  background: var(--blue);
+  background: var(--paper-2);
+  border: 1px solid var(--hair);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 .card--sage {
-  background: var(--sage);
+  background: var(--t-sage);
+  border-color: var(--b-sage);
 }
 
-.card--sky {
-  background: var(--sky);
+.card--peri {
+  background: var(--t-peri);
+  border-color: var(--b-peri);
 }
 
-.card--outline {
+.card--sand {
+  background: var(--t-sand);
+  border-color: var(--b-sand);
+}
+
+.card--blush {
+  background: var(--t-blush);
+  border-color: var(--b-blush);
+}
+
+.card--dark {
+  background: var(--ink-deep);
+  border-color: var(--ink-deep);
+}
+
+.card--plain {
   background: transparent;
-  border: 1px solid var(--rule-mid);
+  border-color: var(--hair);
 }
 
-.card--ink-outline {
-  background: transparent;
-  border: 1.5px solid var(--ink-1);
+/* A card whose caption is pinned to its foot, as on the cover pillars */
+.card--split {
+  justify-content: space-between;
 }
 
-.card--blue-wash {
-  background: var(--blue-wash);
-}
-
-/* Reversed text inside solid colour cards */
-.card--blue .t-h3,
-.card--blue .t-h4,
-.card--blue .t-h5,
-.card--blue .t-stat,
-.card--blue .t-label {
-  color: var(--rev-1);
-}
-
-.card--blue .t-body,
-.card--blue .t-sm,
-.card--blue .t-xs {
-  color: var(--rev-2);
-}
-
-/* Sage & sky are light — the guidelines pair them with dark text */
-.card--sage .t-h3,
-.card--sage .t-h4,
-.card--sage .t-h5,
-.card--sage .t-stat,
-.card--sage .t-label,
-.card--sky .t-h3,
-.card--sky .t-h4,
-.card--sky .t-h5,
-.card--sky .t-stat,
-.card--sky .t-label {
-  color: var(--ink-1);
-}
-
-.card--sage .t-body,
-.card--sage .t-sm,
-.card--sage .t-xs,
-.card--sky .t-body,
-.card--sky .t-sm,
-.card--sky .t-xs {
-  color: #23231F;
-}
-
-/* Panel — a large rounded content field, as on the type/logo pages */
+/* Outlined panel — the two-column container on the identity page */
 .panel {
-  border-radius: var(--r-xl);
-  background: var(--ivory);
-  padding: clamp(1rem, 3vh, 2.2rem) clamp(1.1rem, 2.4vw, 2.4rem);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--hair);
+  background: transparent;
+  padding: clamp(0.8rem, 2.6vh, 1.5rem) clamp(0.85rem, 1.6vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 0;
 }
 
-.panel--white {
-  background: var(--white);
-}
-
-/* Hairline-divided list — no boxes, pure editorial */
-.list-ruled>*+* {
-  border-top: 1px solid var(--rule);
-}
-
-.list-ruled>* {
-  padding-top: clamp(0.42rem, 1.5vh, 0.8rem);
-  padding-bottom: clamp(0.42rem, 1.5vh, 0.8rem);
-}
-
-.list-ruled>*:first-child {
-  padding-top: 0;
-}
-
-.list-ruled>*:last-child {
-  padding-bottom: 0;
-}
-
-.slide--blue .list-ruled>*+* {
-  border-top-color: var(--rule-rev-soft);
-}
-
-/* Column-ruled grid — vertical hairlines between columns */
-.ruled-cols>*+* {
-  border-left: 1px solid var(--rule);
-  padding-left: clamp(0.6rem, 1.5vw, 1.4rem);
-}
-
-.ruled-cols>* {
-  padding-right: clamp(0.6rem, 1.5vw, 1.4rem);
-}
-
-.ruled-cols>*:last-child {
-  padding-right: 0;
-}
-
-.slide--blue .ruled-cols>*+* {
-  border-left-color: var(--rule-rev-soft);
+/* The list inside a panel absorbs the panel's height, so items breathe
+   evenly down the field instead of bunching under the heading. */
+.panel > .stack {
+  flex: 1 1 auto;
+  justify-content: space-between;
 }
 
 /* ═══════════════════════════════════════════════════════
-   BADGES, PILLS & MARKS
+   ICON BADGES — circular, ringed, solid glyph inside
+═══════════════════════════════════════════════════════ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--hair);
+  background: var(--paper-2);
+  color: var(--ink);
+  width: clamp(1.5rem, 3vh, 2.15rem);
+  height: clamp(1.5rem, 3vh, 2.15rem);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.badge svg {
+  width: 52%;
+  height: 52%;
+  display: block;
+}
+
+/* Larger badge for a product heading */
+.badge--lg {
+  width: clamp(2.1rem, 4.4vh, 3.1rem);
+  height: clamp(2.1rem, 4.4vh, 3.1rem);
+}
+
+/* Cover's outlined circle mark */
+.badge--hollow {
+  width: clamp(1.9rem, 4vh, 2.8rem);
+  height: clamp(1.9rem, 4vh, 2.8rem);
+  background: transparent;
+  border-color: var(--ink);
+}
+
+.badge--sage {
+  background: var(--t-sage);
+  border-color: var(--b-sage);
+}
+
+.badge--peri {
+  background: var(--t-peri);
+  border-color: var(--b-peri);
+}
+
+.badge--sand {
+  background: var(--t-sand);
+  border-color: var(--b-sand);
+}
+
+.badge--blush {
+  background: var(--t-blush);
+  border-color: var(--b-blush);
+}
+
+.badge--dark {
+  background: var(--ink-deep);
+  border-color: var(--ink-deep);
+  color: var(--rev);
+}
+
+/* A bare glyph, no badge — used at the head of a tinted card */
+.glyph {
+  display: inline-flex;
+  color: var(--ink);
+  width: clamp(1.05rem, 2.3vh, 1.6rem);
+  height: clamp(1.05rem, 2.3vh, 1.6rem);
+  flex-shrink: 0;
+}
+
+.glyph svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.card--dark .glyph {
+  color: var(--rev);
+}
+
+/* ═══════════════════════════════════════════════════════
+   FLOW — arrows between grouped cards
+═══════════════════════════════════════════════════════ */
+
+.flow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(0.4rem, 1vw, 0.85rem);
+  width: 100%;
+  min-width: 0;
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: var(--rust);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(0.9rem, 1.8vw, 1.5rem);
+}
+
+.arrow svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PILLS & MISC
 ═══════════════════════════════════════════════════════ */
 
 .pill {
@@ -943,149 +825,98 @@ a {
   gap: 0.4em;
   border-radius: 99px;
   padding: 0.3em 0.85em;
+  border: 1px solid var(--hair);
+  background: var(--paper-2);
   font-family: var(--f-sans);
-  font-size: clamp(0.5rem, min(0.68vw, 1.28vh), 0.6rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-size: clamp(0.5rem, min(0.68vw, 1.24vh), 0.62rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--muted);
   white-space: nowrap;
 }
 
-.pill--blue {
-  background: var(--blue);
-  color: #fff;
-}
-
-.pill--sage {
-  background: var(--sage);
-  color: #1B1B18;
-}
-
-.pill--sky {
-  background: var(--sky);
-  color: #14212B;
-}
-
-.pill--outline {
-  border: 1px solid var(--rule-mid);
-  color: var(--ink-2);
-}
-
-.pill--rev {
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
-}
-
-.pill--ink {
-  background: var(--ink-1);
-  color: #fff;
-}
-
-/* Numbered index chip — used across process strips */
-.chip-n {
-  width: clamp(1.35rem, 2.5vh, 1.85rem);
-  height: clamp(1.35rem, 2.5vh, 1.85rem);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-family: var(--f-mono);
-  font-size: clamp(0.5rem, 1.2vh, 0.62rem);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  background: var(--blue);
-  color: #fff;
-}
-
-.chip-n--outline {
+.pill--rust {
+  border-color: var(--rust);
+  color: var(--rust);
   background: transparent;
-  border: 1px solid var(--rule-mid);
-  color: var(--ink-2);
 }
 
-.chip-n--sage {
-  background: var(--sage);
-  color: #1B1B18;
+.pill--dark {
+  background: var(--ink-deep);
+  border-color: var(--ink-deep);
+  color: var(--rev);
 }
 
-.chip-n--rev {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
+/* Hairline-divided list */
+.list-ruled > * + * {
+  border-top: 1px solid var(--hair-soft);
 }
 
-/* Hexagonal product-mark holder — mirrors the icon system */
-.hex {
-  position: relative;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.list-ruled > * {
+  padding-top: clamp(0.32rem, 1.2vh, 0.62rem);
+  padding-bottom: clamp(0.32rem, 1.2vh, 0.62rem);
 }
 
-.hex img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.list-ruled > *:first-child {
+  padding-top: 0;
 }
 
-/* Directional arrow used in flow diagrams */
-.arrow-x {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink-4);
-  font-size: clamp(0.7rem, 1.6vh, 1rem);
-  line-height: 1;
+.list-ruled > *:last-child {
+  padding-bottom: 0;
 }
 
-.slide--blue .arrow-x {
-  color: var(--rev-3);
+/* Column-ruled grid */
+.ruled-cols > * + * {
+  border-left: 1px solid var(--hair);
+  padding-left: clamp(0.55rem, 1.4vw, 1.25rem);
 }
 
-/* ═══════════════════════════════════════════════════════
-   COMPARISON — traditional vs Fuutura (used twice)
-═══════════════════════════════════════════════════════ */
+.ruled-cols > * {
+  padding-right: clamp(0.55rem, 1.4vw, 1.25rem);
+}
 
+.ruled-cols > *:last-child {
+  padding-right: 0;
+}
+
+/* Comparison marks */
 .cmp-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(0.75rem, 2.4vw, 2.4rem);
+  gap: clamp(0.7rem, 2.2vw, 2.2rem);
   align-items: center;
 }
 
 .cmp-mark {
-  width: clamp(0.95rem, 1.9vh, 1.25rem);
-  height: clamp(0.95rem, 1.9vh, 1.25rem);
+  width: clamp(0.9rem, 1.8vh, 1.15rem);
+  height: clamp(0.9rem, 1.8vh, 1.15rem);
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: clamp(0.48rem, 1vh, 0.62rem);
+  font-size: clamp(0.44rem, 0.95vh, 0.58rem);
   font-weight: 700;
   line-height: 1;
 }
 
 .cmp-mark--neg {
-  background: rgba(0, 0, 0, 0.07);
-  color: var(--ink-4);
+  background: var(--t-blush);
+  color: var(--rust);
 }
 
 .cmp-mark--pos {
-  background: var(--blue);
-  color: #fff;
+  background: var(--t-sage);
+  color: #4A6138;
 }
 
 /* ═══════════════════════════════════════════════════════
-   DEVICE MOCKUPS — three surfaces, three frames.
-   Every frame matches its screenshot's own aspect ratio and
-   uses object-fit: contain, so product screens are never
-   cropped and their headings stay fully visible.
+   DEVICE MOCKUPS
+   Frames match each screenshot's own aspect ratio and use
+   object-fit: contain, so product screens are never cropped.
 ═══════════════════════════════════════════════════════ */
 
-/* Soft elliptical ground shadow, per the brand's product shots */
 .device-plinth {
   position: relative;
   display: flex;
@@ -1098,16 +929,15 @@ a {
   position: absolute;
   bottom: -2.5%;
   left: 50%;
-  margin-left: -65%;
-  width: 130%;
-  height: 7%;
+  margin-left: -62%;
+  width: 124%;
+  height: 6%;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(ellipse at center, rgba(36, 49, 64, 0.14) 0%, rgba(36, 49, 64, 0) 70%);
   z-index: 0;
 }
 
 /* ─── Phone — 393 x 852 ─── */
-
 .device-phone {
   position: relative;
   z-index: 1;
@@ -1121,11 +951,11 @@ a {
   width: 100%;
   height: 100%;
   border-radius: calc(var(--device-h) * 0.062);
-  background: linear-gradient(150deg, #3C3C3E 0%, #1A1A1C 42%, #2E2E30 100%);
+  background: linear-gradient(150deg, #3A3F47 0%, #191D24 42%, #2C313A 100%);
   padding: calc(var(--device-h) * 0.0088);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.28),
-    0 calc(var(--device-h) * 0.05) calc(var(--device-h) * 0.11) rgba(0, 0, 0, 0.18);
+    0 1px 2px rgba(20, 25, 34, 0.26),
+    0 calc(var(--device-h) * 0.05) calc(var(--device-h) * 0.1) rgba(20, 25, 34, 0.16);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -1148,7 +978,7 @@ a {
 
 .device-btn {
   position: absolute;
-  background: #2A2A2C;
+  background: #2A2F37;
   border-radius: 2px;
   width: calc(var(--device-h) * 0.0055);
 }
@@ -1172,17 +1002,16 @@ a {
 }
 
 /* ─── Browser — desktop web app, width-driven ─── */
-
 .device-browser {
   position: relative;
   width: 100%;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   overflow: hidden;
-  background: #EDEDE6;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--paper-2);
+  border: 1px solid var(--hair);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 18px 40px rgba(0, 0, 0, 0.13);
+    0 1px 2px rgba(20, 25, 34, 0.05),
+    0 16px 34px rgba(20, 25, 34, 0.11);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -1192,14 +1021,14 @@ a {
   align-items: center;
   gap: 5px;
   padding: 0 10px;
-  height: clamp(18px, 2.9vh, 26px);
-  background: #E3E3DB;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  height: clamp(17px, 2.7vh, 24px);
+  background: #F2EDE2;
+  border-bottom: 1px solid var(--hair);
 }
 
 .device-dot {
-  width: clamp(5px, 0.85vh, 7px);
-  height: clamp(5px, 0.85vh, 7px);
+  width: clamp(5px, 0.8vh, 7px);
+  height: clamp(5px, 0.8vh, 7px);
   border-radius: 50%;
   flex-shrink: 0;
   display: block;
@@ -1209,12 +1038,12 @@ a {
   margin: 0 auto;
   padding: 0.12em 1.4em;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   font-family: var(--f-sans);
-  font-size: clamp(0.36rem, 0.94vh, 0.5rem);
+  font-size: clamp(0.34rem, 0.9vh, 0.48rem);
   font-weight: 500;
   letter-spacing: 0.03em;
-  color: var(--ink-3);
+  color: var(--muted);
   white-space: nowrap;
 }
 
@@ -1230,10 +1059,8 @@ a {
   display: block;
 }
 
-/* ─── Extension — popup hanging from a toolbar strip ─── */
-
+/* ─── Extension popup ─── */
 .device-ext {
-  --ext-h: clamp(220px, 42svh, 430px);
   position: relative;
   z-index: 1;
   display: flex;
@@ -1250,10 +1077,10 @@ a {
   width: 118%;
   max-width: 118%;
   padding: 0 6px;
-  height: clamp(16px, 2.6vh, 23px);
+  height: clamp(15px, 2.5vh, 22px);
   border-radius: 6px 6px 0 0;
-  background: #E3E3DB;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #F2EDE2;
+  border: 1px solid var(--hair);
   border-bottom: none;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
@@ -1263,7 +1090,7 @@ a {
   flex: 1;
   height: 55%;
   border-radius: 99px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .device-ext-icon {
@@ -1274,13 +1101,13 @@ a {
 
 .device-ext-panel {
   width: 100%;
-  border-radius: 10px;
+  border-radius: var(--r-md);
   overflow: hidden;
   background: #0A0A0A;
-  border: 1px solid rgba(0, 0, 0, 0.14);
+  border: 1px solid var(--hair);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.08),
-    0 16px 36px rgba(0, 0, 0, 0.16);
+    0 1px 2px rgba(20, 25, 34, 0.06),
+    0 14px 30px rgba(20, 25, 34, 0.14);
   line-height: 0;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
@@ -1292,29 +1119,21 @@ a {
   display: block;
 }
 
-/* ═══════════════════════════════════════════════════════
-   PRODUCT SHOWCASE LAYOUT
-   The shot and the copy are siblings in a flex row, never
-   overlapping layers — so a long product title can grow
-   without ever running underneath the mockup.
-═══════════════════════════════════════════════════════ */
-
+/* ─── Showcase row: shot beside copy, never overlapping ─── */
 .showcase-row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: clamp(1.1rem, 3.4vw, 3.2rem);
+  gap: clamp(1rem, 3vw, 2.6rem);
   width: 100%;
   min-width: 0;
 }
 
-/* Desktop web-app shot — width-driven, so it leads the row */
 .showcase-shot--wide {
-  flex: 0 1 56%;
+  flex: 0 1 54%;
   min-width: 0;
 }
 
-/* Phone / extension shot — intrinsic size, never squeezed */
 .showcase-shot {
   flex: 0 0 auto;
 }
@@ -1324,122 +1143,27 @@ a {
   min-width: 0;
 }
 
-/* PRO has no product screen — the mark takes the shot's place */
-.pro-mark-panel {
-  flex: 0 1 30%;
-  min-width: 0;
-  align-self: stretch;
-}
-
-/* Ecosystem grid — seven products plus the settlement substrate,
-   as a 4 x 2 field. Falls back to 2-up then 1-up on narrow screens. */
-.eco-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(0.4rem, 0.9vw, 0.7rem);
-  width: 100%;
-}
-
-@media (max-width: 1100px) {
-  .eco-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .eco-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 460px) {
-  .eco-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* Two mobile products shown side by side (VPN + Chat) */
+/* Two mobile products side by side */
 .dual-product {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: clamp(0.75rem, 1.8vw, 1.6rem);
+  gap: clamp(0.7rem, 1.7vw, 1.5rem);
   min-width: 0;
 }
 
-@media (max-width: 960px) {
-  .showcase-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.75rem;
-  }
-
-  .showcase-shot,
-  .showcase-shot--wide {
-    flex: 0 0 auto;
-    align-self: center;
-    width: 100%;
-    max-width: 460px;
-  }
-
-  .showcase-copy {
-    flex: 0 0 auto;
-  }
-
-  .pro-mark-panel {
-    flex: 0 0 auto;
-    align-self: center;
-    width: 100%;
-  }
-
-  .dual-product {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-  }
-
-  .dual-product .stack {
-    width: 100%;
-  }
-}
-
 /* ═══════════════════════════════════════════════════════
-   COVER / DIVIDER SPECIALS
+   LOCKUP
 ═══════════════════════════════════════════════════════ */
 
 .lockup {
-  width: clamp(200px, 34vw, 520px);
   height: auto;
-}
-
-.lockup--sm {
-  width: clamp(120px, 15vw, 210px);
-}
-
-/* Hexagon field pattern for the cover — geometric, quiet */
-.hex-field {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.5;
-  pointer-events: none;
+  display: block;
 }
 
 /* ═══════════════════════════════════════════════════════
-   ANIMATION — restrained. Motion should feel considered.
+   ANIMATION
 ═══════════════════════════════════════════════════════ */
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 @keyframes spin {
   to {
@@ -1464,7 +1188,6 @@ body.pdf-export-active #deck-container {
 body.pdf-export-active .slide {
   width: 1380px !important;
   height: 976px !important;
-  /* A4 landscape ratio 1.414 */
 }
 
 body.pdf-export-active * {
@@ -1472,33 +1195,26 @@ body.pdf-export-active * {
   transition: none !important;
 }
 
-/* Reveals are gated on IntersectionObserver, which needs a moment to
-   fire. The exporter captures far faster than that, so slides could be
-   photographed while their content was still at opacity 0. Forcing the
-   reveal wrappers visible makes every captured frame deterministic.
-   Scoped to .reveal so the deliberate transforms on the rotated spine,
-   the divider name and the mockups are left untouched. */
+/* Reveals are gated on IntersectionObserver, which the exporter outruns,
+   so slides could be photographed while still at opacity 0. Scoped to
+   .reveal on purpose — never match on inline-style substrings, because
+   [style*="opacity:0"] also matches opacity:0.075. */
 body.pdf-export-active .reveal {
   opacity: 1 !important;
   transform: none !important;
   filter: none !important;
 }
 
-.no-print {
-  /* hidden during export via html2canvas ignoreElements */
-}
-
 /* ═══════════════════════════════════════════════════════
-   RESPONSIVE — below 960px the deck becomes a scrollable
-   document rather than a fixed-height presentation.
+   RESPONSIVE — below 960px the deck becomes a document
 ═══════════════════════════════════════════════════════ */
 
 @media (max-width: 960px) {
   :root {
     --px: 1.15rem;
-    --py: 2rem;
-    --spine: 0.9rem;
-    --device-h: clamp(300px, 52vw, 420px);
+    --py: 1.5rem;
+    --device-h: clamp(290px, 52vw, 400px);
+    --ext-h: clamp(260px, 48vw, 360px);
   }
 
   body {
@@ -1514,106 +1230,79 @@ body.pdf-export-active .reveal {
 
   .slide {
     height: auto;
-    min-height: auto;
-    padding-top: 3.25rem;
-    padding-bottom: 3.25rem;
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
     scroll-snap-align: none;
   }
 
-  .slide-content {
-    max-height: none;
-  }
-
-  /* Slides scroll on mobile, so the baseline rejoins the normal flow */
-  .slide-baseline {
-    position: static;
-    inset: auto;
-    width: 100%;
-    margin-top: 2.25rem;
-  }
-
-  .fill-slide {
+  .sheet {
     height: auto;
-    gap: 2.5rem;
+    padding-top: 1.5rem;
   }
 
-  /* Dividers drop their vertical furniture — the chapter name is
-     already carried by the contents block. */
-  .divider-name,
-  .divider-rule {
-    display: none;
-  }
-
-  .divider-body {
-    padding-left: 0;
-  }
-
-  .frame-rule {
-    display: none;
-  }
-
-  .frame-spine {
-    display: none;
-  }
-
-  .frame-folio {
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  /* Collapse every multi-column structure to a single column */
-  .split,
-  .split--even,
-  .split--wide,
-  .cols-2,
-  .cols-3,
-  .cols-4,
-  .cols-5,
-  .cols-6,
-  .cmp-row {
-    grid-template-columns: minmax(0, 1fr);
+  .sheet-body {
     gap: 1.5rem;
   }
 
-  .ruled-cols>*+* {
-    border-left: 0;
-    border-top: 1px solid var(--rule);
-    padding-left: 0;
-    padding-top: 1rem;
+  .bracket {
+    display: none;
   }
 
-  .ruled-cols>* {
+  .split,
+  .split--even,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .grid-5,
+  .cmp-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .flow,
+  .showcase-row,
+  .dual-product {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .showcase-shot,
+  .showcase-shot--wide {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .arrow {
+    align-self: center;
+    transform: rotate(90deg);
+  }
+
+  .ruled-cols > * + * {
+    border-left: 0;
+    border-top: 1px solid var(--hair);
+    padding-left: 0;
+    padding-top: 0.9rem;
+  }
+
+  .ruled-cols > * {
     padding-right: 0;
   }
 
-  .slide--blue .ruled-cols>*+* {
-    border-top-color: var(--rule-rev-soft);
+  .t-hero {
+    font-size: clamp(1.5rem, 7.4vw, 2.3rem);
   }
 
-  .t-display {
-    font-size: clamp(2rem, 11vw, 3.4rem);
-  }
-
-  .t-h1 {
-    font-size: clamp(1.5rem, 8vw, 2.4rem);
-  }
-
-  .t-h2 {
-    font-size: clamp(1.25rem, 6.4vw, 1.9rem);
-  }
-
-  .t-numeral {
-    font-size: clamp(3.5rem, 22vw, 7rem);
+  .t-head {
+    font-size: clamp(1.3rem, 6.4vw, 2rem);
   }
 }
 
-/* Retain two columns for dense grids on tablets */
 @media (min-width: 620px) and (max-width: 960px) {
-
-  .cols-3,
-  .cols-4,
-  .cols-5,
-  .cols-6 {
+  .grid-3,
+  .grid-4,
+  .grid-5 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

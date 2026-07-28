@@ -3,15 +3,18 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 import { itemVariants } from "./SlideWrapper";
+import Icon, { Badge, Glyph, Arrow, IconName, BadgeTone } from "./Icon";
 
 /* ─────────────────────────────────────────────────────────────
-   Shared slide primitives.
-
-   Every slide composes from these, which is what makes 25 pages
-   read as one document rather than 25 separate designs.
+   Page primitives, in the Product Overview's language.
+   Every slide composes from these, which is what makes 30 pages
+   read as one document.
 ───────────────────────────────────────────────────────────── */
 
-/** Animated direct child of a staggered slide. */
+export type Tint = "paper" | "sage" | "peri" | "sand" | "blush" | "dark" | "plain";
+
+/** Animated block. The `reveal` class is what lets PDF export force
+    every animated block to its final state — see globals.css. */
 export function Reveal({
   children,
   className = "",
@@ -21,8 +24,6 @@ export function Reveal({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  /* The `reveal` class is what lets PDF export force every animated
-     block to its final state — see globals.css, export mode. */
   return (
     <motion.div
       variants={itemVariants}
@@ -35,183 +36,247 @@ export function Reveal({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Eyebrow — a kicker with the brand's short blue tick rule
+   Eyebrow — rust diamond + bronze letterspaced label
 ───────────────────────────────────────────────────────────── */
-export function Eyebrow({
-  children,
-  tick = true,
-}: {
-  children: ReactNode;
-  tick?: boolean;
-}) {
+export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <div className="row ai-c g-2">
-      {tick && <span className="rule-tick" />}
-      <span className="t-label">{children}</span>
-    </div>
+    <span className="t-eyebrow">
+      <span className="dia">◆</span>
+      {children}
+    </span>
   );
 }
 
+/** Bronze sub-label used inside a page to head a group. */
+export function SubLabel({ children }: { children: ReactNode }) {
+  return <span className="t-slabel">{children}</span>;
+}
+
 /* ─────────────────────────────────────────────────────────────
-   SlideTitle — the brand's stacked uppercase headline,
-   optionally followed by supporting copy.
+   PageHead — eyebrow, serif headline, italic lead.
+   The opening three lines of nearly every page.
 ───────────────────────────────────────────────────────────── */
-export function SlideTitle({
+export function PageHead({
   eyebrow,
   title,
   lead,
-  body,
+  rule = false,
 }: {
-  eyebrow?: string;
-  /** Use \n to force the stacked line breaks the brand book favours. */
+  eyebrow: string;
   title: string;
   lead?: string;
-  body?: string[];
+  /** Show the short rust rule beneath the headline. */
+  rule?: boolean;
 }) {
   return (
-    <div className="stack g-3">
-      {eyebrow && (
-        <Reveal>
-          <Eyebrow>{eyebrow}</Eyebrow>
-        </Reveal>
-      )}
+    <div className="stack g-2">
+      <Reveal>
+        <Eyebrow>{eyebrow}</Eyebrow>
+      </Reveal>
 
       <Reveal>
-        <h2 className="t-h1" style={{ whiteSpace: "pre-line" }}>
+        <h2 className="t-head" style={{ whiteSpace: "pre-line" }}>
           {title}
         </h2>
       </Reveal>
 
+      {rule && (
+        <Reveal>
+          <span className="rule-rust" style={{ marginTop: "0.35rem" }} />
+        </Reveal>
+      )}
+
       {lead && (
         <Reveal>
-          <p className="t-lead" style={{ maxWidth: "42ch" }}>
+          <p className="t-lead" style={{ maxWidth: "92ch" }}>
             {lead}
           </p>
         </Reveal>
       )}
-
-      {body && body.length > 0 && (
-        <Reveal>
-          <div className="stack g-2" style={{ maxWidth: "44ch" }}>
-            {body.map((p, i) => (
-              <p key={i} className="t-sm">
-                {p}
-              </p>
-            ))}
-          </div>
-        </Reveal>
-      )}
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Stat — a figure over a label, tabular-aligned
-───────────────────────────────────────────────────────────── */
-export function Stat({
-  value,
-  label,
-  note,
-  small = false,
-  tone,
-}: {
-  value: string;
-  label: string;
-  note?: string;
-  small?: boolean;
-  tone?: "blue" | "ink" | "rev";
-}) {
-  const toneClass =
-    tone === "blue" ? "c-blue" : tone === "rev" ? "c-rev" : undefined;
-
-  return (
-    <div className="stack g-1" style={{ minWidth: 0 }}>
-      <span className={`t-stat ${small ? "t-stat--sm" : ""} ${toneClass ?? ""}`}>
-        {value}
-      </span>
-      <span className="t-label t-label--soft">{label}</span>
-      {note && <span className="t-xs">{note}</span>}
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   FeatureCard — the workhorse content block
+   FeatureCard — tinted card: glyph, serif title, body.
+   Body sits at the foot so a row of cards aligns optically.
 ───────────────────────────────────────────────────────────── */
 export function FeatureCard({
-  index,
+  icon,
   title,
   body,
-  variant = "white",
-  icon,
+  tint = "paper",
+  /** Title rendered in sans-bold rather than serif. */
+  sansTitle = false,
+  /** Push the body to the card's foot (used on the tall card rows). */
+  split = false,
 }: {
-  index?: string;
+  icon?: IconName;
   title: string;
   body?: string;
-  variant?: "white" | "ivory" | "warm" | "blue" | "sage" | "sky" | "outline";
-  icon?: ReactNode;
+  tint?: Tint;
+  sansTitle?: boolean;
+  split?: boolean;
 }) {
+  const tintClass = tint === "paper" ? "" : `card--${tint}`;
   return (
-    <div className={`card card--${variant}`}>
-      {(index || icon) && (
-        <div className="row ai-c g-2">
-          {icon}
-          {index && !icon && (
-            <span
-              className="t-mono"
-              style={{ color: "var(--blue)", letterSpacing: "0.14em" }}
-            >
-              {index}
-            </span>
-          )}
-        </div>
-      )}
-      <h3 className="t-h4">{title}</h3>
-      {body && <p className="t-sm">{body}</p>}
+    <div className={`card ${tintClass} ${split ? "card--split" : ""}`.trim()}>
+      <div className="stack g-2">
+        {icon && <Glyph icon={icon} />}
+        <h3 className={sansTitle ? "t-title" : "t-serif"}>{title}</h3>
+      </div>
+      {body && <p className="t-cap">{body}</p>}
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   RuledList — hairline-divided rows. Pure editorial, no boxes.
-   The brand book's default way of listing.
+   PillarCard — the cover's four ecosystem cards: inline glyph and
+   serif title on one line, caption pinned to the foot.
 ───────────────────────────────────────────────────────────── */
-export function RuledList({
-  items,
-  numbered = false,
+export function PillarCard({
+  icon,
+  title,
+  caption,
+  tint = "paper",
 }: {
-  items: { term: string; desc?: string }[];
-  numbered?: boolean;
+  icon: IconName;
+  title: string;
+  caption: string;
+  tint?: Tint;
+}) {
+  const tintClass = tint === "paper" ? "" : `card--${tint}`;
+  return (
+    <div className={`card ${tintClass} card--split`.trim()}>
+      <div className="row ai-c g-2">
+        <Glyph icon={icon} />
+        <h3 className="t-serif">{title}</h3>
+      </div>
+      <p className="t-cap">{caption}</p>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   IconList — badge, bold sans title, body. The identity page's
+   list device, and the deck's default way of enumerating.
+───────────────────────────────────────────────────────────── */
+export function IconList({
+  items,
+  tone = "paper",
+}: {
+  items: { icon: IconName; title: string; body: string }[];
+  tone?: BadgeTone;
 }) {
   return (
-    <div className="stack list-ruled" style={{ width: "100%" }}>
-      {items.map((it, i) => (
-        <div key={i} className="row g-3 ai-s">
-          {numbered && (
-            <span
-              className="t-mono"
-              style={{
-                color: "var(--blue)",
-                flexShrink: 0,
-                paddingTop: "0.2em",
-              }}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-          )}
-          <div className="stack g-1 flex-1">
-            <span className="t-h5">{it.term}</span>
-            {it.desc && <span className="t-sm">{it.desc}</span>}
+    <div className="stack g-3" style={{ width: "100%" }}>
+      {items.map((it) => (
+        <Reveal key={it.title}>
+          <div className="row g-3 ai-s">
+            <Badge icon={it.icon} tone={tone} />
+            <div className="stack g-1 flex-1">
+              <h4 className="t-title">{it.title}</h4>
+              <p className="t-cap">{it.body}</p>
+            </div>
           </div>
-        </div>
+        </Reveal>
       ))}
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   CompareColumns — "traditional vs Fuutura", used for the
-   wallet dilemma and the remittance comparison.
+   ProductPanel — outlined panel headed by a tinted badge, a serif
+   product name and a rust italic positioning line.
+───────────────────────────────────────────────────────────── */
+export function ProductPanel({
+  icon,
+  tone = "sage",
+  name,
+  tagline,
+  items,
+}: {
+  icon: IconName;
+  tone?: BadgeTone;
+  name: string;
+  tagline: string;
+  items: { icon: IconName; title: string; body: string }[];
+}) {
+  return (
+    <div className="panel">
+      <Reveal>
+        <div className="row ai-c g-3">
+          <Badge icon={icon} tone={tone} size="lg" />
+          <div className="stack g-1">
+            <h3 className="t-sub">{name}</h3>
+            <span className="t-ital">{tagline}</span>
+          </div>
+        </div>
+      </Reveal>
+
+      <IconList items={items} />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Flow — grouped cards separated by rust arrows
+───────────────────────────────────────────────────────────── */
+export function FlowNode({
+  title,
+  body,
+  tint = "paper",
+  rust = false,
+  grow = 1,
+}: {
+  title: string;
+  body?: string;
+  tint?: Tint;
+  /** Render the title in rust — the reference marks the hedge node this way. */
+  rust?: boolean;
+  grow?: number;
+}) {
+  const tintClass = tint === "paper" ? "" : `card--${tint}`;
+  return (
+    <div
+      className={`card ${tintClass}`.trim()}
+      style={{ flex: `${grow} 1 0`, minWidth: 0, textAlign: "center", gap: "0.2rem" }}
+    >
+      <h4 className="t-title" style={rust ? { color: "var(--rust)" } : undefined}>
+        {title}
+      </h4>
+      {body && <p className="t-cap">{body}</p>}
+    </div>
+  );
+}
+
+export { Badge, Glyph, Arrow, Icon };
+
+/* ─────────────────────────────────────────────────────────────
+   Stat — serif figure over a bronze label
+───────────────────────────────────────────────────────────── */
+export function Stat({
+  value,
+  label,
+  note,
+  small = false,
+}: {
+  value: string;
+  label: string;
+  note?: string;
+  small?: boolean;
+}) {
+  return (
+    <div className="stack g-1" style={{ minWidth: 0 }}>
+      <span className={`t-stat ${small ? "t-stat--sm" : ""}`.trim()}>{value}</span>
+      <span className="t-slabel">{label}</span>
+      {note && <span className="t-cap">{note}</span>}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CompareColumns — traditional vs Fuutura
 ───────────────────────────────────────────────────────────── */
 export function CompareColumns({
   leftTitle,
@@ -224,29 +289,29 @@ export function CompareColumns({
 }) {
   return (
     <div className="stack g-3" style={{ width: "100%" }}>
-      {/* Heads */}
       <div className="cmp-row">
         <div className="stack g-2">
-          <span className="t-label t-label--soft">{leftTitle}</span>
-          <span className="rule-h" />
+          <SubLabel>{leftTitle}</SubLabel>
+          <span className="rule" />
         </div>
         <div className="stack g-2">
-          <span className="t-label c-blue">{rightTitle}</span>
-          <span className="rule-h rule-h--ink" style={{ background: "var(--blue)" }} />
+          <span className="t-slabel" style={{ color: "var(--rust)" }}>
+            {rightTitle}
+          </span>
+          <span className="rule" style={{ background: "var(--rust)" }} />
         </div>
       </div>
 
-      {/* Rows */}
       <div className="stack list-ruled" style={{ width: "100%" }}>
         {rows.map((r, i) => (
           <div key={i} className="cmp-row">
             <div className="row ai-c g-2">
-              <span className="cmp-mark cmp-mark--neg">—</span>
-              <span className="t-sm">{r.left}</span>
+              <span className="cmp-mark cmp-mark--neg">–</span>
+              <span className="t-cap">{r.left}</span>
             </div>
             <div className="row ai-c g-2">
               <span className="cmp-mark cmp-mark--pos">✓</span>
-              <span className="t-body" style={{ fontWeight: 500, color: "var(--ink-1)" }}>
+              <span className="t-body" style={{ color: "var(--ink)", fontWeight: 500 }}>
                 {r.right}
               </span>
             </div>
@@ -258,17 +323,14 @@ export function CompareColumns({
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Footnote — the quiet closing line at the base of a slide
+   Closing line — the italic note the reference sets above its footer
 ───────────────────────────────────────────────────────────── */
-export function Footnote({ children }: { children: ReactNode }) {
+export function ClosingLine({ children }: { children: ReactNode }) {
   return (
     <Reveal>
-      <div className="stack g-2" style={{ width: "100%" }}>
-        <span className="rule-h" />
-        <p className="t-xs" style={{ letterSpacing: "0.01em" }}>
-          {children}
-        </p>
-      </div>
+      <p className="t-lead" style={{ maxWidth: "104ch" }}>
+        {children}
+      </p>
     </Reveal>
   );
 }

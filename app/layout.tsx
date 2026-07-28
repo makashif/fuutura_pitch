@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-/* Inter is Fuutura's primary typeface — headings and body both.
-   Hierarchy comes from weight and scale rather than a second font. */
+/* Serif carries every headline and product title — the voice of the
+   Product Overview document this deck is modelled on. */
+const sourceSerif = Source_Serif_4({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+/* Inter, Fuutura's brand typeface, carries labels, body and data. */
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-/* Mono is reserved for folios, units and micro-meta only. */
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Fuutura — Next Generation Financial Infrastructure",
+  title: "Fuutura — Product Overview",
   description:
-    "A licensed, self-custodial financial ecosystem for global market access. One verified identity across identity, wallet, markets and settlement — built for the markets incumbent rails don't reach.",
+    "A licensed, self-custodial financial ecosystem for global market access. Compliant, on-chain-settled exposure to the world's assets — built for markets the incumbent rails don't reach.",
   keywords: [
     "Fuutura",
     "financial infrastructure",
@@ -33,7 +35,7 @@ export const metadata: Metadata = {
     "Global South",
   ],
   openGraph: {
-    title: "Fuutura — Next Generation Financial Infrastructure",
+    title: "Fuutura — Product Overview",
     description: "Verify. Trade. Send. Spend. Connect.",
     type: "website",
   },
@@ -45,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
       <body>{children}</body>
     </html>
   );

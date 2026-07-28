@@ -25,7 +25,7 @@ export default function PdfExportOverlay({
         position: "fixed",
         inset: 0,
         zIndex: 10000,
-        background: "var(--ivory)",
+        background: "var(--paper)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -33,14 +33,14 @@ export default function PdfExportOverlay({
         gap: "2.25rem",
       }}
     >
-      <Lockup tone="blue" width="clamp(160px, 20vw, 250px)" />
+      <Lockup tone="black" width="clamp(150px, 19vw, 230px)" />
 
       <div style={{ width: "min(300px, 62vw)" }}>
         <div
           style={{
             height: "2px",
             width: "100%",
-            background: "rgba(0,0,0,0.1)",
+            background: "var(--hair)",
             overflow: "hidden",
           }}
         >
@@ -48,7 +48,7 @@ export default function PdfExportOverlay({
             style={{
               height: "100%",
               width: `${pct}%`,
-              background: "var(--blue)",
+              background: "var(--rust)",
               transition: "width 0.35s ease",
             }}
           />
@@ -68,17 +68,17 @@ export default function PdfExportOverlay({
               fontWeight: 600,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--ink-3)",
+              color: "var(--muted)",
             }}
           >
             Composing deck
           </span>
           <span
             style={{
-              fontFamily: "var(--f-mono)",
+              fontFamily: "var(--f-sans)",
               fontSize: "0.57rem",
               letterSpacing: "0.12em",
-              color: "var(--ink-1)",
+              color: "var(--ink)",
             }}
           >
             {String(progress).padStart(2, "0")} / {String(total).padStart(2, "0")}

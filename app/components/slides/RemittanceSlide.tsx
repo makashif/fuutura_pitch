@@ -1,11 +1,9 @@
 "use client";
 
-import SplitSlide from "../SplitSlide";
-import { Reveal, CompareColumns, Stat } from "../Primitives";
+import Sheet from "../Sheet";
+import { Reveal, CompareColumns, Stat, ClosingLine } from "../Primitives";
 
-/* ─────────────────────────────────────────────────────────────
-   16 — Cross-Border Remittance
-───────────────────────────────────────────────────────────── */
+/* ── 16 — Cross-Border Remittance ─────────────────────────── */
 
 const ROWS = [
   { left: "Settles in 3–7 business days", right: "Settles instantly" },
@@ -18,28 +16,19 @@ const ROWS = [
 
 export default function RemittanceSlide() {
   return (
-    <SplitSlide
+    <Sheet
       id="slide-remittance"
-      folio="16"
-      field="ivory"
-      eyebrow="Cross-Border Payments"
-      title={"The cost of\nsending money\nhome"}
-      lead="Remittance is where the incumbent system charges the most to the people who can least afford it — a 5–10% levy on money already earned."
-      body={[
-        "On-chain settlement removes the correspondent-banking chain that creates both the cost and the delay.",
-      ]}
-      footnote="Remittance is the clearest single case for the architecture: identity already verified, value already on-chain, settlement already instant. The saving is structural, not promotional."
+      folio="13"
+      eyebrow="Fuutura Wallet · Cross-Border Payments"
+      title="The cost of sending money home"
+      lead="Remittance is where the incumbent system charges the most to the people who can least afford it — a 5–10% levy on money already earned. On-chain settlement removes the correspondent-banking chain that creates both the cost and the delay."
     >
       <Reveal>
-        <div className="cols-3 ruled-cols" style={{ width: "100%" }}>
-          <Stat value="< 1%" label="Transfer cost" tone="blue" small />
+        <div className="grid-3 ruled-cols" style={{ width: "100%", maxWidth: "52rem" }}>
+          <Stat value="< 1%" label="Transfer cost" small />
           <Stat value="Instant" label="Settlement" small />
           <Stat value="24/7" label="Availability" small />
         </div>
-      </Reveal>
-
-      <Reveal>
-        <span className="rule-h rule-h--mid" />
       </Reveal>
 
       <Reveal>
@@ -49,6 +38,12 @@ export default function RemittanceSlide() {
           rows={ROWS}
         />
       </Reveal>
-    </SplitSlide>
+
+      <ClosingLine>
+        Remittance is the clearest single case for the architecture: identity
+        already verified, value already on-chain, settlement already instant. The
+        saving is structural, not promotional.
+      </ClosingLine>
+    </Sheet>
   );
 }

@@ -1,122 +1,96 @@
 "use client";
 
-import SlideWrapper from "../SlideWrapper";
-import ProductMark, { ProductKey, PRODUCT_ROLE } from "../ProductMark";
-import { Reveal, Eyebrow } from "../Primitives";
+import Sheet from "../Sheet";
+import { Reveal, FeatureCard, SubLabel } from "../Primitives";
+import { IconName } from "../Icon";
+import { Tint } from "../Primitives";
 
-/* ─────────────────────────────────────────────────────────────
-   05 — The Ecosystem
-
-   The one slide that has to land: seven products, one verified
-   identity, a single settlement substrate underneath.
+/* ── 05 — The Ecosystem ────────────────────────────────────────
+   Seven products, one verified identity, one settlement substrate.
 ───────────────────────────────────────────────────────────── */
 
-const PRODUCTS: { key: ProductKey; name: string; desc: string }[] = [
-  {
-    key: "id",
-    name: "Fuutura ID",
-    desc: "One verification, classified by jurisdiction, capability and qualification — then reusable across everything else.",
-  },
-  {
-    key: "wallet",
-    name: "Fuutura Wallet",
-    desc: "Client-held keys, always. Crypto and fiat in one place, with compliance built in rather than bolted on.",
-  },
-  {
-    key: "trade",
-    name: "Fuutura Trade",
-    desc: "A licensed, non-custodial synthetic exchange reaching 40,000+ instruments, from crypto to tokenised equities.",
-  },
-  {
-    key: "extension",
-    name: "Fuutura Extension",
-    desc: "The same wallet and the same perimeter, in the browser — self-custody present at the moment of use.",
-  },
-  {
-    key: "pro",
-    name: "Fuutura PRO",
-    desc: "The rails offered as infrastructure — embeddable identity, custody and market access for partner channels.",
-  },
-  {
-    key: "vpn",
-    name: "Fuutura VPN",
-    desc: "Encrypted transport as native infrastructure, so privacy is never outsourced to a third party.",
-  },
-  {
-    key: "chat",
-    name: "Fuutura Chat",
-    desc: "Identity-verified messaging, so the person you transact with is the person you are speaking to.",
-  },
-];
+const PRODUCTS: {
+  icon: IconName;
+  title: string;
+  body: string;
+  tint: Tint;
+}[] = [
+    {
+      icon: "fingerprint",
+      title: "Fuutura ID",
+      body: "One verification, classified by jurisdiction, capability and qualification — then reusable across everything else.",
+      tint: "sage",
+    },
+    {
+      icon: "wallet",
+      title: "Fuutura Wallet",
+      body: "Client-held keys, always. Crypto and fiat in one place, with compliance built in rather than bolted on.",
+      tint: "peri",
+    },
+    {
+      icon: "chart",
+      title: "Fuutura Trade",
+      body: "A licensed, non-custodial synthetic exchange reaching 40,000+ instruments, from crypto to tokenised equities.",
+      tint: "dark",
+    },
+    {
+      icon: "puzzle",
+      title: "Fuutura Extension",
+      body: "The same wallet and the same perimeter, in the browser — self-custody present at the moment of use.",
+      tint: "sand",
+    },
+    {
+      icon: "briefcase",
+      title: "Fuutura PRO",
+      body: "The rails offered as infrastructure — embeddable identity, custody and market access for partner channels.",
+      tint: "blush",
+    },
+    {
+      icon: "vpn",
+      title: "Fuutura VPN",
+      body: "Encrypted transport as native infrastructure, so privacy is never outsourced to a third party.",
+      tint: "peri",
+    },
+    {
+      icon: "chat",
+      title: "Fuutura Chat",
+      body: "Identity-verified messaging, so the person you transact with is the person you are speaking to.",
+      tint: "sage",
+    },
+    {
+      icon: "link",
+      title: "On-Chain Settlement",
+      body: "Position contracts settle on an established public L2, with USDT throughout — no operator token stands in for value.",
+      tint: "sand",
+    },
+  ];
 
 export default function EcosystemSlide() {
   return (
-    <SlideWrapper id="slide-ecosystem" field="ivory" folio="05">
-      <div className="stack g-3" style={{ width: "100%" }}>
-        {/* ── Header ── */}
-        <div className="split split--even" style={{ alignItems: "end" }}>
-          <div className="stack g-3">
-            <Reveal>
-              <Eyebrow>Utility-First Ecosystem</Eyebrow>
-            </Reveal>
-            <Reveal>
-              <h2 className="t-h1" style={{ whiteSpace: "pre-line" }}>
-                {"One identity.\nSeven products."}
-              </h2>
-            </Reveal>
-          </div>
+    <Sheet
+      id="slide-ecosystem"
+      folio="04"
+      eyebrow="The Fuutura Ecosystem"
+      title="One identity. Seven products."
+      lead="Each product is useful on its own. Together they compound — because access earned in one place opens access across all of it, and nothing has to be re-proved."
+    >
+      <Reveal>
+        <SubLabel>The product family, and the substrate beneath it</SubLabel>
+      </Reveal>
 
-          <Reveal>
-            <p className="t-lead" style={{ maxWidth: "48ch" }}>
-              Each product is useful on its own. Together they compound —
-              because access earned in one place opens access across all of it,
-              and nothing has to be re-proved.
-            </p>
+      <div className="grid-4 grid-fill" style={{ width: "100%" }}>
+        {PRODUCTS.map((p) => (
+          <Reveal key={p.title}>
+            <FeatureCard
+              icon={p.icon}
+              title={p.title}
+              body={p.body}
+              tint={p.tint}
+              split
+            />
           </Reveal>
-        </div>
-
-        <Reveal>
-          <span className="rule-h rule-h--ink" />
-        </Reveal>
-
-        {/* ── The product family ── */}
-        <div className="eco-grid">
-          {PRODUCTS.map((p) => (
-            <Reveal key={p.key}>
-              <div className="card card--white" style={{ height: "100%" }}>
-                <div className="row ai-c jc-b g-2">
-                  <ProductMark
-                    product={p.key}
-                    tone="blue"
-                    size="clamp(1.7rem, 3.7vh, 2.5rem)"
-                  />
-                  <span className="t-mono" style={{ letterSpacing: "0.13em" }}>
-                    {PRODUCT_ROLE[p.key]}
-                  </span>
-                </div>
-                <h3 className="t-h5">{p.name}</h3>
-                <p className="t-xs">{p.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-
-          {/* Eighth cell — the substrate every product settles on */}
-          <Reveal>
-            <div className="card card--blue" style={{ height: "100%" }}>
-              <span className="t-label" style={{ color: "#fff" }}>
-                On-Chain Settlement
-              </span>
-              <p className="t-xs" style={{ color: "var(--rev-2)" }}>
-                Position contracts settle on an established public L2, with USDT
-                throughout — no operator-issued token stands in for value.
-              </p>
-              <span className="t-mono" style={{ color: "var(--rev-3)" }}>
-                Base · Arbitrum · BNB-class
-              </span>
-            </div>
-          </Reveal>
-        </div>
+        ))}
       </div>
-    </SlideWrapper>
+    </Sheet>
   );
 }

@@ -200,7 +200,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
           left: 0,
           height: "2px",
           width: `${((current + 1) / SLIDES.length) * 100}%`,
-          background: "var(--blue)",
+          background: "var(--rust)",
           zIndex: 1000,
           transition: "width 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
@@ -215,7 +215,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
             position: "fixed",
             inset: 0,
             zIndex: 9999,
-            backgroundColor: "rgba(17,17,17,0.9)",
+            backgroundColor: "rgba(20,25,34,0.92)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -245,7 +245,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
               <p
                 style={{
                   color: "#fff",
-                  fontFamily: "var(--f-mono)",
+                  fontFamily: "var(--f-sans)",
                   fontSize: "0.66rem",
                   letterSpacing: "0.16em",
                 }}
@@ -263,14 +263,14 @@ export default function PresentationShell({ children }: { children: ReactNode })
                   maxWidth: "90%",
                   maxHeight: "88%",
                   boxShadow: "0 24px 70px rgba(0,0,0,0.5)",
-                  background: "var(--ivory)",
+                  background: "var(--paper)",
                 }}
               />
               <p
                 style={{
                   color: "rgba(255,255,255,0.5)",
                   marginTop: "1.4rem",
-                  fontFamily: "var(--f-mono)",
+                  fontFamily: "var(--f-sans)",
                   fontSize: "0.6rem",
                   letterSpacing: "0.12em",
                 }}

@@ -89,11 +89,11 @@ export function BrowserMockup({
 }) {
   return (
     <div className="device-browser" style={{ maxWidth }}>
-      {/* Window chrome */}
+      {/* Window chrome — muted to sit inside the cream palette */}
       <div className="device-browser-bar">
-        <span className="device-dot" style={{ background: "#E5685B" }} />
-        <span className="device-dot" style={{ background: "#E5B54B" }} />
-        <span className="device-dot" style={{ background: "#8FBE58" }} />
+        <span className="device-dot" style={{ background: "#C9705A" }} />
+        <span className="device-dot" style={{ background: "#D2A85C" }} />
+        <span className="device-dot" style={{ background: "#8CA378" }} />
         <span className="device-browser-url">{url}</span>
       </div>
 
@@ -134,7 +134,7 @@ export function ExtensionMockup({
         <span className="device-dot" style={{ background: "#D8D8D2" }} />
         <span className="device-ext-omni" />
         <Image
-          src="/brand/svg/extension-blue.svg"
+          src="/brand/svg/extension-ink.svg"
           alt=""
           width={301}
           height={337}

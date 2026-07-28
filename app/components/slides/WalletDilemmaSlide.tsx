@@ -1,14 +1,9 @@
 "use client";
 
-import SplitSlide from "../SplitSlide";
-import { Reveal, CompareColumns } from "../Primitives";
+import Sheet from "../Sheet";
+import { Reveal, CompareColumns, SubLabel, Badge } from "../Primitives";
 
-/* ─────────────────────────────────────────────────────────────
-   14 — The Wallet Dilemma
-
-   Self-custody and compliance have historically been treated as
-   opposites. The whole argument of this page is that they aren't.
-───────────────────────────────────────────────────────────── */
+/* ── 14 — The Wallet Dilemma ──────────────────────────────── */
 
 const ROWS = [
   { left: "Anonymous, and so non-compliant", right: "Self-custodial and compliant at once" },
@@ -21,16 +16,12 @@ const ROWS = [
 
 export default function WalletDilemmaSlide() {
   return (
-    <SplitSlide
+    <Sheet
       id="slide-wallet-dilemma"
-      folio="14"
-      field="white"
-      eyebrow="The Wallet Dilemma"
-      title={"Self-custody\nor compliance.\nNot both."}
-      lead="That has been the accepted trade-off for a decade — and it is the reason compliant finance and self-custodial finance grew up as separate worlds."
-      body={[
-        "Fuutura is built on the premise that the trade-off was an artefact of architecture, not a law of nature.",
-      ]}
+      folio="11"
+      eyebrow="Fuutura Wallet · The Dilemma It Solves"
+      title="Self-custody or compliance. Not both."
+      lead="That has been the accepted trade-off for a decade — and it is why compliant finance and self-custodial finance grew up as separate worlds. Fuutura is built on the premise that the trade-off was an artefact of architecture, not a law of nature."
     >
       <Reveal>
         <CompareColumns
@@ -40,21 +31,19 @@ export default function WalletDilemmaSlide() {
         />
       </Reveal>
 
-      {/* Fuutura IQ — the capability with no counterpart on the left */}
       <Reveal>
-        <div className="card card--blue row ai-c jc-b wrap g-3">
-          <div className="stack g-1">
-            <span className="t-label" style={{ color: "#fff" }}>
-              Fuutura IQ
-            </span>
-            <span className="t-sm" style={{ color: "var(--rev-2)" }}>
-              An AI layer that executes any in-wallet action on instruction —
-              the column on the left has no equivalent.
-            </span>
+        <div className="card card--dark row ai-c g-3 wrap">
+          <Badge icon="spark" tone="dark" size="lg" />
+          <div className="stack g-1 flex-1" style={{ minWidth: "16rem" }}>
+            <SubLabel>Fuutura IQ</SubLabel>
+            <p className="t-body">
+              An AI layer that executes any in-wallet action on instruction — the
+              column on the left has no equivalent.
+            </p>
           </div>
-          <span className="pill pill--rev">Natively in-wallet</span>
+          <span className="pill pill--dark">Natively in-wallet</span>
         </div>
       </Reveal>
-    </SplitSlide>
+    </Sheet>
   );
 }
