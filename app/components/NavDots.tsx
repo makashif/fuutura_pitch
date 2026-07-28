@@ -33,7 +33,10 @@ export default function NavDots() {
         const isActive = i === current;
         const isHovered = i === hovered;
         const isDivider = slide.id.startsWith("slide-div-");
-        const show = isActive || isHovered;
+        /* Hover only — a persistent label on the active tick reached back
+           over the slide's own content on card-heavy pages. The extended
+           blue tick already marks position. */
+        const show = isHovered;
 
         return (
           <button

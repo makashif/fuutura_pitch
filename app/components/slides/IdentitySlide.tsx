@@ -60,14 +60,12 @@ export default function IdentitySlide() {
       <div className="cols-2 g-2" style={{ width: "100%" }}>
         {PILLARS.map((p, i) => (
           <Reveal key={p.title}>
-            <div style={{ height: "100%" }}>
-              <FeatureCard
-                index={String(i + 1).padStart(2, "0")}
-                title={p.title}
-                body={p.body}
-                variant="white"
-              />
-            </div>
+            <FeatureCard
+              index={String(i + 1).padStart(2, "0")}
+              title={p.title}
+              body={p.body}
+              variant="white"
+            />
           </Reveal>
         ))}
       </div>

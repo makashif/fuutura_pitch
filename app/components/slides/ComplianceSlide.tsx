@@ -42,14 +42,12 @@ export default function ComplianceSlide() {
       <div className="cols-2 g-2" style={{ width: "100%" }}>
         {CONTROLS.map((c, i) => (
           <Reveal key={c.title}>
-            <div style={{ height: "100%" }}>
-              <FeatureCard
-                index={String(i + 1).padStart(2, "0")}
-                title={c.title}
-                body={c.body}
-                variant="ivory"
-              />
-            </div>
+            <FeatureCard
+              index={String(i + 1).padStart(2, "0")}
+              title={c.title}
+              body={c.body}
+              variant="ivory"
+            />
           </Reveal>
         ))}
       </div>

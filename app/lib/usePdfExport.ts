@@ -4,6 +4,28 @@ import jsPDF from "jspdf";
 import { SLIDES } from "./deck";
 
 /**
+ * Snaps the staggered entrance animations to their final state for capture.
+ *
+ * Scoped to `.reveal` on purpose. This previously matched on inline-style
+ * substrings — `[style*="opacity:0"]` — which also matches `opacity:0.075`,
+ * so every deliberately faint element (the decorative hex-lattice fields,
+ * tinted washes) was forced to full strength in the export. The companion
+ * `[style*="scale"]` / `[style*="translate"]` rules stripped intentional
+ * transforms the same way.
+ *
+ * Framer Motion only ever sets its initial state on the wrappers `Reveal`
+ * renders, and those carry `.reveal` — so targeting the class is both
+ * sufficient and safe. Never reintroduce attribute-substring matching here.
+ */
+const REVEAL_RESET = `
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+`;
+
+/**
  * Wait until a slide is genuinely ready to be photographed:
  * webfonts resolved and every image inside it decoded. Without this the
  * exporter can capture a frame with unstyled type or an empty mockup,
@@ -73,16 +95,7 @@ export function usePdfExport() {
               animation: none !important;
               transition: none !important;
             }
-            [style*="opacity: 0"],
-            [style*="opacity:0"] {
-              opacity: 1 !important;
-              visibility: visible !important;
-            }
-            [style*="translateY"],
-            [style*="translateX"],
-            [style*="scale"] {
-              transform: none !important;
-            }
+            ${REVEAL_RESET}
           `;
           clonedDoc.head.appendChild(style);
         },
@@ -148,23 +161,13 @@ export function usePdfExport() {
           // Ignore the UI chrome during export
           ignoreElements: (el) => el.classList.contains("no-print"),
           onclone: (clonedDoc) => {
-            // Inject a style block to force all Framer Motion initial states to their final visible states
             const style = clonedDoc.createElement("style");
             style.innerHTML = `
               * {
                 animation: none !important;
                 transition: none !important;
               }
-              [style*="opacity: 0"],
-              [style*="opacity:0"] {
-                opacity: 1 !important;
-                visibility: visible !important;
-              }
-              [style*="translateY"],
-              [style*="translateX"],
-              [style*="scale"] {
-                transform: none !important;
-              }
+              ${REVEAL_RESET}
             `;
             clonedDoc.head.appendChild(style);
           },

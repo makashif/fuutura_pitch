@@ -41,15 +41,13 @@ export default function ChainEnablesSlide() {
       folio="27"
       field="ivory"
       eyebrow="Capability"
-      title={"What the\ninfrastructure\nunlocks"}
+      title={"What it\nunlocks"}
       lead="The value of an identity-connected settlement layer is not the ledger itself. It is what stops being hard once identity, custody and settlement share one substrate."
     >
       <div className="cols-3 g-2" style={{ width: "100%" }}>
         {ENABLED.map((e) => (
           <Reveal key={e.title}>
-            <div style={{ height: "100%" }}>
-              <FeatureCard title={e.title} body={e.body} variant="white" />
-            </div>
+            <FeatureCard title={e.title} body={e.body} variant="white" />
           </Reveal>
         ))}
       </div>

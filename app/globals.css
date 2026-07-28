@@ -352,10 +352,22 @@ a {
   color: var(--rev-1);
 }
 
+/* Display type carries a break-word guard as a last resort. The grid's
+   min-content floor is what actually prevents headline overflow; this
+   ensures that even in a single-column collapse, or with a word longer
+   than the whole track, type wraps instead of painting over its
+   neighbour. */
+.t-display,
+.t-h1,
+.t-h2,
+.t-h3 {
+  overflow-wrap: break-word;
+}
+
 /* Big slide title — the brand's stacked uppercase headline */
 .t-h1 {
   font-family: var(--f-sans);
-  font-size: clamp(1.65rem, min(3.9vw, 7.4vh), 4.1rem);
+  font-size: clamp(1.65rem, min(3.6vw, 6.9vh), 3.8rem);
   font-weight: 700;
   line-height: 0.96;
   letter-spacing: -0.028em;
@@ -624,20 +636,29 @@ a {
 
 /* ─── SPLIT: the brand book's signature two-zone layout.
    Left = titling column, right = content field.            ─── */
+/* The titling column's floor is min-content, NOT zero.
+
+   With minmax(0, …) a fractional track is free to shrink below the width
+   of its longest word; the word then overflows the track and paints over
+   the content column — which is what pushed CONSTRUCTION and
+   INFRASTRUCTURE underneath the cards on their right. Flooring the track
+   at min-content means it can never be narrower than the longest word in
+   the headline, so overflow is structurally impossible at any title
+   length or viewport size. The content column absorbs the difference. */
 .split {
   display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(0, 2fr);
+  grid-template-columns: minmax(min-content, 0.86fr) minmax(0, 2fr);
   gap: clamp(1.5rem, 4.4vw, 4.5rem);
   align-items: start;
   width: 100%;
 }
 
 .split--even {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(min-content, 1fr) minmax(0, 1fr);
 }
 
 .split--wide {
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 2.5fr);
+  grid-template-columns: minmax(min-content, 0.72fr) minmax(0, 2.5fr);
 }
 
 .split--tight {
@@ -668,6 +689,32 @@ a {
 .cols-6 {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* ─── Equal-height cards in every grid ───
+   Cards are wrapped in a Reveal (a motion.div), so the Reveal is the grid
+   item — it stretches, but the card inside it kept its natural height and
+   rows came out ragged. Making the wrapper a flex column and letting its
+   child grow means every card in a row shares that row's height. */
+.cols-2 > .reveal,
+.cols-3 > .reveal,
+.cols-4 > .reveal,
+.cols-5 > .reveal,
+.cols-6 > .reveal,
+.eco-grid > .reveal {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.cols-2 > .reveal > *,
+.cols-3 > .reveal > *,
+.cols-4 > .reveal > *,
+.cols-5 > .reveal > *,
+.cols-6 > .reveal > *,
+.eco-grid > .reveal > * {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* Fills the slide's usable height — used by pages that push a base
