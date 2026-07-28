@@ -105,8 +105,12 @@ export default function SlideWrapper({
           {children}
         </div>
 
+        {/* Screen-only. `no-print` is what the exporter's ignoreElements
+            matches, so the rule, document mark and folio show while
+            presenting but are left out of every captured frame — the M
+            preview and the full PDF alike, so the preview stays honest. */}
         {!bare && (
-          <div className="sheet-foot">
+          <div className="sheet-foot no-print">
             <span className="foot-mark">
               <span className="dia">◆</span> Fuutura &nbsp;·&nbsp; Product
               Overview &nbsp;·&nbsp; Confidential

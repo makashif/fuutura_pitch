@@ -46,8 +46,12 @@ body and data, italic Inter for leads. Note this adds a serif alongside Inter,
 which the brand guidelines reserve as the sole typeface; the Product Overview
 sets its headlines in serif, and that reference took precedence here.
 
-**Page furniture** — corner brackets top-left and bottom-right, a ruled footer
-carrying `◆ Fuutura · Product Overview · Confidential` and the folio.
+**Page furniture** — corner brackets top-left and bottom-right, plus a ruled
+footer carrying `◆ Fuutura · Product Overview · Confidential` and the folio.
+The footer is **screen-only**: it is marked `no-print`, which the exporter's
+`ignoreElements` matches, so it shows while presenting but is left out of every
+captured frame — the `M` preview and the exported PDF alike. Corner brackets are
+kept in the capture.
 
 ## Deck structure
 
