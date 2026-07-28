@@ -281,6 +281,135 @@ export default function PresentationShell({ children }: { children: ReactNode })
           ) : null}
         </div>
       )}
+      {/* Keyboard hint */}
+      <KeyHint />
     </DeckContext.Provider>
+  );
+}
+
+/* ─────────────────────────────────────────
+   Keyboard hint toast
+───────────────────────────────────────── */
+function KeyHint() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const hide = () => setVisible(false);
+    const t = setTimeout(hide, 4500);
+    window.addEventListener("keydown", hide, { once: true });
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("keydown", hide);
+    };
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div
+      className="no-print"
+      style={{
+        position: "fixed",
+        bottom: "2rem",
+        right: "clamp(2rem, 5vw, 4rem)",
+        zIndex: 500,
+        display: "flex",
+        alignItems: "center",
+        gap: "0.75rem",
+        background: "rgba(36, 49, 64, 0.85)", // var(--ink) with opacity
+        border: "1px solid rgba(255,255,255,0.07)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        padding: "0.5rem 1rem",
+        borderRadius: "4px",
+        animation: "fadeIn 0.6s ease both",
+        opacity: visible ? 1 : 0,
+        transition: "opacity 0.5s ease",
+      }}
+    >
+      <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`}</style>
+      
+      {/* Arrow icons */}
+      {["↑", "↓"].map((arrow) => (
+        <kbd
+          key={arrow}
+          style={{
+            fontFamily: "var(--f-sans)",
+            fontSize: "0.75rem",
+            color: "rgba(255,255,255,0.8)",
+            background: "rgba(255,255,255,0.1)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            borderRadius: "3px",
+            padding: "0.15rem 0.4rem",
+            lineHeight: 1,
+          }}
+        >
+          {arrow}
+        </kbd>
+      ))}
+      <span
+        style={{
+          fontFamily: "var(--f-sans)",
+          fontSize: "0.6rem",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.5)",
+        }}
+      >
+        Navigate
+      </span>
+      <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.2)", margin: "0 4px" }} />
+      <kbd
+        style={{
+          fontFamily: "var(--f-sans)",
+          fontSize: "0.75rem",
+          color: "rgba(255,255,255,0.8)",
+          background: "rgba(255,255,255,0.1)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: "3px",
+          padding: "0.15rem 0.4rem",
+          lineHeight: 1,
+        }}
+      >
+        ⌘⇧E
+      </kbd>
+      <span
+        style={{
+          fontFamily: "var(--f-sans)",
+          fontSize: "0.6rem",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.5)",
+        }}
+      >
+        PDF
+      </span>
+      <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.2)", margin: "0 4px" }} />
+      <kbd
+        style={{
+          fontFamily: "var(--f-sans)",
+          fontSize: "0.75rem",
+          color: "rgba(255,255,255,0.8)",
+          background: "rgba(255,255,255,0.1)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          borderRadius: "3px",
+          padding: "0.15rem 0.4rem",
+          lineHeight: 1,
+        }}
+      >
+        M
+      </kbd>
+      <span
+        style={{
+          fontFamily: "var(--f-sans)",
+          fontSize: "0.6rem",
+          letterSpacing: "0.12em",
+          textTransform: "uppercase",
+          color: "rgba(255,255,255,0.5)",
+        }}
+      >
+        Preview
+      </span>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Sheet from "../Sheet";
-import { BrowserMockup } from "../Mockups";
+import { ScreenSet } from "../Mockups";
 import { Reveal, Stat, IconList, SubLabel } from "../Primitives";
 
 /* ── 09 — The 60-Second Verification Flow ─────────────────── */
@@ -45,12 +45,12 @@ export default function VerificationSlide() {
     >
       <div className="showcase-row" style={{ flex: 1, minHeight: 0 }}>
         <Reveal className="showcase-shot--wide">
-          <BrowserMockup
-            src="/images/screens/id_s3.jpg"
-            alt="Fuutura ID — uploaded documents and live verification status"
-            url="id.fuutura.com/identity-hub"
-            w={1440}
-            h={796}
+          <ScreenSet
+            type="mixed"
+            screens={[
+              { src: "/images/screens/id_s3.jpg", alt: "Fuutura ID document upload", device: "desktop" },
+              { src: "/images/screens/id/id_m_s2.jpg", alt: "Fuutura ID mobile face check", device: "phone" }
+            ]}
           />
         </Reveal>
 

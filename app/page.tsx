@@ -22,7 +22,8 @@ import TradeShowcase from "./components/slides/TradeShowcase";
 import RiskSlide from "./components/slides/RiskSlide";
 import InstrumentsSlide from "./components/slides/InstrumentsSlide";
 
-import VpnChatSlide from "./components/slides/VpnChatSlide";
+import VpnSlide from "./components/slides/VpnSlide";
+import ChatSlide from "./components/slides/ChatSlide";
 import ProSlide from "./components/slides/ProSlide";
 
 import ChainSlide from "./components/slides/ChainSlide";
@@ -45,10 +46,11 @@ import CloseSlide from "./components/slides/CloseSlide";
      05–09   Fuutura ID
      10–14   Fuutura Wallet, Extension, payments and the card
      15–17   Fuutura Trade
-     18      Fuutura VPN & Chat
-     19      Fuutura PRO
-     20–23   Settlement, capability, tokenisation, $FTRA
-     24      Close
+     18      Fuutura VPN
+     19      Fuutura Chat
+     20      Fuutura PRO
+     21–24   Settlement, capability, tokenisation, $FTRA
+     25      Close
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -82,7 +84,8 @@ export default function Home() {
       <InstrumentsSlide />
 
       {/* ── Fuutura VPN, Chat & PRO ── */}
-      <VpnChatSlide />
+      <VpnSlide />
+      <ChatSlide />
       <ProSlide />
 
       {/* ── Settlement & the token ── */}

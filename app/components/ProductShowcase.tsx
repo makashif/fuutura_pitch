@@ -58,7 +58,7 @@ export default function ProductShowcase({
   features,
   pills,
   field = "paper",
-  shotBasis = "54%",
+  shotBasis = "62%",
 }: ProductShowcaseProps) {
   const isWide = variant === "wide";
 

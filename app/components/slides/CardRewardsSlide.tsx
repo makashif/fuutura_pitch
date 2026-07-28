@@ -1,6 +1,7 @@
 "use client";
 
 import Sheet from "../Sheet";
+import { ScreenSet } from "../Mockups";
 import { Reveal, Stat, IconList, ClosingLine } from "../Primitives";
 
 /* ── 17 — Global Card & Rewards ───────────────────────────── */
@@ -38,19 +39,27 @@ export default function CardRewardsSlide() {
       lead="An ecosystem that cannot pay for groceries is an investment account, not a financial life. The card is what makes the rest of it usable."
     >
       <div className="split" style={{ width: "100%", flex: 1, minHeight: 0 }}>
-        <div className="stack g-4">
+        <div className="stack g-4" style={{ flex: 1, minWidth: 0 }}>
           <Reveal>
-            <Stat value="80M+" label="Merchants" />
+            <div className="grid-3 ruled-cols" style={{ width: "100%" }}>
+              <Stat value="80M+" label="Merchants" />
+              <Stat value="Instant" label="Crypto to fiat" small />
+              <Stat value="Global" label="ATM access" small />
+            </div>
           </Reveal>
-          <Reveal>
-            <Stat value="Instant" label="Crypto to fiat" small />
-          </Reveal>
-          <Reveal>
-            <Stat value="Global" label="ATM access" small />
-          </Reveal>
+          
+          <IconList items={CAPABILITIES} tone="sand" />
         </div>
 
-        <IconList items={CAPABILITIES} tone="sand" />
+        <Reveal>
+          <ScreenSet
+            type="desktop"
+            screens={[
+              { src: "/images/screens/wallet/wallet_s5.jpg", alt: "Fuutura Card main view" },
+              { src: "/images/screens/wallet/wallet_s6.jpg", alt: "Fuutura Rewards tier view" }
+            ]}
+          />
+        </Reveal>
       </div>
 
       <ClosingLine>

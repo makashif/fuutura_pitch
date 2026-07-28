@@ -49,7 +49,8 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-risk", label: "Risk Architecture" },
   { id: "slide-instruments", label: "Instrument Universe" },
 
-  { id: "slide-vpn-chat", label: "Fuutura VPN & Chat", product: true },
+  { id: "slide-vpn", label: "Fuutura VPN", product: true },
+  { id: "slide-chat", label: "Fuutura Chat", product: true },
   { id: "slide-pro", label: "Fuutura PRO", product: true },
 
   { id: "slide-chain", label: "Settlement & Chain" },

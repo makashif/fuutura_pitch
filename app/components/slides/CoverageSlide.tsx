@@ -1,6 +1,7 @@
 "use client";
 
 import Sheet from "../Sheet";
+import { ScreenSet } from "../Mockups";
 import { Reveal, Stat, FeatureCard, ClosingLine } from "../Primitives";
 
 /* ── 10 — Global Document Coverage ────────────────────────── */
@@ -41,26 +42,40 @@ export default function CoverageSlide() {
       title="Built for the documents people actually hold"
       lead="Inclusion fails on the edge cases. Coverage has to reach the residence permit and the regional licence, not only the passport."
     >
-      <Reveal>
-        <div className="grid-3 ruled-cols" style={{ width: "100%", maxWidth: "58rem" }}>
-          <Stat value="180+" label="Countries & states" />
-          <Stat value="98%" label="World population" />
-          <Stat value="155+" label="Compliance regimes" small />
-        </div>
-      </Reveal>
-
-      <div className="grid-4 grid-fill" style={{ width: "100%" }}>
-        {DOCUMENTS.map((d) => (
-          <Reveal key={d.title}>
-            <FeatureCard
-              icon={d.icon}
-              title={d.title}
-              body={d.body}
-              tint={d.tint}
-              split
-            />
+      <div className="split">
+        <div className="stack g-4" style={{ flex: 1, minWidth: 0 }}>
+          <Reveal>
+            <div className="grid-3 ruled-cols" style={{ width: "100%" }}>
+              <Stat value="180+" label="Countries & states" />
+              <Stat value="98%" label="World population" />
+              <Stat value="155+" label="Compliance regimes" small />
+            </div>
           </Reveal>
-        ))}
+
+          <div className="grid-2 grid-fill" style={{ width: "100%" }}>
+            {DOCUMENTS.map((d) => (
+              <Reveal key={d.title}>
+                <FeatureCard
+                  icon={d.icon}
+                  title={d.title}
+                  body={d.body}
+                  tint={d.tint}
+                  split
+                />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+        
+        <Reveal>
+          <ScreenSet
+            type="mixed"
+            screens={[
+              { src: "/images/screens/id_s5.jpg", alt: "Fuutura ID supported documents list", device: "desktop" },
+              { src: "/images/screens/id/id_m_s3.jpg", alt: "Fuutura ID mobile supported documents", device: "phone" }
+            ]}
+          />
+        </Reveal>
       </div>
 
       <ClosingLine>

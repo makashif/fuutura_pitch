@@ -1,6 +1,7 @@
 "use client";
 
 import Sheet from "../Sheet";
+import { BrowserMockup } from "../Mockups";
 import { Reveal, FeatureCard, SubLabel } from "../Primitives";
 
 /* ── 11 — Enterprise Security & Compliance ────────────────── */
@@ -43,37 +44,48 @@ export default function ComplianceSlide() {
       title="Bank-grade, by construction"
       lead="The projects that failed the financially excluded were the ones built to work around regulation. Fuutura is built to satisfy it — the harder path, and the only one that earns the permission to grow."
     >
-      <div className="grid-4 grid-fill" style={{ width: "100%" }}>
-        {CONTROLS.map((c) => (
-          <Reveal key={c.title}>
-            <FeatureCard
-              icon={c.icon}
-              title={c.title}
-              body={c.body}
-              tint={c.tint}
-              split
-            />
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal>
-        <div className="card card--dark">
-          <SubLabel>Regulatory posture</SubLabel>
-          <p className="t-body">
-            Fuutura meets GDPR, CCPA, KYC, AML and FATF standards across 155+
-            countries — so a partner integrating Fuutura inherits compliance
-            rather than assuming risk.
-          </p>
-          <div className="row g-2 wrap" style={{ marginTop: "0.2rem" }}>
-            {REGIMES.map((r) => (
-              <span key={r} className="pill pill--dark">
-                {r}
-              </span>
+      <div className="split">
+        <div className="stack g-2" style={{ flex: 1, minWidth: 0 }}>
+          <div className="grid-2 grid-fill" style={{ width: "100%" }}>
+            {CONTROLS.map((c) => (
+              <Reveal key={c.title}>
+                <FeatureCard
+                  icon={c.icon}
+                  title={c.title}
+                  body={c.body}
+                  tint={c.tint}
+                  split
+                />
+              </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <div className="card card--dark">
+              <SubLabel>Regulatory posture</SubLabel>
+              <p className="t-cap">
+                Fuutura meets GDPR, CCPA, KYC, AML and FATF standards across 155+
+                countries — so a partner integrating Fuutura inherits compliance
+                rather than assuming risk.
+              </p>
+              <div className="row g-2 wrap" style={{ marginTop: "0.2rem" }}>
+                {REGIMES.map((r) => (
+                  <span key={r} className="pill pill--dark">
+                    {r}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
+        
+        <Reveal>
+          <BrowserMockup
+            src="/images/screens/id_s6.jpg"
+            alt="Fuutura ID compliance and regulatory posture"
+          />
+        </Reveal>
+      </div>
     </Sheet>
   );
 }

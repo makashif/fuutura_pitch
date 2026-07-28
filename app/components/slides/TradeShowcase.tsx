@@ -1,7 +1,7 @@
 "use client";
 
 import ProductShowcase from "../ProductShowcase";
-import { BrowserMockup } from "../Mockups";
+import { ScreenSet } from "../Mockups";
 
 /* ── 19 — Fuutura Trade ───────────────────────────────────── */
 
@@ -40,15 +40,16 @@ export default function TradeShowcase() {
       icon="chart"
       tone="dark"
       variant="wide"
-      shotBasis="45%"
+      shotBasis="55%"
       pills={["40,000+ instruments", "External pricing", "On-chain settlement"]}
       mockup={
-        <BrowserMockup
-          src="/images/screens/trade/trade_s3.jpg"
-          alt="Fuutura Trade terminal — markets, order ticket, chart and positions"
-          url="trade.fuutura.com"
-          w={1440}
-          h={964}
+        <ScreenSet
+          type="desktop"
+          screens={[
+            { src: "/images/screens/trade/trade_s1.jpg", alt: "Fuutura Trade dashboard" },
+            { src: "/images/screens/trade/trade_s2.jpg", alt: "Fuutura Trade charting" },
+            { src: "/images/screens/trade/trade_s3.jpg", alt: "Fuutura Trade terminal" }
+          ]}
         />
       }
       features={FEATURES}

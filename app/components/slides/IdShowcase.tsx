@@ -1,7 +1,7 @@
 "use client";
 
 import ProductShowcase from "../ProductShowcase";
-import { BrowserMockup } from "../Mockups";
+import { ScreenSet } from "../Mockups";
 
 /* ── 07 — Fuutura ID ──────────────────────────────────────── */
 
@@ -42,12 +42,12 @@ export default function IdShowcase() {
       variant="wide"
       pills={["180+ countries", "AI document checks", "On-chain token", "KYC · KYB · KYT"]}
       mockup={
-        <BrowserMockup
-          src="/images/screens/id_s1.jpg"
-          alt="Fuutura ID dashboard — identity score, verification progress and compliance status"
-          url="id.fuutura.com"
-          w={1440}
-          h={796}
+        <ScreenSet
+          type="mixed"
+          screens={[
+            { src: "/images/screens/id_s1.jpg", alt: "Fuutura ID dashboard", device: "desktop" },
+            { src: "/images/screens/id/id_m_s1.jpg", alt: "Fuutura ID mobile view", device: "phone" }
+          ]}
         />
       }
       features={FEATURES}

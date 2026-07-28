@@ -1,7 +1,7 @@
 "use client";
 
 import ProductShowcase from "../ProductShowcase";
-import { ExtensionMockup } from "../Mockups";
+import { ScreenSet } from "../Mockups";
 
 /* ── 15 — Fuutura Extension ───────────────────────────────── */
 
@@ -42,9 +42,13 @@ export default function ExtensionShowcase() {
       variant="tall"
       pills={["Non-custodial", "Multi-chain EVM", "Explicit signing"]}
       mockup={
-        <ExtensionMockup
-          src="/images/screens/extension/extension_s3.jpg"
-          alt="Fuutura Extension popup — balance, actions and token holdings"
+        <ScreenSet
+          type="extension"
+          screens={[
+            { src: "/images/screens/extension/extension_s1.jpg", alt: "Fuutura Extension main" },
+            { src: "/images/screens/extension/extension_s2.jpg", alt: "Fuutura Extension action" },
+            { src: "/images/screens/extension/extension_s3.jpg", alt: "Fuutura Extension holdings" }
+          ]}
         />
       }
       features={FEATURES}

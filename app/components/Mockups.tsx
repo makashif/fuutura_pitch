@@ -150,3 +150,71 @@ export function ExtensionMockup({
     </div>
   );
 }
+
+/* ═══════════════════════════════════════════════════════
+   ScreenSet — Multi-screen gallery component
+═══════════════════════════════════════════════════════ */
+
+export function ScreenSet({
+  type,
+  screens,
+  height,
+}: {
+  type: "desktop" | "phone" | "extension" | "mixed";
+  screens: { src: string; alt?: string; device?: "desktop" | "phone" | "extension" }[];
+  height?: string;
+}) {
+  if (type === "mixed") {
+    return (
+      <div className="row jc-c ai-c" style={{ gap: "clamp(1rem, 2vw, 2rem)", width: "100%" }}>
+        {screens.map((s, i) => {
+          if (s.device === "phone") {
+            return (
+              <div key={i} style={{ flex: "0 1 28%", minWidth: 0 }}>
+                 <PhoneMockup src={s.src} alt={s.alt} height={height} />
+              </div>
+            );
+          }
+          if (s.device === "desktop" || !s.device) {
+            return (
+              <div key={i} style={{ flex: "1 1 65%", minWidth: 0 }}>
+                 <BrowserMockup src={s.src} alt={s.alt} />
+              </div>
+            );
+          }
+          return null;
+        })}
+      </div>
+    );
+  }
+  if (type === "desktop") {
+    return (
+      <div className="row jc-c ai-s" style={{ gap: "clamp(1rem, 2vw, 2rem)", width: "100%" }}>
+        {screens.map((s, i) => (
+          <div key={i} style={{ flex: "1 1 0", minWidth: 0 }}>
+             <BrowserMockup src={s.src} alt={s.alt} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (type === "phone") {
+    return (
+      <div className="row jc-c ai-c" style={{ gap: "clamp(1rem, 3vw, 4rem)", width: "100%" }}>
+        {screens.map((s, i) => (
+          <PhoneMockup key={i} src={s.src} alt={s.alt} height={height} />
+        ))}
+      </div>
+    );
+  }
+  if (type === "extension") {
+    return (
+      <div className="row jc-c ai-c" style={{ gap: "clamp(1rem, 2vw, 2rem)", width: "100%" }}>
+        {screens.map((s, i) => (
+          <ExtensionMockup key={i} src={s.src} alt={s.alt} height={height} />
+        ))}
+      </div>
+    );
+  }
+  return null;
+}

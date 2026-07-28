@@ -1,7 +1,7 @@
 "use client";
 
 import ProductShowcase from "../ProductShowcase";
-import { BrowserMockup } from "../Mockups";
+import { ScreenSet } from "../Mockups";
 
 /* ── 13 — Fuutura Wallet ──────────────────────────────────── */
 
@@ -42,12 +42,12 @@ export default function WalletShowcase() {
       variant="wide"
       pills={["Multi-chain", "Crypto & fiat", "Self-custodial", "Fuutura IQ"]}
       mockup={
-        <BrowserMockup
-          src="/images/screens/wallet/wallet_s1.jpg"
-          alt="Fuutura Wallet — balance, token holdings and exchange"
-          url="wallet.fuutura.com"
-          w={1440}
-          h={796}
+        <ScreenSet
+          type="desktop"
+          screens={[
+            { src: "/images/screens/wallet/wallet_s1.jpg", alt: "Fuutura Wallet dashboard" },
+            { src: "/images/screens/wallet/wallet_s2.jpg", alt: "Fuutura Wallet swap interface" }
+          ]}
         />
       }
       features={FEATURES}
