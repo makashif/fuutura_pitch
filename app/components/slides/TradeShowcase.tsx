@@ -46,7 +46,6 @@ export default function TradeShowcase() {
         <ScreenSet
           type="desktop"
           screens={[
-            { src: "/images/screens/trade/trade_s1.jpg", alt: "Fuutura Trade dashboard" },
             { src: "/images/screens/trade/trade_s2.jpg", alt: "Fuutura Trade charting" },
             { src: "/images/screens/trade/trade_s3.jpg", alt: "Fuutura Trade terminal" }
           ]}

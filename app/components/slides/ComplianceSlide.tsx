@@ -44,7 +44,7 @@ export default function ComplianceSlide() {
       title="Bank-grade, by construction"
       lead="The projects that failed the financially excluded were the ones built to work around regulation. Fuutura is built to satisfy it — the harder path, and the only one that earns the permission to grow."
     >
-      <div className="split">
+      <div className="split" style={{ gridTemplateColumns: "minmax(0, 1.2fr) minmax(0, 2fr)" }}>
         <div className="stack g-2" style={{ flex: 1, minWidth: 0 }}>
           <div className="grid-2 grid-fill" style={{ width: "100%" }}>
             {CONTROLS.map((c) => (
@@ -61,19 +61,22 @@ export default function ComplianceSlide() {
           </div>
 
           <Reveal>
-            <div className="card card--dark">
-              <SubLabel>Regulatory posture</SubLabel>
-              <p className="t-cap">
-                Fuutura meets GDPR, CCPA, KYC, AML and FATF standards across 155+
-                countries — so a partner integrating Fuutura inherits compliance
-                rather than assuming risk.
-              </p>
-              <div className="row g-2 wrap" style={{ marginTop: "0.2rem" }}>
-                {REGIMES.map((r) => (
-                  <span key={r} className="pill pill--dark">
-                    {r}
-                  </span>
-                ))}
+            <div className="card card--dark" style={{ padding: "clamp(0.6rem, 1.4vh, 1rem)" }}>
+              <div className="row" style={{ alignItems: "center", gap: "1rem" }}>
+                <div className="stack" style={{ flex: 1, gap: "0.2rem" }}>
+                  <SubLabel>Regulatory posture</SubLabel>
+                  <p className="t-cap" style={{ marginTop: "0.1rem" }}>
+                    Fuutura meets GDPR, CCPA, KYC, AML and FATF standards across 155+
+                    countries — so a partner integrating Fuutura inherits compliance.
+                  </p>
+                </div>
+                <div className="row g-1 wrap" style={{ maxWidth: "160px", justifyContent: "flex-end" }}>
+                  {REGIMES.map((r) => (
+                    <span key={r} className="pill pill--dark" style={{ padding: "0.15rem 0.5rem" }}>
+                      {r}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </Reveal>
