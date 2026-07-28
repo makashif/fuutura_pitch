@@ -93,6 +93,9 @@
 
 html {
   background: var(--paper);
+  /* Dynamically scale all rem units down on screens shorter than 864px 
+     to prevent bottom clipping, maintaining exact relative proportions */
+  font-size: clamp(10px, 1.85vh, 16px);
 }
 
 body {
