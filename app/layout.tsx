@@ -1,36 +1,40 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
-
+/* Inter is Fuutura's primary typeface — headings and body both.
+   Hierarchy comes from weight and scale rather than a second font. */
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
+/* Mono is reserved for folios, units and micro-meta only. */
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Origin One — Software Development House",
+  title: "Fuutura — Next Generation Financial Infrastructure",
   description:
-    "Origin One builds elite mobile apps, AI systems, Web3 platforms, and enterprise software. Production-grade engineering, end-to-end.",
-  keywords: ["Origin One", "software development", "mobile apps", "AI", "Web3", "enterprise software"],
+    "A licensed, self-custodial financial ecosystem for global market access. One verified identity across identity, wallet, markets and settlement — built for the markets incumbent rails don't reach.",
+  keywords: [
+    "Fuutura",
+    "financial infrastructure",
+    "digital identity",
+    "self-custodial wallet",
+    "synthetic exchange",
+    "tokenisation",
+    "Global South",
+  ],
   openGraph: {
-    title: "Origin One — Software Development House",
-    description: "We Build Software That Ships.",
+    title: "Fuutura — Next Generation Financial Infrastructure",
+    description: "Verify. Trade. Send. Spend. Connect.",
     type: "website",
   },
 };
@@ -41,10 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>{children}</body>
     </html>
   );

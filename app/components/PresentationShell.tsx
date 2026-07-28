@@ -11,37 +11,57 @@ import {
 } from "react";
 import { usePdfExport } from "../lib/usePdfExport";
 import PdfExportOverlay from "./PdfExportOverlay";
-import FluidBackground from "./FluidBackground";
 
-/* ─────────────────────────────────────────
-   Slide manifest — single source of truth
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   Slide manifest — the single source of truth.
+   Order here drives navigation, the folio numbers and the
+   PDF export sequence.
+───────────────────────────────────────────────────────────── */
 export const SLIDES = [
-  { id: "slide-hero", label: "Intro" },
-  { id: "slide-about", label: "About Origin One" },
-  { id: "slide-solutions", label: "What We Build" },
-  { id: "slide-tech", label: "Tech Stack" },
-  { id: "slide-portfolio", label: "Portfolio Overview" },
-  { id: "slide-p1", label: "Project 01" },
-  { id: "slide-p2", label: "Project 02" },
-  { id: "slide-p3", label: "Project 03" },
-  { id: "slide-p4", label: "Project 04" },
-  { id: "slide-p5", label: "Project 05" },
-  { id: "slide-p6", label: "Project 06" },
-  { id: "slide-p7", label: "Project 07" },
-  { id: "slide-why", label: "Why Origin One" },
-  { id: "slide-connect", label: "Start a Project" },
+  { id: "slide-cover", label: "Cover", section: "" },
+
+  { id: "slide-div-thesis", label: "I — The Thesis", section: "The Thesis" },
+  { id: "slide-mission", label: "Mission", section: "The Thesis" },
+  { id: "slide-opportunity", label: "The Opportunity", section: "The Thesis" },
+  { id: "slide-ecosystem", label: "The Ecosystem", section: "The Thesis" },
+
+  { id: "slide-div-identity", label: "II — Identity", section: "Identity" },
+  { id: "slide-identity", label: "The Access Standard", section: "Identity" },
+  { id: "slide-verification", label: "60-Second Verification", section: "Identity" },
+  { id: "slide-coverage", label: "Global Coverage", section: "Identity" },
+  { id: "slide-compliance", label: "Security & Compliance", section: "Identity" },
+
+  { id: "slide-div-money", label: "III — Money", section: "Money" },
+  { id: "slide-wallet", label: "The Fuutura Wallet", section: "Money" },
+  { id: "slide-wallet-dilemma", label: "The Wallet Dilemma", section: "Money" },
+  { id: "slide-remittance", label: "Cross-Border Remittance", section: "Money" },
+
+  { id: "slide-div-markets", label: "IV — Markets", section: "Markets" },
+  { id: "slide-trade", label: "Fuutura Trade", section: "Markets" },
+  { id: "slide-risk", label: "Risk Architecture", section: "Markets" },
+  { id: "slide-instruments", label: "The Instrument Universe", section: "Markets" },
+
+  { id: "slide-div-infra", label: "V — Infrastructure", section: "Infrastructure" },
+  { id: "slide-chain", label: "Settlement & Chain", section: "Infrastructure" },
+  { id: "slide-chain-enables", label: "What It Enables", section: "Infrastructure" },
+  { id: "slide-wider", label: "The Wider Ecosystem", section: "Infrastructure" },
+  { id: "slide-tokenisation", label: "Tokenisation, Two Ways", section: "Infrastructure" },
+  { id: "slide-ftra", label: "$FTRA", section: "Infrastructure" },
+
+  { id: "slide-close", label: "Close", section: "" },
 ];
 
-/* ─────────────────────────────────────────
-   Context so child components can navigate
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   Deck context — lets any slide drive navigation
+───────────────────────────────────────────────────────────── */
 interface DeckCtx {
   current: number;
   total: number;
   goTo: (index: number) => void;
   goNext: () => void;
   goPrev: () => void;
+  exportPdf: () => void;
+  isExporting: boolean;
 }
 
 export const DeckContext = createContext<DeckCtx>({
@@ -50,13 +70,15 @@ export const DeckContext = createContext<DeckCtx>({
   goTo: () => { },
   goNext: () => { },
   goPrev: () => { },
+  exportPdf: () => { },
+  isExporting: false,
 });
 
 export const useDeck = () => useContext(DeckContext);
 
-/* ─────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    PresentationShell
-───────────────────────────────────────── */
+───────────────────────────────────────────────────────────── */
 export default function PresentationShell({ children }: { children: ReactNode }) {
   const [current, setCurrent] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -70,7 +92,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
     previewImage,
     isPreviewing,
     generatePreview,
-    closePreview
+    closePreview,
   } = usePdfExport();
 
   /* ── Scroll to a slide by index ── */
@@ -83,14 +105,15 @@ export default function PresentationShell({ children }: { children: ReactNode })
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     setCurrent(clamped);
 
-    // Re-enable after scroll settles
-    setTimeout(() => { isScrollingRef.current = false; }, 800);
+    setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 800);
   }, []);
 
   const goNext = useCallback(() => goTo(current + 1), [current, goTo]);
   const goPrev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-  /* ── IntersectionObserver — update current on scroll ── */
+  /* ── IntersectionObserver — track the active slide ── */
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
@@ -104,10 +127,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
             setCurrent(index);
           }
         },
-        {
-          root: containerRef.current,
-          threshold: 0.55,
-        }
+        { root: containerRef.current, threshold: 0.55 }
       );
       obs.observe(el);
       observers.push(obs);
@@ -119,9 +139,8 @@ export default function PresentationShell({ children }: { children: ReactNode })
   /* ── Keyboard navigation ── */
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      // Don't hijack typing in inputs
-      if ((e.target as HTMLElement)?.tagName === "INPUT" ||
-        (e.target as HTMLElement)?.tagName === "TEXTAREA") return;
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
 
       if (e.key === "Escape" && (previewImage || isPreviewing)) {
         e.preventDefault();
@@ -162,78 +181,64 @@ export default function PresentationShell({ children }: { children: ReactNode })
         case "m":
         case "M":
           e.preventDefault();
-          if (previewImage || isPreviewing) {
-            closePreview();
-          } else {
-            generatePreview(SLIDES[current].id);
-          }
+          if (previewImage || isPreviewing) closePreview();
+          else generatePreview(SLIDES[current].id);
           break;
-      }
-
-      // Handle number keys (1-9, 0 for 10)
-      if (e.key >= "1" && e.key <= "9") {
-        e.preventDefault();
-        const slideIndex = parseInt(e.key, 10) - 1;
-        if (slideIndex < SLIDES.length) {
-          goTo(slideIndex);
-        }
-        return;
-      }
-      if (e.key === "0") {
-        e.preventDefault();
-        if (9 < SLIDES.length) {
-          goTo(9); // Slide 10
-        }
-        return;
       }
     };
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [goNext, goPrev, goTo, exportPdf, current, previewImage, isPreviewing, generatePreview, closePreview]);
+  }, [
+    goNext,
+    goPrev,
+    goTo,
+    exportPdf,
+    current,
+    previewImage,
+    isPreviewing,
+    generatePreview,
+    closePreview,
+  ]);
 
-  /* ── Touch swipe support ── */
+  /* ── Touch swipe (desktop-width only; mobile scrolls freely) ── */
   useEffect(() => {
     let startY = 0;
     let startX = 0;
 
-    const handleTouchStart = (e: TouchEvent) => {
+    const onStart = (e: TouchEvent) => {
       startY = e.touches[0].clientY;
       startX = e.touches[0].clientX;
     };
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (window.innerWidth <= 960) return; // Disable custom swipe navigation on screens that use continuous scroll
-      
+    const onEnd = (e: TouchEvent) => {
+      if (window.innerWidth <= 960) return;
       const dy = startY - e.changedTouches[0].clientY;
       const dx = startX - e.changedTouches[0].clientX;
       if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 40) {
-        if (dy > 0) {
-          goNext();
-        } else {
-          goPrev();
-        }
+        if (dy > 0) goNext();
+        else goPrev();
       }
     };
 
     const container = containerRef.current;
-    container?.addEventListener("touchstart", handleTouchStart, { passive: true });
-    container?.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container?.addEventListener("touchstart", onStart, { passive: true });
+    container?.addEventListener("touchend", onEnd, { passive: true });
     return () => {
-      container?.removeEventListener("touchstart", handleTouchStart);
-      container?.removeEventListener("touchend", handleTouchEnd);
+      container?.removeEventListener("touchstart", onStart);
+      container?.removeEventListener("touchend", onEnd);
     };
   }, [goNext, goPrev]);
 
   return (
-    <DeckContext.Provider value={{ current, total: SLIDES.length, goTo, goNext, goPrev }}>
-      <PdfExportOverlay isExporting={isExporting} progress={exportProgress} total={totalSlides} />
-
-      {/* Global Fluid Background */}
-      <FluidBackground />
-
-      {/* Global Animated Grid Background */}
-      <div className="app-grid-bg" />
+    <DeckContext.Provider
+      value={{ current, total: SLIDES.length, goTo, goNext, goPrev, exportPdf, isExporting }}
+    >
+      <PdfExportOverlay
+        isExporting={isExporting}
+        progress={exportProgress}
+        total={totalSlides}
+      />
 
       {/* Scroll container */}
       <div
@@ -249,9 +254,7 @@ export default function PresentationShell({ children }: { children: ReactNode })
         {children}
       </div>
 
-      {/* ── UI Chrome — all hidden in print ── */}
-
-      {/* Scroll progress bar */}
+      {/* ── Progress hairline ── */}
       <div
         aria-hidden="true"
         className="no-print"
@@ -261,63 +264,22 @@ export default function PresentationShell({ children }: { children: ReactNode })
           left: 0,
           height: "2px",
           width: `${((current + 1) / SLIDES.length) * 100}%`,
-          background: "linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.8))",
-          boxShadow: "0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.2)",
+          background: "var(--blue)",
           zIndex: 1000,
           transition: "width 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       />
 
-      {/* Slide counter */}
-      {/* <div
-        aria-live="polite"
-        className="no-print"
-        aria-label={`Slide ${current + 1} of ${SLIDES.length}: ${SLIDES[current].label}`}
-        style={{
-          position: "fixed",
-          bottom: "2rem",
-          left: "clamp(1.5rem, 5vw, 4rem)",
-          zIndex: 500,
-          display: "flex",
-          alignItems: "center",
-          gap: "0.75rem",
-        }}
-      >
-        <span style={{
-          fontFamily: "var(--font-mono)", fontSize: "0.58rem",
-          letterSpacing: "0.15em", color: "rgba(255,255,255,0.22)"
-        }}>
-          {String(current + 1).padStart(2, "0")}{" "}
-          <span style={{ opacity: 0.4 }}>/</span>{" "}
-          {String(SLIDES.length).padStart(2, "0")}
-        </span>
-        <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.1)" }} />
-        <span style={{
-          fontFamily: "var(--font-body)", fontSize: "0.58rem",
-          letterSpacing: "0.14em", textTransform: "uppercase",
-          color: "rgba(255,255,255,0.18)", maxWidth: "160px",
-          whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"
-        }}>
-          {SLIDES[current].label}
-        </span>
-      </div> */}
-
-      {/* Keyboard hint */}
-      <KeyHint />
-
-      {/* Mockup Overlay */}
+      {/* ── Frame preview overlay (press M) ── */}
       {(isPreviewing || previewImage) && (
         <div
           className="no-print"
           onClick={closePreview}
           style={{
             position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
+            inset: 0,
             zIndex: 9999,
-            backgroundColor: "rgba(0,0,0,0.85)",
+            backgroundColor: "rgba(17,17,17,0.9)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -326,133 +288,63 @@ export default function PresentationShell({ children }: { children: ReactNode })
           }}
         >
           {isPreviewing ? (
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
-              <div className="spinner" style={{ width: "24px", height: "24px", border: "2px solid rgba(255,255,255,0.2)", borderTopColor: "white", borderRadius: "50%", animation: "spin 1s linear infinite" }} />
-              <p style={{ color: "white", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.15em" }}>
-                GENERATING EXACT FRAME...
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "1rem",
+              }}
+            >
+              <div
+                style={{
+                  width: "22px",
+                  height: "22px",
+                  border: "2px solid rgba(255,255,255,0.2)",
+                  borderTopColor: "#fff",
+                  borderRadius: "50%",
+                  animation: "spin 1s linear infinite",
+                }}
+              />
+              <p
+                style={{
+                  color: "#fff",
+                  fontFamily: "var(--f-mono)",
+                  fontSize: "0.66rem",
+                  letterSpacing: "0.16em",
+                }}
+              >
+                RENDERING FRAME
               </p>
-              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             </div>
           ) : previewImage ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={previewImage}
-                alt="Exact Frame Preview"
+                alt="Slide frame preview"
                 style={{
                   maxWidth: "90%",
-                  maxHeight: "90%",
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "#070707" // match pdf background
+                  maxHeight: "88%",
+                  boxShadow: "0 24px 70px rgba(0,0,0,0.5)",
+                  background: "var(--ivory)",
                 }}
               />
-              <p style={{ color: "rgba(255,255,255,0.5)", marginTop: "1.5rem", fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.1em" }}>
-                PRESS &apos;M&apos;, &apos;ESC&apos;, OR CLICK ANYWHERE TO CLOSE
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.5)",
+                  marginTop: "1.4rem",
+                  fontFamily: "var(--f-mono)",
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.12em",
+                }}
+              >
+                M · ESC · CLICK TO CLOSE
               </p>
             </>
           ) : null}
         </div>
       )}
     </DeckContext.Provider>
-  );
-}
-
-/* ─────────────────────────────────────────
-   Keyboard hint toast
-───────────────────────────────────────── */
-function KeyHint() {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const hide = () => setVisible(false);
-    const t = setTimeout(hide, 4500);
-    window.addEventListener("keydown", hide, { once: true });
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("keydown", hide);
-    };
-  }, []);
-
-  if (!visible) return null;
-
-  return (
-    <div
-      className="no-print"
-      style={{
-        position: "fixed",
-        bottom: "2rem",
-        right: "clamp(3rem, 6vw, 5rem)",
-        zIndex: 500,
-        display: "flex",
-        alignItems: "center",
-        gap: "0.75rem",
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid rgba(255,255,255,0.07)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        padding: "0.5rem 1rem",
-        borderRadius: "2px",
-        animation: "fadeIn 0.6s ease both",
-        opacity: visible ? 1 : 0,
-        transition: "opacity 0.5s ease",
-      }}
-    >
-      {/* Arrow icons */}
-      {["↑", "↓"].map((arrow) => (
-        <kbd
-          key={arrow}
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.75rem",
-            color: "rgba(255,255,255,0.5)",
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            borderRadius: "3px",
-            padding: "0.15rem 0.4rem",
-            lineHeight: 1,
-          }}
-        >
-          {arrow}
-        </kbd>
-      ))}
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.6rem",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "rgba(255,255,255,0.22)",
-        }}
-      >
-        Navigate
-      </span>
-      <span style={{ width: "1px", height: "10px", background: "rgba(255,255,255,0.1)", margin: "0 4px" }} />
-      <kbd
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.75rem",
-          color: "rgba(255,255,255,0.5)",
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          borderRadius: "3px",
-          padding: "0.15rem 0.4rem",
-          lineHeight: 1,
-        }}
-      >
-        ⌘⇧E
-      </kbd>
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.6rem",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "rgba(255,255,255,0.22)",
-        }}
-      >
-        PDF
-      </span>
-    </div>
   );
 }

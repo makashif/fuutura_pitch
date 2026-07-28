@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Lockup } from "./ProductMark";
 
 interface PdfExportOverlayProps {
   isExporting: boolean;
@@ -8,10 +8,15 @@ interface PdfExportOverlayProps {
   total: number;
 }
 
-export default function PdfExportOverlay({ isExporting, progress, total }: PdfExportOverlayProps) {
+/** Full-field ivory export curtain — keeps the brand intact while rendering. */
+export default function PdfExportOverlay({
+  isExporting,
+  progress,
+  total,
+}: PdfExportOverlayProps) {
   if (!isExporting) return null;
 
-  const percentage = Math.round((progress / total) * 100) || 0;
+  const pct = total > 0 ? Math.round((progress / total) * 100) : 0;
 
   return (
     <div
@@ -19,50 +24,67 @@ export default function PdfExportOverlay({ isExporting, progress, total }: PdfEx
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 9999,
-        background: "rgba(7, 7, 7, 0.85)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
+        zIndex: 10000,
+        background: "var(--ivory)",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        gap: "2.25rem",
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="stack"
-        style={{
-          background: "rgba(20, 20, 20, 0.9)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          padding: "2rem 3rem",
-          borderRadius: "8px",
-          alignItems: "center",
-          gap: "1.5rem",
-          minWidth: "320px",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-        }}
-      >
-        <div className="t-h4" style={{ color: "#f2f2f2", fontWeight: 500 }}>
-          Exporting PDF...
-        </div>
+      <Lockup tone="blue" width="clamp(160px, 20vw, 250px)" />
 
-        <div style={{ width: "100%", background: "rgba(255, 255, 255, 0.1)", height: "4px", borderRadius: "2px", overflow: "hidden" }}>
-          <motion.div
+      <div style={{ width: "min(300px, 62vw)" }}>
+        <div
+          style={{
+            height: "2px",
+            width: "100%",
+            background: "rgba(0,0,0,0.1)",
+            overflow: "hidden",
+          }}
+        >
+          <div
             style={{
               height: "100%",
-              background: "#e4e4e7",
+              width: `${pct}%`,
+              background: "var(--blue)",
+              transition: "width 0.35s ease",
             }}
-            initial={{ width: 0 }}
-            animate={{ width: `${percentage}%` }}
-            transition={{ type: "spring", bounce: 0, duration: 0.3 }}
           />
         </div>
 
-        <div className="t-mono" style={{ fontSize: "0.75rem", color: "var(--tx-3)" }}>
-          Slide {progress} / {total}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "0.85rem",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--f-sans)",
+              fontSize: "0.57rem",
+              fontWeight: 600,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "var(--ink-3)",
+            }}
+          >
+            Composing deck
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--f-mono)",
+              fontSize: "0.57rem",
+              letterSpacing: "0.12em",
+              color: "var(--ink-1)",
+            }}
+          >
+            {String(progress).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

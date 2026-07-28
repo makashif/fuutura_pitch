@@ -1,210 +1,213 @@
 import PresentationShell from "./components/PresentationShell";
 import NavDots from "./components/NavDots";
-import HeroSlide from "./components/HeroSlide";
-import AboutSlide from "./components/AboutSlide";
-import SolutionsSlide from "./components/SolutionsSlide";
-import TechSlide from "./components/TechSlide";
-import PortfolioGallerySlide from "./components/PortfolioGallerySlide";
-import ProjectSlide from "./components/ProjectSlide";
-import WhyChooseSlide from "./components/WhyChooseSlide";
-import ConnectSlide from "./components/ConnectSlide";
+import SectionDivider from "./components/SectionDivider";
+import ProductShowcase from "./components/ProductShowcase";
+
+import CoverSlide from "./components/CoverSlide";
+import MissionSlide from "./components/slides/MissionSlide";
+import OpportunitySlide from "./components/slides/OpportunitySlide";
+import EcosystemSlide from "./components/slides/EcosystemSlide";
+import IdentitySlide from "./components/slides/IdentitySlide";
+import VerificationSlide from "./components/slides/VerificationSlide";
+import CoverageSlide from "./components/slides/CoverageSlide";
+import ComplianceSlide from "./components/slides/ComplianceSlide";
+import WalletDilemmaSlide from "./components/slides/WalletDilemmaSlide";
+import RemittanceSlide from "./components/slides/RemittanceSlide";
+import RiskSlide from "./components/slides/RiskSlide";
+import InstrumentsSlide from "./components/slides/InstrumentsSlide";
+import ChainSlide from "./components/slides/ChainSlide";
+import ChainEnablesSlide from "./components/slides/ChainEnablesSlide";
+import WiderEcosystemSlide from "./components/slides/WiderEcosystemSlide";
+import TokenisationSlide from "./components/slides/TokenisationSlide";
+import FtraSlide from "./components/slides/FtraSlide";
+import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
-   PROJECT DATA — All 7 Real Delivered Projects
+   FUUTURA — PRODUCT DECK
+   25 pages, five chapters.
+
+   I    The Thesis          02 – 05
+   II   Identity            06 – 10
+   III  Money               11 – 14
+   IV   Markets             15 – 18
+   V    Infrastructure      19 – 24
+        Close               25
 ───────────────────────────────────────────────────────────── */
 
-// ── Project 01 — Fuutura Wallet ──
-const p1Features = [
-  { title: "Multi-Chain Asset Management", desc: "Full EVM, Bitcoin, Solana & Tron support — manage assets across all major blockchain ecosystems from a single unified interface." },
-  { title: "Cross-Chain Token Swaps", desc: "Native cross-chain swap functionality with deep integration into the Fuutura Trade for a seamless trading experience." },
-  { title: "Non-Custodial Security Architecture", desc: "Enterprise-grade, fully non-custodial design. Users retain complete, sovereign ownership of keys and assets at all times." },
-  { title: "Real-Time Portfolio Visibility", desc: "Live portfolio tracking with high-performance transaction monitoring, wallet management, and full transaction history." },
+/* ── Fuutura Wallet capability set ── */
+const WALLET_FEATURES = [
+  {
+    title: "Non-custodial by construction",
+    body: "The client wallet holds the balance. A position contract holds only the collateral committed to it — never the balance itself.",
+  },
+  {
+    title: "Program-controlled collateral vault",
+    body: "Rules-based and on-chain. Fuutura cannot move client funds outside the logic both sides agreed to.",
+  },
+  {
+    title: "Gasless, account-abstracted",
+    body: "Built for people whose first wallet this is: no seed-phrase ceremony, no gas token to acquire first.",
+  },
+  {
+    title: "One wallet, retail and institutional",
+    body: "The same infrastructure serves an individual client and a partner channel serving thousands.",
+  },
 ];
 
-// ── Project 02 — Fuutura Trade ──
-const p2Features = [
-  { title: "Hybrid Authentication System", desc: "Dual login supporting email/password (Web2) and wallet-based login (Web3) via MetaMask & WalletConnect — one unified platform." },
-  { title: "Real-Time Order Management", desc: "WebSocket-powered market data feeds with market, limit, stop-loss, and take-profit order types executed in real time." },
-  { title: "Advanced Portfolio Tracking", desc: "Portfolio, position, and watchlist management with backend-driven feature flagging and zero-downtime mode switching." },
-  { title: "Modular State Architecture", desc: "Zustand-powered scalable state management with full Fuutura Wallet ecosystem integration and dynamic version control." },
+/* ── Fuutura Trade capability set ── */
+const TRADE_FEATURES = [
+  {
+    title: "Licensed and non-custodial",
+    body: "A regulated venue that never takes possession of client assets — the licence and the self-custody are not in tension.",
+  },
+  {
+    title: "Bilateral price contracts",
+    body: "Every position faces Fuutura directly. There are no shares to source and no inventory to fund.",
+  },
+  {
+    title: "40,000+ instruments",
+    body: "Crypto, global equities, indices, FX, commodities and tokenised real-world assets, from one account.",
+  },
+  {
+    title: "Leverage earned by tier",
+    body: "Entitlements advance on a demonstrated ladder rather than being unlocked at signup.",
+  },
 ];
-
-// ── Project 03 — Fuutura Extension ──
-const p3Features = [
-  { title: "Non-Custodial Key Management", desc: "Institutional-grade private key management — users retain complete ownership, with secure transaction signing and approval flows." },
-  { title: "Browser-Native Wallet Experience", desc: "Smooth, intuitive UX modeled on industry-leading wallet standards. Feels native to the browser, not bolted-on." },
-  { title: "Full Fuutura Ecosystem Integration", desc: "Seamless connectivity with Fuutura Trade and Wallet — full feature parity across the entire Fuutura product suite." },
-  { title: "Multi-Chain EVM Support", desc: "Complete multi-chain support across EVM networks with cross-platform compatibility and performance optimisation." },
-];
-
-// ── Project 04 — Fuutura KYC ──
-const p4Features = [
-  { title: "AI-Powered Document Verification", desc: "LLaMA-driven document detection and identity verification with a guided mobile flow — fast, accurate, and user-friendly." },
-  { title: "On-Chain Digital Identity", desc: "Verified users receive blockchain-backed digital identities on Polygon with token-based verification incentives." },
-  { title: "Embeddable B2B SDK", desc: "Plug-and-play SDK for third-party businesses to integrate KYC natively, paired with a full enterprise management dashboard." },
-  { title: "Multi-Surface Ecosystem", desc: "Consumer mobile app, embeddable SDK, and B2B web dashboard — a complete KYC platform from a single integrated build." },
-];
-
-// ── Project 05 — Digital24 ──
-const p5Features = [
-  { title: "Multi-Channel Campaign Builder", desc: "Flexible campaign creation with guaranteed placements, newswire, SEO guest posting, and journalist outreach targeting." },
-  { title: "Stripe & In-Platform Wallet", desc: "Cart and checkout supporting Stripe card payments and wallet balance, with bulk credit pack purchasing and deferred application." },
-  { title: "Role-Based Admin Dashboard", desc: "Full admin panel for user, campaign, offer, and reporting management — powering internal fulfilment operations end-to-end." },
-  { title: "CMS-Driven Public Platform", desc: "Sanity-powered public site with pricing, bundles, case studies, and help centre — built for discovery and conversion." },
-];
-
-// ── Project 06 — Intelizzz | U-Haul ──
-const p6Features = [
-  { title: "Real-Time Vehicle Tracking", desc: "Live SSE data streams powering real-time GPS tracking with geofence engine supporting circle, polygon, and rectangle zones." },
-  { title: "Event-Driven Microservices", desc: "12 dedicated Node.js/Koa services on a Kafka pipeline handling device events, wake history, and tracking data at scale." },
-  { title: "Offline-First PWA", desc: "Installer PWA with IndexedDB and Workbox service worker — full functionality without connectivity, perfect sync on restore." },
-  { title: "Multi-Role Platform", desc: "Consumer, installer, operations, and recovery agent roles across 6 integrated modules with Kubernetes-orchestrated infrastructure." },
-];
-
-// ── Project 07 — Toybox ──
-const p7Features = [
-  { title: "Native iOS Member App", desc: "Swift-built iOS app with garage management, concierge booking, vehicle services, and an integrated AI assistant." },
-  { title: "AI-Powered Concierge", desc: "Intelligent concierge assistant enabling members to book detailing, wash, transport, and vehicle acquisition with ease." },
-  { title: "Staff & Admin Web Applications", desc: "Dedicated Next.js staff and admin surfaces for full operational management — scheduling, reporting, and member oversight." },
-  { title: "Role-Based Access Across 4 Surfaces", desc: "Member app, staff web app, admin dashboard, and member portal — all unified with role-based access and consistent data." },
-];
-
-/* ─────────────────────────────────────────────────────────────
-   PAGE COMPOSITION — 14 Slides
-   01 Hero → 02 About → 03 Solutions → 04 Tech → 05 Portfolio Overview →
-   06 P1 (Fuutura Wallet) →
-   07 P2 (Fuutura Trade) →
-   08 P3 (Fuutura Extension) →
-   09 P4 (Fuutura KYC) →
-   10 P5 (Digital24) →
-   11 P6 (Intelizzz | U-Haul) →
-   12 P7 (Toybox) →
-   13 Why Us → 14 Connect
-───────────────────────────────────────────────────────────── */
 
 export default function Home() {
   return (
     <PresentationShell>
       <NavDots />
 
-      {/* ── 01 Hero ── */}
-      <HeroSlide />
+      {/* ══ 01 ══ */}
+      <CoverSlide />
 
-      {/* ── 02 About ── */}
-      <AboutSlide />
-
-      {/* ── 03 Solutions ── */}
-      <SolutionsSlide />
-
-      {/* ── 04 Tech Stack ── */}
-      <TechSlide />
-
-      {/* ── 05 Portfolio Overview ── */}
-      <PortfolioGallerySlide />
-
-      {/* ── Project 01 — Fuutura Wallet ── */}
-      <ProjectSlide
-        id="slide-p1"
-        slideNumber="06"
-        title="Fuutura Wallet"
-        description="A secure, enterprise-grade non-custodial Web3 wallet bridging digital asset management and trading — enabling users to store, manage, transfer, and swap cryptocurrencies across multiple blockchain ecosystems while maintaining complete asset ownership."
-        domain="Web3 · DeFi · React.js · Node.js"
-        background="/fwallet_premium_bg.png"
-        status="Delivered"
-        features={p1Features}
-        mockupSrcSplash="/FwalletS.png"
-        mockupSrc="/Fwallet.png"
+      {/* ══ I · THE THESIS ══ */}
+      <SectionDivider
+        id="slide-div-thesis"
+        folio="02"
+        index="01"
+        numeral="I"
+        name="Thesis"
+        contents={["Brand Mission", "The Opportunity", "The Ecosystem"]}
       />
+      <MissionSlide />
+      <OpportunitySlide />
+      <EcosystemSlide />
 
-      {/* ── Project 02 — Fuutura Trade ── */}
-      <ProjectSlide
-        id="slide-p2"
-        slideNumber="07"
-        title="Fuutura Trade"
-        description="A sophisticated full-stack hybrid trading platform bridging traditional finance and decentralized ecosystems. Built for both Web2 and Web3 users in a single unified experience, delivering institutional-grade trading with real-time performance."
-        domain="Trading · React.js · Zustand · WebSocket"
-        background="/ftrade_premium_bg.png"
-        status="Delivered"
-        features={p2Features}
-        mockupSrcSplash="/FtradeS.png"
-        mockupSrc="/Ftrade.png"
+      {/* ══ II · IDENTITY ══ */}
+      <SectionDivider
+        id="slide-div-identity"
+        folio="06"
+        index="02"
+        numeral="II"
+        name="Identity"
+        contents={[
+          "The Access Standard",
+          "60-Second Verification",
+          "Global Coverage",
+          "Security & Compliance",
+        ]}
       />
+      <IdentitySlide />
+      <VerificationSlide />
+      <CoverageSlide />
+      <ComplianceSlide />
 
-      {/* ── Project 03 — Fuutura Extension ── */}
-      <ProjectSlide
-        id="slide-p3"
-        slideNumber="08"
-        title="Fuutura Extension"
-        description="A production-grade, non-custodial browser extension wallet engineered to deliver the fluency and familiarity of leading wallet extensions — while maintaining the full security architecture of the Fuutura ecosystem."
-        domain="Browser Extension · Next.js · Viem · AWS"
-        background="/fextension_premium_bg.png"
-        status="Delivered"
-        features={p3Features}
-        mockupSrcSplash="/FextS.png"
-        mockupSrc="/Fext.png"
-        mockupType="extension"
+      {/* ══ III · MONEY ══ */}
+      <SectionDivider
+        id="slide-div-money"
+        folio="11"
+        index="03"
+        numeral="III"
+        name="Money"
+        contents={[
+          "The Fuutura Wallet",
+          "The Wallet Dilemma",
+          "Cross-Border Remittance",
+        ]}
       />
-
-      {/* ── Project 04 — Fuutura KYC ── */}
-      <ProjectSlide
-        id="slide-p4"
-        slideNumber="09"
-        title="Fuutura KYC"
-        description="A multi-surface, AI-powered KYC ecosystem making identity verification fast, intelligent, and blockchain-backed. Serves individual users and enterprise clients via a consumer mobile app, embeddable SDK, and B2B web dashboard."
-        domain="AI · Identity · Python · LLaMA · Polygon"
-        background="/fkyc_premium_bg.png"
-        status="Delivered"
-        features={p4Features}
-        mockupSrcSplash="/FkycS.png"
-        mockupSrc="/Fkyc.png"
+      <ProductShowcase
+        id="slide-wallet"
+        folio="12"
+        field="ivory"
+        product="wallet"
+        eyebrow="Fuutura Wallet"
+        title={"Client keys,\nclient control"}
+        lead="Custody is not a feature bolted onto a compliant platform. It is the starting assumption — the client holds the keys, and the platform is built around that fact."
+        mockupSrc="/FwalletS.png"
+        mockupAlt="Fuutura Wallet onboarding screen"
+        pills={[
+          "Multi-chain",
+          "Crypto & fiat",
+          "Self-custodial",
+          "Compliance built in",
+          "Fuutura IQ",
+        ]}
+        features={WALLET_FEATURES}
+        footnote="Everything a client holds sits in one clear view, with trade one tap away — and with the keys never leaving their possession."
       />
+      <WalletDilemmaSlide />
+      <RemittanceSlide />
 
-      {/* ── Project 05 — Digital24 ── */}
-      <ProjectSlide
-        id="slide-p5"
-        slideNumber="10"
-        title="Digital24"
-        description="A full-featured PR distribution platform streamlining how businesses create, manage, and fulfil media campaigns at scale — from guaranteed placements and newswire to SEO guest posting, journalist outreach, payments, and internal fulfilment."
-        domain="SaaS · Next.js · PostgreSQL · Stripe"
-        background="/digital24_premium_bg.png"
-        status="Delivered"
-        features={p5Features}
-        mockupSrc="/D24.png"
-        mockupType="laptop"
+      {/* ══ IV · MARKETS ══ */}
+      <SectionDivider
+        id="slide-div-markets"
+        folio="15"
+        index="04"
+        numeral="IV"
+        name="Markets"
+        contents={[
+          "Fuutura Trade",
+          "Risk Architecture",
+          "The Instrument Universe",
+        ]}
       />
-
-      {/* ── Project 06 — Intelizzz | U-Haul ── */}
-      <ProjectSlide
-        id="slide-p6"
-        slideNumber="11"
-        title="Intelizzz | U-Haul — Vehicle Intelligence"
-        description="Delivered an enterprise-grade vehicle intelligence and fleet management platform for Intelizzz, powering connected vehicle operations and tracking for enterprise fleet customers including U-Haul."
-        background="/intelizzz_premium_bg.png"
-        status="Delivered"
-        features={p6Features}
-        mockupSrcSplash="/IntelizzzS.png"
-        mockupSrc="/intelizzz.jpg"
+      <ProductShowcase
+        id="slide-trade"
+        folio="16"
+        field="white"
+        product="trade"
+        eyebrow="Fuutura Trade"
+        title={"A licensed,\nnon-custodial\nsynthetic exchange"}
+        lead="Compliant, on-chain-settled exposure to the world's assets — built specifically for the markets the incumbent rails do not reach."
+        mockupSrc="/FtradeS.png"
+        mockupAlt="Fuutura Trade platform screen"
+        pills={[
+          "40,000+ instruments",
+          "External reference pricing",
+          "No client assets held",
+          "On-chain settlement",
+        ]}
+        features={TRADE_FEATURES}
+        footnote="No shares to source, and no client assets to hold. Every position faces Fuutura, priced off a reference Fuutura cannot touch."
       />
+      <RiskSlide />
+      <InstrumentsSlide />
 
-      {/* ── Project 07 — Toybox ── */}
-      <ProjectSlide
-        id="slide-p7"
-        slideNumber="12"
-        title="Toybox — Automotive Concierge"
-        description="A premium automotive concierge ecosystem purpose-built for luxury vehicle owners — delivered across four integrated surfaces covering the full member, staff, and operational experience with native iOS and web applications."
-        domain="Luxury Auto · iOS Swift · Next.js"
-        background="/toybox_premium_bg.png"
-        status="Delivered"
-        features={p7Features}
-        mockupSrcSplash="/ToyBoxS.png"
-        mockupSrc="/toybox.jpg"
+      {/* ══ V · INFRASTRUCTURE ══ */}
+      <SectionDivider
+        id="slide-div-infra"
+        folio="19"
+        index="05"
+        numeral="V"
+        name="Infra"
+        contents={[
+          "Settlement & Chain",
+          "What It Unlocks",
+          "The Wider Ecosystem",
+          "Tokenisation, Two Ways",
+          "$FTRA",
+        ]}
       />
+      <ChainSlide />
+      <ChainEnablesSlide />
+      <WiderEcosystemSlide />
+      <TokenisationSlide />
+      <FtraSlide />
 
-      {/* ── 13 Why Origin One ── */}
-      <WhyChooseSlide />
-
-      {/* ── 14 Let's Connect ── */}
-      <ConnectSlide />
+      {/* ══ 25 ══ */}
+      <CloseSlide />
     </PresentationShell>
   );
 }

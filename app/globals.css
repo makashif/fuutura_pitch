@@ -1,8 +1,12 @@
 @import "tailwindcss/utilities";
 
 /* ============================================================
-   ORIGIN ONE — Design System v2 (Software Development House)
-   Pure monochromatic. Geometric. Engineering-grade precision.
+   FUUTURA — PRODUCT DECK DESIGN SYSTEM
+   Derived directly from "Fuutura – Brand Guidelines".
+
+   Ivory fields. Hairline rules. Inter, weight-driven hierarchy.
+   Deep blue anchors, sage green supports, sky blue accents.
+   Editorial, institutional, deliberate — a document, not a demo.
    ============================================================ */
 
 *,
@@ -14,83 +18,99 @@
 }
 
 :root {
-  /* ─── Palette — Pure Monochromatic B&W ─── */
-  --bg: #070707;
-  --surface: #111111;
-  --surface-2: #1c1c1c;
-  --surface-3: #282828;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --border-bright: rgba(255, 255, 255, 0.28);
+  /* ─── Brand palette — exact values from the guidelines ─── */
+  --blue: #0072AA;
+  /* Primary   */
+  --sage: #9CAF88;
+  /* Primary   */
+  --sky: #78ADD2;
+  /* Secondary */
+  --white: #FFFFFF;
+  --black: #000000;
+  --ivory: #E8E8DC;
+  /* Off-White */
+  --warm: #FFF9F0;
+  /* Warm White */
+  --gray: #D7D7D7;
+  /* Light Gray */
 
-  /* ─── Text ─── */
-  --tx-1: #f2f2f2;
-  --tx-2: #888888;
-  --tx-3: rgba(255, 255, 255, 0.30);
-  --tx-4: rgba(255, 255, 255, 0.12);
+  /* ─── Derived tones (shading only — never re-hued) ─── */
+  --blue-deep: #005C8A;
+  --blue-ink: #004266;
+  --blue-wash: rgba(0, 114, 170, 0.07);
+  --blue-line: rgba(0, 114, 170, 0.28);
+  --sage-wash: rgba(156, 175, 136, 0.16);
+  --sky-wash: rgba(120, 173, 210, 0.16);
 
-  /* ─── Accent — Cold Slate White ─── */
-  --accent: #e4e4e7;
-  --accent-dim: rgba(228, 228, 231, 0.10);
-  --accent-line: rgba(228, 228, 231, 0.30);
+  /* ─── Ink scale — black does the typography work ─── */
+  --ink-1: #111111;
+  /* headings          */
+  --ink-2: #33332F;
+  /* body              */
+  --ink-3: #6B6B63;
+  /* secondary / meta  */
+  --ink-4: #9A9A90;
+  /* tertiary / muted  */
 
-  /* ─── Fonts ─── */
-  --f-display: var(--font-inter), system-ui, sans-serif;
-  --f-body: var(--font-inter), system-ui, sans-serif;
-  --f-mono: var(--font-jetbrains), ui-monospace, "JetBrains Mono", monospace;
+  /* ─── Reversed ink, for blue / dark fields ─── */
+  --rev-1: #FFFFFF;
+  --rev-2: rgba(255, 255, 255, 0.82);
+  --rev-3: rgba(255, 255, 255, 0.58);
+  --rev-4: rgba(255, 255, 255, 0.34);
 
-  /* ─── Slide margins — calibrated for presentation feel ─── */
-  --px: clamp(2rem, min(6.5vw, 11.5vh), 7rem);
-  /* horizontal padding  */
-  --py: clamp(0.5rem, 4.5vh, 4rem);
-  /* vertical padding    */
+  /* ─── Hairlines — the brand's structural signature ─── */
+  --rule: rgba(0, 0, 0, 0.13);
+  --rule-mid: rgba(0, 0, 0, 0.26);
+  --rule-ink: rgba(0, 0, 0, 0.72);
+  --rule-rev: rgba(255, 255, 255, 0.34);
+  --rule-rev-soft: rgba(255, 255, 255, 0.18);
 
-  /* ─── Content max-width — fits elegantly at all presentation sizes ─── */
-  --slide-max: 1380px;
+  /* ─── Type ─── */
+  --f-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  --f-mono: var(--font-jetbrains), ui-monospace, monospace;
 
-  /* ─── Device mockup — fluid, height-driven ─── */
-  /* iPhone 15 Pro aspect ratio: ~9 : 18.5 → 0.487 */
-  --device-h: clamp(240px, 44svh, 450px);
-  --device-w: calc(var(--device-h) * 0.487);
+  /* ─── Slide geometry ─── */
+  --px: clamp(1.75rem, min(5.4vw, 9.5vh), 5.5rem);
+  --py: clamp(1.25rem, 4.4vh, 3.25rem);
+  --slide-max: 1420px;
+
+  /* Spine (rotated edge label) reserve — keeps content clear of it */
+  --spine: clamp(1.6rem, 3.2vw, 2.9rem);
 
   /* ─── Spacing scale ─── */
-  --sp-xs: clamp(0.2rem, 1vh, 0.4rem);
-  --sp-sm: clamp(0.4rem, 2vh, 0.8rem);
-  --sp-md: clamp(0.8rem, 4vh, 1.5rem);
-  --sp-lg: clamp(1.2rem, 6vh, 2.5rem);
-  --sp-xl: clamp(1.5rem, 10vh, 4rem);
+  --sp-1: clamp(0.2rem, 0.9vh, 0.38rem);
+  --sp-2: clamp(0.38rem, 1.7vh, 0.7rem);
+  --sp-3: clamp(0.6rem, 2.7vh, 1.1rem);
+  --sp-4: clamp(0.9rem, 4vh, 1.7rem);
+  --sp-5: clamp(1.3rem, 6vh, 2.6rem);
+  --sp-6: clamp(1.8rem, 8.5vh, 3.6rem);
+
+  /* ─── Radius — guidelines use generous, soft corners on cards ─── */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  /* ─── Device mockup — iPhone aspect 0.487 ─── */
+  --device-h: clamp(230px, 45svh, 460px);
+  --device-w: calc(var(--device-h) * 0.487);
 }
 
-button:not(.disabled),
-a {
-  @apply cursor-pointer;
-}
+/* ═══════════════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════════════ */
 
-button:hover:not(.disabled, .just-press),
-a:hover {
-  @apply transition-all;
-  @apply duration-200;
-  @apply scale-[1.02];
-}
-
-button:active:not(.disabled, .just-press),
-a:active {
-  @apply transition-all;
-  @apply duration-200;
-  @apply scale-95;
-}
-
-/* ─── Base ─── */
 html {
-  background: var(--bg);
+  background: var(--ivory);
 }
 
 body {
   height: 100svh;
   overflow: hidden;
-  background: transparent;
-  color: var(--tx-1);
-  font-family: var(--f-body);
+  background: var(--ivory);
+  color: var(--ink-2);
+  font-family: var(--f-sans);
+  font-feature-settings: "cv05" 1, "ss01" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -104,14 +124,23 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.14);
   border-radius: 99px;
+}
+
+::selection {
+  background: var(--blue);
+  color: #fff;
+}
+
+button:not(.disabled),
+a {
+  cursor: pointer;
 }
 
 /* ═══════════════════════════════════════════════════════
    DECK CONTAINER & SLIDE STRUCTURE
-   Every slide is exactly one viewport height.
-   Content is centered via .slide-content child.
+   Every slide is exactly one viewport. A4-landscape safe.
 ═══════════════════════════════════════════════════════ */
 
 #deck-container {
@@ -126,341 +155,857 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* center slide-content horizontally */
   justify-content: center;
-  /* center slide-content vertically   */
   overflow: hidden;
-  padding: var(--py) var(--px);
+  padding: var(--py) var(--px) var(--py) calc(var(--px) + var(--spine));
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  background: var(--ivory);
+  color: var(--ink-2);
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   color-adjust: exact;
 }
 
-/* ─── Slide content zone ───
-   The single safe-zone container for all slide content.
-   SlideWrapper injects this automatically.
-   Prevents content overflow via max-height guard.
-─── */
+/* ─── Field variants ─── */
+.slide--ivory {
+  background: var(--ivory);
+}
+
+.slide--white {
+  background: var(--white);
+}
+
+.slide--warm {
+  background: var(--warm);
+}
+
+.slide--blue {
+  background: var(--blue);
+  color: var(--rev-2);
+}
+
+.slide--ink {
+  background: #0E0E0E;
+  color: var(--rev-2);
+}
+
+/* Content safe zone */
 .slide-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: var(--slide-max);
-  /* Overflow guard: content cannot exceed the padded area height */
   max-height: calc(100svh - 2 * var(--py));
-  overflow: visible;
-  /* Changed from hidden to prevent shadow cropping */
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-}
-
-@keyframes cinematicBreath {
-  0% {
-    transform: scale(1.0);
-  }
-
-  100% {
-    transform: scale(1.05);
-  }
-}
-
-.slide-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  color-adjust: exact;
-  animation: cinematicBreath 30s alternate infinite ease-in-out;
-  transform-origin: center center;
-  will-change: transform;
-}
-
-.slide-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  color-adjust: exact;
 }
 
 /* ═══════════════════════════════════════════════════════
-   TYPOGRAPHY — Software House Edition
-   Space Grotesk: geometric, precise, tech-native
+   THE FRAME — vertical hairlines + rotated spine label.
+   This is the single most recognisable device in the
+   Fuutura brand book. Every slide carries it.
 ═══════════════════════════════════════════════════════ */
 
-/* Display — hero / closing */
-.t-hero {
-  font-family: var(--f-display);
-  font-size: clamp(2.6rem, min(6vw, 11vh), 7.5rem);
-  font-weight: 700;
-  line-height: 0.94;
-  letter-spacing: -0.02em;
-  color: var(--tx-1);
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
-/* Primary section headline */
+.frame-rule {
+  position: absolute;
+  top: var(--py);
+  bottom: var(--py);
+  width: 1px;
+  background: var(--rule-ink);
+}
+
+.frame-rule--l {
+  left: calc(var(--px) * 0.42);
+}
+
+.frame-rule--r {
+  right: calc(var(--px) * 0.42);
+}
+
+.slide--blue .frame-rule,
+.slide--ink .frame-rule {
+  background: var(--rule-rev);
+}
+
+/* Rotated spine label, reading bottom-to-top at the left edge.
+   writing-mode + rotate(180deg) is used rather than rotate(-90deg):
+   the box keeps a predictable width (one line height) so it can be
+   positioned against the margin without transform-origin maths. */
+.frame-spine {
+  position: absolute;
+  left: calc(var(--px) * 0.42 - 1.15rem);
+  bottom: var(--py);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  font-family: var(--f-sans);
+  font-size: clamp(0.42rem, 0.62vw, 0.56rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-1);
+}
+
+.slide--blue .frame-spine,
+.slide--ink .frame-spine {
+  color: var(--rev-1);
+}
+
+/* Page number, bottom-right */
+.frame-folio {
+  position: absolute;
+  right: calc(var(--px) * 0.42 + 0.75rem);
+  bottom: calc(var(--py) - 0.1rem);
+  font-family: var(--f-mono);
+  font-size: clamp(0.44rem, 0.64vw, 0.58rem);
+  letter-spacing: 0.14em;
+  color: var(--ink-4);
+}
+
+.slide--blue .frame-folio,
+.slide--ink .frame-folio {
+  color: var(--rev-4);
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION DIVIDER — the brand book's chapter page.
+   Vertical section name at the left edge, closed by an
+   inner rule, with the numeral in the open field.
+═══════════════════════════════════════════════════════ */
+
+.divider-name {
+  position: absolute;
+  left: calc(var(--px) * 0.42 + clamp(0.7rem, 1.6vw, 1.5rem));
+  bottom: var(--py);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  z-index: 3;
+  pointer-events: none;
+  font-family: var(--f-sans);
+  font-size: clamp(2.1rem, min(5.4vw, 10vh), 5.4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--white);
+}
+
+.divider-rule {
+  position: absolute;
+  left: calc(var(--px) * 0.42 + clamp(3.4rem, 8vw, 7.4rem));
+  top: var(--py);
+  bottom: var(--py);
+  width: 1px;
+  background: var(--rule-rev);
+  z-index: 3;
+}
+
+.divider-body {
+  z-index: 4;
+  padding-left: clamp(2.2rem, 6vw, 5.5rem);
+}
+
+/* ═══════════════════════════════════════════════════════
+   TYPOGRAPHY — Inter. Hierarchy from weight and scale only.
+═══════════════════════════════════════════════════════ */
+
+/* Cover / closing display */
+.t-display {
+  font-family: var(--f-sans);
+  font-size: clamp(2.4rem, min(6.4vw, 12vh), 8rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: var(--ink-1);
+}
+
+/* Section-divider numeral (roman) */
+.t-numeral {
+  font-family: var(--f-sans);
+  font-size: clamp(4rem, min(13vw, 26vh), 15rem);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  color: var(--rev-1);
+}
+
+/* Big slide title — the brand's stacked uppercase headline */
+.t-h1 {
+  font-family: var(--f-sans);
+  font-size: clamp(1.65rem, min(3.9vw, 7.4vh), 4.1rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+  color: var(--ink-1);
+}
+
+/* Slide title, sentence case */
 .t-h2 {
-  font-family: var(--f-display);
-  font-size: clamp(1.8rem, min(4vw, 7.5vh), 5rem);
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.015em;
-  color: var(--tx-1);
+  font-family: var(--f-sans);
+  font-size: clamp(1.3rem, min(2.9vw, 5.4vh), 2.9rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.026em;
+  color: var(--ink-1);
 }
 
 /* Sub-headline */
 .t-h3 {
-  font-family: var(--f-display);
-  font-size: clamp(1.4rem, min(2.6vw, 4.8vh), 2.8rem);
+  font-family: var(--f-sans);
+  font-size: clamp(1rem, min(1.85vw, 3.4vh), 1.6rem);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: var(--tx-1);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: var(--ink-1);
 }
 
 /* Card / item title */
 .t-h4 {
-  font-family: var(--f-display);
-  font-size: clamp(0.85rem, min(1.25vw, 2.4vh), 1.1rem);
+  font-family: var(--f-sans);
+  font-size: clamp(0.76rem, min(1.06vw, 1.98vh), 1rem);
   font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--tx-1);
+  line-height: 1.28;
+  letter-spacing: -0.012em;
+  color: var(--ink-1);
 }
 
-/* Eyebrow label */
-.t-label {
-  font-family: var(--f-body);
-  font-size: clamp(0.52rem, min(0.76vw, 1.5vh), 0.62rem);
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--tx-3);
+/* Smallest titling step */
+.t-h5 {
+  font-family: var(--f-sans);
+  font-size: clamp(0.66rem, min(0.9vw, 1.7vh), 0.83rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.006em;
+  color: var(--ink-1);
+}
+
+/* Lead paragraph — sits under a title */
+.t-lead {
+  font-family: var(--f-sans);
+  font-size: clamp(0.82rem, min(1.24vw, 2.32vh), 1.14rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.012em;
+  color: var(--ink-2);
 }
 
 /* Body copy */
 .t-body {
-  font-family: var(--f-body);
-  font-size: clamp(0.82rem, min(1.1vw, 2.1vh), 0.96rem);
+  font-family: var(--f-sans);
+  font-size: clamp(0.7rem, min(0.98vw, 1.84vh), 0.9rem);
   font-weight: 400;
-  line-height: 1.75;
-  color: var(--tx-2);
+  line-height: 1.62;
+  color: var(--ink-2);
 }
 
-/* Small body */
+/* Small body — dense grids */
 .t-sm {
-  font-family: var(--f-body);
-  font-size: clamp(0.72rem, min(0.98vw, 1.9vh), 0.82rem);
+  font-family: var(--f-sans);
+  font-size: clamp(0.62rem, min(0.85vw, 1.6vh), 0.79rem);
   font-weight: 400;
-  line-height: 1.68;
-  color: var(--tx-2);
+  line-height: 1.54;
+  color: var(--ink-3);
 }
 
-/* Monospace label */
+/* Micro copy — footnotes, captions */
+.t-xs {
+  font-family: var(--f-sans);
+  font-size: clamp(0.55rem, min(0.74vw, 1.4vh), 0.68rem);
+  font-weight: 400;
+  line-height: 1.48;
+  color: var(--ink-3);
+}
+
+/* Eyebrow / kicker label */
+.t-label {
+  font-family: var(--f-sans);
+  font-size: clamp(0.5rem, min(0.7vw, 1.32vh), 0.62rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-1);
+}
+
+.t-label--soft {
+  font-weight: 600;
+  color: var(--ink-4);
+  letter-spacing: 0.18em;
+}
+
+/* Mono meta — folio, codes, units */
 .t-mono {
   font-family: var(--f-mono);
-  font-size: clamp(0.5rem, min(0.72vw, 1.4vh), 0.6rem);
-  letter-spacing: 0.1em;
-  color: var(--tx-4);
+  font-size: clamp(0.5rem, min(0.68vw, 1.28vh), 0.6rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
 }
 
-/* Accent text */
-.t-accent {
-  color: var(--accent);
+/* Statistic figure */
+.t-stat {
+  font-family: var(--f-sans);
+  font-size: clamp(1.5rem, min(3.2vw, 6vh), 3.2rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-1);
+}
+
+.t-stat--sm {
+  font-size: clamp(1.1rem, min(2.1vw, 3.9vh), 2rem);
+}
+
+/* ─── Colour applications (per the Colour Usage page) ─── */
+.c-blue {
+  color: var(--blue);
+}
+
+.c-sage {
+  color: #7C9169;
+}
+
+/* darkened sage — legible on light fields */
+.c-sky {
+  color: #4E86AE;
+}
+
+/* darkened sky — legible on light fields */
+.c-ink {
+  color: var(--ink-1);
+}
+
+.c-mute {
+  color: var(--ink-3);
+}
+
+.c-rev {
+  color: var(--rev-1);
+}
+
+.c-rev-2 {
+  color: var(--rev-2);
+}
+
+.c-rev-3 {
+  color: var(--rev-3);
+}
+
+/* On blue / dark fields every text class reverses */
+.slide--blue .t-h1,
+.slide--blue .t-h2,
+.slide--blue .t-h3,
+.slide--blue .t-h4,
+.slide--blue .t-h5,
+.slide--blue .t-display,
+.slide--blue .t-stat,
+.slide--blue .t-label,
+.slide--ink .t-h1,
+.slide--ink .t-h2,
+.slide--ink .t-h3,
+.slide--ink .t-h4,
+.slide--ink .t-h5,
+.slide--ink .t-display,
+.slide--ink .t-stat,
+.slide--ink .t-label {
+  color: var(--rev-1);
+}
+
+.slide--blue .t-lead,
+.slide--blue .t-body,
+.slide--ink .t-lead,
+.slide--ink .t-body {
+  color: var(--rev-2);
+}
+
+.slide--blue .t-sm,
+.slide--blue .t-xs,
+.slide--blue .t-mono,
+.slide--ink .t-sm,
+.slide--ink .t-xs,
+.slide--ink .t-mono {
+  color: var(--rev-3);
 }
 
 /* ═══════════════════════════════════════════════════════
-   LAYOUT UTILITIES
+   LAYOUT PRIMITIVES
 ═══════════════════════════════════════════════════════ */
 
-/* Two-column editorial */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-  gap: clamp(2rem, min(4.5vw, 8vh), 5.5rem);
-  align-items: start;
-}
-
-/* Auto-fit card grid (3–4 col) */
-.grid-auto {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 22vw, 300px), 1fr));
-  gap: 1px;
-}
-
-/* Auto-fit large card grid (2–3 col) */
-.grid-auto-lg {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 25vw, 340px), 1fr));
-  gap: 1px;
-  background: var(--border);
-}
-
-/* 4-column pillar grid */
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-}
-
-.process-strip {
-  grid-template-columns: repeat(6, 1fr);
-}
-
-/* Stack — vertical flex */
 .stack {
   display: flex;
   flex-direction: column;
 }
 
-.stack-xs {
-  gap: var(--sp-xs);
-}
-
-.stack-sm {
-  gap: var(--sp-sm);
-}
-
-.stack-md {
-  gap: var(--sp-md);
-}
-
-/* Project Slide Layout */
-.project-slide-row {
+.row {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.g-1 {
+  gap: var(--sp-1);
+}
+
+.g-2 {
+  gap: var(--sp-2);
+}
+
+.g-3 {
+  gap: var(--sp-3);
+}
+
+.g-4 {
+  gap: var(--sp-4);
+}
+
+.g-5 {
+  gap: var(--sp-5);
+}
+
+.g-6 {
+  gap: var(--sp-6);
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.ai-e {
   align-items: flex-end;
-  width: 100%;
-  row-gap: clamp(1rem, 6vh, 3rem);
 }
 
-.project-slide-left {
-  flex-shrink: 0;
-  width: 100%;
-  flex: 1 1 500px;
-  max-width: 600px;
+.ai-s {
+  align-items: flex-start;
 }
 
-.project-slide-right {
-  flex: 1 1 400px;
-  display: flex;
+.jc-c {
   justify-content: center;
-  padding-left: clamp(1rem, 2vw, 3rem);
 }
 
-/* Thin rule */
-.rule {
-  display: block;
-  width: 36px;
-  height: 1px;
-  background: var(--border-strong);
-  flex-shrink: 0;
+.jc-b {
+  justify-content: space-between;
 }
 
-.rule-full {
+.jc-e {
+  justify-content: flex-end;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.flex-1 {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── SPLIT: the brand book's signature two-zone layout.
+   Left = titling column, right = content field.            ─── */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 4.4vw, 4.5rem);
+  align-items: start;
   width: 100%;
-  background: var(--border);
 }
 
-.card {
-  border: 1px solid transparent;
-  padding: clamp(0.9rem, 1.8vh, 1.5rem) clamp(0.9rem, 1.6vw, 1.4rem);
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-  color-adjust: exact;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, box-shadow, background-color, border-color;
+.split--even {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
-.card:hover {
-  background: var(--border);
-  border-color: var(--border-strong);
-  transform: translateY(-4px) scale(1.01);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+.split--wide {
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 2.5fr);
 }
 
-.portfolio-card {
-  cursor: pointer;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  padding: clamp(0.6rem, 1.2vh, 1rem);
+.split--tight {
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+/* Column grids */
+.cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cols-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.cols-5 {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.cols-6 {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+/* Fills the slide's usable height — used by pages that push a base
+   element (a label, a numeral) down to the foot of the field.
+   Collapses to natural height on mobile, where slides scroll. */
+.fill-slide {
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 2 * var(--py));
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, box-shadow, background-color, border-color;
 }
 
-.portfolio-card:hover {
-  background: var(--surface-2);
-  border-color: var(--border-strong);
-  transform: translateY(-4px) scale(1.01);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
-}
-
-.tech-pill {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, box-shadow, background-color, border-color;
-}
-
-.tech-pill:hover {
-  background: var(--surface-2) !important;
-  border-color: var(--border-strong) !important;
-  transform: translateY(-2px) scale(1.03);
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.08);
-}
-
-/* Number badge */
-.badge-num {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ─── Rules ─── */
+.rule-h {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
   flex-shrink: 0;
-  font-family: var(--f-mono);
-  font-size: 0.5rem;
-  color: var(--tx-4);
-  letter-spacing: 0.06em;
 }
 
-/* Tech badge — for tech stack chips */
-.tech-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.38rem 0.75rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  font-family: var(--f-mono);
-  font-size: 0.54rem;
-  letter-spacing: 0.08em;
-  color: var(--tx-3);
-  white-space: nowrap;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+.rule-h--ink {
+  background: var(--rule-ink);
+  height: 2px;
+}
+
+.rule-h--mid {
+  background: var(--rule-mid);
+}
+
+.rule-v {
+  width: 1px;
+  align-self: stretch;
+  background: var(--rule);
+  flex-shrink: 0;
+}
+
+.rule-tick {
+  width: 30px;
+  height: 2px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+.slide--blue .rule-h,
+.slide--ink .rule-h {
+  background: var(--rule-rev-soft);
+}
+
+.slide--blue .rule-h--ink,
+.slide--ink .rule-h--ink {
+  background: var(--rule-rev);
+}
+
+.slide--blue .rule-v,
+.slide--ink .rule-v {
+  background: var(--rule-rev-soft);
+}
+
+.slide--blue .rule-tick,
+.slide--ink .rule-tick {
+  background: var(--white);
 }
 
 /* ═══════════════════════════════════════════════════════
-   DEVICE MOCKUP — iPhone 15 Pro Style
-   All dimensions are calc()-derived from CSS variables.
-   No fixed-pixel values — scales proportionally.
+   CARDS & PANELS — rounded, quiet, tonal.
+═══════════════════════════════════════════════════════ */
+
+.card {
+  border-radius: var(--r-lg);
+  padding: clamp(0.7rem, 2.1vh, 1.35rem) clamp(0.75rem, 1.5vw, 1.4rem);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.card--ivory {
+  background: var(--ivory);
+}
+
+.card--warm {
+  background: var(--warm);
+}
+
+.card--gray {
+  background: #ECECEC;
+}
+
+.card--blue {
+  background: var(--blue);
+}
+
+.card--sage {
+  background: var(--sage);
+}
+
+.card--sky {
+  background: var(--sky);
+}
+
+.card--outline {
+  background: transparent;
+  border: 1px solid var(--rule-mid);
+}
+
+.card--ink-outline {
+  background: transparent;
+  border: 1.5px solid var(--ink-1);
+}
+
+.card--blue-wash {
+  background: var(--blue-wash);
+}
+
+/* Reversed text inside solid colour cards */
+.card--blue .t-h3,
+.card--blue .t-h4,
+.card--blue .t-h5,
+.card--blue .t-stat,
+.card--blue .t-label {
+  color: var(--rev-1);
+}
+
+.card--blue .t-body,
+.card--blue .t-sm,
+.card--blue .t-xs {
+  color: var(--rev-2);
+}
+
+/* Sage & sky are light — the guidelines pair them with dark text */
+.card--sage .t-h3,
+.card--sage .t-h4,
+.card--sage .t-h5,
+.card--sage .t-stat,
+.card--sage .t-label,
+.card--sky .t-h3,
+.card--sky .t-h4,
+.card--sky .t-h5,
+.card--sky .t-stat,
+.card--sky .t-label {
+  color: var(--ink-1);
+}
+
+.card--sage .t-body,
+.card--sage .t-sm,
+.card--sage .t-xs,
+.card--sky .t-body,
+.card--sky .t-sm,
+.card--sky .t-xs {
+  color: #23231F;
+}
+
+/* Panel — a large rounded content field, as on the type/logo pages */
+.panel {
+  border-radius: var(--r-xl);
+  background: var(--ivory);
+  padding: clamp(1rem, 3vh, 2.2rem) clamp(1.1rem, 2.4vw, 2.4rem);
+}
+
+.panel--white {
+  background: var(--white);
+}
+
+/* Hairline-divided list — no boxes, pure editorial */
+.list-ruled>*+* {
+  border-top: 1px solid var(--rule);
+}
+
+.list-ruled>* {
+  padding-top: clamp(0.42rem, 1.5vh, 0.8rem);
+  padding-bottom: clamp(0.42rem, 1.5vh, 0.8rem);
+}
+
+.list-ruled>*:first-child {
+  padding-top: 0;
+}
+
+.list-ruled>*:last-child {
+  padding-bottom: 0;
+}
+
+.slide--blue .list-ruled>*+* {
+  border-top-color: var(--rule-rev-soft);
+}
+
+/* Column-ruled grid — vertical hairlines between columns */
+.ruled-cols>*+* {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(0.6rem, 1.5vw, 1.4rem);
+}
+
+.ruled-cols>* {
+  padding-right: clamp(0.6rem, 1.5vw, 1.4rem);
+}
+
+.ruled-cols>*:last-child {
+  padding-right: 0;
+}
+
+.slide--blue .ruled-cols>*+* {
+  border-left-color: var(--rule-rev-soft);
+}
+
+/* ═══════════════════════════════════════════════════════
+   BADGES, PILLS & MARKS
+═══════════════════════════════════════════════════════ */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  border-radius: 99px;
+  padding: 0.3em 0.85em;
+  font-family: var(--f-sans);
+  font-size: clamp(0.5rem, min(0.68vw, 1.28vh), 0.6rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pill--blue {
+  background: var(--blue);
+  color: #fff;
+}
+
+.pill--sage {
+  background: var(--sage);
+  color: #1B1B18;
+}
+
+.pill--sky {
+  background: var(--sky);
+  color: #14212B;
+}
+
+.pill--outline {
+  border: 1px solid var(--rule-mid);
+  color: var(--ink-2);
+}
+
+.pill--rev {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.pill--ink {
+  background: var(--ink-1);
+  color: #fff;
+}
+
+/* Numbered index chip — used across process strips */
+.chip-n {
+  width: clamp(1.35rem, 2.5vh, 1.85rem);
+  height: clamp(1.35rem, 2.5vh, 1.85rem);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--f-mono);
+  font-size: clamp(0.5rem, 1.2vh, 0.62rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: var(--blue);
+  color: #fff;
+}
+
+.chip-n--outline {
+  background: transparent;
+  border: 1px solid var(--rule-mid);
+  color: var(--ink-2);
+}
+
+.chip-n--sage {
+  background: var(--sage);
+  color: #1B1B18;
+}
+
+.chip-n--rev {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* Hexagonal product-mark holder — mirrors the icon system */
+.hex {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hex img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Directional arrow used in flow diagrams */
+.arrow-x {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-4);
+  font-size: clamp(0.7rem, 1.6vh, 1rem);
+  line-height: 1;
+}
+
+.slide--blue .arrow-x {
+  color: var(--rev-3);
+}
+
+/* ═══════════════════════════════════════════════════════
+   COMPARISON — traditional vs Fuutura (used twice)
+═══════════════════════════════════════════════════════ */
+
+.cmp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(0.75rem, 2.4vw, 2.4rem);
+  align-items: center;
+}
+
+.cmp-mark {
+  width: clamp(0.95rem, 1.9vh, 1.25rem);
+  height: clamp(0.95rem, 1.9vh, 1.25rem);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: clamp(0.48rem, 1vh, 0.62rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cmp-mark--neg {
+  background: rgba(0, 0, 0, 0.07);
+  color: var(--ink-4);
+}
+
+.cmp-mark--pos {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════
+   DEVICE MOCKUP — clean titanium frame, brand-neutral.
+   Photography style page: phones on quiet, light grounds.
 ═══════════════════════════════════════════════════════ */
 
 .device-outer {
@@ -471,879 +1016,281 @@ body {
 }
 
 .device-body {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 60%, #222 100%);
-  /* Border radius: ~20% of device width */
-  border-radius: calc(var(--device-w) * 0.20);
-  border: 1.5px solid rgba(255, 255, 255, 0.11);
+  border-radius: calc(var(--device-h) * 0.062);
+  background: linear-gradient(150deg, #3C3C3E 0%, #1A1A1C 42%, #2E2E30 100%);
+  padding: calc(var(--device-h) * 0.0085);
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.9),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.6),
-    0 clamp(16px, 3vh, 40px) clamp(32px, 6vh, 80px) rgba(0, 0, 0, 0.75),
-    0 clamp(4px, 0.8vh, 8px) clamp(12px, 2.5vh, 32px) rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  position: relative;
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 calc(var(--device-h) * 0.05) calc(var(--device-h) * 0.11) rgba(0, 0, 0, 0.19),
+    0 calc(var(--device-h) * 0.012) calc(var(--device-h) * 0.03) rgba(0, 0, 0, 0.12);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-/* Screen — inset ~3.5% of device width */
 .device-screen {
-  position: absolute;
-  inset: calc(var(--device-w) * 0.033);
-  border-radius: calc(var(--device-w) * 0.175);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--device-h) * 0.055);
   overflow: hidden;
   background: #000;
 }
 
 .device-screen img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  object-position: top center;
-  display: block;
 }
 
-/* Dynamic Island — centered via left calc (no transform needed for print) */
-.device-island {
-  position: absolute;
-  /* 
-    Island width = 40.8% of device-w
-    Center it: left = 50% - 20.4% = 29.6% 
-  */
-  left: calc(var(--device-w) * 0.296);
-  top: calc(var(--device-h) * 0.028);
-  width: calc(var(--device-w) * 0.408);
-  height: calc(var(--device-h) * 0.059);
-  background: #000;
-  border-radius: calc(var(--device-h) * 0.03);
-  z-index: 10;
-}
-
-/* Side buttons — proportional to device height */
 .device-btn {
   position: absolute;
-  background: linear-gradient(90deg, #1e1e1e, #2a2a2a);
+  background: #2A2A2C;
   border-radius: 2px;
-  width: 3px;
 }
 
 .device-vol-up {
-  left: -3px;
-  top: calc(var(--device-h) * 0.194);
-  height: calc(var(--device-h) * 0.064);
+  left: calc(var(--device-w) * -0.011);
+  top: 22%;
+  width: calc(var(--device-w) * 0.012);
+  height: 7%;
 }
 
 .device-vol-down {
-  left: -3px;
-  top: calc(var(--device-h) * 0.283);
-  height: calc(var(--device-h) * 0.064);
+  left: calc(var(--device-w) * -0.011);
+  top: 32%;
+  width: calc(var(--device-w) * 0.012);
+  height: 7%;
 }
 
 .device-power {
-  right: -3px;
-  top: calc(var(--device-h) * 0.226);
-  height: calc(var(--device-h) * 0.117);
+  right: calc(var(--device-w) * -0.011);
+  top: 26%;
+  width: calc(var(--device-w) * 0.012);
+  height: 11%;
 }
 
-/* Subtle glow reflection below device */
-.device-outer::after {
-  content: '';
+/* Plinth — the soft ground shadow used in the brand's product shots */
+.device-plinth {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.device-plinth::after {
+  content: "";
   position: absolute;
-  bottom: calc(var(--device-h) * -0.06);
+  bottom: -2%;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(var(--device-w) * 0.67);
-  height: calc(var(--device-h) * 0.08);
-  background: rgba(228, 228, 231, 0.06);
+  width: 130%;
+  height: 8%;
   border-radius: 50%;
-  filter: blur(clamp(8px, 1.5vh, 16px));
-  pointer-events: none;
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   EXTENSION MOCKUP — CSS ONLY
-   ─────────────────────────────────────────────────────────────────── */
-:root {
-  --ext-h: clamp(225px, 40svh, 415px);
-  --ext-w: calc(var(--ext-h) * 0.65);
-  /* typical extension width */
-}
-
-.ext-outer {
-  position: relative;
-  width: var(--ext-w);
-  height: var(--ext-h);
-  flex-shrink: 0;
-  border-radius: calc(var(--ext-w) * 0.04);
-  background: #111;
-  border: 1.5px solid rgba(255, 255, 255, 0.11);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.9),
-    0 clamp(16px, 3vh, 40px) clamp(32px, 6vh, 80px) rgba(0, 0, 0, 0.75),
-    0 clamp(4px, 0.8vh, 8px) clamp(12px, 2.5vh, 32px) rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.ext-header {
-  height: 24px;
-  background: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 60%, #222 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  gap: 6px;
-}
-
-.ext-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.ext-body {
-  flex: 1;
-  position: relative;
-  background: #000;
-  overflow: hidden;
-}
-
-.ext-body img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-
-/* Subtle glow reflection below device */
-.ext-outer::after {
-  content: '';
-  position: absolute;
-  bottom: calc(var(--ext-h) * -0.06);
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--ext-w) * 0.8);
-  height: calc(var(--ext-h) * 0.08);
-  background: rgba(228, 228, 231, 0.04);
-  border-radius: 50%;
-  filter: blur(clamp(8px, 1.5vh, 16px));
-  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 70%);
   z-index: -1;
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   LAPTOP MOCKUP — CSS ONLY
-   ─────────────────────────────────────────────────────────────────── */
-:root {
-  --laptop-w: clamp(300px, min(38vw, 68vh), 550px);
-  --laptop-h: calc(var(--laptop-w) * 0.64);
+/* ═══════════════════════════════════════════════════════
+   COVER / DIVIDER SPECIALS
+═══════════════════════════════════════════════════════ */
+
+.lockup {
+  width: clamp(200px, 34vw, 520px);
+  height: auto;
 }
 
-.laptop-outer {
-  position: relative;
-  width: var(--laptop-w);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
+.lockup--sm {
+  width: clamp(120px, 15vw, 210px);
 }
 
-.laptop-lid {
-  position: relative;
-  width: 90%;
-  height: var(--laptop-h);
-  background: linear-gradient(150deg, #2a2a2a 0%, #1a1a1a 60%, #222 100%);
-  border-radius: calc(var(--laptop-w) * 0.02) calc(var(--laptop-w) * 0.02) 0 0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: none;
-  box-shadow:
-    0 -1px 2px rgba(255, 255, 255, 0.05),
-    0 0 0 1px rgba(0, 0, 0, 0.8);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: calc(var(--laptop-w) * 0.012) calc(var(--laptop-w) * 0.012) calc(var(--laptop-w) * 0.035) calc(var(--laptop-w) * 0.012);
-}
-
-.laptop-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.laptop-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-
-.laptop-notch {
+/* Hexagon field pattern for the cover — geometric, quiet */
+.hex-field {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(var(--laptop-w) * 0.12);
-  height: calc(var(--laptop-w) * 0.025);
-  background: #000;
-  border-bottom-left-radius: calc(var(--laptop-w) * 0.005);
-  border-bottom-right-radius: calc(var(--laptop-w) * 0.005);
-  z-index: 10;
-}
-
-.laptop-base {
-  position: relative;
-  width: 100%;
-  height: calc(var(--laptop-w) * 0.025);
-  background: linear-gradient(to bottom, #555, #222);
-  border-radius: 0 0 calc(var(--laptop-w) * 0.03) calc(var(--laptop-w) * 0.03);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.3),
-    0 clamp(8px, 2vh, 20px) clamp(16px, 4vh, 40px) rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  z-index: 2;
-}
-
-.laptop-base-indent {
-  position: absolute;
-  top: 0;
-  width: calc(var(--laptop-w) * 0.18);
-  height: calc(var(--laptop-w) * 0.006);
-  background: #111;
-  border-radius: 0 0 calc(var(--laptop-w) * 0.005) calc(var(--laptop-w) * 0.005);
-}
-
-/* Add PDF specific rules for laptop if needed */
-body.pdf-export-active .laptop-base {
-  box-shadow: none !important;
-}
-
-.mockup-positioning {
-  position: relative;
-  top: -6vh;
-}
-
-body.pdf-export-active .mockup-positioning {
-  top: 0 !important;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 /* ═══════════════════════════════════════════════════════
-   PORTFOLIO GALLERY
+   ANIMATION — restrained. Motion should feel considered.
 ═══════════════════════════════════════════════════════ */
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border);
-}
-
-.portfolio-card {
-  background: var(--surface);
-  padding: clamp(1rem, 2vh, 1.6rem) clamp(0.9rem, 1.6vw, 1.4rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.7rem, 1.4vh, 1.2rem);
-  transition: background 0.2s;
-  cursor: default;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-
-.portfolio-card:hover {
-  background: var(--surface-2);
-}
-
-/* Mini device thumbnail — constrained height so it fits the card grid */
-.portfolio-mini-device {
-  width: 100%;
-  height: clamp(100px, 22svh, 195px);
-  background: #1a1a1a;
-  border-radius: clamp(8px, 1.4vw, 14px);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  position: relative;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-
-.portfolio-mini-device img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  opacity: 0.85;
-}
-
-/* ═══════════════════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-═══════════════════════════════════════════════════════ */
-
-/* 1100px — tighten to 2-column pillar grids */
-@media screen and (max-width: 1200px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .process-strip {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 960px — reduce device size slightly, collapse 2-col grids */
-@media screen and (max-width: 960px) {
-  :root {
-    --device-h: clamp(200px, 35svh, 300px);
-    --ext-h: clamp(180px, 32svh, 280px);
-    --laptop-w: clamp(260px, min(70vw, 80vh), 400px);
-    --px: clamp(1.5rem, min(5vw, 9vh), 3.5rem);
-    --py: clamp(0.5rem, 6vh, 4rem);
-  }
-
-  .grid-2 {
-    grid-template-columns: 1fr;
-    gap: var(--sp-md);
-  }
-
-  /* SCROLLABLE READING MODE ON MOBILE */
-  #deck-container {
-    scroll-snap-type: none !important;
-  }
-
-  .slide {
-    height: auto;
-    min-height: 100svh;
-    overflow: visible;
-    justify-content: flex-start;
-    scroll-snap-align: none !important;
-  }
-
-  .slide-content {
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  .project-slide-right {
-    padding-left: 0 !important;
-    padding-top: 3rem !important;
-  }
-
-  .about-values-empty {
-    display: none !important;
-  }
-  
-  .about-values-header {
-    gap: 0 !important;
-  }
-}
-
-/* 640px — mobile fallback */
-@media screen and (max-width: 640px) {
-  :root {
-    --device-h: clamp(180px, 30svh, 250px);
-    --ext-h: clamp(160px, 28svh, 230px);
-    --laptop-w: clamp(220px, min(85vw, 95vh), 300px);
-    --px: 1.25rem;
-    --py: clamp(0.5rem, 5vh, 2.5rem);
-  }
-
-  .grid-4 {
-    grid-template-columns: 1fr;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .process-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ═══════════════════════════════════════════════════════
-   KEYFRAMES
-═══════════════════════════════════════════════════════ */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
 
   to {
     opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes bounce {
-
-  0%,
-  100% {
     transform: translateY(0);
-    opacity: .35;
-  }
-
-  50% {
-    transform: translateY(5px);
-    opacity: .8;
   }
 }
 
-@keyframes scanLine {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-@keyframes gridPulse {
-
-  0%,
-  100% {
-    opacity: 0.03;
-  }
-
-  50% {
-    opacity: 0.06;
-  }
-}
-
-@keyframes gridDrift {
-  0% {
-    background-position: 0px 0px;
-  }
-
-  100% {
-    background-position: 0px 60px;
-  }
-}
-
-.app-grid-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  /* Render above the slide backgrounds, but under the slide-content */
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 15%, transparent 100%);
-  animation: gridDrift 40s linear infinite;
-  mix-blend-mode: overlay;
-}
-
-/* ═══════════════════════════════════════════════════════
-   REDUCED MOTION
-═══════════════════════════════════════════════════════ */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
 /* ═══════════════════════════════════════════════════════
-   PDF EXPORT — Exact A4 Dimensions
-   ─────────────────────────────────────────────────────────────────
-   Forces the exact 1.414 aspect ratio during the html2canvas
-   capture to completely prevent cropping or white spaces.
+   PDF EXPORT MODE
+   Locks the deck to a fixed A4-landscape frame so
+   html2canvas captures identical geometry every time.
 ═══════════════════════════════════════════════════════ */
+
 body.pdf-export-active {
-  overflow: hidden !important;
   pointer-events: none !important;
-  /* Lock viewport-based variables to the exact 1380x976 PDF resolution */
-  --device-h: calc(976px * 0.45) !important;
-  --device-w: calc(var(--device-h) * 0.487) !important;
-  --laptop-w: calc(1380px * 0.38) !important;
-  --laptop-h: calc(var(--laptop-w) * 0.64) !important;
-  --ext-h: calc(976px * 0.40) !important;
-  --ext-w: calc(var(--ext-h) * 0.65) !important;
+}
+
+body.pdf-export-active #deck-container {
+  scroll-snap-type: none !important;
 }
 
 body.pdf-export-active .slide {
   width: 1380px !important;
   height: 976px !important;
-  /* Exactly 1380 / (297/210) */
-  max-width: 1380px !important;
-  max-height: 976px !important;
-  min-height: 976px !important;
-  margin: 0 auto !important;
-  flex: none !important;
-  justify-content: center !important;
+  /* A4 landscape ratio 1.414 */
 }
 
-body.pdf-export-active .slide-content {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  height: 100% !important;
-  max-height: calc(976px - 2 * var(--py)) !important;
-  overflow: visible !important;
+body.pdf-export-active * {
+  animation: none !important;
+  transition: none !important;
 }
 
-/* Hide heavy shadows and blurs during PDF export to prevent html2canvas artifacts */
-body.pdf-export-active .device-outer::after {
-  display: none !important;
-}
-
-body.pdf-export-active .device-body {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.9) !important;
-}
-
-@media print {
-
-  /* ════════════════════════════════════════════════════════════════
-     @page  — A4 landscape with deterministic 12.7mm margins (0.5in)
-     Locking margins here makes the zoom math always correct.
-     Usable printable area: (297 - 25.4)mm × (210 - 25.4)mm
-                          = 271.6mm × 184.6mm
-     At 96dpi CSS pixels:   1026px   ×  698px
-  ════════════════════════════════════════════════════════════════ */
-  @page {
-    size: A4 landscape;
-    margin: 12.7mm;
-  }
-
-  /* ── CSS variable overrides for compact print layout ── */
-  :root {
-    --px: 3.5rem !important;
-    --py: 2.5rem !important;
-    --device-h: 340px !important;
-    --device-w: calc(340px * 0.487) !important;
-  }
-
-  /* ── Hide all interactive chrome ── */
-  .no-print,
-  nav[aria-label="Slide navigation"],
-  button {
-    display: none !important;
-  }
-
-  /* ── Document flow reset ── */
-  html,
-  body {
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    background: #070707 !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* ── Scroll container: release from viewport ── */
-  #deck-container {
-    height: auto !important;
-    width: 100% !important;
-    overflow: visible !important;
-    scroll-snap-type: none !important;
-    display: block !important;
-  }
-
-  /* ── Subtle grid bg: disable animation, keep texture ── */
-  .app-grid-bg {
-    animation: none !important;
-    mix-blend-mode: normal !important;
-    mask-image: none !important;
-    opacity: 0.06 !important;
-  }
-
-  /* ── Defeat responsive grid breakpoints in print ── */
-  .grid-4 {
-    grid-template-columns: repeat(4, 1fr) !important;
-  }
-
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-
-  .grid-2 {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  .dual-layout {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     .slide — ONE PRINTED PAGE PER SLIDE
-     ────────────────────────────────────────────────────────────────
-     Physical dimensions = usable print area after 12.7mm margins.
-     The slide itself has NO padding — padding lives inside
-     .slide-content (via --px / --py CSS vars).
-  ════════════════════════════════════════════════════════════════ */
-  .slide {
-    /* Exact usable A4 landscape area after 12.7mm margins */
-    width: 271.6mm !important;
-    height: 184.6mm !important;
-    min-height: unset !important;
-    max-height: unset !important;
-    box-sizing: border-box !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    /* Page breaks */
-    break-after: page !important;
-    page-break-after: always !important;
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-    /* Layout */
-    position: relative !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-    scroll-snap-align: none !important;
-    /* Color */
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  .slide:last-of-type {
-    break-after: avoid !important;
-    page-break-after: avoid !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     .slide-content — ZOOM-COMPENSATED INNER CONTAINER
-     ────────────────────────────────────────────────────────────────
-     Design canvas: 1380px wide (screen design width)
-     Print target:  1026px (271.6mm at 96dpi)
-
-     zoom = 1026 / 1380 = 0.7435 → use 0.743
-
-     Height (zoom-compensated):
-       Target height = 698px (184.6mm at 96dpi)
-       Unzoomed height = 698 / 0.743 = 939px
-
-     After zoom applied:
-       1380px × 0.743 = 1025.3px ≈ 1026px = 271.6mm ✓
-        939px × 0.743 =  697.6px ≈  698px = 184.6mm ✓
-  ════════════════════════════════════════════════════════════════ */
-  .slide-content {
-    /* Un-zoomed design dimensions */
-    width: 1380px !important;
-    height: 939px !important;
-    max-width: 1380px !important;
-    max-height: 939px !important;
-    min-height: unset !important;
-    /* The critical zoom — scales everything proportionally */
-    zoom: 0.743 !important;
-    /* Reset any screen-mode positioning */
-    position: relative !important;
-    top: unset !important;
-    left: unset !important;
-    margin: 0 !important;
-    transform: none !important;
-    /* Internal layout */
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     SLIDE BACKGROUNDS — fill usable area edge-to-edge
-  ════════════════════════════════════════════════════════════════ */
-  .slide-bg,
-  .slide-overlay {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     FRAMER MOTION — force all animated elements to final state
-     Framer Motion sets opacity:0 / transform:translateY(24px) as
-     initial state. Print captures the DOM before animation runs.
-     We force every element inside slides to its visible final state.
-  ════════════════════════════════════════════════════════════════ */
-  .slide *,
-  .slide-content * {
-    opacity: 1 !important;
-    visibility: visible !important;
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* ── Force backgrounds and colors to print on all UI elements ── */
-  .slide,
-  .slide-bg,
-  .slide-overlay,
-  .card,
-  .portfolio-card,
-  .device-body,
-  .device-screen,
-  .device-island,
-  .device-btn,
-  .tech-badge,
-  .badge-num,
-  [style*="background"],
-  [style*="background-color"],
-  [style*="background-image"] {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     TYPOGRAPHY — enforce crisp colours in print
-  ════════════════════════════════════════════════════════════════ */
-  .slide h1,
-  .slide h2,
-  .slide h3,
-  .slide h4 {
-    color: #f2f2f2 !important;
-    -webkit-text-fill-color: #f2f2f2 !important;
-  }
-
-  .t-body,
-  .t-sm {
-    color: #888888 !important;
-  }
-
-  .t-label {
-    color: rgba(255, 255, 255, 0.45) !important;
-  }
-
-  .t-mono {
-    color: rgba(255, 255, 255, 0.28) !important;
-  }
-
-  .t-accent,
-  .t-h4 {
-    color: #e4e4e7 !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     DEVICE MOCKUP — visible, correct dimensions
-  ════════════════════════════════════════════════════════════════ */
-  .device-outer {
-    display: flex !important;
-    visibility: visible !important;
-  }
-
-  /* Suppress heavy box-shadow that prints as black blobs */
-  .device-body {
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
-  }
-
-  .device-outer::after {
-    display: none !important;
-  }
-
-  /* ════════════════════════════════════════════════════════════════
-     MISC
-  ════════════════════════════════════════════════════════════════ */
-  img {
-    max-width: 100% !important;
-    max-height: 100% !important;
-  }
-
-  a {
-    text-decoration: none !important;
-    color: inherit !important;
-  }
-
-  ::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  /* Ensure inline style overrides for slide overlays don't over-darken */
-  .slide-overlay {
-    opacity: 0.88 !important;
-  }
+.no-print {
+  /* hidden during export via html2canvas ignoreElements */
 }
 
 /* ═══════════════════════════════════════════════════════
-   FORM STYLES
+   RESPONSIVE — below 960px the deck becomes a scrollable
+   document rather than a fixed-height presentation.
 ═══════════════════════════════════════════════════════ */
-.form-input, .form-textarea {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  padding: clamp(0.7rem, 1.5vh, 1rem) clamp(1rem, 2vw, 1.2rem);
-  font-family: var(--f-body);
-  font-size: clamp(0.85rem, min(1.1vw, 2.2vh), 0.95rem);
-  color: #fff;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+
+@media (max-width: 960px) {
+  :root {
+    --px: 1.15rem;
+    --py: 2rem;
+    --spine: 0.9rem;
+    --device-h: clamp(300px, 52vw, 420px);
+  }
+
+  body {
+    height: auto;
+    overflow: auto;
+  }
+
+  #deck-container {
+    scroll-snap-type: none;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .slide {
+    height: auto;
+    min-height: auto;
+    padding-top: 3.25rem;
+    padding-bottom: 3.25rem;
+    scroll-snap-align: none;
+  }
+
+  .slide-content {
+    max-height: none;
+  }
+
+  .fill-slide {
+    height: auto;
+    gap: 2.5rem;
+  }
+
+  /* Dividers drop their vertical furniture — the chapter name is
+     already carried by the contents block. */
+  .divider-name,
+  .divider-rule {
+    display: none;
+  }
+
+  .divider-body {
+    padding-left: 0;
+  }
+
+  .frame-rule {
+    display: none;
+  }
+
+  .frame-spine {
+    display: none;
+  }
+
+  .frame-folio {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  /* Collapse every multi-column structure to a single column */
+  .split,
+  .split--even,
+  .split--wide,
+  .cols-2,
+  .cols-3,
+  .cols-4,
+  .cols-5,
+  .cols-6,
+  .cmp-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .ruled-cols>*+* {
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+    padding-left: 0;
+    padding-top: 1rem;
+  }
+
+  .ruled-cols>* {
+    padding-right: 0;
+  }
+
+  .slide--blue .ruled-cols>*+* {
+    border-top-color: var(--rule-rev-soft);
+  }
+
+  .t-display {
+    font-size: clamp(2rem, 11vw, 3.4rem);
+  }
+
+  .t-h1 {
+    font-size: clamp(1.5rem, 8vw, 2.4rem);
+  }
+
+  .t-h2 {
+    font-size: clamp(1.25rem, 6.4vw, 1.9rem);
+  }
+
+  .t-numeral {
+    font-size: clamp(3.5rem, 22vw, 7rem);
+  }
 }
 
-.form-input::placeholder, .form-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+/* Retain two columns for dense grids on tablets */
+@media (min-width: 620px) and (max-width: 960px) {
+
+  .cols-3,
+  .cols-4,
+  .cols-5,
+  .cols-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.form-input:hover, .form-textarea:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.form-input:focus, .form-textarea:focus {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05), inset 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: clamp(80px, 16vh, 140px);
-}
-
-/* Guard classes for PDF export against Framer Motion animations */
-body.pdf-export-active .pdf-only-cta {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-body.pdf-export-active .web-only-interactive {
-  display: none !important;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
