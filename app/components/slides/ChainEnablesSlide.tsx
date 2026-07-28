@@ -4,7 +4,7 @@ import SplitSlide from "../SplitSlide";
 import { Reveal, FeatureCard } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   21 — What the Chain Layer Enables
+   27 — What the Chain Layer Enables
 ───────────────────────────────────────────────────────────── */
 
 const ENABLED = [
@@ -38,7 +38,7 @@ export default function ChainEnablesSlide() {
   return (
     <SplitSlide
       id="slide-chain-enables"
-      folio="21"
+      folio="27"
       field="ivory"
       eyebrow="Capability"
       title={"What the\ninfrastructure\nunlocks"}

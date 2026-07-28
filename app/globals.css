@@ -91,9 +91,11 @@
   --r-lg: 20px;
   --r-xl: 28px;
 
-  /* ─── Device mockup — iPhone aspect 0.487 ─── */
+  /* ─── Device mockups — driven by each screenshot's own ratio ─── */
   --device-h: clamp(230px, 45svh, 460px);
-  --device-w: calc(var(--device-h) * 0.487);
+  /* phone, 393 x 852 */
+  --ext-h: clamp(220px, 42svh, 430px);
+  /* extension popup, 600 x 852 */
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -236,16 +238,23 @@ a {
 }
 
 /* Rotated spine label, reading bottom-to-top at the left edge.
-   writing-mode + rotate(180deg) is used rather than rotate(-90deg):
-   the box keeps a predictable width (one line height) so it can be
-   positioned against the margin without transform-origin maths. */
+   Uses transform: rotate() rather than writing-mode — html2canvas
+   does not implement writing-mode and collapses vertical text into
+   an overlapping pile, which broke the PDF export.
+
+   With transform-origin at the box's top-left, rotate(-90deg) makes
+   the rendered box extend RIGHT by one line-height and UP by the text
+   length, reading bottom-to-top. The rendered bottom lands one line
+   height below the box's own bottom, so `bottom` compensates by 1em
+   (line-height is 1, so 1em is exactly that offset). */
 .frame-spine {
   position: absolute;
-  left: calc(var(--px) * 0.42 - 1.15rem);
-  bottom: var(--py);
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  left: calc(var(--px) * 0.42 - 1.15em);
+  bottom: calc(var(--py) - 1em);
+  transform-origin: 0 0;
+  transform: rotate(-90deg);
   white-space: nowrap;
+  line-height: 1;
   font-family: var(--f-sans);
   font-size: clamp(0.42rem, 0.62vw, 0.56rem);
   font-weight: 700;
@@ -281,12 +290,16 @@ a {
    inner rule, with the numeral in the open field.
 ═══════════════════════════════════════════════════════ */
 
+/* Same rotate() technique as .frame-spine — see the note there for
+   why writing-mode cannot be used. The column this occupies is
+   exactly 1em wide, which is what the inner rule is positioned
+   against below. */
 .divider-name {
   position: absolute;
-  left: calc(var(--px) * 0.42 + clamp(0.7rem, 1.6vw, 1.5rem));
-  bottom: var(--py);
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  left: calc(var(--px) * 0.42 + 0.28em);
+  bottom: calc(var(--py) - 1em);
+  transform-origin: 0 0;
+  transform: rotate(-90deg);
   white-space: nowrap;
   z-index: 3;
   pointer-events: none;
@@ -298,9 +311,11 @@ a {
   color: var(--white);
 }
 
+/* Sits clear of the 1em-wide name column, in the name's own em units
+   so the two never collide as the type scales. */
 .divider-rule {
   position: absolute;
-  left: calc(var(--px) * 0.42 + clamp(3.4rem, 8vw, 7.4rem));
+  left: calc(var(--px) * 0.42 + clamp(3.6rem, 8.4vw, 7.9rem));
   top: var(--py);
   bottom: var(--py);
   width: 1px;
@@ -1004,73 +1019,13 @@ a {
 }
 
 /* ═══════════════════════════════════════════════════════
-   DEVICE MOCKUP — clean titanium frame, brand-neutral.
-   Photography style page: phones on quiet, light grounds.
+   DEVICE MOCKUPS — three surfaces, three frames.
+   Every frame matches its screenshot's own aspect ratio and
+   uses object-fit: contain, so product screens are never
+   cropped and their headings stay fully visible.
 ═══════════════════════════════════════════════════════ */
 
-.device-outer {
-  position: relative;
-  width: var(--device-w);
-  height: var(--device-h);
-  flex-shrink: 0;
-}
-
-.device-body {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: calc(var(--device-h) * 0.062);
-  background: linear-gradient(150deg, #3C3C3E 0%, #1A1A1C 42%, #2E2E30 100%);
-  padding: calc(var(--device-h) * 0.0085);
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.28),
-    0 calc(var(--device-h) * 0.05) calc(var(--device-h) * 0.11) rgba(0, 0, 0, 0.19),
-    0 calc(var(--device-h) * 0.012) calc(var(--device-h) * 0.03) rgba(0, 0, 0, 0.12);
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-
-.device-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: calc(var(--device-h) * 0.055);
-  overflow: hidden;
-  background: #000;
-}
-
-.device-screen img {
-  object-fit: cover;
-}
-
-.device-btn {
-  position: absolute;
-  background: #2A2A2C;
-  border-radius: 2px;
-}
-
-.device-vol-up {
-  left: calc(var(--device-w) * -0.011);
-  top: 22%;
-  width: calc(var(--device-w) * 0.012);
-  height: 7%;
-}
-
-.device-vol-down {
-  left: calc(var(--device-w) * -0.011);
-  top: 32%;
-  width: calc(var(--device-w) * 0.012);
-  height: 7%;
-}
-
-.device-power {
-  right: calc(var(--device-w) * -0.011);
-  top: 26%;
-  width: calc(var(--device-w) * 0.012);
-  height: 11%;
-}
-
-/* Plinth — the soft ground shadow used in the brand's product shots */
+/* Soft elliptical ground shadow, per the brand's product shots */
 .device-plinth {
   position: relative;
   display: flex;
@@ -1081,14 +1036,311 @@ a {
 .device-plinth::after {
   content: "";
   position: absolute;
-  bottom: -2%;
+  bottom: -2.5%;
   left: 50%;
-  transform: translateX(-50%);
+  margin-left: -65%;
   width: 130%;
-  height: 8%;
+  height: 7%;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 70%);
-  z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: 0;
+}
+
+/* ─── Phone — 393 x 852 ─── */
+
+.device-phone {
+  position: relative;
+  z-index: 1;
+  height: var(--device-h);
+  width: calc(var(--device-h) * 0.4613);
+  flex-shrink: 0;
+}
+
+.device-phone-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--device-h) * 0.062);
+  background: linear-gradient(150deg, #3C3C3E 0%, #1A1A1C 42%, #2E2E30 100%);
+  padding: calc(var(--device-h) * 0.0088);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 calc(var(--device-h) * 0.05) calc(var(--device-h) * 0.11) rgba(0, 0, 0, 0.18);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.device-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--device-h) * 0.055);
+  overflow: hidden;
+  background: #000;
+}
+
+.device-phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.device-btn {
+  position: absolute;
+  background: #2A2A2C;
+  border-radius: 2px;
+  width: calc(var(--device-h) * 0.0055);
+}
+
+.device-vol-up {
+  left: calc(var(--device-h) * -0.005);
+  top: 22%;
+  height: 7%;
+}
+
+.device-vol-down {
+  left: calc(var(--device-h) * -0.005);
+  top: 32%;
+  height: 7%;
+}
+
+.device-power {
+  right: calc(var(--device-h) * -0.005);
+  top: 26%;
+  height: 11%;
+}
+
+/* ─── Browser — desktop web app, width-driven ─── */
+
+.device-browser {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #EDEDE6;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 18px 40px rgba(0, 0, 0, 0.13);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.device-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  height: clamp(18px, 2.9vh, 26px);
+  background: #E3E3DB;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.device-dot {
+  width: clamp(5px, 0.85vh, 7px);
+  height: clamp(5px, 0.85vh, 7px);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: block;
+}
+
+.device-browser-url {
+  margin: 0 auto;
+  padding: 0.12em 1.4em;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.75);
+  font-family: var(--f-sans);
+  font-size: clamp(0.36rem, 0.94vh, 0.5rem);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.device-browser-screen {
+  position: relative;
+  background: #0A0A0A;
+  line-height: 0;
+}
+
+.device-browser-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Extension — popup hanging from a toolbar strip ─── */
+
+.device-ext {
+  --ext-h: clamp(220px, 42svh, 430px);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: calc(var(--ext-h) * 0.7042);
+  flex-shrink: 0;
+}
+
+.device-ext-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 118%;
+  max-width: 118%;
+  padding: 0 6px;
+  height: clamp(16px, 2.6vh, 23px);
+  border-radius: 6px 6px 0 0;
+  background: #E3E3DB;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: none;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.device-ext-omni {
+  flex: 1;
+  height: 55%;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.device-ext-icon {
+  width: clamp(9px, 1.5vh, 13px);
+  height: auto;
+  flex-shrink: 0;
+}
+
+.device-ext-panel {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0A0A0A;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 16px 36px rgba(0, 0, 0, 0.16);
+  line-height: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.device-ext-panel img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PRODUCT SHOWCASE LAYOUT
+   The shot and the copy are siblings in a flex row, never
+   overlapping layers — so a long product title can grow
+   without ever running underneath the mockup.
+═══════════════════════════════════════════════════════ */
+
+.showcase-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1.1rem, 3.4vw, 3.2rem);
+  width: 100%;
+  min-width: 0;
+}
+
+/* Desktop web-app shot — width-driven, so it leads the row */
+.showcase-shot--wide {
+  flex: 0 1 56%;
+  min-width: 0;
+}
+
+/* Phone / extension shot — intrinsic size, never squeezed */
+.showcase-shot {
+  flex: 0 0 auto;
+}
+
+.showcase-copy {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* PRO has no product screen — the mark takes the shot's place */
+.pro-mark-panel {
+  flex: 0 1 30%;
+  min-width: 0;
+  align-self: stretch;
+}
+
+/* Ecosystem grid — seven products plus the settlement substrate,
+   as a 4 x 2 field. Falls back to 2-up then 1-up on narrow screens. */
+.eco-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.4rem, 0.9vw, 0.7rem);
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .eco-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .eco-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 460px) {
+  .eco-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Two mobile products shown side by side (VPN + Chat) */
+.dual-product {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(0.75rem, 1.8vw, 1.6rem);
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .showcase-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.75rem;
+  }
+
+  .showcase-shot,
+  .showcase-shot--wide {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .showcase-copy {
+    flex: 0 0 auto;
+  }
+
+  .pro-mark-panel {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 100%;
+  }
+
+  .dual-product {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .dual-product .stack {
+    width: 100%;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1158,6 +1410,18 @@ body.pdf-export-active .slide {
 body.pdf-export-active * {
   animation: none !important;
   transition: none !important;
+}
+
+/* Reveals are gated on IntersectionObserver, which needs a moment to
+   fire. The exporter captures far faster than that, so slides could be
+   photographed while their content was still at opacity 0. Forcing the
+   reveal wrappers visible makes every captured frame deterministic.
+   Scoped to .reveal so the deliberate transforms on the rotated spine,
+   the divider name and the mockups are left untouched. */
+body.pdf-export-active .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
 }
 
 .no-print {

@@ -5,7 +5,7 @@ import ProductMark from "../ProductMark";
 import { Reveal, FeatureCard } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   07 — Fuutura ID · The Access Standard
+   08 — Fuutura ID · The Access Standard
 ───────────────────────────────────────────────────────────── */
 
 const PILLARS = [
@@ -31,7 +31,7 @@ export default function IdentitySlide() {
   return (
     <SplitSlide
       id="slide-identity"
-      folio="07"
+      folio="08"
       field="ivory"
       eyebrow="Fuutura ID"
       title={"The trust layer,\nbuilt as native\ntechnology"}

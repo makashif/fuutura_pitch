@@ -1,80 +1,16 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  createContext,
-  useContext,
-  ReactNode,
-} from "react";
+import { useEffect, useRef, useState, useCallback, ReactNode } from "react";
 import { usePdfExport } from "../lib/usePdfExport";
 import PdfExportOverlay from "./PdfExportOverlay";
+import { SLIDES, DeckContext } from "../lib/deck";
 
-/* ─────────────────────────────────────────────────────────────
-   Slide manifest — the single source of truth.
-   Order here drives navigation, the folio numbers and the
-   PDF export sequence.
-───────────────────────────────────────────────────────────── */
-export const SLIDES = [
-  { id: "slide-cover", label: "Cover", section: "" },
+/* The manifest and navigation context live in ../lib/deck so that
+   SlideWrapper, NavDots and the exporter can read them without
+   importing this component. Re-exported here for convenience. */
+export { SLIDES, DeckContext, useDeck } from "../lib/deck";
 
-  { id: "slide-div-thesis", label: "I — The Thesis", section: "The Thesis" },
-  { id: "slide-mission", label: "Mission", section: "The Thesis" },
-  { id: "slide-opportunity", label: "The Opportunity", section: "The Thesis" },
-  { id: "slide-ecosystem", label: "The Ecosystem", section: "The Thesis" },
 
-  { id: "slide-div-identity", label: "II — Identity", section: "Identity" },
-  { id: "slide-identity", label: "The Access Standard", section: "Identity" },
-  { id: "slide-verification", label: "60-Second Verification", section: "Identity" },
-  { id: "slide-coverage", label: "Global Coverage", section: "Identity" },
-  { id: "slide-compliance", label: "Security & Compliance", section: "Identity" },
-
-  { id: "slide-div-money", label: "III — Money", section: "Money" },
-  { id: "slide-wallet", label: "The Fuutura Wallet", section: "Money" },
-  { id: "slide-wallet-dilemma", label: "The Wallet Dilemma", section: "Money" },
-  { id: "slide-remittance", label: "Cross-Border Remittance", section: "Money" },
-
-  { id: "slide-div-markets", label: "IV — Markets", section: "Markets" },
-  { id: "slide-trade", label: "Fuutura Trade", section: "Markets" },
-  { id: "slide-risk", label: "Risk Architecture", section: "Markets" },
-  { id: "slide-instruments", label: "The Instrument Universe", section: "Markets" },
-
-  { id: "slide-div-infra", label: "V — Infrastructure", section: "Infrastructure" },
-  { id: "slide-chain", label: "Settlement & Chain", section: "Infrastructure" },
-  { id: "slide-chain-enables", label: "What It Enables", section: "Infrastructure" },
-  { id: "slide-wider", label: "The Wider Ecosystem", section: "Infrastructure" },
-  { id: "slide-tokenisation", label: "Tokenisation, Two Ways", section: "Infrastructure" },
-  { id: "slide-ftra", label: "$FTRA", section: "Infrastructure" },
-
-  { id: "slide-close", label: "Close", section: "" },
-];
-
-/* ─────────────────────────────────────────────────────────────
-   Deck context — lets any slide drive navigation
-───────────────────────────────────────────────────────────── */
-interface DeckCtx {
-  current: number;
-  total: number;
-  goTo: (index: number) => void;
-  goNext: () => void;
-  goPrev: () => void;
-  exportPdf: () => void;
-  isExporting: boolean;
-}
-
-export const DeckContext = createContext<DeckCtx>({
-  current: 0,
-  total: SLIDES.length,
-  goTo: () => { },
-  goNext: () => { },
-  goPrev: () => { },
-  exportPdf: () => { },
-  isExporting: false,
-});
-
-export const useDeck = () => useContext(DeckContext);
 
 /* ─────────────────────────────────────────────────────────────
    PresentationShell

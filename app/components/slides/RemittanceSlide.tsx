@@ -4,7 +4,7 @@ import SplitSlide from "../SplitSlide";
 import { Reveal, CompareColumns, Stat } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   14 — Cross-Border Remittance
+   16 — Cross-Border Remittance
 ───────────────────────────────────────────────────────────── */
 
 const ROWS = [
@@ -20,7 +20,7 @@ export default function RemittanceSlide() {
   return (
     <SplitSlide
       id="slide-remittance"
-      folio="14"
+      folio="16"
       field="ivory"
       eyebrow="Cross-Border Payments"
       title={"The cost of\nsending money\nhome"}

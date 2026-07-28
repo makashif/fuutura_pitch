@@ -6,7 +6,7 @@ import { Reveal } from "../Primitives";
 import HexLattice from "../HexLattice";
 
 /* ─────────────────────────────────────────────────────────────
-   25 — Close
+   30 — Close
 
    Mirrors the cover so the document closes where it opened.
 ───────────────────────────────────────────────────────────── */
@@ -16,7 +16,7 @@ export default function CloseSlide() {
     <SlideWrapper
       id="slide-close"
       field="ivory"
-      folio="25"
+      folio="30"
       decoration={<HexLattice variant="corner" opacity={0.075} />}
     >
       <div

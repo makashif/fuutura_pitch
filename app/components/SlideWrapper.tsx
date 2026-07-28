@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useMemo, useState, ReactNode } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { slideIndex, useDeck } from "../lib/deck";
 
 /* ─────────────────────────────────────────────────────────────
    SlideWrapper — the single structural unit of the deck.
@@ -14,6 +15,17 @@ import { ReactNode } from "react";
 
    These three devices are lifted straight from the brand book
    and are what make the deck read as one continuous document.
+
+   ── On revealing content ──
+   The staggered entrance is an enhancement, never a gate. Slide
+   content becomes visible if ANY of these hold:
+     1. IntersectionObserver reports the slide in view;
+     2. the deck's own index has reached this slide — set
+        synchronously by goTo(), so keyboard and rail navigation
+        work even if IntersectionObserver never fires;
+     3. a short safety timeout elapses.
+   A blank slide in a live pitch is unacceptable, so visibility
+   does not depend on any single mechanism firing.
 ───────────────────────────────────────────────────────────── */
 
 export type SlideField = "ivory" | "white" | "warm" | "blue" | "ink";
@@ -31,7 +43,7 @@ interface SlideWrapperProps {
   stagger?: boolean;
   /** Extra classes on the section element. */
   className?: string;
-  /** Absolutely-positioned decoration rendered behind content (z-index 1). */
+  /** Absolutely-positioned decoration rendered behind content. */
   decoration?: ReactNode;
 }
 
@@ -52,6 +64,9 @@ export const itemVariants = {
   },
 };
 
+/** How long to wait before revealing regardless of any signal. */
+const SAFETY_MS = 2000;
+
 export default function SlideWrapper({
   children,
   id,
@@ -63,15 +78,26 @@ export default function SlideWrapper({
   decoration,
 }: SlideWrapperProps) {
   const { ref, inView } = useInView({ threshold: 0.08, triggerOnce: true });
+  const { current } = useDeck();
+  const index = useMemo(() => slideIndex(id), [id]);
+  const [elapsed, setElapsed] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setElapsed(true), SAFETY_MS);
+    return () => clearTimeout(t);
+  }, []);
+
+  const reached = index >= 0 && current >= index;
+  const show = inView || reached || elapsed;
 
   return (
     <motion.section
       ref={ref}
       id={id}
-      className={`slide slide--${field} ${className}`}
+      className={`slide slide--${field} ${className}`.trim()}
       variants={stagger ? containerVariants : undefined}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      animate={show ? "visible" : "hidden"}
       aria-label={id}
     >
       {/* Decoration sits beneath the frame and content */}

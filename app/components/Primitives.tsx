@@ -21,8 +21,14 @@ export function Reveal({
   className?: string;
   style?: React.CSSProperties;
 }) {
+  /* The `reveal` class is what lets PDF export force every animated
+     block to its final state — see globals.css, export mode. */
   return (
-    <motion.div variants={itemVariants} className={className} style={style}>
+    <motion.div
+      variants={itemVariants}
+      className={`reveal ${className}`.trim()}
+      style={style}
+    >
       {children}
     </motion.div>
   );

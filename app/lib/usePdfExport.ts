@@ -1,7 +1,40 @@
 import { useState, useCallback } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { SLIDES } from "../components/PresentationShell";
+import { SLIDES } from "./deck";
+
+/**
+ * Wait until a slide is genuinely ready to be photographed:
+ * webfonts resolved and every image inside it decoded. Without this the
+ * exporter can capture a frame with unstyled type or an empty mockup,
+ * because html2canvas reads the DOM synchronously and will not wait.
+ */
+async function waitForSlideReady(element: HTMLElement) {
+  if (document.fonts?.ready) {
+    try {
+      await document.fonts.ready;
+    } catch {
+      /* font loading is best-effort */
+    }
+  }
+
+  const images = Array.from(element.querySelectorAll("img"));
+  await Promise.all(
+    images.map((img) => {
+      if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+      return new Promise<void>((resolve) => {
+        // Resolve on either outcome — a broken asset must not stall the export
+        const done = () => resolve();
+        img.addEventListener("load", done, { once: true });
+        img.addEventListener("error", done, { once: true });
+        setTimeout(done, 3000);
+      });
+    })
+  );
+
+  // One more frame so layout settles after decode
+  await new Promise((r) => requestAnimationFrame(() => r(null)));
+}
 
 export function usePdfExport() {
   const [isExporting, setIsExporting] = useState(false);
@@ -22,7 +55,7 @@ export function usePdfExport() {
       if (!element) return;
 
       element.scrollIntoView({ behavior: "instant", block: "start" });
-      await new Promise((resolve) => setTimeout(resolve, 50));
+      await waitForSlideReady(element);
 
       const canvas = await html2canvas(element, {
         scale: 2,
@@ -102,9 +135,7 @@ export function usePdfExport() {
         // We temporarily bring the slide into view to ensure it renders correctly
         // especially if there are lazy-loaded images or IntersectionObserver animations.
         element.scrollIntoView({ behavior: "instant", block: "start" });
-
-        // Wait a tiny bit for any layout shifts/animations to settle
-        await new Promise((resolve) => setTimeout(resolve, 50));
+        await waitForSlideReady(element);
 
         const canvas = await html2canvas(element, {
           scale: 2, // 2x resolution for crispness (144dpi effective)

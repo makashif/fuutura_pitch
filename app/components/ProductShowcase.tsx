@@ -1,16 +1,22 @@
 "use client";
 
-import SlideWrapper from "./SlideWrapper";
-import PhoneMockup from "./PhoneMockup";
+import { ReactNode } from "react";
+import SlideWrapper, { SlideField } from "./SlideWrapper";
 import ProductMark, { ProductKey } from "./ProductMark";
 import { Reveal, Eyebrow, Footnote } from "./Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   ProductShowcase — the archetype for a flagship product page.
+   ProductShowcase — the archetype for a product page.
 
-   Header across the top, then the product shot at left against
-   its capability set at right. Wallet and Trade both use it, so
-   the two read unmistakably as siblings.
+   Header across the top, then the product shot against its
+   capability set. All seven products use it, so the deck reads
+   as one family rather than seven separate treatments.
+
+   Two variants, because the products ship on different surfaces:
+     · "wide" — a desktop web app (ID, Wallet, Trade). The shot
+       leads at ~56% width, capabilities run as a ruled list.
+     · "tall" — a phone or extension popup (VPN, Chat, Extension).
+       The shot sits at its intrinsic size beside a 2-up grid.
 ───────────────────────────────────────────────────────────── */
 
 interface ProductShowcaseProps {
@@ -21,13 +27,14 @@ interface ProductShowcaseProps {
   /** Use \n for the stacked line breaks. */
   title: string;
   lead: string;
-  mockupSrc: string;
-  mockupAlt?: string;
+  /** A mockup element from ./Mockups. */
+  mockup: ReactNode;
+  variant?: "wide" | "tall";
   features: { title: string; body: string }[];
   /** Short capability tags shown beneath the header rule. */
   pills?: string[];
   footnote?: string;
-  field?: "ivory" | "white";
+  field?: SlideField;
 }
 
 export default function ProductShowcase({
@@ -37,13 +44,16 @@ export default function ProductShowcase({
   eyebrow,
   title,
   lead,
-  mockupSrc,
-  mockupAlt,
+  mockup,
+  variant = "wide",
   features,
   pills,
   footnote,
   field = "ivory",
 }: ProductShowcaseProps) {
+  const cardTone = field === "ivory" ? "white" : "ivory";
+  const isWide = variant === "wide";
+
   return (
     <SlideWrapper id={id} field={field} folio={folio}>
       <div className="stack g-4" style={{ width: "100%" }}>
@@ -58,7 +68,7 @@ export default function ProductShowcase({
                 <ProductMark
                   product={product}
                   tone="blue"
-                  size="clamp(2.2rem, 5.2vh, 3.3rem)"
+                  size="clamp(2.1rem, 5vh, 3.2rem)"
                 />
                 <h2 className="t-h2" style={{ whiteSpace: "pre-line" }}>
                   {title}
@@ -91,34 +101,50 @@ export default function ProductShowcase({
         )}
 
         {/* ── Shot + capabilities ── */}
-        <div className="row g-5 ai-c wrap" style={{ width: "100%" }}>
-          <Reveal>
-            <PhoneMockup
-              src={mockupSrc}
-              alt={mockupAlt}
-              height="clamp(200px, 38svh, 380px)"
-            />
+        <div className="showcase-row">
+          <Reveal className={isWide ? "showcase-shot--wide" : "showcase-shot"}>
+            {mockup}
           </Reveal>
 
-          <div
-            className="cols-2 g-2 flex-1"
-            style={{ minWidth: "280px" }}
-          >
-            {features.map((f, i) => (
-              <Reveal key={f.title}>
-                <div
-                  className={`card card--${field === "ivory" ? "white" : "ivory"}`}
-                  style={{ height: "100%" }}
-                >
-                  <span className="t-mono" style={{ color: "var(--blue)" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="t-h4">{f.title}</h3>
-                  <p className="t-xs">{f.body}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          {isWide ? (
+            /* Ruled list — reads cleanly in a narrow column */
+            <div className="stack list-ruled showcase-copy">
+              {features.map((f, i) => (
+                <Reveal key={f.title}>
+                  <div className="row g-3 ai-s">
+                    <span
+                      className="t-mono"
+                      style={{
+                        color: "var(--blue)",
+                        flexShrink: 0,
+                        paddingTop: "0.25em",
+                      }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="stack g-1">
+                      <h3 className="t-h5">{f.title}</h3>
+                      <p className="t-xs">{f.body}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <div className="cols-2 g-2 showcase-copy">
+              {features.map((f, i) => (
+                <Reveal key={f.title}>
+                  <div className={`card card--${cardTone}`} style={{ height: "100%" }}>
+                    <span className="t-mono" style={{ color: "var(--blue)" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="t-h4">{f.title}</h3>
+                    <p className="t-xs">{f.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          )}
         </div>
 
         {footnote && <Footnote>{footnote}</Footnote>}

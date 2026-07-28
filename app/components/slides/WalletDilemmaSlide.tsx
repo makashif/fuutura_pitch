@@ -4,7 +4,7 @@ import SplitSlide from "../SplitSlide";
 import { Reveal, CompareColumns } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   13 — The Wallet Dilemma
+   14 — The Wallet Dilemma
 
    Self-custody and compliance have historically been treated as
    opposites. The whole argument of this page is that they aren't.
@@ -23,7 +23,7 @@ export default function WalletDilemmaSlide() {
   return (
     <SplitSlide
       id="slide-wallet-dilemma"
-      folio="13"
+      folio="14"
       field="white"
       eyebrow="The Wallet Dilemma"
       title={"Self-custody\nor compliance.\nNot both."}

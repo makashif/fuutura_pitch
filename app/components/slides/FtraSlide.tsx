@@ -5,7 +5,7 @@ import { Reveal, Eyebrow } from "../Primitives";
 import HexLattice from "../HexLattice";
 
 /* ─────────────────────────────────────────────────────────────
-   24 — $FTRA
+   29 — $FTRA
 
    Deliberately restrained. The important point on this page is
    the separation of concerns: USDT settles value, $FTRA aligns
@@ -33,7 +33,7 @@ export default function FtraSlide() {
     <SlideWrapper
       id="slide-ftra"
       field="blue"
-      folio="24"
+      folio="29"
       decoration={
         <HexLattice variant="single" color="#FFFFFF" opacity={0.12} />
       }

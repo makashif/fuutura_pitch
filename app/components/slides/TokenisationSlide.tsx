@@ -5,7 +5,7 @@ import { Reveal, Eyebrow } from "../Primitives";
 import HexLattice from "../HexLattice";
 
 /* ─────────────────────────────────────────────────────────────
-   23 — Tokenisation, Two Ways
+   28 — Tokenisation, Two Ways
 
    The strategic slide. Capital currently leaks out of these
    markets to unlicensed venues; Fuutura proposes a licensed
@@ -17,7 +17,7 @@ export default function TokenisationSlide() {
     <SlideWrapper
       id="slide-tokenisation"
       field="ivory"
-      folio="23"
+      folio="28"
       decoration={<HexLattice variant="band" opacity={0.05} />}
     >
       <div className="stack g-5" style={{ width: "100%" }}>

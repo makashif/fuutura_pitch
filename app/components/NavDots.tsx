@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SLIDES, useDeck } from "./PresentationShell";
+import { SLIDES, useDeck } from "../lib/deck";
 
 /**
  * Right-edge navigation rail.

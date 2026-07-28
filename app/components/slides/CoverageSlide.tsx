@@ -5,7 +5,7 @@ import { Reveal, RuledList, Stat } from "../Primitives";
 import HexLattice from "../HexLattice";
 
 /* ─────────────────────────────────────────────────────────────
-   09 — Global Document Coverage
+   10 — Global Document Coverage
 ───────────────────────────────────────────────────────────── */
 
 const DOCUMENTS = [
@@ -31,7 +31,7 @@ export default function CoverageSlide() {
   return (
     <SplitSlide
       id="slide-coverage"
-      folio="09"
+      folio="10"
       field="ivory"
       eyebrow="Coverage"
       title={"Built for the\ndocuments people\nactually hold"}

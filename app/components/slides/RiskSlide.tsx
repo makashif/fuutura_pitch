@@ -4,7 +4,7 @@ import SlideWrapper from "../SlideWrapper";
 import { Reveal, Eyebrow, Footnote } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   17 — Risk Architecture
+   20 — Risk Architecture
 
    How a trade is actually risk-managed. This is the page that
    answers the only question a serious counterparty asks: what
@@ -32,7 +32,7 @@ const PRINCIPLES = [
 
 export default function RiskSlide() {
   return (
-    <SlideWrapper id="slide-risk" field="white" folio="17">
+    <SlideWrapper id="slide-risk" field="white" folio="20">
       <div className="stack g-4" style={{ width: "100%" }}>
         {/* ── Header ── */}
         <div className="split split--even" style={{ alignItems: "end" }}>

@@ -4,7 +4,7 @@ import SplitSlide from "../SplitSlide";
 import { Reveal, FeatureCard } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   10 — Enterprise Security & Compliance
+   11 — Enterprise Security & Compliance
 ───────────────────────────────────────────────────────────── */
 
 const CONTROLS = [
@@ -30,7 +30,7 @@ export default function ComplianceSlide() {
   return (
     <SplitSlide
       id="slide-compliance"
-      folio="10"
+      folio="11"
       field="white"
       eyebrow="Security & Compliance"
       title={"Bank-grade,\nby construction"}

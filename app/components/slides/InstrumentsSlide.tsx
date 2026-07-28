@@ -4,7 +4,7 @@ import SplitSlide from "../SplitSlide";
 import { Reveal, Stat } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   18 — The Instrument Universe
+   21 — The Instrument Universe
 ───────────────────────────────────────────────────────────── */
 
 const CLASSES = [
@@ -29,7 +29,7 @@ export default function InstrumentsSlide() {
   return (
     <SplitSlide
       id="slide-instruments"
-      folio="18"
+      folio="21"
       field="ivory"
       eyebrow="Instrument Universe"
       title={"One account.\nThe world's\nasset classes."}

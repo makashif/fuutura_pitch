@@ -4,7 +4,7 @@ import SplitSlide from "../SplitSlide";
 import { Reveal, RuledList } from "../Primitives";
 
 /* ─────────────────────────────────────────────────────────────
-   20 — Settlement & Chain
+   26 — Settlement & Chain
 
    Deliberately honest about sequencing: settlement runs on
    established public infrastructure today, and Fuutura's own
@@ -49,7 +49,7 @@ export default function ChainSlide() {
   return (
     <SplitSlide
       id="slide-chain"
-      folio="20"
+      folio="26"
       field="white"
       eyebrow="Settlement & Chain"
       title={"Public rails\ntoday. Purpose-\nbuilt next."}
