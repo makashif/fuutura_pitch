@@ -19,8 +19,6 @@ import TradeShowcase from "./components/slides/TradeShowcase";
 import RiskSlide from "./components/slides/RiskSlide";
 import InstrumentsSlide from "./components/slides/InstrumentsSlide";
 
-import VpnSlide from "./components/slides/VpnSlide";
-import ChatSlide from "./components/slides/ChatSlide";
 import ProSlide from "./components/slides/ProSlide";
 
 import ChainSlide from "./components/slides/ChainSlide";
@@ -31,7 +29,7 @@ import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
    FUUTURA — PRODUCT OVERVIEW
-   22 pages, organised by product.
+   20 pages, organised by product.
 
    This is a client-facing product deck, so it runs as one
    continuous document: no chapter dividers, no abstract sections.
@@ -42,12 +40,12 @@ import CloseSlide from "./components/slides/CloseSlide";
      01      Overview, mission, why Fuutura, the ecosystem
      05–07   Fuutura Trade
      08–10   Fuutura ID
-     11–14   Fuutura Wallet, Extension and payments
-     15      Fuutura VPN
-     16      Fuutura Chat
-     17      Fuutura PRO
-     18–21   Settlement, capability, tokenisation, $FTRA
-     22      Close
+     11      Fuutura PRO
+     12–14   Fuutura Wallet and payments
+     15      Fuutura Extension
+     16–18   On-Chain Settlement, capability, tokenisation
+     19      $FTRA
+     20      Close
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -71,21 +69,23 @@ export default function Home() {
       <IdentitySlide />
       <VerificationSlide />
 
-      {/* ── Fuutura Wallet, Extension & payments ── */}
-      <WalletShowcase />
-      <WalletDilemmaSlide />
-      <ExtensionShowcase />
-      <RemittanceSlide />
-
-      {/* ── Fuutura VPN, Chat & PRO ── */}
-      <VpnSlide />
-      <ChatSlide />
+      {/* ── Fuutura PRO ── */}
       <ProSlide />
 
-      {/* ── Settlement & the token ── */}
+      {/* ── Fuutura Wallet & payments ── */}
+      <WalletShowcase />
+      <WalletDilemmaSlide />
+      <RemittanceSlide />
+
+      {/* ── Fuutura Extension ── */}
+      <ExtensionShowcase />
+
+      {/* ── On-Chain Settlement ── */}
       <ChainSlide />
       <ChainEnablesSlide />
       <TokenisationSlide />
+
+      {/* ── $FTRA ── */}
       <FtraSlide />
 
       {/* ── Close ── */}

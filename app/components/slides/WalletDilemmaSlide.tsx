@@ -18,7 +18,7 @@ export default function WalletDilemmaSlide() {
   return (
     <Sheet
       id="slide-wallet-dilemma"
-      folio="12"
+      folio="13"
       eyebrow="Fuutura Wallet · The Dilemma It Solves"
       title="Self-custody or compliance. Not both."
       lead="That has been the accepted trade-off for a decade — and it is why compliant finance and self-custodial finance grew up as separate worlds. Fuutura is built on the premise that the trade-off was an artefact of architecture, not a law of nature."

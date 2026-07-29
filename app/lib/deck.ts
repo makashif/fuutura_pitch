@@ -41,19 +41,19 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-identity", label: "Access Standard" },
   { id: "slide-verification", label: "Onboarding & Coverage" },
 
-  { id: "slide-wallet", label: "Fuutura Wallet", product: true },
-  { id: "slide-wallet-dilemma", label: "The Wallet Dilemma" },
-  { id: "slide-extension", label: "Fuutura Extension", product: true },
-  { id: "slide-remittance", label: "Cross-Border Remittance" },
-
-  { id: "slide-vpn", label: "Fuutura VPN", product: true },
-  { id: "slide-chat", label: "Fuutura Chat", product: true },
   { id: "slide-pro", label: "Fuutura PRO", product: true },
 
-  { id: "slide-chain", label: "Settlement & Chain" },
+  { id: "slide-wallet", label: "Fuutura Wallet", product: true },
+  { id: "slide-wallet-dilemma", label: "The Wallet Dilemma" },
+  { id: "slide-remittance", label: "Cross-Border Remittance" },
+
+  { id: "slide-extension", label: "Fuutura Extension", product: true },
+
+  { id: "slide-chain", label: "On-Chain Settlement", product: true },
   { id: "slide-chain-enables", label: "What It Unlocks" },
   { id: "slide-tokenisation", label: "Tokenisation" },
-  { id: "slide-ftra", label: "$FTRA" },
+
+  { id: "slide-ftra", label: "$FTRA", product: true },
 
   { id: "slide-close", label: "Close" },
 ];

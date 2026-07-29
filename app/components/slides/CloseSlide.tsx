@@ -38,7 +38,7 @@ const NEXT = [
 
 export default function CloseSlide() {
   return (
-    <SlideWrapper id="slide-close" folio="22">
+    <SlideWrapper id="slide-close" folio="20">
       <div className="stack g-4" style={{ width: "100%", flex: 1, justifyContent: "center" }}>
         <Reveal>
           <Badge icon="exchange" tone="hollow" />

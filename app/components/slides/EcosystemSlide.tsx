@@ -28,6 +28,12 @@ const PRODUCTS: {
       tint: "sage",
     },
     {
+      icon: "briefcase",
+      title: "Fuutura PRO",
+      body: "The rails offered as infrastructure — embeddable identity, custody and market access for partner channels.",
+      tint: "blush",
+    },
+    {
       icon: "wallet",
       title: "Fuutura Wallet",
       body: "Client-held keys, always. Crypto and fiat in one place, with compliance built in rather than bolted on.",
@@ -40,28 +46,16 @@ const PRODUCTS: {
       tint: "sand",
     },
     {
-      icon: "briefcase",
-      title: "Fuutura PRO",
-      body: "The rails offered as infrastructure — embeddable identity, custody and market access for partner channels.",
-      tint: "blush",
-    },
-    {
-      icon: "vpn",
-      title: "Fuutura VPN",
-      body: "Encrypted transport as native infrastructure, so privacy is never outsourced to a third party.",
-      tint: "peri",
-    },
-    {
-      icon: "chat",
-      title: "Fuutura Chat",
-      body: "Identity-verified messaging, so the person you transact with is the person you are speaking to.",
-      tint: "sage",
-    },
-    {
       icon: "link",
       title: "On-Chain Settlement",
       body: "Position contracts settle on an established public L2, with USDT throughout — no operator token stands in for value.",
-      tint: "sand",
+      tint: "peri",
+    },
+    {
+      icon: "coins",
+      title: "$FTRA",
+      body: "The ecosystem token — accrued on real activity, and the unit partners configure their own rewards programmes in.",
+      tint: "sage",
     },
   ];
 

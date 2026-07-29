@@ -34,7 +34,7 @@ export default function FtraSlide() {
   return (
     <Sheet
       id="slide-ftra"
-      folio="21"
+      folio="19"
       eyebrow="$FTRA · The Ecosystem Token"
       title="$FTRA"
       lead="Powering the Fuutura ecosystem — aligning the interests of clients, partners and channels as the network grows past any single product."
