@@ -32,10 +32,10 @@ export default function IdShowcase() {
   return (
     <ProductShowcase
       id="slide-id"
-      folio="05"
+      folio="08"
       eyebrow="Fuutura ID"
       title="One verification. Every door."
-      lead="Identity is the first piece of Fuutura infrastructure. Prove who you are once and that proof carries across custody, markets and payments — with no re-onboarding at any of them."
+      lead="Identity is the layer every other Fuutura product reads from. Prove who you are once and that proof carries across custody, markets and payments — with no re-onboarding at any of them."
       tagline="The Fuutura Access Standard"
       icon="fingerprint"
       tone="sage"
@@ -46,7 +46,7 @@ export default function IdShowcase() {
           type="mixed"
           screens={[
             { src: "/images/screens/id_s1.jpg", alt: "Fuutura ID dashboard", device: "desktop" },
-            { src: "/images/screens/id/id_m_s2.jpg", alt: "Fuutura ID mobile view", device: "phone" }
+            { src: "/images/screens/id/id_m_s3.jpg", alt: "Fuutura ID mobile view", device: "phone" }
           ]}
         />
       }

@@ -13,7 +13,7 @@ const NEXT = [
   {
     icon: "fingerprint" as const,
     title: "Verify",
-    caption: "One identity, 180+ countries",
+    caption: "Unified compliance, 180+ countries",
     tint: "sage" as const,
   },
   {

@@ -16,6 +16,12 @@ const PRODUCTS: {
   tint: Tint;
 }[] = [
     {
+      icon: "chart",
+      title: "Fuutura Trade",
+      body: "A licensed, non-custodial synthetic exchange reaching a universe of markets, from crypto to tokenised real-world assets.",
+      tint: "dark",
+    },
+    {
       icon: "fingerprint",
       title: "Fuutura ID",
       body: "One verification, classified by jurisdiction, capability and qualification — then reusable across everything else.",
@@ -26,12 +32,6 @@ const PRODUCTS: {
       title: "Fuutura Wallet",
       body: "Client-held keys, always. Crypto and fiat in one place, with compliance built in rather than bolted on.",
       tint: "peri",
-    },
-    {
-      icon: "chart",
-      title: "Fuutura Trade",
-      body: "A licensed, non-custodial synthetic exchange reaching 40,000+ instruments, from crypto to tokenised equities.",
-      tint: "dark",
     },
     {
       icon: "puzzle",
@@ -71,8 +71,8 @@ export default function EcosystemSlide() {
       id="slide-ecosystem"
       folio="04"
       eyebrow="The Fuutura Ecosystem"
-      title="One identity. Seven products."
-      lead="Each product is useful on its own. Together they compound — because access earned in one place opens access across all of it, and nothing has to be re-proved."
+      title="Seven products. One compliance layer."
+      lead="Each product is useful on its own. Together they compound — because identity acts as the underlying compliance infrastructure, opening access across the entire ecosystem without friction."
     >
       <Reveal>
         <SubLabel>The product family, and the substrate beneath it</SubLabel>

@@ -40,9 +40,9 @@ import CloseSlide from "./components/slides/CloseSlide";
    belongs to — which is what carries the structure.
 
      01      Overview, mission, why Fuutura, the ecosystem
-     05–07   Fuutura ID
-     08–11   Fuutura Wallet, Extension and payments
-     12–14   Fuutura Trade
+     05–07   Fuutura Trade
+     08–10   Fuutura ID
+     11–14   Fuutura Wallet, Extension and payments
      15      Fuutura VPN
      16      Fuutura Chat
      17      Fuutura PRO
@@ -61,6 +61,11 @@ export default function Home() {
       <OpportunitySlide />
       <EcosystemSlide />
 
+      {/* ── Fuutura Trade ── */}
+      <TradeShowcase />
+      <RiskSlide />
+      <InstrumentsSlide />
+
       {/* ── Fuutura ID ── */}
       <IdShowcase />
       <IdentitySlide />
@@ -71,11 +76,6 @@ export default function Home() {
       <WalletDilemmaSlide />
       <ExtensionShowcase />
       <RemittanceSlide />
-
-      {/* ── Fuutura Trade ── */}
-      <TradeShowcase />
-      <RiskSlide />
-      <InstrumentsSlide />
 
       {/* ── Fuutura VPN, Chat & PRO ── */}
       <VpnSlide />

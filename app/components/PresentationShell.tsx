@@ -295,7 +295,7 @@ function KeyHint() {
 
   useEffect(() => {
     const hide = () => setVisible(false);
-    const t = setTimeout(hide, 4500);
+    const t = setTimeout(hide, 10000);
     window.addEventListener("keydown", hide, { once: true });
     return () => {
       clearTimeout(t);
@@ -328,7 +328,7 @@ function KeyHint() {
       }}
     >
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-      
+
       {/* Arrow icons */}
       {["↑", "↓"].map((arrow) => (
         <kbd

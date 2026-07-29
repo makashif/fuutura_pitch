@@ -33,6 +33,10 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-opportunity", label: "Why Fuutura" },
   { id: "slide-ecosystem", label: "The Ecosystem" },
 
+  { id: "slide-trade", label: "Fuutura Trade", product: true },
+  { id: "slide-risk", label: "Risk Architecture" },
+  { id: "slide-instruments", label: "Instrument Universe" },
+
   { id: "slide-id", label: "Fuutura ID", product: true },
   { id: "slide-identity", label: "Access Standard" },
   { id: "slide-verification", label: "Onboarding & Coverage" },
@@ -41,10 +45,6 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-wallet-dilemma", label: "The Wallet Dilemma" },
   { id: "slide-extension", label: "Fuutura Extension", product: true },
   { id: "slide-remittance", label: "Cross-Border Remittance" },
-
-  { id: "slide-trade", label: "Fuutura Trade", product: true },
-  { id: "slide-risk", label: "Risk Architecture" },
-  { id: "slide-instruments", label: "Instrument Universe" },
 
   { id: "slide-vpn", label: "Fuutura VPN", product: true },
   { id: "slide-chat", label: "Fuutura Chat", product: true },

@@ -32,7 +32,7 @@ export default function WalletShowcase() {
   return (
     <ProductShowcase
       id="slide-wallet"
-      folio="08"
+      folio="11"
       eyebrow="Fuutura Wallet"
       title="Client keys, client control"
       lead="Custody is not a feature bolted onto a compliant platform. It is the starting assumption — the client holds the keys, and everything else is built around that fact."
