@@ -23,13 +23,12 @@ import ProSlide from "./components/slides/ProSlide";
 
 import ChainSlide from "./components/slides/ChainSlide";
 import ChainEnablesSlide from "./components/slides/ChainEnablesSlide";
-import TokenisationSlide from "./components/slides/TokenisationSlide";
 import FtraSlide from "./components/slides/FtraSlide";
 import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
    FUUTURA — PRODUCT OVERVIEW
-   20 pages, organised by product.
+   19 pages, organised by product.
 
    This is a client-facing product deck, so it runs as one
    continuous document: no chapter dividers, no abstract sections.
@@ -43,9 +42,9 @@ import CloseSlide from "./components/slides/CloseSlide";
      11      Fuutura PRO
      12–14   Fuutura Wallet and payments
      15      Fuutura Extension
-     16–18   On-Chain Settlement, capability, tokenisation
-     19      $FTRA
-     20      Close
+     16–17   On-Chain Settlement and what it unlocks
+     18      $FTRA
+     19      Close
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -83,7 +82,6 @@ export default function Home() {
       {/* ── On-Chain Settlement ── */}
       <ChainSlide />
       <ChainEnablesSlide />
-      <TokenisationSlide />
 
       {/* ── $FTRA ── */}
       <FtraSlide />

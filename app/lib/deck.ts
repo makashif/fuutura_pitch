@@ -51,7 +51,6 @@ export const SLIDES: SlideEntry[] = [
 
   { id: "slide-chain", label: "On-Chain Settlement", product: true },
   { id: "slide-chain-enables", label: "What It Unlocks" },
-  { id: "slide-tokenisation", label: "Tokenisation" },
 
   { id: "slide-ftra", label: "$FTRA", product: true },
 
