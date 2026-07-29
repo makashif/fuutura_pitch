@@ -3,22 +3,22 @@
 import Sheet from "../Sheet";
 import { ProductPanel, Reveal, SubLabel } from "../Primitives";
 
-/* ── 06 — The Access Standard ───────────────────────────────────
-   The two-panel page: how a client is classified and what they
-   may do, set beside the controls that make it defensible. The
-   dark strip beneath carries the regulatory posture.
+/* ── 09 — The Access Standard ───────────────────────────────────
+   The two-panel page: a tinted badge heads each panel, then a
+   ruled list of capabilities beneath. The dark strip carries the
+   regulatory posture inherited from the old compliance page.
 ───────────────────────────────────────────────────────────── */
 
-const STANDARD = [
+const CLASSIFICATION = [
   {
     icon: "scales" as const,
     title: "Three-axis engine",
-    body: "Jurisdiction, capability and qualification — each client is classified, not merely approved, so entitlements can be granted to the exact edge of eligibility rather than all or nothing.",
+    body: "Jurisdiction, capability and qualification — each client is classified, not merely approved.",
   },
   {
-    icon: "layers" as const,
-    title: "Leverage is earned",
-    body: "Entitlements progress on an earned ladder — never granted at entry, never token-gated. Fuutura Knowledge, a free education-and-simulation academy, is the appropriateness on-ramp.",
+    icon: "doc" as const,
+    title: "Precise, not binary",
+    body: "Entitlements can be granted to the exact edge of what a client is eligible for, rather than all or nothing.",
   },
   {
     icon: "globe" as const,
@@ -27,21 +27,21 @@ const STANDARD = [
   },
 ];
 
-const CONTROLS = [
+const PROGRESSION = [
+  {
+    icon: "chart" as const,
+    title: "Leverage is earned",
+    body: "Entitlements progress on an earned ladder — never granted at entry, never token-gated.",
+  },
+  {
+    icon: "cap" as const,
+    title: "Fuutura Knowledge",
+    body: "A free education-and-simulation academy that doubles as the appropriateness on-ramp.",
+  },
   {
     icon: "shield" as const,
-    title: "Authenticity & screening",
-    body: "Fraud detection built specifically for forged documents, with AML and PEP databases consolidated from authoritative sources worldwide.",
-  },
-  {
-    icon: "link" as const,
-    title: "Blockchain-anchored records",
-    body: "Immutable identity records secured on Layer-2 infrastructure, so an audit trail cannot be quietly revised.",
-  },
-  {
-    icon: "spark" as const,
-    title: "Continuous risk assessment",
-    body: "Real-time scoring from behavioural analytics — assessment continues after onboarding, not only at it.",
+    title: "Own tech, specialist partners",
+    body: "KYC, KYB, sanctions screening and on-chain monitoring arrive as one integrated compliance stack, not a set of parts to assemble.",
   },
 ];
 
@@ -60,16 +60,16 @@ export default function IdentitySlide() {
         <ProductPanel
           icon="fingerprint"
           tone="sage"
-          name="The Standard"
-          tagline="Who a client is, and what they may do"
-          items={STANDARD}
+          name="Classification"
+          tagline="Who a client is, resolved precisely"
+          items={CLASSIFICATION}
         />
         <ProductPanel
-          icon="shield"
+          icon="layers"
           tone="blush"
-          name="Bank-grade controls"
-          tagline="Why a partner can rely on it"
-          items={CONTROLS}
+          name="Progression"
+          tagline="What a client may do, earned over time"
+          items={PROGRESSION}
         />
       </div>
 
