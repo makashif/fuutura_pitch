@@ -12,17 +12,17 @@ const FEATURES = [
     body: "Markets, watchlist, order ticket, live chart, open positions and account health on one surface.",
   },
   {
+    icon: "cubes" as const,
+    title: "One account, six asset classes",
+    body: "Crypto, global equities, indices, FX, commodities and tokenised real-world assets — all reachable from the same account that holds a client's local balance.",
+  },
+  {
     icon: "layers" as const,
     title: "Every order type that matters",
     body: "Market and limit entries, with stop-loss and take-profit attached at the point of execution.",
   },
   {
     icon: "scales" as const,
-    title: "Bilateral price contracts",
-    body: "Every position faces Fuutura directly. There are no shares to source and no inventory to fund.",
-  },
-  {
-    icon: "cubes" as const,
     title: "Leverage earned by tier",
     body: "Entitlements advance on a demonstrated ladder rather than unlocking at signup.",
   },
@@ -32,7 +32,7 @@ export default function TradeShowcase() {
   return (
     <ProductShowcase
       id="slide-trade"
-      folio="13"
+      folio="12"
       eyebrow="Fuutura Trade"
       title="A licensed, non-custodial synthetic exchange"
       lead="Compliant, on-chain-settled exposure to the world's assets — built specifically for the markets the incumbent rails do not reach."
@@ -41,7 +41,7 @@ export default function TradeShowcase() {
       tone="dark"
       variant="wide"
       shotBasis="55%"
-      pills={["40,000+ instruments", "External pricing", "On-chain settlement"]}
+      pills={["A universe of markets", "External pricing", "On-chain settlement"]}
       mockup={
         <ScreenSet
           type="desktop"

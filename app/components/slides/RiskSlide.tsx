@@ -39,7 +39,7 @@ export default function RiskSlide() {
   return (
     <Sheet
       id="slide-risk"
-      folio="14"
+      folio="13"
       eyebrow="Fuutura Trade · Risk Architecture"
       title="How a trade is risk-managed"
       lead="No shares to source, no client assets to hold — every position faces Fuutura, priced off a reference it cannot touch."

@@ -51,7 +51,7 @@ export default function ProSlide() {
   return (
     <Sheet
       id="slide-pro"
-      folio="18"
+      folio="17"
       eyebrow="Fuutura PRO"
       title="The same rails, as infrastructure"
       lead="What Fuutura built for its own clients is available to partners as infrastructure. One integration inherits identity, custody, market access — and the compliance perimeter around all three."

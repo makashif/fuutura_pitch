@@ -14,7 +14,6 @@ import WalletShowcase from "./components/slides/WalletShowcase";
 import WalletDilemmaSlide from "./components/slides/WalletDilemmaSlide";
 import ExtensionShowcase from "./components/slides/ExtensionShowcase";
 import RemittanceSlide from "./components/slides/RemittanceSlide";
-import CardRewardsSlide from "./components/slides/CardRewardsSlide";
 
 import TradeShowcase from "./components/slides/TradeShowcase";
 import RiskSlide from "./components/slides/RiskSlide";
@@ -32,7 +31,7 @@ import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
    FUUTURA — PRODUCT OVERVIEW
-   23 pages, organised by product.
+   22 pages, organised by product.
 
    This is a client-facing product deck, so it runs as one
    continuous document: no chapter dividers, no abstract sections.
@@ -42,13 +41,13 @@ import CloseSlide from "./components/slides/CloseSlide";
 
      01      Overview, mission, why Fuutura, the ecosystem
      05–07   Fuutura ID
-     08–12   Fuutura Wallet, Extension, payments and the card
-     13–15   Fuutura Trade
-     16      Fuutura VPN
-     17      Fuutura Chat
-     18      Fuutura PRO
-     19–22   Settlement, capability, tokenisation, $FTRA
-     23      Close
+     08–11   Fuutura Wallet, Extension and payments
+     12–14   Fuutura Trade
+     15      Fuutura VPN
+     16      Fuutura Chat
+     17      Fuutura PRO
+     18–21   Settlement, capability, tokenisation, $FTRA
+     22      Close
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -72,7 +71,6 @@ export default function Home() {
       <WalletDilemmaSlide />
       <ExtensionShowcase />
       <RemittanceSlide />
-      <CardRewardsSlide />
 
       {/* ── Fuutura Trade ── */}
       <TradeShowcase />

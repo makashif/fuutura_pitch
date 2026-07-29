@@ -48,7 +48,7 @@ export default function ChainEnablesSlide() {
   return (
     <Sheet
       id="slide-chain-enables"
-      folio="20"
+      folio="19"
       eyebrow="Settlement & Chain · What It Unlocks"
       title="What it unlocks"
       lead="The value of an identity-connected settlement layer is not the ledger itself. It is what stops being hard once identity, custody and settlement share one substrate."

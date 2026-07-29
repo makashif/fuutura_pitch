@@ -41,7 +41,6 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-wallet-dilemma", label: "The Wallet Dilemma" },
   { id: "slide-extension", label: "Fuutura Extension", product: true },
   { id: "slide-remittance", label: "Cross-Border Remittance" },
-  { id: "slide-card", label: "Card & Rewards" },
 
   { id: "slide-trade", label: "Fuutura Trade", product: true },
   { id: "slide-risk", label: "Risk Architecture" },
