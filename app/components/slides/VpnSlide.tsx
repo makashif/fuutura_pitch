@@ -36,7 +36,7 @@ export default function VpnSlide() {
   return (
     <Sheet
       id="slide-vpn"
-      folio="18"
+      folio="16"
       eyebrow="Fuutura VPN"
       title="Privacy as infrastructure"
       lead="A person's digital life does not stop at their balance. Encrypted transport is built natively to close a gap that would otherwise force a verified client outside the perimeter."

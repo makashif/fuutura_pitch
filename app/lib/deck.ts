@@ -35,9 +35,7 @@ export const SLIDES: SlideEntry[] = [
 
   { id: "slide-id", label: "Fuutura ID", product: true },
   { id: "slide-identity", label: "Access Standard" },
-  { id: "slide-verification", label: "60-Second Verification" },
-  { id: "slide-coverage", label: "Global Coverage" },
-  { id: "slide-compliance", label: "Security & Compliance" },
+  { id: "slide-verification", label: "Onboarding & Coverage" },
 
   { id: "slide-wallet", label: "Fuutura Wallet", product: true },
   { id: "slide-wallet-dilemma", label: "The Wallet Dilemma" },

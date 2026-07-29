@@ -57,7 +57,7 @@ export default function InstrumentsSlide() {
   return (
     <Sheet
       id="slide-instruments"
-      folio="17"
+      folio="15"
       eyebrow="Fuutura Trade · Instrument Universe"
       title="One account. The world's asset classes."
       lead="Access is the point. A client in an underserved market should be able to hold global exposure from the same account that holds their local balance."

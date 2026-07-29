@@ -32,7 +32,7 @@ export default function TradeShowcase() {
   return (
     <ProductShowcase
       id="slide-trade"
-      folio="15"
+      folio="13"
       eyebrow="Fuutura Trade"
       title="A licensed, non-custodial synthetic exchange"
       lead="Compliant, on-chain-settled exposure to the world's assets — built specifically for the markets the incumbent rails do not reach."

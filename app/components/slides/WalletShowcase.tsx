@@ -23,7 +23,7 @@ const FEATURES = [
   },
   {
     icon: "spark" as const,
-    title: "Gasless and account-abstracted",
+    title: "Seamless transaction experience",
     body: "Built for people whose first wallet this is: no seed-phrase ceremony, no gas token to acquire first.",
   },
 ];
@@ -32,7 +32,7 @@ export default function WalletShowcase() {
   return (
     <ProductShowcase
       id="slide-wallet"
-      folio="10"
+      folio="08"
       eyebrow="Fuutura Wallet"
       title="Client keys, client control"
       lead="Custody is not a feature bolted onto a compliant platform. It is the starting assumption — the client holds the keys, and everything else is built around that fact."

@@ -10,7 +10,7 @@ const ROWS = [
   { left: "Restricted by regulators", right: "Built to be regulator-friendly" },
   { left: "Limited payment options", right: "A complete payment ecosystem" },
   { left: "No identity verification", right: "Fuutura ID verification built in" },
-  { left: "Seed phrases and gas tokens", right: "Gasless, account-abstracted UX" },
+  { left: "Seed phrases and gas tokens", right: "Seamless transaction experience" },
   { left: "No rewards integration", right: "Configurable rewards for enterprises" },
 ];
 
@@ -18,7 +18,7 @@ export default function WalletDilemmaSlide() {
   return (
     <Sheet
       id="slide-wallet-dilemma"
-      folio="11"
+      folio="09"
       eyebrow="Fuutura Wallet · The Dilemma It Solves"
       title="Self-custody or compliance. Not both."
       lead="That has been the accepted trade-off for a decade — and it is why compliant finance and self-custodial finance grew up as separate worlds. Fuutura is built on the premise that the trade-off was an artefact of architecture, not a law of nature."

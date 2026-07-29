@@ -46,7 +46,7 @@ export default function IdShowcase() {
           type="mixed"
           screens={[
             { src: "/images/screens/id_s1.jpg", alt: "Fuutura ID dashboard", device: "desktop" },
-            { src: "/images/screens/id/id_m_s1.jpg", alt: "Fuutura ID mobile view", device: "phone" }
+            { src: "/images/screens/id/id_m_s2.jpg", alt: "Fuutura ID mobile view", device: "phone" }
           ]}
         />
       }

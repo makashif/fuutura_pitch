@@ -36,7 +36,7 @@ export default function ChatSlide() {
   return (
     <Sheet
       id="slide-chat"
-      folio="19"
+      folio="17"
       eyebrow="Fuutura Chat"
       title="Identity-verified messaging"
       lead="A person's digital life does not stop at their balance. Because every participant is KYC-verified by Fuutura ID, the most common vectors in retail finance fraud are removed outright."

@@ -12,7 +12,7 @@ export default function TokenisationSlide() {
   return (
     <Sheet
       id="slide-tokenisation"
-      folio="23"
+      folio="21"
       eyebrow="Settlement & Chain · Tokenisation"
       title="Tokenisation, two ways"
       lead="A bridge is only useful if it carries traffic in both directions. Capital should be able to reach these markets — and leave them by a licensed route rather than an offshore one."

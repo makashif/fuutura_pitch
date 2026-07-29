@@ -33,7 +33,7 @@ export default function CardRewardsSlide() {
   return (
     <Sheet
       id="slide-card"
-      folio="14"
+      folio="12"
       eyebrow="Fuutura Wallet · Card & Rewards"
       title="Earned here. Spent anywhere."
       lead="An ecosystem that cannot pay for groceries is an investment account, not a financial life. The card is what makes the rest of it usable."
