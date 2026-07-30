@@ -34,7 +34,7 @@ export default function WalletShowcase() {
       id="slide-wallet"
       folio="10"
       eyebrow="Fuutura Wallet"
-      title="Client keys, client control"
+      title="Your keys, Your assets, Your call"
       lead="Custody is not a feature bolted onto a compliant platform. It is the starting assumption — the client holds the keys, and everything else is built around that fact."
       tagline="Self-custodial and compliant at once"
       icon="wallet"

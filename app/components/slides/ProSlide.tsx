@@ -22,22 +22,10 @@ const CAPABILITIES = [
     tint: "peri" as const,
   },
   {
-    icon: "chart" as const,
-    title: "Market access as an API",
-    body: "Route client demand into 40,000+ instruments without becoming a broker.",
-    tint: "sand" as const,
-  },
-  {
     icon: "users" as const,
     title: "B2B2C at the same standard",
     body: "The same infrastructure serves one client directly and a channel serving thousands.",
     tint: "blush" as const,
-  },
-  {
-    icon: "coins" as const,
-    title: "Configurable rewards",
-    body: "Partners define their own loyalty logic, settling natively on-chain with no reconciliation layer.",
-    tint: "peri" as const,
   },
   {
     icon: "shield" as const,
@@ -70,7 +58,7 @@ export default function ProSlide() {
         </div>
       </Reveal>
 
-      <div className="grid-3 grid-fill" style={{ width: "100%" }}>
+      <div className="grid-2 grid-fill" style={{ width: "100%" }}>
         {CAPABILITIES.map((c) => (
           <Reveal key={c.title}>
             <FeatureCard

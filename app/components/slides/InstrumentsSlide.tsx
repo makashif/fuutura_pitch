@@ -64,7 +64,7 @@ export default function InstrumentsSlide() {
     >
       <Reveal>
         <div className="grid-3 ruled-cols" style={{ width: "100%", maxWidth: "56rem" }}>
-          <Stat value="40,000+" label="Tradable instruments" />
+          <Stat value="Multi-Asset" label="Trading Platform" />
           <Stat value="Fractional" label="Minimum position" small />
           <Stat value="24 / 7" label="Tokenised market hours" small />
         </div>

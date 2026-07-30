@@ -19,7 +19,7 @@ const NEXT = [
   {
     icon: "chart" as const,
     title: "Trade",
-    caption: "40,000+ instruments",
+    caption: "Thousands of Instruments",
     tint: "peri" as const,
   },
   {
