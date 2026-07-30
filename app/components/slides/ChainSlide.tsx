@@ -15,11 +15,13 @@ const TODAY = [
     icon: "link" as const,
     title: "On-chain settlement",
     body: "Position contracts settle on an established public L2 (Base / Arbitrum / BNB-class), not a private ledger.",
+    tint: "blush" as const,
   },
   {
     icon: "coins" as const,
     title: "Stable, transparent",
     body: "USDT settlement throughout — no operator-issued token stands in for value anywhere in the stack.",
+    tint: "sand" as const,
   },
 ];
 
@@ -28,16 +30,19 @@ const BUILDING = [
     icon: "shield" as const,
     title: "Compliance-ready contracts",
     body: "Identity and eligibility enforced at the contract layer rather than at the interface.",
+    tint: "blush" as const,
   },
   {
     icon: "exchange" as const,
     title: "Interchain bridges",
     body: "Movement between networks without leaving the compliance perimeter.",
+    tint: "sand" as const,
   },
   {
     icon: "spark" as const,
     title: "High-throughput capacity",
     body: "Sized for institutional volume, where gas spikes and slow confirmation are disqualifying.",
+    tint: "sage" as const,
   },
 ];
 
@@ -89,7 +94,7 @@ export default function ChainSlide() {
                   icon={t.icon}
                   title={t.title}
                   body={t.body}
-                  tint="peri"
+                  tint={t.tint}
                   sansTitle
                   split
                 />
