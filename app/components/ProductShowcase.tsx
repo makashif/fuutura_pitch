@@ -9,12 +9,12 @@ import { IconName, BadgeTone } from "./Icon";
    ProductShowcase — the archetype for a product page.
 
    Head across the top, then the product shot against its
-   capability list. All seven products use it, so the deck reads
-   as one family rather than seven separate treatments.
+   capability list. Every product page uses it, so the deck reads
+   as one family rather than a set of separate treatments.
 
    Two variants, because the products ship on different surfaces:
      · "wide" — a desktop web app (ID, Wallet, Trade)
-     · "tall" — a phone or extension popup (VPN, Chat, Extension)
+     · "tall" — a phone or extension popup (Extension)
 ───────────────────────────────────────────────────────────── */
 
 interface ProductShowcaseProps {

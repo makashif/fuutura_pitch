@@ -208,8 +208,11 @@ export function ScreenSet({
     );
   }
   if (type === "extension") {
+    /* The toolbar strip is 118% of its panel and right-aligned, so each
+       frame overhangs 18% to the left. The gap has to clear that overhang
+       or the strips ride over the neighbouring panel. */
     return (
-      <div className="row jc-c ai-c" style={{ gap: "clamp(1rem, 2vw, 2rem)", width: "100%" }}>
+      <div className="row jc-c ai-c" style={{ gap: "clamp(2.75rem, 5.5vw, 5rem)", width: "100%" }}>
         {screens.map((s, i) => (
           <ExtensionMockup key={i} src={s.src} alt={s.alt} height={height} />
         ))}

@@ -5,8 +5,10 @@ import { Reveal, FeatureCard, SubLabel } from "../Primitives";
 import { IconName } from "../Icon";
 import { Tint } from "../Primitives";
 
-/* ── 05 — The Ecosystem ────────────────────────────────────────
-   Seven products, one verified identity, one settlement substrate.
+/* ── 04 — The Ecosystem ────────────────────────────────────────
+   The product family over one compliance layer and one settlement
+   substrate. Compliance is the framing here, not identity — the
+   identity mechanics belong on the Fuutura ID pages.
 ───────────────────────────────────────────────────────────── */
 
 const PRODUCTS: {
@@ -65,7 +67,7 @@ export default function EcosystemSlide() {
       id="slide-ecosystem"
       folio="04"
       eyebrow="The Fuutura Ecosystem"
-      title="Seven products. One compliance layer."
+      title="One compliance layer. Every product on it."
       lead="Each product is useful on its own. Together they compound — because identity acts as the underlying compliance infrastructure, opening access across the entire ecosystem without friction."
     >
       <Reveal>

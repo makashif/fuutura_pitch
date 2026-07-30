@@ -23,7 +23,7 @@ export default function RemittanceSlide() {
   return (
     <Sheet
       id="slide-remittance"
-      folio="14"
+      folio="12"
       eyebrow="Fuutura Wallet · Cross-Border Payments"
       title="The cost of sending money home"
       lead="Remittance is where the incumbent system charges the most to the people who can least afford it — a 5–10% levy on money already earned. On-chain settlement removes the correspondent-banking chain that creates both the cost and the delay."

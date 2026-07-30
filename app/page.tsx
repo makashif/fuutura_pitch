@@ -7,7 +7,6 @@ import OpportunitySlide from "./components/slides/OpportunitySlide";
 import EcosystemSlide from "./components/slides/EcosystemSlide";
 
 import IdShowcase from "./components/slides/IdShowcase";
-import IdentitySlide from "./components/slides/IdentitySlide";
 import VerificationSlide from "./components/slides/VerificationSlide";
 
 import WalletShowcase from "./components/slides/WalletShowcase";
@@ -16,19 +15,17 @@ import ExtensionShowcase from "./components/slides/ExtensionShowcase";
 import RemittanceSlide from "./components/slides/RemittanceSlide";
 
 import TradeShowcase from "./components/slides/TradeShowcase";
-import RiskSlide from "./components/slides/RiskSlide";
 import InstrumentsSlide from "./components/slides/InstrumentsSlide";
 
 import ProSlide from "./components/slides/ProSlide";
 
 import ChainSlide from "./components/slides/ChainSlide";
-import ChainEnablesSlide from "./components/slides/ChainEnablesSlide";
-import FtraSlide from "./components/slides/FtraSlide";
+import PoweredByFtraSlide from "./components/slides/PoweredByFtraSlide";
 import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
    FUUTURA — PRODUCT OVERVIEW
-   19 pages, organised by product.
+   16 pages, organised by product.
 
    This is a client-facing product deck, so it runs as one
    continuous document: no chapter dividers, no abstract sections.
@@ -37,14 +34,14 @@ import CloseSlide from "./components/slides/CloseSlide";
    belongs to — which is what carries the structure.
 
      01      Overview, mission, why Fuutura, the ecosystem
-     05–07   Fuutura Trade
-     08–10   Fuutura ID
-     11      Fuutura PRO
-     12–14   Fuutura Wallet and payments
-     15      Fuutura Extension
-     16–17   On-Chain Settlement and what it unlocks
-     18      $FTRA
-     19      Close
+     05–06   Fuutura Trade
+     07–08   Fuutura ID
+     09      Fuutura PRO
+     10–12   Fuutura Wallet and payments
+     13      Fuutura Extension
+     14      On-Chain Settlement
+     15      Close
+     16      Powered by $FTRA
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -60,12 +57,10 @@ export default function Home() {
 
       {/* ── Fuutura Trade ── */}
       <TradeShowcase />
-      <RiskSlide />
       <InstrumentsSlide />
 
       {/* ── Fuutura ID ── */}
       <IdShowcase />
-      <IdentitySlide />
       <VerificationSlide />
 
       {/* ── Fuutura PRO ── */}
@@ -81,13 +76,12 @@ export default function Home() {
 
       {/* ── On-Chain Settlement ── */}
       <ChainSlide />
-      <ChainEnablesSlide />
-
-      {/* ── $FTRA ── */}
-      <FtraSlide />
 
       {/* ── Close ── */}
       <CloseSlide />
+
+      {/* ── Sign-off ── */}
+      <PoweredByFtraSlide />
     </PresentationShell>
   );
 }

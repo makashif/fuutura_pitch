@@ -32,7 +32,7 @@ export default function ExtensionShowcase() {
   return (
     <ProductShowcase
       id="slide-extension"
-      folio="15"
+      folio="13"
       eyebrow="Fuutura Extension"
       title="The wallet, where the web is"
       lead="Self-custody only works if it is present at the moment of use. The extension puts the same keys and the same compliance perimeter into the browser, beside whatever the client is already doing."
@@ -45,8 +45,7 @@ export default function ExtensionShowcase() {
         <ScreenSet
           type="extension"
           screens={[
-            { src: "/images/screens/extension/extension_s1.jpg", alt: "Fuutura Extension main" },
-            { src: "/images/screens/extension/extension_s2.jpg", alt: "Fuutura Extension action" },
+            { src: "/images/screens/extension/extension_s1.jpg", alt: "Fuutura Extension account and keys" },
             { src: "/images/screens/extension/extension_s3.jpg", alt: "Fuutura Extension holdings" }
           ]}
         />

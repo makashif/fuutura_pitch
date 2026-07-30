@@ -34,11 +34,9 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-ecosystem", label: "The Ecosystem" },
 
   { id: "slide-trade", label: "Fuutura Trade", product: true },
-  { id: "slide-risk", label: "Risk Architecture" },
   { id: "slide-instruments", label: "Instrument Universe" },
 
   { id: "slide-id", label: "Fuutura ID", product: true },
-  { id: "slide-identity", label: "Access Standard" },
   { id: "slide-verification", label: "Onboarding & Coverage" },
 
   { id: "slide-pro", label: "Fuutura PRO", product: true },
@@ -50,11 +48,10 @@ export const SLIDES: SlideEntry[] = [
   { id: "slide-extension", label: "Fuutura Extension", product: true },
 
   { id: "slide-chain", label: "On-Chain Settlement", product: true },
-  { id: "slide-chain-enables", label: "What It Unlocks" },
-
-  { id: "slide-ftra", label: "$FTRA", product: true },
 
   { id: "slide-close", label: "Close" },
+
+  { id: "slide-ftra", label: "Powered by $FTRA" },
 ];
 
 /** Manifest position of a slide id, or -1. */
