@@ -67,7 +67,7 @@ export default function EcosystemSlide() {
       id="slide-ecosystem"
       folio="04"
       eyebrow="The Fuutura Ecosystem"
-      title="One compliance layer. Every product on it."
+      title="Unified ecosystem for digital finance"
       lead="Each product is useful on its own. Together they compound — because identity acts as the underlying compliance infrastructure, opening access across the entire ecosystem without friction."
     >
       <Reveal>
