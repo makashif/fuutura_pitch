@@ -34,7 +34,7 @@ export default function TradeShowcase() {
       id="slide-trade"
       folio="05"
       eyebrow="Fuutura Trade"
-      title="A licensed, non-custodial synthetic exchange"
+      title="Built for regulation, non-custodial synthetic exchange"
       lead="Compliant, on-chain-settled exposure to the world's assets — built specifically for the markets the incumbent rails do not reach."
       tagline="No shares to source, no client assets to hold"
       icon="chart"

@@ -16,7 +16,6 @@ const ROWS = [
   { left: "Extensive repeat paperwork", right: "Digital-first — identity already proved" },
   { left: "Requires a physical location", right: "Wherever the client's phone is" },
   { left: "Limited transparency", right: "Full transaction tracking" },
-  { left: "Banking hours only", right: "Available 24/7" },
 ];
 
 export default function RemittanceSlide() {
@@ -32,7 +31,6 @@ export default function RemittanceSlide() {
         <div className="grid-3 ruled-cols" style={{ width: "100%" }}>
           <Stat value="< 1%" label="Transfer cost" small />
           <Stat value="Instant" label="Settlement" small />
-          <Stat value="24/7" label="Availability" small />
         </div>
       </Reveal>
 

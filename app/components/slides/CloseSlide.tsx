@@ -23,12 +23,6 @@ const NEXT = [
     tint: "peri" as const,
   },
   {
-    icon: "send" as const,
-    title: "Send & Spend",
-    caption: "Under 1% · 80M+ merchants",
-    tint: "sand" as const,
-  },
-  {
     icon: "link" as const,
     title: "Connect",
     caption: "Public L2 · tokenisation next",
@@ -78,7 +72,7 @@ export default function CloseSlide() {
           </p>
         </Reveal>
 
-        <div className="grid-4" style={{ width: "100%", marginTop: "0.35rem" }}>
+        <div className="grid-3" style={{ width: "100%", marginTop: "0.35rem" }}>
           {NEXT.map((n) => (
             <Reveal key={n.title}>
               <PillarCard
@@ -112,7 +106,7 @@ export default function CloseSlide() {
             </a>
             <span className="t-cap" style={{ marginLeft: "auto", maxWidth: "58ch" }}>
               Confidential — for the named recipient only. Not an offer or
-              solicitation, and not for distribution to U.S. Persons.
+              solicitation, and not for distribution to U.S. & UK Persons.
             </span>
           </div>
         </Reveal>

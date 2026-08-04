@@ -39,16 +39,14 @@ const CLASSES = [
   {
     icon: "globe" as const,
     title: "Tokenised real-world assets",
-    body: "Real estate and RWAs, fractionally held.",
+    body: "Real estate and RWAs, fractionally held, to be introduced.",
     tint: "dark" as const,
   },
 ];
 
 const CAPABILITIES = [
   "Fractional ownership",
-  "24/7 tokenised trading",
   "Real-time settlement",
-  "Staking",
   "Integrated wallet",
   "Earned leverage tiers",
 ];
@@ -66,7 +64,6 @@ export default function InstrumentsSlide() {
         <div className="grid-3 ruled-cols" style={{ width: "100%", maxWidth: "56rem" }}>
           <Stat value="Multi-Asset" label="Trading Platform" />
           <Stat value="Fractional" label="Minimum position" small />
-          <Stat value="24 / 7" label="Tokenised market hours" small />
         </div>
       </Reveal>
 
