@@ -35,6 +35,7 @@ export const SLIDES: SlideEntry[] = [
 
   { id: "slide-trade", label: "Fuutura Trade", product: true },
   { id: "slide-instruments", label: "Instrument Universe" },
+  { id: "slide-leverage", label: "Tiered Leverage" },
 
   { id: "slide-id", label: "Fuutura ID", product: true },
   { id: "slide-verification", label: "Onboarding & Coverage" },

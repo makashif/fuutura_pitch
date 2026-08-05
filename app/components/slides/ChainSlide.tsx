@@ -77,7 +77,7 @@ export default function ChainSlide() {
   return (
     <Sheet
       id="slide-chain"
-      folio="14"
+      folio="15"
       eyebrow="On-Chain Settlement"
       title="Built to grow on-chain"
       lead="General-purpose blockchains were not built for regulated finance — no identity layer, no compliance primitives, and gas that spikes when volume arrives. Fuutura settles on proven public rails today and builds the finance-specific layer deliberately: a chain for identity-connected real-world finance, not a general-purpose chain with finance on top."

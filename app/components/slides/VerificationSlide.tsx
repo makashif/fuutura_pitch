@@ -36,7 +36,7 @@ export default function VerificationSlide() {
   return (
     <Sheet
       id="slide-verification"
-      folio="08"
+      folio="09"
       eyebrow="Fuutura ID · Onboarding & Coverage"
       title="Verification in under a minute, almost anywhere"
       lead="The same checks a bank runs over a day, completed in the time it takes to read this paragraph — and inclusion fails on the edge cases, so coverage reaches the residence permit and the regional licence, not only the passport."

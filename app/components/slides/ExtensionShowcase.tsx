@@ -32,7 +32,7 @@ export default function ExtensionShowcase() {
   return (
     <ProductShowcase
       id="slide-extension"
-      folio="13"
+      folio="14"
       eyebrow="Fuutura Extension"
       title="The wallet, where the web is"
       lead="Self-custody only works if it is present at the moment of use. The extension puts the same keys and the same compliance perimeter into the browser, beside whatever the client is already doing."

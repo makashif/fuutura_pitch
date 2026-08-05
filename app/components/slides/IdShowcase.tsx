@@ -32,7 +32,7 @@ export default function IdShowcase() {
   return (
     <ProductShowcase
       id="slide-id"
-      folio="07"
+      folio="08"
       eyebrow="Fuutura ID"
       title="One verification. Every door."
       lead="Identity is the layer every other Fuutura product reads from. Prove who you are once and that proof carries across custody, markets and payments — with no re-onboarding at any of them."

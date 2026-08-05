@@ -16,6 +16,7 @@ import RemittanceSlide from "./components/slides/RemittanceSlide";
 
 import TradeShowcase from "./components/slides/TradeShowcase";
 import InstrumentsSlide from "./components/slides/InstrumentsSlide";
+import LeverageSlide from "./components/slides/LeverageSlide";
 
 import ProSlide from "./components/slides/ProSlide";
 
@@ -25,7 +26,7 @@ import CloseSlide from "./components/slides/CloseSlide";
 
 /* ─────────────────────────────────────────────────────────────
    FUUTURA — PRODUCT OVERVIEW
-   16 pages, organised by product.
+   17 pages, organised by product.
 
    This is a client-facing product deck, so it runs as one
    continuous document: no chapter dividers, no abstract sections.
@@ -34,14 +35,14 @@ import CloseSlide from "./components/slides/CloseSlide";
    belongs to — which is what carries the structure.
 
      01      Overview, mission, why Fuutura, the ecosystem
-     05–06   Fuutura Trade
-     07–08   Fuutura ID
-     09      Fuutura PRO
-     10–12   Fuutura Wallet and payments
-     13      Fuutura Extension
-     14      On-Chain Settlement
-     15      Close
-     16      Powered by $FTRA
+     05–07   Fuutura Trade
+     08–09   Fuutura ID
+     10      Fuutura PRO
+     11–13   Fuutura Wallet and payments
+     14      Fuutura Extension
+     15      On-Chain Settlement
+     16      Close
+     17      Powered by $FTRA
 ───────────────────────────────────────────────────────────── */
 
 export default function Home() {
@@ -58,6 +59,7 @@ export default function Home() {
       {/* ── Fuutura Trade ── */}
       <TradeShowcase />
       <InstrumentsSlide />
+      <LeverageSlide />
 
       {/* ── Fuutura ID ── */}
       <IdShowcase />

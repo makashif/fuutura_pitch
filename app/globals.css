@@ -820,6 +820,73 @@ a {
 }
 
 /* ═══════════════════════════════════════════════════════
+   TIER LADDER — the leverage page's progression device.
+   Rungs stand on a common floor and step up to the right,
+   so the rise itself carries the argument: capacity is
+   reached, not issued.
+═══════════════════════════════════════════════════════ */
+
+.ladder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.4rem, 1vw, 0.85rem);
+  /* Rungs stand on a common floor; the step comes from --rise above. */
+  align-items: end;
+  width: 100%;
+}
+
+/* --rise is set per rung; it is the step height, not padding
+   inside the card, so the cards keep a common baseline. */
+.rung {
+  padding-top: var(--rise, 0);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Flex rather than height:100% — a percentage height against a
+   stretched grid row feeds back into the sheet's own height. */
+.rung>.card {
+  flex: 1 1 auto;
+}
+
+/* Serif numeral inside a badge — the reference counts this way */
+.badge-num {
+  font-family: var(--f-serif);
+  font-size: clamp(0.62rem, min(0.85vw, 1.5vh), 0.9rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Capacity meter — filled segments carry the tier's cap */
+.meter {
+  display: flex;
+  gap: 3px;
+  width: 100%;
+}
+
+.meter-seg {
+  flex: 1;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--hair);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.meter-seg--on {
+  background: var(--rust);
+}
+
+.card--dark .meter-seg {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.card--dark .meter-seg--on {
+  background: #D9BE93;
+}
+
+/* ═══════════════════════════════════════════════════════
    PILLS & MISC
 ═══════════════════════════════════════════════════════ */
 

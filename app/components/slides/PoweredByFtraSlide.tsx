@@ -9,7 +9,7 @@ import { Reveal } from "../Primitives";
 
 export default function PoweredByFtraSlide() {
   return (
-    <SlideWrapper id="slide-ftra" folio="16" center>
+    <SlideWrapper id="slide-ftra" folio="17" center>
       <div
         className="stack g-4"
         style={{ width: "100%", alignItems: "center", textAlign: "center" }}
