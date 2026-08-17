@@ -67,8 +67,7 @@ export default function CoverSlide() {
 
         <Reveal>
           <h1 className="t-hero" style={{ maxWidth: "34ch" }}>
-            A licensed, self-custodial financial ecosystem for global market
-            access
+            Self-custodial financial ecosystem for global market access built for regulation
           </h1>
         </Reveal>
 
