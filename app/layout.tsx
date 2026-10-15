@@ -22,6 +22,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://product-deck.fuutura.com"),
   title: "Fuutura — Product Overview",
   description:
     "A licensed, self-custodial financial ecosystem for global market access. Compliant, on-chain-settled exposure to the world's assets — built for markets the incumbent rails don't reach.",
