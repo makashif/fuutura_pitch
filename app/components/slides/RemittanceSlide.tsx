@@ -5,9 +5,8 @@ import { BrowserMockup } from "../Mockups";
 import { Reveal, CompareColumns, Stat, ClosingLine } from "../Primitives";
 
 /* ── 11 — Cross-Border Remittance ─────────────────────────────
-   The figures run the full width, the comparison and a single
-   large screen share the space beneath — the table needs half a
-   page to breathe, and one shot reads better than two.
+   Figures and comparison stack on the left; a single large
+   screen sits top-aligned beside them on the right.
 ───────────────────────────────────────────────────────────── */
 
 const ROWS = [
@@ -27,27 +26,32 @@ export default function RemittanceSlide() {
       title="The cost of sending money home"
       lead="Remittance is where the incumbent system charges the most to the people who can least afford it — a 5–10% levy on money already earned. On-chain settlement removes the correspondent-banking chain that creates both the cost and the delay."
     >
-      <Reveal>
-        <div className="grid-3 ruled-cols" style={{ width: "100%" }}>
-          <Stat value="< 1%" label="Transfer cost" small />
-          <Stat value="Instant" label="Settlement" small />
-        </div>
-      </Reveal>
+      <div className="split--even" style={{ width: "100%", alignItems: "start" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(1rem, 3vh, 2.4rem)", minWidth: 0 }}>
+          <Reveal>
+            <div className="grid-2 ruled-cols" style={{ width: "100%" }}>
+              <Stat value="< 1%" label="Transfer cost" small />
+              <Stat value="Instant" label="Settlement" small />
+            </div>
+          </Reveal>
 
-      <div className="split--even" style={{ width: "100%" }}>
-        <Reveal>
-          <CompareColumns
-            leftTitle="Traditional remittance"
-            rightTitle="Fuutura remittance"
-            rows={ROWS}
-          />
-        </Reveal>
+          <Reveal>
+            <CompareColumns
+              leftTitle="Traditional remittance"
+              rightTitle="Fuutura remittance"
+              rows={ROWS}
+            />
+          </Reveal>
+        </div>
 
         <Reveal>
           <BrowserMockup
-            src="/images/screens/wallet/wallet_s3.jpg"
+            src="/images/screens/wallet/wallet_s1.png"
             alt="Fuutura Wallet cross-border transfer"
-            maxWidth="96%"
+            url="wallet.fuutura.com"
+            w={2880}
+            h={2870}
+            maxWidth="min(100%, 46svh)"
           />
         </Reveal>
       </div>

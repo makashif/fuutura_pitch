@@ -44,10 +44,11 @@ export default function TradeShowcase() {
       pills={["A universe of markets", "External pricing", "On-chain settlement"]}
       mockup={
         <ScreenSet
+          url="trade.fuutura.com"
           type="desktop"
           screens={[
-            { src: "/images/screens/trade/trade_s2.jpg", alt: "Fuutura Trade charting" },
-            { src: "/images/screens/trade/trade_s3.jpg", alt: "Fuutura Trade terminal" }
+            { src: "/images/screens/trade/trade_s2.png", alt: "Fuutura Trade charting" },
+            { src: "/images/screens/trade/trade_s3.png", alt: "Fuutura Trade terminal" }
           ]}
         />
       }

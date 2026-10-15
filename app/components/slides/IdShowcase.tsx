@@ -43,6 +43,7 @@ export default function IdShowcase() {
       pills={["180+ countries", "AI document checks", "On-chain token", "KYC · KYB · KYT"]}
       mockup={
         <ScreenSet
+          url="id.fuutura.com"
           type="mixed"
           screens={[
             { src: "/images/screens/id_s1.jpg", alt: "Fuutura ID dashboard", device: "desktop" },

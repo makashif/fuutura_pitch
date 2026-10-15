@@ -43,10 +43,11 @@ export default function WalletShowcase() {
       pills={["Multi-chain", "Crypto & fiat", "Self-custodial", "Fuutura IQ"]}
       mockup={
         <ScreenSet
+          url="wallet.fuutura.com"
           type="desktop"
           screens={[
-            { src: "/images/screens/wallet/wallet_s1.jpg", alt: "Fuutura Wallet dashboard" },
-            { src: "/images/screens/wallet/wallet_s2.jpg", alt: "Fuutura Wallet swap interface" }
+            { src: "/images/screens/wallet/wallet_s1.png", alt: "Fuutura Wallet dashboard" },
+            { src: "/images/screens/wallet/wallet_s2.png", alt: "Fuutura Wallet swap interface" }
           ]}
         />
       }

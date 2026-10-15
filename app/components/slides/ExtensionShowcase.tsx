@@ -43,10 +43,11 @@ export default function ExtensionShowcase() {
       pills={["Non-custodial", "Multi-chain EVM", "Explicit signing"]}
       mockup={
         <ScreenSet
+          url="wallet.fuutura.com"
           type="extension"
           screens={[
-            { src: "/images/screens/extension/extension_s1.jpg", alt: "Fuutura Extension account and keys" },
-            { src: "/images/screens/extension/extension_s3.jpg", alt: "Fuutura Extension holdings" }
+            { src: "/images/screens/extension/extension_s1.png", alt: "Fuutura Extension account and keys" },
+            { src: "/images/screens/extension/extension_s3.png", alt: "Fuutura Extension holdings" }
           ]}
         />
       }

@@ -53,8 +53,8 @@ export function PhoneMockup({
       <span className="device-btn device-power" aria-hidden="true" />
 
       <div className="device-phone-body">
-        <div className="device-phone-screen">
-          <Image src={src} alt={alt} width={393} height={852} unoptimized />
+        <div className="device-phone-screen" style={{ background: "transparent" }}>
+          <Image src={src} alt={alt} width={393} height={852} unoptimized style={{ objectFit: "cover", objectPosition: "center top" }} />
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@ export function BrowserMockup({
       </div>
 
       {/* Screen */}
-      <div className="device-browser-screen">
+      <div className="device-browser-screen" style={{ background: "transparent" }}>
         <Image src={src} alt={alt} width={w} height={h} unoptimized />
       </div>
     </div>
@@ -144,7 +144,7 @@ export function ExtensionMockup({
       </div>
 
       {/* Popup panel */}
-      <div className="device-ext-panel">
+      <div className="device-ext-panel" style={{ background: "transparent" }}>
         <Image src={src} alt={alt} width={600} height={852} unoptimized />
       </div>
     </div>
@@ -159,10 +159,13 @@ export function ScreenSet({
   type,
   screens,
   height,
+  url,
 }: {
   type: "desktop" | "phone" | "extension" | "mixed";
   screens: { src: string; alt?: string; device?: "desktop" | "phone" | "extension" }[];
   height?: string;
+  /** Address shown in each browser frame's URL pill. */
+  url?: string;
 }) {
   if (type === "mixed") {
     return (
@@ -178,7 +181,7 @@ export function ScreenSet({
           if (s.device === "desktop" || !s.device) {
             return (
               <div key={i} style={{ flex: "1 1 65%", minWidth: 0 }}>
-                 <BrowserMockup src={s.src} alt={s.alt} />
+                 <BrowserMockup src={s.src} alt={s.alt} url={url} />
               </div>
             );
           }
@@ -192,7 +195,7 @@ export function ScreenSet({
       <div className="row jc-c ai-s" style={{ gap: "clamp(1rem, 2vw, 2rem)", width: "100%" }}>
         {screens.map((s, i) => (
           <div key={i} style={{ flex: "1 1 0", minWidth: 0 }}>
-             <BrowserMockup src={s.src} alt={s.alt} />
+             <BrowserMockup src={s.src} alt={s.alt} url={url} />
           </div>
         ))}
       </div>

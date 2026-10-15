@@ -44,6 +44,7 @@ export default function VerificationSlide() {
       <div className="showcase-row" style={{ flex: 1, minHeight: 0 }}>
         <Reveal className="showcase-shot--wide">
           <ScreenSet
+            url="id.fuutura.com"
             type="mixed"
             screens={[
               { src: "/images/screens/id_s3.jpg", alt: "Fuutura ID document upload", device: "desktop" },
