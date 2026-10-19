@@ -46,8 +46,8 @@ export default function WalletShowcase() {
           url="wallet.fuutura.com"
           type="desktop"
           screens={[
-            { src: "/images/screens/wallet/wallet_s1.png", alt: "Fuutura Wallet dashboard" },
-            { src: "/images/screens/wallet/wallet_s2.png", alt: "Fuutura Wallet swap interface" }
+            { src: "/images/screens/wallet/wallet_s1.png", alt: "Fuutura Wallet dashboard", w: 2880, h: 2870 },
+            { src: "/images/screens/wallet/wallet_s2.png", alt: "Fuutura Wallet swap interface", w: 2880, h: 1840 }
           ]}
         />
       }

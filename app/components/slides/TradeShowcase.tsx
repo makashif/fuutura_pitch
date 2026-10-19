@@ -45,10 +45,10 @@ export default function TradeShowcase() {
       mockup={
         <ScreenSet
           url="trade.fuutura.com"
-          type="desktop"
+          type="mixed"
           screens={[
-            { src: "/images/screens/trade/trade_s2.png", alt: "Fuutura Trade charting" },
-            { src: "/images/screens/trade/trade_s3.png", alt: "Fuutura Trade terminal" }
+            { src: "/images/screens/trade/trade_s3.png", alt: "Fuutura Trade terminal", device: "desktop", w: 2880, h: 2610 },
+            { src: "/images/screens/trade/trade_m_s3.png", alt: "Fuutura Trade mobile", device: "phone" }
           ]}
         />
       }

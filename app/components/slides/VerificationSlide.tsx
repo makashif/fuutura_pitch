@@ -47,8 +47,8 @@ export default function VerificationSlide() {
             url="id.fuutura.com"
             type="mixed"
             screens={[
-              { src: "/images/screens/id_s3.jpg", alt: "Fuutura ID document upload", device: "desktop" },
-              { src: "/images/screens/id/id_m_s2.jpg", alt: "Fuutura ID mobile face check", device: "phone" }
+              { src: "/images/screens/id/id_s3.png", alt: "Fuutura ID document upload", device: "desktop", w: 2880, h: 2180 },
+              { src: "/images/screens/id/id_m_s2.png", alt: "Fuutura ID mobile face check", device: "phone" }
             ]}
           />
         </Reveal>

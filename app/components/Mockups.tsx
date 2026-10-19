@@ -79,6 +79,9 @@ export function BrowserMockup({
   h = 796,
   /** Any CSS length constraining the frame width. */
   maxWidth = "100%",
+  /** Tallest the screenshot may render; the width follows from its ratio,
+      so tall screens shrink instead of running off the slide. */
+  maxHeight = "50svh",
 }: {
   src: string;
   alt?: string;
@@ -86,9 +89,13 @@ export function BrowserMockup({
   w?: number;
   h?: number;
   maxWidth?: string;
+  maxHeight?: string;
 }) {
   return (
-    <div className="device-browser" style={{ maxWidth }}>
+    <div
+      className="device-browser"
+      style={{ maxWidth: `min(${maxWidth}, calc(${maxHeight} * ${w} / ${h}))`, marginInline: "auto" }}
+    >
       {/* Window chrome — muted to sit inside the cream palette */}
       <div className="device-browser-bar">
         <span className="device-dot" style={{ background: "#C9705A" }} />
@@ -162,7 +169,7 @@ export function ScreenSet({
   url,
 }: {
   type: "desktop" | "phone" | "extension" | "mixed";
-  screens: { src: string; alt?: string; device?: "desktop" | "phone" | "extension" }[];
+  screens: { src: string; alt?: string; device?: "desktop" | "phone" | "extension"; w?: number; h?: number }[];
   height?: string;
   /** Address shown in each browser frame's URL pill. */
   url?: string;
@@ -181,7 +188,7 @@ export function ScreenSet({
           if (s.device === "desktop" || !s.device) {
             return (
               <div key={i} style={{ flex: "1 1 65%", minWidth: 0 }}>
-                 <BrowserMockup src={s.src} alt={s.alt} url={url} />
+                 <BrowserMockup src={s.src} alt={s.alt} url={url} w={s.w} h={s.h} />
               </div>
             );
           }
@@ -195,7 +202,7 @@ export function ScreenSet({
       <div className="row jc-c ai-s" style={{ gap: "clamp(1rem, 2vw, 2rem)", width: "100%" }}>
         {screens.map((s, i) => (
           <div key={i} style={{ flex: "1 1 0", minWidth: 0 }}>
-             <BrowserMockup src={s.src} alt={s.alt} url={url} />
+             <BrowserMockup src={s.src} alt={s.alt} url={url} w={s.w} h={s.h} />
           </div>
         ))}
       </div>
