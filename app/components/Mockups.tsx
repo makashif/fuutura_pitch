@@ -190,8 +190,8 @@ export function ScreenSet({
           }
           if (s.device === "desktop" || !s.device) {
             return (
-              <div key={i} style={{ flex: "1 1 0", minWidth: 0 }}>
-                 <BrowserMockup src={s.src} alt={s.alt} url={url} w={s.w} h={s.h} align="end" />
+              <div key={i} style={{ flex: "0 1 auto", minWidth: 0 }}>
+                 <BrowserMockup src={s.src} alt={s.alt} url={url} w={s.w} h={s.h} />
               </div>
             );
           }

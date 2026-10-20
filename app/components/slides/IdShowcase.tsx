@@ -40,6 +40,7 @@ export default function IdShowcase() {
       icon="fingerprint"
       tone="sage"
       variant="wide"
+      shotBasis="55%"
       pills={["180+ countries", "AI document checks", "On-chain token", "KYC · KYB · KYT"]}
       mockup={
         <ScreenSet
