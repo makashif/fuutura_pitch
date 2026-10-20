@@ -53,7 +53,7 @@ export function PhoneMockup({
       <span className="device-btn device-power" aria-hidden="true" />
 
       <div className="device-phone-body">
-        <div className="device-phone-screen" style={{ background: "transparent" }}>
+        <div className="device-phone-screen" style={{ background: "#FAF9F5" }}>
           <Image src={src} alt={alt} width={393} height={852} unoptimized style={{ objectFit: "cover", objectPosition: "center top" }} />
         </div>
       </div>
@@ -82,6 +82,8 @@ export function BrowserMockup({
   /** Tallest the screenshot may render; the width follows from its ratio,
       so tall screens shrink instead of running off the slide. */
   maxHeight = "50svh",
+  /** Where the frame sits when the height cap leaves it narrower than its column. */
+  align = "center",
 }: {
   src: string;
   alt?: string;
@@ -90,11 +92,12 @@ export function BrowserMockup({
   h?: number;
   maxWidth?: string;
   maxHeight?: string;
+  align?: "center" | "end";
 }) {
   return (
     <div
       className="device-browser"
-      style={{ maxWidth: `min(${maxWidth}, calc(${maxHeight} * ${w} / ${h}))`, marginInline: "auto" }}
+      style={{ maxWidth: `min(${maxWidth}, calc(${maxHeight} * ${w} / ${h}))`, marginLeft: "auto", marginRight: align === "end" ? 0 : "auto" }}
     >
       {/* Window chrome — muted to sit inside the cream palette */}
       <div className="device-browser-bar">
@@ -180,15 +183,15 @@ export function ScreenSet({
         {screens.map((s, i) => {
           if (s.device === "phone") {
             return (
-              <div key={i} style={{ flex: "0 1 28%", minWidth: 0 }}>
-                 <PhoneMockup src={s.src} alt={s.alt} height={height} />
+              <div key={i} style={{ flex: "0 0 auto" }}>
+                 <PhoneMockup src={s.src} alt={s.alt} height={height ?? "52svh"} />
               </div>
             );
           }
           if (s.device === "desktop" || !s.device) {
             return (
-              <div key={i} style={{ flex: "1 1 65%", minWidth: 0 }}>
-                 <BrowserMockup src={s.src} alt={s.alt} url={url} w={s.w} h={s.h} />
+              <div key={i} style={{ flex: "1 1 0", minWidth: 0 }}>
+                 <BrowserMockup src={s.src} alt={s.alt} url={url} w={s.w} h={s.h} align="end" />
               </div>
             );
           }
